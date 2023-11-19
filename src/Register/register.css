@@ -1,0 +1,74 @@
+@import '../root.css';
+.reg-container.flex {
+  width: 900px;
+  height: 500px;
+  margin: 5% auto;
+  background: var(--gradientBlue);
+  border-radius: 15px 10px 10px 15px;
+  box-shadow: 10px 5px 10px rgba(106, 104, 104, 0.5333333333);
+}
+.reg-container.flex .left-container {
+  background-image: url("../assets/login.jpg");
+  filter: blur(0.5px);
+  width: 65%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 15px 50px 60% 15px;
+  border: 1px solid #888888;
+  box-shadow: 2px 5px 10px rgba(136, 136, 136, 0.5333333333);
+}
+.reg-container.flex .left-container h2 {
+  color: var(--PrimaryColor);
+  font-weight: 400;
+  padding: 0 30px;
+}
+.reg-container.flex .right-container {
+  height: 100%;
+}
+.reg-container.flex .right-container .title {
+  margin: 0 auto;
+  width: fit-content;
+  margin-bottom: 30px;
+}
+.reg-container.flex .right-container .title h2 {
+  color: var(--whiteColorDeam);
+  font-weight: 500;
+}
+.reg-container.flex .right-container .form-container form {
+  color: white;
+  padding: 5px;
+  margin: 0 auto;
+}
+.reg-container.flex .right-container .form-container form input {
+  border: none;
+  background: var(--whiteColorDeam);
+  outline: none;
+  width: 95%;
+  height: 25px;
+  border-radius: 7px;
+  margin: 5px 5px;
+}
+.reg-container.flex .right-container .form-container form label {
+  margin: 5px;
+}
+.reg-container.flex .right-container .form-container form .name-fields.flex input {
+  width: 90%;
+}
+.reg-container.flex .right-container .form-container form button {
+  display: flex;
+  align-items: center;
+  padding: 10px 55px;
+  font-size: 15px;
+  float: right;
+  margin: 30px 20px;
+  border: none;
+  transition: 0.5s ease-in-out;
+  border-radius: 10px;
+}
+.reg-container.flex .right-container .form-container form button:hover {
+  background: var(--GreenColor);
+}
+
+/*# sourceMappingURL=register.css.map */

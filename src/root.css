@@ -1,0 +1,18 @@
+:root{
+    --BackgroundColor: #f0f3ff;
+    --PrimaryColor: #063e7a;
+    --GreenColor: #4fba6a;
+    --PurpleColor:#8882f2;
+    --RedColor: #ba4f4f;
+    --GreyColor:#7b98bc;
+    --DangerColor:#b3ba4f;
+    --gradientBlue: linear-gradient(to top left, #7b98bc,#063e7a);
+    --gradientColor: linear-gradient(to right, hsl(187,85%,43%), hsl(199,100%,33%));
+    --whiteColorDeam: hsl(0,0%,93%);
+    --whiteColorDeamTransparent:hsla(0, 0%, 93%, 0.818);
+    --PrimaryColorTransparent:#063e7abc;
+
+    font-family: 'Poppins';
+    width: 100%;
+    height: 100%;
+}

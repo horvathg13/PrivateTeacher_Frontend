@@ -1,0 +1,81 @@
+@import '../root.css';
+
+.reg-container.flex{
+    width: 900px;
+    height: 500px;
+    margin: 5% auto;
+    background: var(--gradientBlue);
+    border-radius: 15px 10px 10px 15px;
+    box-shadow: 10px 5px 10px #6a686888;
+    .left-container{
+        background-image: url('../assets/login.jpg');
+        filter: blur(.5px);
+        width: 65%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 15px 50px 60% 15px;
+        border: 1px solid #888888;
+        box-shadow: 2px 5px 10px #8888;
+
+        h2{
+            color: var(--PrimaryColor);
+            font-weight: 400;
+            padding: 0 30px;
+        }
+    }
+
+    .right-container{
+        height: 100%;
+
+        .title{
+            margin: 0 auto;
+            width: fit-content;
+            margin-bottom: 30px;
+            h2{
+                color: var(--whiteColorDeam);
+                font-weight: 500;
+            }
+        }
+        .form-container{
+            form{
+                color: white;
+                padding: 5px;
+                margin: 0 auto;
+                input{
+                    border: none;
+                    background: var(--whiteColorDeam);
+                    outline: none;
+                    width: 95%;
+                    height: 25px;
+                    border-radius: 7px;
+                    margin: 5px 5px;
+                }
+                label{
+                    margin: 5px;
+                }
+                .name-fields.flex{
+                    input{
+                        width: 90%;
+                    }
+                }
+                button{
+                    display: flex;
+                    align-items: center;
+                    padding: 10px 55px;
+                    font-size: 15px;
+                    float: right;
+                    margin: 30px 20px;
+                    border: none;
+                    transition: .5s ease-in-out;
+                    border-radius: 10px;
+
+                    &:hover{
+                        background: var(--GreenColor);
+                    }
+                }
+            }
+        }
+    }
+}

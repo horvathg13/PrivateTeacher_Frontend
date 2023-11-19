@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import './root.css';
+
+a{
+  text-decoration: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+li{
+  list-style: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/*container*/
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.icon{
+  font-size:2rem;
+  cursor:pointer;
+}
+.btn-icon{
+  margin: auto 5px;
+}
+.flex{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.grid{
+  display: grid;
+  align-items: center;
+}
+button{
+  cursor: pointer;
+}
+.headerBtn{
+  padding: 15px 20px;
+  border: 3px solid transparent;
+  margin: 0 5px;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 13px;
+  color: var(--PrimaryColor);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.headerBtn:hover{
+  border-bottom: 3px solid var(--GreenColor);
+  border-radius: 0;
+  transition: .4s ease-in-out;
+}
+
+.btn{
+  font-family: 'Poppins';
+}
+
+
+input{
+  font-size: 100%;
+  font-family: 'Poppins';
+}
+
+.main-btn{
+  position: absolute;
+  padding: 12px 30px;
+  margin: 25px 0;
+  border-radius: 5px;
+  border: none;
   color: white;
+  background: var(--gradientColor);
+  cursor: pointer;
+  left: auto;
+  font-family: 'Poppins', 'sans-serif';
+  transition: .4s ease-in-out;
+  box-shadow: 2px 1px 1px  black;
 }
 
-.App-link {
-  color: #61dafb;
+.main-btn:hover{
+  transform: scale(1.1);
+  transition: .3s ease-in-out;
+  box-shadow: 2px 1px 1px  black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form{
+  font-family: 'Poppins';
 }
