@@ -4,7 +4,7 @@ import {createBrowserRouter, RouterProvider, BrowserRouter as Router, Routes, Ro
 
 import Register from "./Register/register"
 import Header from './Header/header';
-
+import Login from './Login/login';
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Header />
         <Routes>
           
+          <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
         </Routes>
 

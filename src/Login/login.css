@@ -1,0 +1,100 @@
+@import '../root.css';
+.login-container.flex {
+  width: 900px;
+  height: 500px;
+  margin: 5% auto;
+  background: var(--gradienLightBlue);
+  border-radius: 15px 10px 10px 15px;
+  box-shadow: 10px 5px 10px rgba(106, 104, 104, 0.5333333333);
+}
+.login-container.flex .right-container {
+  background-image: url("../assets/login.jpg");
+  filter: blur(0.5px);
+  width: 65%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #888888;
+  box-shadow: 2px 5px 10px rgba(136, 136, 136, 0.5333333333);
+  border-radius: 50% 8px 15px 60%;
+  width: 50%;
+}
+.login-container.flex .right-container .text-field {
+  margin: 50px 10px;
+  width: fit-content;
+  float: right;
+}
+.login-container.flex .right-container .text-field p {
+  color: var(--PrimaryColor);
+  font-size: 18px;
+}
+.login-container.flex .right-container .text-field .outline.btn {
+  background: transparent;
+  border: 2px solid var(--PrimaryColor);
+  padding: 15px 50px;
+  border-radius: 10px;
+  color: var(--PrimaryColor);
+  font-weight: 500;
+  margin: 50px 0px;
+  transition: 0.5s ease-in-out;
+}
+.login-container.flex .right-container .text-field .outline.btn:hover {
+  background: var(--GreenColor);
+  border: 2px solid var(--GreenColor);
+}
+.login-container.flex .left-container {
+  height: 100%;
+  width: 50%;
+}
+.login-container.flex .left-container .title {
+  margin: 0 auto;
+  width: fit-content;
+  margin-bottom: 30px;
+}
+.login-container.flex .left-container .title h2 {
+  color: var(--whiteColorDeam);
+  font-weight: 500;
+  font-size: 30px;
+}
+.login-container.flex .left-container .form-container {
+  margin: 50px 10px;
+}
+.login-container.flex .left-container .form-container form {
+  color: white;
+  padding: 5px;
+  margin: 0 auto;
+}
+.login-container.flex .left-container .form-container form input {
+  border: none;
+  background: var(--whiteColorDeam);
+  outline: none;
+  width: 95%;
+  border-radius: 7px;
+  margin: 5px 5px;
+  height: 30px;
+}
+.login-container.flex .left-container .form-container form label {
+  margin: 5px;
+}
+.login-container.flex .left-container .form-container form .name-fields.flex input {
+  width: 90%;
+}
+.login-container.flex .left-container .form-container form button {
+  display: flex;
+  align-items: center;
+  padding: 10px 55px;
+  font-size: 15px;
+  float: right;
+  margin: 30px 20px;
+  border: none;
+  transition: 0.5s ease-in-out;
+  border-radius: 10px;
+  color: var(--PrimaryColor);
+  font-weight: 500;
+}
+.login-container.flex .left-container .form-container form button:hover {
+  background: var(--GreenColor);
+}
+
+/*# sourceMappingURL=login.css.map */

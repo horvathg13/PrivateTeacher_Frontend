@@ -13,24 +13,24 @@ const Register = () => {
                         <div className="name-fields flex">
                             <div className="first-name">
                                 <label>First Name</label>
-                                <input type="text" />
+                                <input type="text" require />
                                 
                             </div>
                             <div className="last-name">
                                 <label>Last Name</label>
-                                <input type="text" />
+                                <input type="text" require />
                             </div>
                             
                         </div>
                         <div className="emailPassword-fields grid">
                             <label>Email</label>
-                            <input type="email" />
+                            <input type="email" require/>
                             
                             <label>Password</label>
-                            <input type="password" />
+                            <input type="password" require/>
                             
                             <label>Confirm Password</label>
-                            <input type="password" />
+                            <input type="password" require/>
                         </div>
                         
                         <button className='btn'>Send <FaArrowCircleRight className='btn-icon'/></button>

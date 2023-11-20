@@ -5,8 +5,11 @@
     --PurpleColor:#8882f2;
     --RedColor: #ba4f4f;
     --GreyColor:#7b98bc;
+    --LightBlue:#49719f;
     --DangerColor:#b3ba4f;
     --gradientBlue: linear-gradient(to top left, #7b98bc,#063e7a);
+    --gradientGreen:linear-gradient(to bottom right,#dbffe4,#33944b, #4fba6a);
+    --gradienLightBlue:linear-gradient(to top left, #6f92ba,#385c86);
     --gradientColor: linear-gradient(to right, hsl(187,85%,43%), hsl(199,100%,33%));
     --whiteColorDeam: hsl(0,0%,93%);
     --whiteColorDeamTransparent:hsla(0, 0%, 93%, 0.818);

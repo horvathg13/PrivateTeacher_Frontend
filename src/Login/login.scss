@@ -1,13 +1,13 @@
 @import '../root.css';
 
-.reg-container.flex{
+.login-container.flex{
     width: 900px;
     height: 500px;
     margin: 5% auto;
     background: var(--gradienLightBlue);
     border-radius: 15px 10px 10px 15px;
     box-shadow: 10px 5px 10px #6a686888;
-    .left-container{
+    .right-container{
         background-image: url('../assets/login.jpg');
         filter: blur(.5px);
         width: 65%;
@@ -15,20 +15,40 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        border-radius: 15px 40% 60% 15px;
         border: 1px solid #888888;
         box-shadow: 2px 5px 10px #8888;
+        border-radius: 50% 8px 15px 60%;
+        width:50%;
 
-        h2{
-            color: var(--PrimaryColor);
-            font-weight: 400;
-            padding: 0 30px;
+        .text-field{
+            margin: 50px 10px;
+            width: fit-content;
+            float: right;
+            p{
+                color: var(--PrimaryColor);
+                font-size: 18px;
+            }
+            .outline.btn{
+                background: transparent;
+                border: 2px solid var(--PrimaryColor);
+                padding: 15px 50px;
+                border-radius: 10px;
+                color: var(--PrimaryColor);
+                font-weight: 500;
+                margin: 50px 0px;
+                transition: .5s ease-in-out;
+                
+                &:hover{
+                    background: var(--GreenColor);
+                    border: 2px solid var(--GreenColor);
+                }
+            }
         }
     }
 
-    .right-container{
+    .left-container{
         height: 100%;
-
+        width:50%;
         .title{
             margin: 0 auto;
             width: fit-content;
@@ -40,6 +60,7 @@
             }
         }
         .form-container{
+            margin: 50px 10px;
             form{
                 color: white;
                 padding: 5px;
@@ -49,9 +70,9 @@
                     background: var(--whiteColorDeam);
                     outline: none;
                     width: 95%;
-                    height: 25px;
                     border-radius: 7px;
                     margin: 5px 5px;
+                    height: 30px;
                 }
                 label{
                     margin: 5px;
