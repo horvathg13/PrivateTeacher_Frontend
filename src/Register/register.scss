@@ -55,10 +55,17 @@
                     border-radius: 7px;
                     margin: 5px 5px;
                 }
+                .InputError{
+                    border: 2px solid var(--RedColor);
+                }
+                small{
+                    font-size: 12px;
+                }
                 label{
                     margin: 5px;
                 }
                 .name-fields.flex{
+                    text-align: center;
                     input{
                         width: 90%;
                     }

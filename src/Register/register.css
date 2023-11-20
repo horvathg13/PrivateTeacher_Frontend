@@ -53,8 +53,17 @@
   border-radius: 7px;
   margin: 5px 5px;
 }
+.reg-container.flex .right-container .form-container form .InputError {
+  border: 2px solid var(--RedColor);
+}
+.reg-container.flex .right-container .form-container form small {
+  font-size: 12px;
+}
 .reg-container.flex .right-container .form-container form label {
   margin: 5px;
+}
+.reg-container.flex .right-container .form-container form .name-fields.flex {
+  text-align: center;
 }
 .reg-container.flex .right-container .form-container form .name-fields.flex input {
   width: 90%;
