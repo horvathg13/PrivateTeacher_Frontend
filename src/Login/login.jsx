@@ -1,7 +1,10 @@
 import './login.css';
-import { FaArrowCircleRight } from "react-icons/fa"; 
+import { FaArrowCircleRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
+    const navigate = useNavigate();
     return (
         <div className="login-container flex">
             <div className="left-container">
@@ -26,7 +29,7 @@ const Login = () => {
             <div className="right-container">
                 <div className="text-field">
                     <p>If you have no account, please register.</p>
-                    <button className='outline btn'>Register</button>
+                    <button className='outline btn' onClick={()=>{navigate('/register')}}>Register</button>
 
                 </div>
             </div>            
