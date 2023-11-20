@@ -15,8 +15,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border: 1px solid #888888;
-  box-shadow: 2px 5px 10px rgba(136, 136, 136, 0.5333333333);
+  border: 4px solid var(--GreenColor);
+  box-shadow: 2px 5px 10px rgba(28, 28, 28, 0.5333333333);
   border-radius: 50% 8px 15px 60%;
   width: 50%;
 }
@@ -49,10 +49,13 @@
 }
 .login-container.flex .left-container .title {
   margin: 0 auto;
-  width: fit-content;
+  width: 100%;
   margin-bottom: 30px;
+  text-align: center;
+  border-bottom: 2px dotted var(--whiteColorDeam);
+  border-radius: 0 0 2px 0;
 }
-.login-container.flex .left-container .title h2 {
+.login-container.flex .left-container .title h1 {
   color: var(--whiteColorDeam);
   font-weight: 500;
   font-size: 30px;

@@ -9,7 +9,7 @@ const Login = () => {
         <div className="login-container flex">
             <div className="left-container">
                 <div className="title">
-                    <h2>Log In</h2>
+                    <h1>Log In</h1>
                 </div>
                 <div className="form-container">
                     <form>

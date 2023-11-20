@@ -16,8 +16,8 @@
         background-position: center;
         background-repeat: no-repeat;
         border-radius: 15px 40% 60% 15px;
-        border: 1px solid #888888;
-        box-shadow: 2px 5px 10px #8888;
+        border: 5px solid var(--GreenColor);
+        box-shadow: 5px 5px 8px #1c1c1c88;
 
         h2{
             color: var(--PrimaryColor);
@@ -31,8 +31,10 @@
 
         .title{
             margin: 0 auto;
-            width: fit-content;
-            margin-bottom: 30px;
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 2px dotted var(--whiteColorDeam);
             h2{
                 color: var(--whiteColorDeam);
                 font-weight: 500;

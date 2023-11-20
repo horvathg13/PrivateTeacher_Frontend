@@ -23,8 +23,9 @@
   margin: 5px;
 }
 .main-container.flex .logo-container h1 {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--GreenColor);
+  letter-spacing: 1px;
 }
 @media only screen and (max-width: 1010px) {
   .main-container.flex .navbar, .main-container.flex .user-container {
@@ -63,4 +64,6 @@
   .main-container.flex .mobile-menu {
     display: none;
   }
-}/*# sourceMappingURL=header.css.map */
+}
+
+/*# sourceMappingURL=header.css.map */
