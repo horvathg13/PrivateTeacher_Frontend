@@ -23,7 +23,11 @@ const Login = () => {
                         </div>
                         
                         <button className='btn'>Log In <FaArrowCircleRight className='btn-icon'/></button>
+                        
                     </form>
+                </div>
+                <div className="mobile-nav-to-register flex">
+                    <p>If you have no account, please <span>register</span>.</p>
                 </div>
             </div>
             <div className="right-container">
