@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import './register.css';
-import { FaArrowCircleRight } from "react-icons/fa";     
+import { FaArrowCircleRight } from "react-icons/fa";
+import ErrorMessage from '../ErrorHandle/ErrorMessage/errorMessage';     
 const Register = () => {
 
     const [fname, setFname]=useState('');
-    const [fnameError, setFnameError]=useState(false);
     const [lname, setLname]=useState('');
-    const [lnameError, setLnameError]=useState(false);
     const [email, setEmail]=useState('');
     const [emailError, setEmailError]=useState(false);
     const [password, setPassword]=useState('');
@@ -17,11 +16,17 @@ const Register = () => {
 
     const sendRegister=(event)=>{
         event.preventDefault();
-        
+        if(errors.length){
+            setErrors([]);
+            
+        }
         if(password != cpassword){
             setCPasswordError(true);
             setPasswordError(true);
-            setErrors('Passwords does not match');
+            setErrors(['Passwords does not match']);
+        }else if(passwordError==true & cpasswordError==true){
+            setCPasswordError(false);
+            setPasswordError(false);
         }
         //api call, error handle component, success component
     }
@@ -29,6 +34,7 @@ const Register = () => {
 
     return (
         <div className="reg-container flex">
+            {errors.length ? <ErrorMessage messageArray={errors}/>:null}
             <div className="left-container"></div>
             <div className="right-container">
                 <div className="title">
@@ -39,23 +45,23 @@ const Register = () => {
                         <div className="name-fields flex">
                             <div className="first-name">
                                 <label>First Name</label>
-                                <input className={fnameError ? 'InputError':null} type="text" required onChange={(e)=>{setFname(e.target.value)}}/>
+                                <input type="text" required onChange={(e)=>{setFname(e.target.value)}}/>
                             </div>
                             <div className="last-name">
                                 <label>Last Name</label>
-                                <input className={lnameError ? 'InputError':null} type="text" required onChange={(e)=>{setLname(e.target.value)}}/>
+                                <input type="text" required onChange={(e)=>{setLname(e.target.value)}}/>
                             </div>
                             
                         </div>
                         <div className="emailPassword-fields grid">
                             <label>Email</label>
-                            <input className={emailError ? 'InputError':null} type="email" required onChange={(e)=>{setEmail(e.target.value)}}/>
+                            <input className={emailError ? 'InputError':'emailInput'} type="email" required onChange={(e)=>{setEmail(e.target.value)}}/>
                             
                             <label>Password</label>
-                            <input className={passwordError ? 'InputError':null} type="password" required onChange={(e)=>{setPassword(e.target.value)}}/>
+                            <input className={passwordError ? 'InputError':'passwordInput'} type="password" required onChange={(e)=>{setPassword(e.target.value)}}/>
                             
                             <label>Confirm Password</label>
-                            <input className={cpasswordError ? 'InputError':null}type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
+                            <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
                         </div>
                         
                         <button type='submit' className='btn'>Send <FaArrowCircleRight className='btn-icon'/></button>

@@ -1,0 +1,28 @@
+.error-main {
+  width: fit-content;
+  height: fit-content;
+  background: var(--RedColor);
+  position: fixed;
+  top: 10%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 9999;
+  border-radius: 10px;
+  animation: slideIn 1s ease-in-out;
+}
+.error-main .error-container {
+  text-align: center;
+  padding: 15px;
+  color: var(--whiteColorDeam);
+}
+.error-main .error-container .icon {
+  color: var(--DangerColorSecound);
+  margin: 0 10px;
+  cursor: auto;
+}
+.error-main .error-container h4 {
+  margin: auto 20px;
+}
+
+/*# sourceMappingURL=errorMessage.css.map */
