@@ -2,6 +2,10 @@ import { useState } from 'react';
 import './register.css';
 import { FaArrowCircleRight } from "react-icons/fa";
 import ErrorMessage from '../ErrorHandle/ErrorMessage/errorMessage';     
+import Success from '../SuccessPopup/success';
+import ServiceClient from '../ServiceClient';
+
+
 const Register = () => {
 
     const [fname, setFname]=useState('');
@@ -13,6 +17,7 @@ const Register = () => {
     const [cpassword, setCPassword]=useState('');
     const [cpasswordError, setCPasswordError]=useState(false);
     const [errors, setErrors]=useState([]);
+    const [success, setSuccess]=useState(false);
 
     const sendRegister=(event)=>{
         event.preventDefault();
@@ -28,13 +33,31 @@ const Register = () => {
             setCPasswordError(false);
             setPasswordError(false);
         }
-        //api call, error handle component, success component
+        let url='http://127.0.0.1:8000/api/register';
+        let dataPost={};
+        dataPost.fname=fname;
+        dataPost.lname=lname;
+        dataPost.email=email;
+        dataPost.psw=password;
+
+        ServiceClient.post(url,dataPost).then((response)=>{
+            if(response.status===200){
+                setSuccess(true);
+            }else{
+
+            }
+        }).catch((error)=>{
+            setErrors(error.response.data);
+            console.log(error);
+        })
+
     }
 
 
     return (
         <div className="reg-container flex">
             {errors.length ? <ErrorMessage messageArray={errors}/>:null}
+            {success? <Success></Success>:null}
             <div className="left-container"></div>
             <div className="right-container">
                 <div className="title">
