@@ -43,8 +43,10 @@ const Register = () => {
         ServiceClient.post(url,dataPost).then((response)=>{
             if(response.status===200){
                 setSuccess(true);
-            }else{
-
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
+                
             }
         }).catch((error)=>{
             setErrors(error.response.data);
