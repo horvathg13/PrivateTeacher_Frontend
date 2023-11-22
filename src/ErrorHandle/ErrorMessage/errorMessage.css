@@ -1,5 +1,7 @@
 .error-main {
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   background: var(--RedColor);
   position: fixed;
@@ -24,5 +26,7 @@
 .error-main .error-container h4 {
   margin: auto 20px;
 }
-
-/*# sourceMappingURL=errorMessage.css.map */
+.error-main .close {
+  float: right;
+  color: var(--whiteColorDeam);
+}/*# sourceMappingURL=errorMessage.css.map */
