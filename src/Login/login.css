@@ -21,7 +21,6 @@
 }
 .login-container.flex .right-container .text-field {
   margin: 50px 10px;
-  width: -moz-fit-content;
   width: fit-content;
   float: right;
 }
@@ -100,6 +99,10 @@
 .login-container.flex .left-container .form-container form button:hover {
   background: var(--GreenColor);
 }
+.login-container.flex .left-container .form-container span {
+  float: right;
+  margin: 10px;
+}
 .login-container.flex .left-container .mobile-nav-to-register.flex {
   width: 100%;
   text-align: center;
@@ -112,8 +115,7 @@
   cursor: pointer;
 }
 .login-container.flex .left-container .mobile-nav-to-register.flex span:hover {
-  -webkit-text-decoration: 2px underline var(--GreenColor);
-          text-decoration: 2px underline var(--GreenColor);
+  text-decoration: 2px underline var(--GreenColor);
 }
 @media only screen and (max-width: 905px) {
   .login-container.flex {
@@ -127,4 +129,6 @@
   .login-container.flex .left-container .mobile-nav-to-register.flex {
     display: none;
   }
-}/*# sourceMappingURL=login.css.map */
+}
+
+/*# sourceMappingURL=login.css.map */
