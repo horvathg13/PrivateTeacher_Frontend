@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 class ServiceClient {
 
     static get(url, config = {}) {
@@ -8,7 +7,7 @@ class ServiceClient {
             ...config,
             headers: {
                 ...config.headers,
-                Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',
+                Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',         
             }
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
@@ -26,6 +25,7 @@ class ServiceClient {
             headers: {
                 ...config.headers,
                 Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',
+                
             }
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
