@@ -102,7 +102,10 @@ const Register = () => {
                             <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
                         </div>
                         
-                        <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn'}>Send <FaArrowCircleRight className='btn-icon'/></button>
+                        {!btndisabled ?
+                            <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn'}>Send <FaArrowCircleRight className='btn-icon'/></button> :
+                            <span className='loader'></span>
+                        }
                     </form>
                 </div>
             </div>            
