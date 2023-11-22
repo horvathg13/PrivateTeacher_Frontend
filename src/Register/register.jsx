@@ -70,7 +70,7 @@ const Register = () => {
 
     return (
         <div className="reg-container flex">
-            {Object.keys(serverError).length ? <ErrorHandle error={serverError}/> : null}
+            {serverError ? <ErrorHandle error={serverError}/> : null}
             {errors.length ? <ErrorMessage messageArray={errors} closeModal={closeErrorPopup}/>:null}
             {success? <Success></Success>:null}
             <div className="left-container"></div>
