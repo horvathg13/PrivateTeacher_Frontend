@@ -51,6 +51,10 @@ button{
   font-family: 'Poppins';
 }
 
+.btn.disabled{
+  background: #aabbd1d0 !important;
+  cursor: auto;
+}
 
 input{
   font-size: 100%;
