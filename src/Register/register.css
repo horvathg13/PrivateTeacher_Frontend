@@ -62,9 +62,6 @@
 .reg-container.flex .right-container .form-container form label {
   margin: 5px;
 }
-.reg-container.flex .right-container .form-container form .name-fields.flex {
-  text-align: center;
-}
 .reg-container.flex .right-container .form-container form .name-fields.flex input {
   width: 90%;
 }
@@ -92,4 +89,6 @@
   .reg-container.flex .left-container {
     display: none;
   }
-}/*# sourceMappingURL=register.css.map */
+}
+
+/*# sourceMappingURL=register.css.map */
