@@ -4,10 +4,10 @@ import { FaArrowCircleRight } from "react-icons/fa";
 import ErrorMessage from '../ErrorHandle/ErrorMessage/errorMessage';     
 import Success from '../SuccessPopup/success';
 import ServiceClient from '../ServiceClient';
-
+import ErrorHandle from '../ErrorHandle/errorHandle';
 
 const Register = () => {
-
+    /*Form fields*/
     const [fname, setFname]=useState('');
     const [lname, setLname]=useState('');
     const [email, setEmail]=useState('');
@@ -16,14 +16,22 @@ const Register = () => {
     const [passwordError, setPasswordError]=useState(false);
     const [cpassword, setCPassword]=useState('');
     const [cpasswordError, setCPasswordError]=useState(false);
+
+    /*event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
+    const [serverError, setServerError]=useState([]);
 
+    /*btn handle*/
+    const [btndisabled, setBtnDisabled]=useState(false);
+
+    /*methods*/
     const sendRegister=(event)=>{
         event.preventDefault();
-        if(errors.length){
+        setBtnDisabled(true);
+        if(errors.length || serverError.length){
             setErrors([]);
-            
+            setServerError([]);
         }
         if(password != cpassword){
             setCPasswordError(true);
@@ -49,16 +57,21 @@ const Register = () => {
                 
             }
         }).catch((error)=>{
-            setErrors(error.response.data);
-            console.log(error);
+            setServerError(error);
+            setBtnDisabled(false);
         })
-
     }
 
+    const closeErrorPopup=(data)=>{
+        if(data===true){
+           setErrors([]); 
+        }
+    }
 
     return (
         <div className="reg-container flex">
-            {errors.length ? <ErrorMessage messageArray={errors}/>:null}
+            {Object.keys(serverError).length ? <ErrorHandle error={serverError}/> : null}
+            {errors.length ? <ErrorMessage messageArray={errors} closeModal={closeErrorPopup}/>:null}
             {success? <Success></Success>:null}
             <div className="left-container"></div>
             <div className="right-container">
@@ -89,7 +102,7 @@ const Register = () => {
                             <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
                         </div>
                         
-                        <button type='submit' className='btn'>Send <FaArrowCircleRight className='btn-icon'/></button>
+                        <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn'}>Send <FaArrowCircleRight className='btn-icon'/></button>
                     </form>
                 </div>
             </div>            

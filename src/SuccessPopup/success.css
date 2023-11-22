@@ -5,6 +5,7 @@
   top: 10%;
   left: 0;
   right: 0;
+  width: -moz-fit-content;
   width: fit-content;
   z-index: 9999;
   animation: zoom 1.1s ease-in-out;
@@ -21,6 +22,4 @@
   .success-container {
     margin: auto auto;
   }
-}
-
-/*# sourceMappingURL=success.css.map */
+}/*# sourceMappingURL=success.css.map */
