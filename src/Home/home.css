@@ -1,0 +1,39 @@
+.homeMenu-main-container.flex {
+  width: auto;
+  height: auto;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.homeMenu-main-container.flex .circle-menu-container {
+  text-align: center;
+  margin: 5% auto;
+  width: 18%;
+  height: 50px;
+}
+.homeMenu-main-container.flex .circle-menu-container .icon {
+  margin: 0 auto;
+  padding: 3px 15px;
+  color: var(--PrimaryColor);
+  transition: 0.2s transform, 0.2s border;
+  border: none;
+  font-size: 3rem;
+  cursor: default !important;
+  width: fit-content;
+}
+.homeMenu-main-container.flex .circle-menu-container .icon:hover {
+  border: 3px solid var(--GreenColor);
+  border-radius: 40%;
+  width: fit-content;
+  height: fit-content;
+  transform: scale(1.3);
+  margin-bottom: 10px;
+  cursor: pointer !important;
+}
+.homeMenu-main-container.flex .circle-menu-container .menu-name {
+  color: var(--PrimaryColor);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=home.css.map */
