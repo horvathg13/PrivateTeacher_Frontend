@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './header.css';
 import { FaListUl } from "react-icons/fa";
+import { useContext } from 'react';
+import { UserContext } from '../Context/UserContext';
         
 const Header = () => {
     const [showMobileMenu, setMobileMenu]=useState(false);
-
+    let {username, setUsername}=useContext(UserContext); 
     return (
         <div className="main-container flex">
             <div className='logo-container'>
@@ -18,7 +20,7 @@ const Header = () => {
                     <button className='headerBtn btn'>Home</button>
                     <button className='headerBtn btn'>My Requests</button>
                     <button className='headerBtn btn'>Messages</button>
-                    <button className='headerBtn btn'>Username</button>
+                    <button className='headerBtn btn'>{username ? username : null}</button>
                     <button className='headerBtn btn'>Logout</button>
                 </div> :null}
             </div>
@@ -29,7 +31,7 @@ const Header = () => {
                 <button className='headerBtn btn'>Messages</button>
             </div>
             <div className="user-container">
-                <button className='headerBtn btn'>Username</button>
+                <button className='headerBtn btn'>{username ? username : null}</button>
                 <button className='headerBtn btn'>Logout</button>
             </div> 
             
