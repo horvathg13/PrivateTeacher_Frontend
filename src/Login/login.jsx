@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './login.css';
 import { FaArrowCircleRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import ServiceClient from '../ServiceClient'
 import ErrorHandle from '../ErrorHandle/errorHandle';
 import Success from '../SuccessPopup/success';
+import { UserContext } from '../Context/UserContext';
 
 
 const Login = () => {
@@ -20,6 +21,13 @@ const Login = () => {
     /*btn handler*/
     const [btndisabled, setBtnDisabled]=useState(false);
 
+    /*navigate*/
+    const navigate = useNavigate();
+
+    /*context*/
+    const {setUsername}=useContext(UserContext);
+
+    /*methods:*/
     const login=(event)=>{
         event.preventDefault();
         setBtnDisabled(true);
@@ -34,7 +42,11 @@ const Login = () => {
                 if(response.status===200){
                     setSuccess(true);
                     localStorage.setItem('token',response.data.data.token);
+                    setUsername(response.data.data.first_name);
                     setBtnDisabled(false);
+                    setTimeout(()=>{
+                        navigate('/home');
+                    },2000)
                 }
             }).catch((error)=>{
                 setServerError(error);
@@ -43,7 +55,7 @@ const Login = () => {
         }
     }
 
-    const navigate = useNavigate();
+    
     return (
         <div className="login-container flex">
             {serverError ? <ErrorHandle error={serverError}/>:null}
