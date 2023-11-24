@@ -15,6 +15,10 @@ export const UserContextProvider = ({children})=>{
             if(response.status===200){
                 setUsername(response.data.user.first_name)
             }
+        }).catch((error)=>{
+            if(error?.response?.status==500){
+                console.log(error.response.data);
+            }
         })
     },[])
     
