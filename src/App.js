@@ -5,20 +5,29 @@ import Register from "./Register/register"
 import Header from './Header/header';
 import Login from './Login/login';
 import Home from './Home/home';
+import Protected from './ProtectedRoutes';
+import { UserContextProvider } from './Context/UserContext';
 
 function App() {
   return (
     <>
-    <Router>
+    <UserContextProvider>
+      <Router>
         <Header />
+
         <Routes>
           
           <Route path="/" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
-          <Route path="/home" element={<Home />}/>
+          <Route element={<Protected/>}>
+            <Route path="/home" element={<Home />}/>
+            
+          </Route>
+          
         </Routes>
 
       </Router>
+    </UserContextProvider>
     </>
   );
 }
