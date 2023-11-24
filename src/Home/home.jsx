@@ -8,9 +8,11 @@ import { PiStudentBold } from "react-icons/pi";
 import { MdPayment } from "react-icons/md";
 import { BsCalendar3 } from "react-icons/bs";
 import { FaSchool } from 'react-icons/fa6';
-
+import { useContext } from 'react';
+import { UserContext } from '../Context/UserContext';
         
 const Home = () => {
+    const {username} =useContext(UserContext);
     const getIcon=(iconName)=>{
         switch (iconName) {
             case 'FaUsers':return <FaUsers />;
@@ -28,6 +30,11 @@ const Home = () => {
     }
 
     return (
+        <>
+        <div className="home-text">
+            <h1>Welcome {username}</h1>
+            <p>Let's select a menu</p>
+        </div>
         <div className="homeMenu-main-container flex">
             {menu.map((e, i) => (
                 <div className="circle-menu-container" key={i}>
@@ -36,6 +43,7 @@ const Home = () => {
                 </div>
             ))}
         </div>
+        </>
     );
 };
 export default Home;
