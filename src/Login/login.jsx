@@ -43,10 +43,11 @@ const Login = () => {
                     setSuccess(true);
                     localStorage.setItem('token',response.data.data.token);
                     setUsername(response.data.data.first_name);
-                    setBtnDisabled(false);
+                    ;
                     setTimeout(()=>{
+                        setBtnDisabled(false)
                         navigate('/home');
-                    },2000)
+                    },1000)
                 }
             }).catch((error)=>{
                 setServerError(error);

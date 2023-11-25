@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './register.css';
 import { FaArrowCircleRight } from "react-icons/fa";
 import ErrorMessage from '../ErrorHandle/ErrorMessage/errorMessage';     
 import Success from '../SuccessPopup/success';
 import ServiceClient from '../ServiceClient';
 import ErrorHandle from '../ErrorHandle/errorHandle';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     /*Form fields*/
@@ -21,6 +22,7 @@ const Register = () => {
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
+    const navigate = useNavigate();
 
     /*btn handle*/
     const [btndisabled, setBtnDisabled]=useState(false);
@@ -53,6 +55,8 @@ const Register = () => {
                 setSuccess(true);
                 setTimeout(()=>{
                     setSuccess(false);
+                    setBtnDisabled(false);
+                    navigate("/");
                 },2000)
                 
             }
@@ -64,16 +68,17 @@ const Register = () => {
 
     const closeErrorPopup=(data)=>{
         if(data===true){
-           setErrors([]); 
+           setErrors([]);
         }
     }
-
     return (
         <div className="reg-container flex">
             {serverError ? <ErrorHandle error={serverError}/> : null}
             {errors.length ? <ErrorMessage messageArray={errors} closeModal={closeErrorPopup}/>:null}
-            {success? <Success></Success>:null}
-            <div className="left-container"></div>
+            <Success success={success}/>            
+            <div className="left-container">
+                <button onClick={()=>{setSuccess(!success, console.log(success))}}>Clik</button>
+            </div>
             <div className="right-container">
                 <div className="title">
                     <h2>Registration</h2>
