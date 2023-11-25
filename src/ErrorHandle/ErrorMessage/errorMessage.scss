@@ -20,14 +20,19 @@
         }
         h4{
             margin: auto 20px;
+            color: var(--whiteColorDeam) !important;
         }
        
         
-        color: var(--whiteColorDeam);
+        
     }
 
     .close{
         float: right;
         color: var(--whiteColorDeam);
+        &:hover{
+            color: hsl(0, 4%, 85%);
+            transition: .2s;
+        }
     }
 }

@@ -1,7 +1,5 @@
 .error-main {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   background: var(--RedColor);
   position: fixed;
@@ -16,7 +14,6 @@
 .error-main .error-container {
   text-align: center;
   padding: 15px;
-  color: var(--whiteColorDeam);
 }
 .error-main .error-container .icon {
   color: var(--DangerColorSecound);
@@ -25,8 +22,15 @@
 }
 .error-main .error-container h4 {
   margin: auto 20px;
+  color: var(--whiteColorDeam) !important;
 }
 .error-main .close {
   float: right;
   color: var(--whiteColorDeam);
-}/*# sourceMappingURL=errorMessage.css.map */
+}
+.error-main .close:hover {
+  color: hsl(0, 4%, 85%);
+  transition: 0.2s;
+}
+
+/*# sourceMappingURL=errorMessage.css.map */
