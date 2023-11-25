@@ -15,12 +15,12 @@
 }
 
 .success-enter-active{
-    animation: zoom 1s ease-in-out;
+    animation: zoom 1.1s ease-in-out;
 }
 
 .success-exit{
     opacity: 1;
-    transition: opacity .5s;
+    transition: opacity 1s;
 }
 
 .success-exit-active{
