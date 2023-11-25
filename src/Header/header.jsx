@@ -26,9 +26,8 @@ const Header = () => {
                 setSuccess(true);
                 setUsername(null);
                 localStorage.removeItem('token');
-
+                navigate('/');
                 setTimeout(()=>{
-                    navigate('/');
                     setSuccess(false);
                 },2000)
                 
@@ -49,7 +48,7 @@ const Header = () => {
     },[])
     return (
         <div className="main-container flex">
-            {success ? <Success></Success>:null}
+           <Success success={success}/>
             <div className='logo-container'>
                 <i className='graduatehat'></i>
                 <h1>PrivateTeacher</h1> 
