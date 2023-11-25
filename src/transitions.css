@@ -1,0 +1,32 @@
+@import 'animations.css';
+
+.transition-container{
+    position: fixed;
+    margin: 0 auto;
+    top: 10%;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    z-index: 9999;
+}
+.success-enter{
+    opacity: 1;
+    transition: .3s ease-in-out;
+}
+
+.success-enter-active{
+    animation: zoom 1s ease-in-out;
+}
+
+.success-exit{
+    opacity: 1;
+    transition: opacity .5s;
+}
+
+.success-exit-active{
+    animation: fadeOut 1s ease-out;
+}
+
+.success-exit-done{
+    display: none;
+}
