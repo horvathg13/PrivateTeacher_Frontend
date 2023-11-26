@@ -3,10 +3,8 @@ import './login.css';
 import { FaArrowCircleRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import ServiceClient from '../ServiceClient'
-import ErrorHandle from '../ErrorHandle/errorHandle';
-import Success from '../SuccessPopup/success';
 import { UserContext } from '../Context/UserContext';
-
+import  EventHandler  from '../EventHandler/eventhandler';
 
 const Login = () => {
     /*Form fields*/
@@ -59,8 +57,11 @@ const Login = () => {
     
     return (
         <div className="login-container flex">
-            {serverError ? <ErrorHandle error={serverError}/>:null}
-            {success? <Success></Success>:null}
+            <EventHandler 
+            success={success} 
+            errors={errors} 
+            serverError={serverError} 
+            closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
             <div className="left-container">
                 <div className="title">
                     <h1>Log In</h1>
