@@ -38,7 +38,7 @@ const Home = () => {
         <div className="homeMenu-main-container flex">
             {menu.map((e, i) => (
                 <div className="circle-menu-container" key={i}>
-                    <div className="icon">{getIcon(e.icon)}</div>
+                    <div className="icon grid">{getIcon(e.icon)}</div>
                     <div className="menu-name">{e.name}</div>
                 </div>
             ))}
