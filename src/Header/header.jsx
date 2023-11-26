@@ -6,14 +6,22 @@ import { UserContext } from '../Context/UserContext';
 import ServiceClient from '../ServiceClient';
 import Success from '../SuccessPopup/success';
 import { useNavigate } from 'react-router-dom';
-
+import EventHandler from '../EventHandler/eventhandler'
         
 const Header = () => {
+    /*General vaiables */
     const [showMobileMenu, setMobileMenu]=useState(false);
-    const [success, setSuccess]=useState(false);
     const [name, setName]=useState('');
+
+    /*EventHandlers */
+    const [success, setSuccess]=useState(false);
+    const [serverError, setServerError]=useState([]);
+    const [errors, setErrors]=useState([]);
+    
+    /*redirect */
     const navigate = useNavigate();
 
+    /*useContext*/
     let {username, setUsername}=useContext(UserContext); 
 
     /*methods:*/
@@ -30,13 +38,14 @@ const Header = () => {
                 setTimeout(()=>{
                     setSuccess(false);
                 },2000)
-                
             }
         }).catch((error)=>{
-            console.log(error);
+            setServerError(error);
+            
         })
     }
 
+    /*useEffects: */
     useEffect(()=>{
         setName(username);
     },[{username}])
@@ -46,9 +55,14 @@ const Header = () => {
             setName(null);
         }
     },[])
+    
     return (
         <div className="main-container flex">
-           <Success success={success}/>
+           <EventHandler 
+            success={success}
+            errors={errors}
+            serverError={serverError} 
+            closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
             <div className='logo-container'>
                 <i className='graduatehat'></i>
                 <h1>PrivateTeacher</h1> 
