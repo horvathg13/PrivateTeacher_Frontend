@@ -6,6 +6,7 @@ import Success from '../SuccessPopup/success';
 import ServiceClient from '../ServiceClient';
 import ErrorHandle from '../ErrorHandle/errorHandle';
 import { useNavigate } from 'react-router-dom';
+import EventHandler from '../EventHandler/eventhandler';
 
 const Register = () => {
     /*Form fields*/
@@ -39,6 +40,8 @@ const Register = () => {
             setCPasswordError(true);
             setPasswordError(true);
             setErrors(['Passwords does not match']);
+            setBtnDisabled(false);
+            return
         }else if(passwordError==true & cpasswordError==true){
             setCPasswordError(false);
             setPasswordError(false);
@@ -66,19 +69,16 @@ const Register = () => {
         })
     }
 
-    const closeErrorPopup=(data)=>{
-        if(data===true){
-           setErrors([]);
-        }
-    }
     return (
         <div className="reg-container flex">
-            {serverError ? <ErrorHandle error={serverError}/> : null}
-            {errors.length ? <ErrorMessage messageArray={errors} closeModal={closeErrorPopup}/>:null}
-            <Success success={success}/>            
-            <div className="left-container">
-                <button onClick={()=>{setSuccess(!success, console.log(success))}}>Clik</button>
-            </div>
+            <EventHandler 
+            success={success} 
+            errors={errors} 
+            serverError={serverError} 
+            closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+            
+            <div className="left-container"></div>
+            
             <div className="right-container">
                 <div className="title">
                     <h2>Registration</h2>
