@@ -27,11 +27,13 @@ const Register = () => {
 
     /*btn handle*/
     const [btndisabled, setBtnDisabled]=useState(false);
-
+    const [loader, setLoader]=useState(false);
     /*methods*/
     const sendRegister=(event)=>{
         event.preventDefault();
         setBtnDisabled(true);
+        setLoader(true);
+
         if(errors.length || serverError.length){
             setErrors([]);
             setServerError([]);
@@ -41,8 +43,10 @@ const Register = () => {
             setPasswordError(true);
             setErrors(['Passwords does not match']);
             setBtnDisabled(false);
+            setLoader(false);
             return
-        }else if(passwordError==true & cpasswordError==true){
+        }
+        if(passwordError==true & cpasswordError==true){
             setCPasswordError(false);
             setPasswordError(false);
         }
@@ -56,9 +60,9 @@ const Register = () => {
         ServiceClient.post(url,dataPost).then((response)=>{
             if(response.status===200){
                 setSuccess(true);
+                setLoader(false);
                 setTimeout(()=>{
                     setSuccess(false);
-                    setBtnDisabled(false);
                     navigate("/");
                 },2000)
                 
@@ -66,6 +70,7 @@ const Register = () => {
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);
+            setLoader(false);
         })
     }
 
@@ -107,7 +112,7 @@ const Register = () => {
                             <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
                         </div>
                         
-                        {!btndisabled ?
+                        {!loader ?
                             <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn'}>Send <FaArrowCircleRight className='btn-icon'/></button> :
                             <span className='loader'></span>
                         }
