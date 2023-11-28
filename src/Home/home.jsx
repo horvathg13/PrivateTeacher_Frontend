@@ -10,9 +10,11 @@ import { BsCalendar3 } from "react-icons/bs";
 import { FaSchool } from 'react-icons/fa6';
 import { useContext } from 'react';
 import { UserContext } from '../Context/UserContext';
+import { useNavigate } from 'react-router-dom';
         
 const Home = () => {
     const {username} =useContext(UserContext);
+    const navigate = useNavigate();
     const getIcon=(iconName)=>{
         switch (iconName) {
             case 'FaUsers':return <FaUsers />;
@@ -38,7 +40,7 @@ const Home = () => {
         <div className="homeMenu-main-container flex">
             {menu.map((e, i) => (
                 <div className="circle-menu-container" key={i}>
-                    <div className="icon grid">{getIcon(e.icon)}</div>
+                    <div className="icon grid" onClick={()=>navigate(`${e.url}`)}>{getIcon(e.icon)}</div>
                     <div className="menu-name">{e.name}</div>
                 </div>
             ))}
