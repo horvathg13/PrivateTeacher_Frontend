@@ -1,5 +1,7 @@
 .error-main {
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   background: var(--RedColor);
   position: fixed;
@@ -31,6 +33,4 @@
 .error-main .close:hover {
   color: hsl(0, 4%, 85%);
   transition: 0.2s;
-}
-
-/*# sourceMappingURL=errorMessage.css.map */
+}/*# sourceMappingURL=errorMessage.css.map */
