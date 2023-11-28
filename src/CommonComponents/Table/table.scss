@@ -1,0 +1,91 @@
+.table-main-container{
+    width:900px;
+    height:500px;
+    margin: 5% auto;
+   // background: var(--gradientBlue);
+    .table-action-menu{
+        width: 100%;
+        padding: 20px;
+
+        button{
+            padding: 10px 20px;
+            background: var(--LightBlue);
+            color: var(--whiteColorDeam);
+            border-radius: 10px;
+            border: none;
+            letter-spacing: .5px;
+            box-shadow: 2px 2px 4px #4c4c4c;
+            &:hover{
+                background: var(--GreenColor);
+            }
+
+            .table-menu-icon{
+                padding: 0 5px;
+            }
+           
+        }
+    }
+    table{
+        border-spacing: 0;
+        width: 100%;
+        thead tr{
+            background-color: #7b98bc8a;
+            
+            th{
+                padding: 10px;
+                text-align: left;
+                color: var(--PrimaryColor);
+                letter-spacing: .5px;
+                border-bottom: 2px solid var(--PrimaryColor);
+                
+                td{
+                    display: flex;
+                    align-items: center;
+                }
+            }
+            
+        }
+        tbody{
+            tr{
+                &:nth-child(2n){
+                    background: #7b98bc8a;;
+                }
+                
+                td{
+                    padding: 10px;
+                    max-width: 250px;
+                }
+
+                &:hover{
+                    background-color:#4fba6ab6;
+                    cursor: pointer;
+                }
+            }
+        }
+        tfoot{
+            font-size: 12px;
+            tr{
+                background: var(--PrimaryColor);
+                
+                td{
+                    color: var(--whiteColorDeam);
+                    padding: 20px;
+                    //min-width: 300px;
+                    input{
+                        border-radius: 5px;
+                        width: 50px;
+                        height: 23px;
+                        border: none;
+                        margin: 0 5%;
+                    }
+                    .pagination.flex{
+                        margin: 0 auto;
+                        width: fit-content;
+                    }
+                }
+            }
+            
+        }
+    }
+
+}
