@@ -5,6 +5,7 @@ import Register from "./Register/register"
 import Header from './Header/header';
 import Login from './Login/login';
 import Home from './Home/home';
+import Users from './Users/user';
 import Protected from './ProtectedRoutes';
 import { UserContextProvider } from './Context/UserContext';
 
@@ -21,7 +22,7 @@ function App() {
           <Route path="/register" element={<Register />}/>
           <Route element={<Protected/>}>
             <Route path="/home" element={<Home />}/>
-            
+            <Route path="/users" element={<Users />}/>
           </Route>
           
         </Routes>
