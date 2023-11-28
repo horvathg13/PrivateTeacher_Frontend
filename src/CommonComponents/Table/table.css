@@ -4,7 +4,7 @@
   margin: 5% auto;
 }
 .table-main-container .table-action-menu {
-  width: 100%;
+  max-width: 100%;
   padding: 20px;
 }
 .table-main-container .table-action-menu button {
@@ -45,7 +45,6 @@
 }
 .table-main-container table tbody tr td {
   padding: 10px;
-  max-width: 250px;
 }
 .table-main-container table tbody tr:hover {
   background-color: rgba(79, 186, 106, 0.7137254902);

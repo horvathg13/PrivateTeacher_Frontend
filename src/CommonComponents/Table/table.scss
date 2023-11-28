@@ -4,7 +4,7 @@
     margin: 5% auto;
    // background: var(--gradientBlue);
     .table-action-menu{
-        width: 100%;
+        max-width: 100%;
         padding: 20px;
 
         button{
@@ -53,7 +53,7 @@
                 
                 td{
                     padding: 10px;
-                    max-width: 250px;
+                    //max-width: 250px;
                 }
 
                 &:hover{
