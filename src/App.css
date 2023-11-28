@@ -22,6 +22,17 @@ p, h1, h2, h3, h4, h5{
 .btn-icon{
   margin: auto 5px;
 }
+.table-icon{
+  margin: 0 5px;
+  font-size: 15px;
+  padding: 10px
+
+}
+.table-icon:hover{
+  background: var(--GreenColor);
+  border-radius: 50%;
+  cursor: pointer;
+}
 .flex{
   display: flex;
   align-items: center;
