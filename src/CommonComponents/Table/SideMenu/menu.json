@@ -1,0 +1,14 @@
+[
+    {
+        "name":"Ban User",
+        "icon":"FaBan"
+    },
+    {
+        "name":"Password Reset",
+        "icon":"RiLockPasswordFill"
+    },
+    {
+        "name":"Roles",
+        "icon":"FaScaleUnbalanced"
+    }
+]

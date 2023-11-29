@@ -1,0 +1,32 @@
+.side-main-conainer {
+  width: 100px;
+  height: fit-content;
+  position: absolute;
+  background: var(--LightBlue);
+  top: 93px; /* header icon height: 91.4 px*/
+  box-shadow: 2px 5px 5px #888;
+}
+.side-main-conainer .element-container.flex {
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  margin: 15px auto;
+  text-align: center;
+  border-bottom: 2px dotted var(--PrimaryColor);
+}
+.side-main-conainer .element-container.flex .icon {
+  width: 100%;
+  color: var(--whiteColorDeam);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.side-main-conainer .element-container.flex .name {
+  width: 100%;
+}
+.side-main-conainer .element-container.flex .name h4 {
+  margin: 0;
+  color: var(--whiteColorDeam);
+  font-size: 12px;
+}
+
+/*# sourceMappingURL=sidemenu.css.map */
