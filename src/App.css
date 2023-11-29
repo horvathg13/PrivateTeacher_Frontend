@@ -25,13 +25,13 @@ p, h1, h2, h3, h4, h5{
 .table-icon{
   margin: 0 5px;
   font-size: 15px;
-  padding: 10px
-
+  padding: 10px;
+  border-radius: 50%;
 }
 .table-icon:hover{
   background: var(--GreenColor);
-  border-radius: 50%;
   cursor: pointer;
+  transition: .3s ease-in-out;
 }
 .flex{
   display: flex;
