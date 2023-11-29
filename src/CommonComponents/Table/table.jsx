@@ -3,10 +3,18 @@ import { FaSortAmountUp, FaSortAmountDown } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import { MdLastPage, MdFirstPage, MdNavigateNext, } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
+import { useState } from 'react';
 const Table = () => {
+    /* data: */
+    const [selectedRow, setSelectedRow]=useState();
+
+    /* methods:*/
+  
     return (
         <div className="table-main-container">
-            <div className="table-action-menu">
+            <div className="table-action-menu flex">
+                <button className='btn table-btn'><FaFilter className='table-menu-icon'/>Filter</button>
+                <button className='btn table-btn'><FaFilter className='table-menu-icon'/>Filter</button>
                 <button className='btn table-btn'><FaFilter className='table-menu-icon'/>Filter</button>
             </div>
             <table>

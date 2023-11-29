@@ -3,11 +3,12 @@
   height: 500px;
   margin: 5% auto;
 }
-.table-main-container .table-action-menu {
+.table-main-container .table-action-menu.flex {
   max-width: 100%;
   padding: 20px;
+  flex-flow: row-reverse;
 }
-.table-main-container .table-action-menu button {
+.table-main-container .table-action-menu.flex button {
   padding: 10px 20px;
   background: var(--LightBlue);
   color: var(--whiteColorDeam);
@@ -15,26 +16,35 @@
   border: none;
   letter-spacing: 0.5px;
   box-shadow: 2px 2px 4px #4c4c4c;
+  margin: 0 5px;
 }
-.table-main-container .table-action-menu button:hover {
+.table-main-container .table-action-menu.flex button:hover {
   background: var(--GreenColor);
+  transition: 0.3s ease-in-out;
 }
-.table-main-container .table-action-menu button .table-menu-icon {
+.table-main-container .table-action-menu.flex button .table-menu-icon {
   padding: 0 5px;
 }
 .table-main-container table {
   border-spacing: 0;
   width: 100%;
 }
-.table-main-container table thead tr {
-  background-color: rgba(123, 152, 188, 0.5411764706);
+.table-main-container table thead:first-child tr:first-child {
+  border-radius: 20px;
+}
+.table-main-container table thead:first-child tr:first-child th:first-child {
+  border-radius: 5px 0 0 0;
+}
+.table-main-container table thead:first-child tr:first-child th:last-child {
+  border-radius: 0 5px 0 0;
 }
 .table-main-container table thead tr th {
   padding: 10px;
   text-align: left;
-  color: var(--PrimaryColor);
   letter-spacing: 0.5px;
   border-bottom: 2px solid var(--PrimaryColor);
+  background: rgba(6, 62, 122, 0.8196078431);
+  color: var(--whiteColorDeam);
 }
 .table-main-container table thead tr th td {
   display: flex;
@@ -50,13 +60,20 @@
   background-color: rgba(79, 186, 106, 0.7137254902);
   cursor: pointer;
 }
+.table-main-container table tbody .active {
+  background: var(--GreenColor) !important;
+}
 .table-main-container table tfoot {
   font-size: 12px;
 }
-.table-main-container table tfoot tr {
-  background: var(--PrimaryColor);
+.table-main-container table tfoot tr:first-child td:first-child {
+  border-radius: 0 0 0 15px;
+}
+.table-main-container table tfoot tr:first-child td:last-child {
+  border-radius: 0 0 15px 0;
 }
 .table-main-container table tfoot tr td {
+  background: var(--PrimaryColor);
   color: var(--whiteColorDeam);
   padding: 20px;
 }

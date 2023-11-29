@@ -3,10 +3,10 @@
     height:500px;
     margin: 5% auto;
    // background: var(--gradientBlue);
-    .table-action-menu{
+    .table-action-menu.flex{
         max-width: 100%;
         padding: 20px;
-
+        flex-flow:row-reverse;
         button{
             padding: 10px 20px;
             background: var(--LightBlue);
@@ -15,59 +15,93 @@
             border: none;
             letter-spacing: .5px;
             box-shadow: 2px 2px 4px #4c4c4c;
+            margin: 0 5px;
+
             &:hover{
                 background: var(--GreenColor);
+                transition: .3s ease-in-out;
             }
 
             .table-menu-icon{
                 padding: 0 5px;
             }
+
            
         }
     }
     table{
         border-spacing: 0;
         width: 100%;
-        thead tr{
-            background-color: #7b98bc8a;
+        
+        thead{
             
-            th{
-                padding: 10px;
-                text-align: left;
-                color: var(--PrimaryColor);
-                letter-spacing: .5px;
-                border-bottom: 2px solid var(--PrimaryColor);
-                
-                td{
-                    display: flex;
-                    align-items: center;
+            &:first-child{
+                tr{
+                    &:first-child{
+                        border-radius: 20px;
+                        th{
+                            &:first-child{
+                                border-radius: 5px 0 0 0;
+                            }
+                            &:last-child{
+                                border-radius: 0 5px 0 0;
+                            }
+                        }
+                    }
                 }
             }
-            
+            tr{
+                th{
+                    padding: 10px;
+                    text-align: left;
+                    //color: var(--PrimaryColor);
+                    letter-spacing: .5px;
+                    border-bottom: 2px solid var(--PrimaryColor);
+                    //background-color: #7b98bc8a;
+                    background: #063e7ad1;
+                    color: var(--whiteColorDeam);
+                    td{
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
         }
         tbody{
             tr{
                 &:nth-child(2n){
                     background: #7b98bc8a;;
                 }
-                
                 td{
                     padding: 10px;
                     //max-width: 250px;
                 }
-
                 &:hover{
                     background-color:#4fba6ab6;
                     cursor: pointer;
                 }
             }
+            .active{
+                background: var(--GreenColor) !important;
+            }
         }
         tfoot{
             font-size: 12px;
             tr{
-                background: var(--PrimaryColor);
+                &:first-child{
+                    td{
+                        &:first-child{
+                            border-radius: 0 0 0 15px;
+                        }
+                        &:last-child{
+                            border-radius: 0 0 15px 0;
+                        }
+                    }
+                }
+               
                 
                 td{
+                    background: var(--PrimaryColor);
                     color: var(--whiteColorDeam);
                     padding: 20px;
                     //min-width: 300px;
