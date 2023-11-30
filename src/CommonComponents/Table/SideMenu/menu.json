@@ -4,6 +4,10 @@
         "icon":"FaBan"
     },
     {
+        "name":"Update User",
+        "icon":"RxUpdate"
+    },
+    {
         "name":"Password Reset",
         "icon":"RiLockPasswordFill"
     },
