@@ -9,7 +9,7 @@
         flex-flow:row-reverse;
         button{
             padding: 10px 20px;
-            background: var(--LightBlue);
+            background: var(--ButtonBlue);
             color: var(--whiteColorDeam);
             border-radius: 10px;
             border: none;
@@ -18,7 +18,7 @@
             margin: 0 5px;
 
             &:hover{
-                background: var(--GreenColor);
+                transform: scale(1.1);
                 transition: .3s ease-in-out;
             }
 
@@ -35,21 +35,6 @@
         
         thead{
             
-            &:first-child{
-                tr{
-                    &:first-child{
-                        border-radius: 20px;
-                        th{
-                            &:first-child{
-                                border-radius: 5px 0 0 0;
-                            }
-                            &:last-child{
-                                border-radius: 0 5px 0 0;
-                            }
-                        }
-                    }
-                }
-            }
             tr{
                 th{
                     padding: 10px;
@@ -58,7 +43,7 @@
                     letter-spacing: .5px;
                     border-bottom: 2px solid var(--PrimaryColor);
                     //background-color: #7b98bc8a;
-                    background: #063e7ad1;
+                    background: var(--DarkBlue);
                     color: var(--whiteColorDeam);
                     td{
                         display: flex;
@@ -70,14 +55,14 @@
         tbody{
             tr{
                 &:nth-child(2n){
-                    background: #7b98bc8a;;
+                    background: var(--GreyTransparent);
                 }
                 td{
                     padding: 10px;
                     //max-width: 250px;
                 }
                 &:hover{
-                    background-color:#4fba6ab6;
+                    background-color: var(--LightBlueTransparent);
                     cursor: pointer;
                 }
             }
@@ -85,40 +70,38 @@
                 background: var(--GreenColor) !important;
             }
         }
-        tfoot{
-            font-size: 12px;
-            tr{
-                &:first-child{
-                    td{
-                        &:first-child{
-                            border-radius: 0 0 0 15px;
-                        }
-                        &:last-child{
-                            border-radius: 0 0 15px 0;
-                        }
-                    }
-                }
-               
-                
-                td{
-                    background: var(--PrimaryColor);
-                    color: var(--whiteColorDeam);
-                    padding: 20px;
-                    //min-width: 300px;
-                    input{
-                        border-radius: 5px;
-                        width: 50px;
-                        height: 23px;
-                        border: none;
-                        margin: 0 5%;
-                    }
-                    .pagination.flex{
-                        margin: 0 auto;
-                        width: fit-content;
-                    }
-                }
+    }
+
+    .pagination-continer.flex{
+        font-size: 12px;
+        color: var(--PrimaryColor);
+        padding: 20px;
+        //min-width: 300px;
+        justify-content: space-between;
+        width:auto;
+        .show-container{
+            min-width: 130px;
+            padding: 5px;
+            input{
+                border-radius: 5px;
+                width: 50px;
+                height: 23px;
+                border: none;
+                margin: 0 5%;
+                background-color: var(--ButtonBlue);
+                color: var(--whiteColorDeam);
+                cursor: var(--whiteColorDeam);
             }
-            
+        }
+        
+        .pagination.flex{
+            width: fit-content;
+            font-size: 13px;
+
+            .table-icon{
+                font-size: 17px;
+                margin: 0 8px;
+            }
         }
     }
 

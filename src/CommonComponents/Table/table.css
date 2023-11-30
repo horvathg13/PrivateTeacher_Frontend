@@ -10,7 +10,7 @@
 }
 .table-main-container .table-action-menu.flex button {
   padding: 10px 20px;
-  background: var(--LightBlue);
+  background: var(--ButtonBlue);
   color: var(--whiteColorDeam);
   border-radius: 10px;
   border: none;
@@ -19,7 +19,7 @@
   margin: 0 5px;
 }
 .table-main-container .table-action-menu.flex button:hover {
-  background: var(--GreenColor);
+  transform: scale(1.1);
   transition: 0.3s ease-in-out;
 }
 .table-main-container .table-action-menu.flex button .table-menu-icon {
@@ -29,21 +29,12 @@
   border-spacing: 0;
   width: 100%;
 }
-.table-main-container table thead:first-child tr:first-child {
-  border-radius: 20px;
-}
-.table-main-container table thead:first-child tr:first-child th:first-child {
-  border-radius: 5px 0 0 0;
-}
-.table-main-container table thead:first-child tr:first-child th:last-child {
-  border-radius: 0 5px 0 0;
-}
 .table-main-container table thead tr th {
   padding: 10px;
   text-align: left;
   letter-spacing: 0.5px;
   border-bottom: 2px solid var(--PrimaryColor);
-  background: rgba(6, 62, 122, 0.8196078431);
+  background: var(--DarkBlue);
   color: var(--whiteColorDeam);
 }
 .table-main-container table thead tr th td {
@@ -51,42 +42,46 @@
   align-items: center;
 }
 .table-main-container table tbody tr:nth-child(2n) {
-  background: rgba(123, 152, 188, 0.5411764706);
+  background: var(--GreyTransparent);
 }
 .table-main-container table tbody tr td {
   padding: 10px;
 }
 .table-main-container table tbody tr:hover {
-  background-color: rgba(79, 186, 106, 0.7137254902);
+  background-color: var(--LightBlueTransparent);
   cursor: pointer;
 }
 .table-main-container table tbody .active {
   background: var(--GreenColor) !important;
 }
-.table-main-container table tfoot {
+.table-main-container .pagination-continer.flex {
   font-size: 12px;
-}
-.table-main-container table tfoot tr:first-child td:first-child {
-  border-radius: 0 0 0 15px;
-}
-.table-main-container table tfoot tr:first-child td:last-child {
-  border-radius: 0 0 15px 0;
-}
-.table-main-container table tfoot tr td {
-  background: var(--PrimaryColor);
-  color: var(--whiteColorDeam);
+  color: var(--PrimaryColor);
   padding: 20px;
+  justify-content: space-between;
+  width: auto;
 }
-.table-main-container table tfoot tr td input {
+.table-main-container .pagination-continer.flex .show-container {
+  min-width: 130px;
+  padding: 5px;
+}
+.table-main-container .pagination-continer.flex .show-container input {
   border-radius: 5px;
   width: 50px;
   height: 23px;
   border: none;
   margin: 0 5%;
+  background-color: var(--ButtonBlue);
+  color: var(--whiteColorDeam);
+  cursor: var(--whiteColorDeam);
 }
-.table-main-container table tfoot tr td .pagination.flex {
-  margin: 0 auto;
+.table-main-container .pagination-continer.flex .pagination.flex {
   width: fit-content;
+  font-size: 13px;
+}
+.table-main-container .pagination-continer.flex .pagination.flex .table-icon {
+  font-size: 17px;
+  margin: 0 8px;
 }
 
 /*# sourceMappingURL=table.css.map */

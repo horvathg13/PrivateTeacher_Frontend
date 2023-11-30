@@ -57,20 +57,18 @@ const Table = () => {
                         <td>Hello</td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Show/page<input type='number'/></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div className="pagination flex">
-                                <MdFirstPage className='table-icon' /><GrFormPrevious  className='table-icon'/>20 / 1500<MdNavigateNext className='table-icon'/><MdLastPage className='table-icon'/>
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
+
+            <div className="pagination-continer flex">
+                <div className="show-container flex">
+                    Show/page<input type='number'/>
+                </div>
+                <div className="pagination flex">
+                    <MdFirstPage className='table-icon' /><GrFormPrevious  className='table-icon'/>20 / 1500<MdNavigateNext className='table-icon'/><MdLastPage className='table-icon'/>
+                </div>
+            </div>
+
+            
         </div>
     );
 };
