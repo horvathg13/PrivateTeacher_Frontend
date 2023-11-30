@@ -5,7 +5,11 @@
     --PurpleColor:#8882f2;
     --RedColor: #ba4f4f;
     --GreyColor:#7b98bc;
+    --GreyTransparent:rgba(123, 152, 188, 0.11);
     --LightBlue:#49719f;
+    --LightBlueTransparent: rgba(41, 117, 200, 0.45);
+    --DarkBlue:rgb(6, 59, 117);
+    --ButtonBlue:#307ddd;
     --DangerColor:#b3ba4f;
     --DangerColorSecound:#cbd54b;
     --gradientBlue: linear-gradient(to top left, #7b98bc,#063e7a);
