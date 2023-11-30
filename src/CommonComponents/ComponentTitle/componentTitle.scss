@@ -1,0 +1,20 @@
+
+    
+.component-title-container.flex{
+    justify-content: space-between;
+    margin: 0 auto;
+    border-bottom: 3px dotted var(--GreenColor);
+    width: 900px;
+    padding: 5px;
+
+    .title{
+        h1{
+            letter-spacing: 1.5px;
+        }
+    }
+    .breadcumbs{
+        h4{
+            font-size: 15px;
+        }
+    }
+}
