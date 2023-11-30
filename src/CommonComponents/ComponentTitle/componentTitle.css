@@ -8,8 +8,8 @@
 .component-title-container.flex .title h1 {
   letter-spacing: 1.5px;
 }
-.component-title-container.flex .breadcumbs h4 {
-  font-size: 15px;
+.component-title-container.flex h4 {
+  font-size: 13px;
 }
 
 /*# sourceMappingURL=componentTitle.css.map */
