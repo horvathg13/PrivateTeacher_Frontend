@@ -29,9 +29,10 @@ p, h1, h2, h3, h4, h5{
   border-radius: 50%;
 }
 .table-icon:hover{
-  background: var(--GreenColor);
+  background: var(--ButtonBlue);
   cursor: pointer;
   transition: .3s ease-in-out;
+  color: var(--whiteColorDeam);
 }
 .flex{
   display: flex;
