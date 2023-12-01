@@ -3,24 +3,25 @@
     height: fit-content;
     position: absolute;
     //background: var(--DarkBlue);
-    background: #2560a2;
+    background: var(--BackgroundColor);
     /*top: 93px; /* header icon height: 91.4 px*/
     top:182px;
     box-shadow: 2px 5px 5px #888;
     border-radius: 0 5px 5px 0;
+    border: 2px solid var(--DarkBlue);
     .element-container.flex{
         width: 100%;
         height: fit-content;
         flex-direction: column;
         //margin: 15px auto;
         text-align: center;
-        border-bottom: 2px dotted var(--GreenColor);
+        border-bottom: 2px dotted var(--GreyColor);
         padding: 10px 0;
         transition: .5s ease-in-out;
         .icon-container{
             width: 60px;
             min-height: 60px;
-            color: var(--whiteColorDeam);
+            color: var(--DarkBlue);
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -35,7 +36,7 @@
             width: 100%;
             h4{
                 margin: 0;
-                color: var(--whiteColorDeam);
+                color: var(--PrimaryColor);
                 font-size: 11px;
             }
             
@@ -58,7 +59,7 @@
             .icon-container{
                 border-radius: 50%;
                 background: var(--ButtonBlue);
-                color: #c6db0c;
+                color: var(--whiteColorDeam);
                 transition: .5s ease-in-out;
             }
         }

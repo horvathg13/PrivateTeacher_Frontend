@@ -2,18 +2,19 @@
   width: 90px;
   height: fit-content;
   position: absolute;
-  background: #2560a2;
+  background: var(--BackgroundColor);
   /*top: 93px; /* header icon height: 91.4 px*/
   top: 182px;
   box-shadow: 2px 5px 5px #888;
   border-radius: 0 5px 5px 0;
+  border: 2px solid var(--DarkBlue);
 }
 .side-main-conainer .element-container.flex {
   width: 100%;
   height: fit-content;
   flex-direction: column;
   text-align: center;
-  border-bottom: 2px dotted var(--GreenColor);
+  border-bottom: 2px dotted var(--GreyColor);
   padding: 10px 0;
   transition: 0.5s ease-in-out;
   /* &:hover{
@@ -32,7 +33,7 @@
 .side-main-conainer .element-container.flex .icon-container {
   width: 60px;
   min-height: 60px;
-  color: var(--whiteColorDeam);
+  color: var(--DarkBlue);
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -46,13 +47,13 @@
 }
 .side-main-conainer .element-container.flex .name-container h4 {
   margin: 0;
-  color: var(--whiteColorDeam);
+  color: var(--PrimaryColor);
   font-size: 11px;
 }
 .side-main-conainer .element-container.flex:hover .icon-container {
   border-radius: 50%;
   background: var(--ButtonBlue);
-  color: #c6db0c;
+  color: var(--whiteColorDeam);
   transition: 0.5s ease-in-out;
 }
 .side-main-conainer .menu-icon:hover {
