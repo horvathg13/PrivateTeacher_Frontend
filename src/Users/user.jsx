@@ -5,44 +5,70 @@ import SideMenu from '../CommonComponents/SideMenu/sidemenu';
 import ComponentTitle from '../CommonComponents/ComponentTitle/componentTitle';
 import ServiceClient from '../ServiceClient';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import ClickAwayListener from 'react-click-away-listener';
+
         
 const User = () => {
     const [users, setUsers]=useState({});
     const [loader, setLoader]=useState(false);
-
+    const [counter, setCounter]=useState(1);
+    const [lastPage, setLastPage]=useState();
+    const [perPage, setPerPage]=useState(5);
+    const [selectedRow, setSelectedRow]=useState();
     /*event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
 
 
+    const pageCounter=(data)=>{
+        switch (data){
+            case 'next': return setCounter(counter+1);
+            case 'prev': if(counter >1){return setCounter(counter-1)}else{return null};
+            case 'last': return setCounter(lastPage);
+            case 'first':return setCounter(1);
+            default: return counter;
+        }
+    }
+
     useLayoutEffect(()=>{
         setLoader(true);
-       let url='http://127.0.0.1:8000/api/getUsers';
+       let url=`http://127.0.0.1:8000/api/getUsers?perPage=${perPage}&page=${counter}`;
        ServiceClient.post(url).then((response)=>{
         if(response.status===200){
             setLoader(false);
             setUsers(response.data);
+            setLastPage(response.data.pagination.lastPageNumber)
             console.log(response.data)
         }
        }).catch((error)=>{
         setServerError(error);
         setLoader(false);
        })
-    },[])
+    },[counter, perPage])
 
-    useEffect(()=>{console.log(users)},[users])
+    useEffect(()=>{console.log(selectedRow)},[selectedRow])
     return (
         <>
+        
         <EventHandler 
         success={success} 
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
         <ComponentTitle />
-        <Table datas={users ? users :null}
-        loader={loader}/> 
-        <SideMenu />
+        <ClickAwayListener onClickAway={()=>setSelectedRow(null)}>
+            <div className="table-main-container">
+                <Table 
+                datas={users ? users :null}
+                loader={loader}
+                page={pageCounter}
+                perPage={setPerPage}
+                selectedRow={setSelectedRow}/>
+            </div>
+        </ClickAwayListener>
+        <SideMenu active={selectedRow?true:false}/>
+        
         </>
             
         
