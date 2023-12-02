@@ -4,14 +4,13 @@ import {RiLockPasswordFill} from 'react-icons/ri';
 import {FaScaleUnbalanced} from 'react-icons/fa6';
 import {RxUpdate} from 'react-icons/rx';
 import menu from './menu.json'        
+import { CSSTransition } from 'react-transition-group';
+import { useRef } from 'react';
+import '../../transitions.css'
 
-const SideMenu = () => {
+const SideMenu = ({active}) => {
     const getIcon=(iconName)=>{
         switch (iconName) {
-            /*case 'FaBan':return <FaBan className='icon' style={{color:'var(--RedColor)'}}/>;
-            case 'FaScaleUnbalanced': return <FaScaleUnbalanced className='icon' style={{color:'var(--PurpleColor)'}}/>;
-            case 'RiLockPasswordFill': return <RiLockPasswordFill className='icon' style={{color:'var(--DangerColor)'}}/>;
-            case 'RxUpdate': return <RxUpdate className='icon' style={{color:'var(--ButtonBlue)'}}/>;*/
             case 'FaBan':return <FaBan className='menu-icon icon'/>;
             case 'FaScaleUnbalanced': return <FaScaleUnbalanced className='menu-icon icon' />;
             case 'RiLockPasswordFill': return <RiLockPasswordFill className='menu-icon icon'/>;
@@ -20,20 +19,21 @@ const SideMenu = () => {
             default: return null;
         }
     }
+
+    const nodeRef = useRef(null);
     return (
-        <div className="side-main-conainer">
-            {
-                menu.map((e,i)=>
-                    <div className="element-container flex">
-                        <div className="icon-container">{getIcon(e.icon)}</div>
-                        <div className="name-container"><h4>{e.name}</h4></div>
-                    </div>
-                )
-            }
-            
-                
-            
-        </div>
+        <CSSTransition nodeRef={nodeRef} in={active} classNames="sideMenu" timeout={500} mountOnEnter unmountOnExit>
+            <div className="side-main-conainer" ref={nodeRef}>
+                {
+                    menu.map((e,i)=>
+                        <div className="element-container flex">
+                            <div className="icon-container">{getIcon(e.icon)}</div>
+                            <div className="name-container"><h4>{e.name}</h4></div>
+                        </div>
+                    )
+                }
+            </div>
+        </CSSTransition>
     );
 };
 export default SideMenu;
