@@ -30,3 +30,23 @@
 .success-exit-done{
     display: none;
 }
+
+.sideMenu-enter{
+    opacity: 0;
+    
+}
+
+.sideMenu-enter-active{
+    opacity: 1;
+    transition: .3s ease-in-out;
+}
+.sideMenu-exit{
+    opacity: 1;
+}
+.sideMenu-exit-active{
+    opacity: 0;
+    transition: .3s ease-out;
+}
+.sideMenu-exit-done{
+    display: none;
+}
