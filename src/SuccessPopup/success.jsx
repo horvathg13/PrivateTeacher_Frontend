@@ -19,5 +19,5 @@ const Success = ({success}) => {
 export default Success;
 
 /* 'in' control the enter-exit hooks */
-/* 'classNames' : ~ of the hooks */
+/* 'classNames' : classname of the hooks */
 /* 'mountOnEnter unmountOnExit' thease are magics whits are control the mounting of the success component*/
