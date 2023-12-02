@@ -2,18 +2,16 @@
     width: 90px;
     height: fit-content;
     position: absolute;
-    //background: var(--DarkBlue);
     background: var(--BackgroundColor);
-    /*top: 93px; /* header icon height: 91.4 px*/
-    top:182px;
+    top:182px; /* header icon height: 91.4 px + contentTitle 91 */
     box-shadow: 2px 5px 5px #888;
     border-radius: 0 5px 5px 0;
-    border: 2px solid var(--DarkBlue);
+    border: 3px solid var(--DarkBlue);
+    border-left: none;
     .element-container.flex{
         width: 100%;
         height: fit-content;
         flex-direction: column;
-        //margin: 15px auto;
         text-align: center;
         border-bottom: 2px dotted var(--GreyColor);
         padding: 10px 0;
@@ -41,20 +39,6 @@
             }
             
         }
-
-       /* &:hover{
-            .icon{
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                padding: 15px;
-                background: var(--GreenColor);
-                transition: .5s ease-in-out;
-            }
-            
-            
-        }*/
-
         &:hover{
             .icon-container{
                 border-radius: 50%;
