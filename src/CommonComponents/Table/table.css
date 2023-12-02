@@ -51,8 +51,8 @@
   background-color: var(--LightBlueTransparent);
   cursor: pointer;
 }
-.table-main-container table tbody .active {
-  background: var(--GreenColor) !important;
+.table-main-container table tbody tr.active {
+  background-color: var(--LightBlueTransparent);
 }
 .table-main-container .pagination-continer.flex {
   font-size: 12px;

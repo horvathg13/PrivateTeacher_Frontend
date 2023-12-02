@@ -4,11 +4,19 @@ import { FaFilter } from "react-icons/fa";
 import { MdLastPage, MdFirstPage, MdNavigateNext, } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { useEffect, useState } from 'react';
-const Table = ({datas, loader}) => {
-    /* data: */
-    const [selectedRow, setSelectedRow]=useState();
 
+
+const Table = ({datas, loader, page, perPage,selectedRow}) => {
+    /* data: */
+
+    const [active, setActive]=useState();
+   
     /* methods:*/
+    const setRowActive=(e)=>{
+        if(e.id){
+            return "active"
+        }
+    }
     
     useEffect(()=>{console.log(datas, loader)},[datas])
     return (
@@ -40,8 +48,8 @@ const Table = ({datas, loader}) => {
                     
                 </thead>
                 <tbody>
-                    { datas.data?.map((e,i)=>(
-                        <tr key={i}>
+                    { datas.data?.map((e)=>(
+                        <tr key={e.id} onClick={()=>[selectedRow(e), setRowActive(e)]} className={''}>
                             <td>{e.id}</td>
                             <td>{e.firstname}</td>
                             <td>{e.lastname}</td>
@@ -56,10 +64,11 @@ const Table = ({datas, loader}) => {
 
             <div className="pagination-continer flex">
                 <div className="show-container flex">
-                    Show/page<input type='number'/>
+                    Show/page<input type='number' onKeyDown={(e)=>{if(e.key === 'Enter'){return perPage(e.target.value)}}}/>
+                    
                 </div>
                 <div className="pagination flex">
-                    <MdFirstPage className='table-icon' /><GrFormPrevious  className='table-icon'/>20 / 1500<MdNavigateNext className='table-icon'/><MdLastPage className='table-icon'/>
+                    <MdFirstPage className='table-icon' onClick={()=>page('first')} /><GrFormPrevious  className='table-icon' onClick={()=>page('prev')}/>{datas?.pagination?.currentPageNumber} / {datas?.pagination?.lastPageNumber}{datas?.pagination?.hasMorePages ? <><MdNavigateNext className='table-icon' onClick={()=>page('next')}/><MdLastPage className='table-icon' onClick={()=>page('last')}/></>:null}
                 </div>
             </div> 
 

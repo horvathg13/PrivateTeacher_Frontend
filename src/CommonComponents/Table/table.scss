@@ -65,10 +65,11 @@
                     background-color: var(--LightBlueTransparent);
                     cursor: pointer;
                 }
+                &.active{
+                    background-color: var(--LightBlueTransparent);
+                }
             }
-            .active{
-                background: var(--GreenColor) !important;
-            }
+           
         }
     }
 
