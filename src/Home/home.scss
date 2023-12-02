@@ -27,19 +27,17 @@
             margin: 0 auto;
             padding: 15px 15px;
             color: var(--PrimaryColor);
-            transition: .2s ease-in-out;
+            transition: .3s ease-in-out;
             border: none;
             font-size: 3rem;
             cursor: default !important;
             width: fit-content;
             height: fit-content;
             &:hover{
-                //border: 3px solid var(--GreenColor);
                 border-radius: 50%;
                 width: max-content !important;
                 height: fit-content !important;
                 transform: scale(1.1);
-                //margin-bottom:10px;
                 background: var(--ButtonBlue);
                 color: var(--whiteColorDeam);
                 cursor: pointer !important;
