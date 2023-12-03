@@ -8,6 +8,7 @@ import Home from './Home/home';
 import Users from './Users/user';
 import Protected from './ProtectedRoutes';
 import { UserContextProvider } from './Context/UserContext';
+import SelectedUserComponent from './Users/selectedUser';
 
 function App() {
   return (
@@ -22,7 +23,10 @@ function App() {
           <Route path="/register" element={<Register />}/>
           <Route element={<Protected/>}>
             <Route path="/home" element={<Home />}/>
-            <Route path="/users" element={<Users />}/>
+            <Route path="/users" element={<Users />}>
+              <Route path=":userId" element={<SelectedUserComponent />}/>
+            </Route>
+            
           </Route>
           
         </Routes>
