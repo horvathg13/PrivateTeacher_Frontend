@@ -1,18 +1,13 @@
 [
     {
-        "name":"Ban User",
-        "icon":"FaBan"
+        "id":1,
+        "name":"Users",
+        "icon":"FaUsers"
     },
     {
-        "name":"Update User",
-        "icon":"RxUpdate"
-    },
-    {
-        "name":"Password Reset",
-        "icon":"RiLockPasswordFill"
-    },
-    {
-        "name":"Roles",
-        "icon":"FaScaleUnbalanced"
+        "id":2,
+        "name":"Create",
+        "icon":"FaUserPlus"
     }
+
 ]

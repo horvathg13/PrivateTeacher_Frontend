@@ -1,13 +1,14 @@
 .side-main-conainer{
     width: 90px;
-    height: fit-content;
+    height: 100%;
     position: absolute;
     background: var(--BackgroundColor);
-    top:182px; /* header icon height: 91.4 px + contentTitle 91 */
-    box-shadow: 2px 5px 5px #888;
-    border-radius: 0 5px 5px 0;
-    border: 3px solid var(--DarkBlue);
+    top:92px; /* header icon height: 91.4 px + contentTitle 91 */
+    box-shadow: 2px 5px 3px #888;
+    border-radius: 0 0px 5px 0;
+    //border: 0px solid var(--DarkBlue);
     border-left: none;
+    border-top: none;
     .element-container.flex{
         width: 100%;
         height: fit-content;
@@ -28,6 +29,11 @@
                 margin: 0 auto;
                 padding: 15px;
                            
+            }
+            &.active{
+                border-radius: 50%;
+                background: var(--ButtonBlue);
+                color: var(--whiteColorDeam);
             }
         }
         .name-container{
