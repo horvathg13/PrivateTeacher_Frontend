@@ -124,3 +124,8 @@ form{
   border-bottom: 4px solid var(--GreenColor);
   border-left: 4px solid transparent;
 }
+
+input:read-only{
+  cursor: default;
+  border: none;
+}
