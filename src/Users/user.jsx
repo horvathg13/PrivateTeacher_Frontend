@@ -6,6 +6,8 @@ import ComponentTitle from '../CommonComponents/ComponentTitle/componentTitle';
 import ServiceClient from '../ServiceClient';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
+import SelectedUser from './selectedUser';
+import { Outlet, useNavigate } from 'react-router-dom';
 
         
 const User = () => {
@@ -15,6 +17,7 @@ const User = () => {
     const [lastPage, setLastPage]=useState();
     const [perPage, setPerPage]=useState(5);
     const [selectedRow, setSelectedRow]=useState();
+    const navigate = useNavigate();
     /*event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
@@ -47,16 +50,21 @@ const User = () => {
        })
     },[counter, perPage])
 
-    useEffect(()=>{console.log(selectedRow)},[selectedRow])
+    useEffect(()=>{
+        if(selectedRow){
+            navigate(`/users/${selectedRow.id}`)
+        }
+        
+    },[selectedRow])
     return (
         <>
-        
         <EventHandler 
         success={success} 
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
         <ComponentTitle />
+        {!selectedRow ? 
         <ClickAwayListener onClickAway={()=>setSelectedRow(null)}>
             <div className="table-main-container">
                 <Table 
@@ -66,7 +74,8 @@ const User = () => {
                 perPage={setPerPage}
                 selectedRow={setSelectedRow}/>
             </div>
-        </ClickAwayListener>
+        </ClickAwayListener>:
+        <SelectedUser userData={selectedRow}/>}
         <SideMenu active={selectedRow?true:false}/>
         
         </>
