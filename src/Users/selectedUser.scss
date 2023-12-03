@@ -1,0 +1,72 @@
+.selectedUser-main{
+    width: 900px;
+    height: fit-content;
+    margin: 2% auto;
+    color: var(--PrimaryColor);
+    .fields.flex{
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        label{
+            padding: 10px 0px;
+        }
+        input{
+            width: 100%;
+            margin-bottom:15px;
+        }
+        
+        
+    }
+    .emailPassword-fields.grid{
+        padding-top: 10px;
+
+        label{
+            padding-top: 10px;
+        }
+    }
+
+    .action-container.flex{
+        .action{
+            background: var(--ButtonBlue);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            color: var(--whiteColorDeam);
+            text-align: center;
+            letter-spacing: .5px;
+            box-shadow: 1px 2px 1px #4c4c4c;
+            margin: 0 5px;
+            transition: .5s ease-in-out;
+            &:hover{
+                transform: scale(1.1);
+                transition: .3s ease-in-out;
+            }
+
+            .icon{
+                font-size: 17px;
+                margin: auto 5px;
+            }
+        }
+        margin: 20px auto;
+    }
+    form{
+        .field{
+            width: 420px;
+            height: auto;
+        }
+        button{
+            background: var(--ButtonBlue);
+            color: var(--whiteColorDeam);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            margin: 15px auto;
+            width: 150px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            float: left;
+        }
+    }
+   
+}

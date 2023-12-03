@@ -1,0 +1,65 @@
+.selectedUser-main {
+  width: 900px;
+  height: fit-content;
+  margin: 2% auto;
+  color: var(--PrimaryColor);
+}
+.selectedUser-main .fields.flex {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.selectedUser-main .fields.flex label {
+  padding: 10px 0px;
+}
+.selectedUser-main .fields.flex input {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.selectedUser-main .emailPassword-fields.grid {
+  padding-top: 10px;
+}
+.selectedUser-main .emailPassword-fields.grid label {
+  padding-top: 10px;
+}
+.selectedUser-main .action-container.flex {
+  margin: 20px auto;
+}
+.selectedUser-main .action-container.flex .action {
+  background: var(--ButtonBlue);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: var(--whiteColorDeam);
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: 1px 2px 1px #4c4c4c;
+  margin: 0 5px;
+  transition: 0.5s ease-in-out;
+}
+.selectedUser-main .action-container.flex .action:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
+}
+.selectedUser-main .action-container.flex .action .icon {
+  font-size: 17px;
+  margin: auto 5px;
+}
+.selectedUser-main form .field {
+  width: 420px;
+  height: auto;
+}
+.selectedUser-main form button {
+  background: var(--ButtonBlue);
+  color: var(--whiteColorDeam);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  margin: 15px auto;
+  width: 150px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  float: left;
+}
+
+/*# sourceMappingURL=selectedUser.css.map */
