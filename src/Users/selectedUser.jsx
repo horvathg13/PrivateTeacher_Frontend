@@ -29,6 +29,7 @@ const SelectedUser = ({userData}) => {
     /*ReadOnly */
     const[readOnlyInfo, setReadOnlyInfo]=useState(true);
     const[readOnlyPsw, setReadOnlyPsw]=useState(true);
+    const [rolesDisabled, setRolesDisabled]=useState(true);
 
     /*Roles */
     const [roles, setRoles]=useState([]);
@@ -187,12 +188,12 @@ const SelectedUser = ({userData}) => {
                         </div>
                     </div>
                     <div className="user-container roles">
-                        <div className="form-title"><h2>Roles</h2></div>
+                        <div className="form-title"><h2>Roles <MdEdit className='icon' onClick={()=>setRolesDisabled(!rolesDisabled)}/></h2></div>
                         <div className="fields flex">
                             {
                                 roles ? roles.map((e,i)=>
                                 <div className="roles-container flex" key={i}>
-                                    <input id={i} type='checkbox' />
+                                    <input id={i} type='checkbox' disabled={rolesDisabled}/>
                                     <label for={i}>{e.name}</label>
                                 </div>
                                 ):null
