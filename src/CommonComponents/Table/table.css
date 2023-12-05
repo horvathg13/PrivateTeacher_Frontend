@@ -76,6 +76,7 @@
   cursor: var(--whiteColorDeam);
 }
 .table-main-container .pagination-continer.flex .pagination.flex {
+  width: -moz-fit-content;
   width: fit-content;
   font-size: 13px;
 }
@@ -91,6 +92,4 @@
   top: 50% !important;
   margin: 0 auto;
   border-top: 4px solid var(--DarkBlue) !important;
-}
-
-/*# sourceMappingURL=table.css.map */
+}/*# sourceMappingURL=table.css.map */

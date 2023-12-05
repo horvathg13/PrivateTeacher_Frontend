@@ -20,7 +20,7 @@ const Select = ({ options, onSelect, InitialValue, disabled }) => {
     };
     return (
         <div className="select-container">
-          <div className={selectedOption ? "active flex":"selected-option flex" || disabled ? 'disabled flex':null} onClick={handleToggleDropdown}>
+          <div className={`flex ${selectedOption ? "active" : "selected-option"} ${disabled ? "disabled" : ""}`} onClick={handleToggleDropdown}>
             <h4>{selectedOption ? selectedOption.label : InitialValue }</h4> {!isDropdownOpen ? <IoIosArrowDown className='select-icon'/> : <IoIosArrowUp className='select-icon'/>}
           </div>
           {isDropdownOpen && (

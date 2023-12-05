@@ -1,10 +1,13 @@
 .select-container {
   width: 420px;
+  height: -moz-fit-content;
   height: fit-content;
   background: white;
   cursor: pointer;
   color: var(--DarkBlue);
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .select-container .selected-option.flex {
   width: 100%;
@@ -55,6 +58,4 @@
 .select-container .dropdown-menu .dropdown-option:hover {
   background-color: var(--LightBlue);
   color: white;
-}
-
-/*# sourceMappingURL=select.css.map */
+}/*# sourceMappingURL=select.css.map */

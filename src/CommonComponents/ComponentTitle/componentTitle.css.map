@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["componentTitle.scss"],"names":[],"mappings":"AAEA;EACI;EACA;EACA;EACA;EACA;;AAGI;EACI;;AAIR;EACI","file":"componentTitle.css"}
+{"version":3,"sources":["componentTitle.scss","componentTitle.css"],"names":[],"mappings":"AAEA;EACI,8BAAA;EACA,cAAA;EACA,2CAAA;EACA,YAAA;EACA,YAAA;ACDJ;ADIQ;EACI,qBAAA;ACFZ;ADMI;EACI,eAAA;ACJR","file":"componentTitle.css"}
