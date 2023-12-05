@@ -1,0 +1,50 @@
+.select-container{
+    width: 420px;
+    height: fit-content;
+    background: white;
+    cursor: pointer;
+    color: var(--DarkBlue);
+    user-select: none;
+    .selected-option.flex{
+        width: 100%;
+        padding: 5px 0;
+        background: white;
+        text-align: center;
+        h4{
+            margin: 0 10px;
+            width: 100%;
+        }
+    }
+    .active.flex{
+        background-color: var(--GreenColor);
+        width: 100%;
+        padding: 5px 0;
+        h4{
+            color: var(--DarkBlue) !important;
+            margin: 0 10px;
+            width: 100%;
+        }
+    }
+    .select-icon{
+        margin: 0 auto;
+        margin-right: 15px;
+    }
+
+    .dropdown-menu{
+        background-color: var(--GreyTransparent);
+        border: 1px solid var(--DarkBlue);
+        border-top: none;
+        height: 80px;
+        overflow: auto;
+        .dropdown-option{
+            padding:5px;
+            text-align: center;
+            
+            &:hover{
+                background-color: var(--LightBlue);
+                color: white;
+            }
+        }
+    }
+    
+}
