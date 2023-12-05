@@ -31,22 +31,22 @@
     display: none;
 }
 
-.sideMenu-enter{
+.fade-enter{
     opacity: 0;
     
 }
 
-.sideMenu-enter-active{
+.fade-enter-active{
     opacity: 1;
     transition: .3s ease-in-out;
 }
-.sideMenu-exit{
+.fade-exit{
     opacity: 1;
 }
-.sideMenu-exit-active{
+.fade-exit-active{
     opacity: 0;
     transition: .3s ease-out;
 }
-.sideMenu-exit-done{
+.fade-exit-done{
     display: none;
 }
