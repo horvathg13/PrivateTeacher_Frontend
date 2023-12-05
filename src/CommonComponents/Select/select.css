@@ -26,6 +26,17 @@
   margin: 0 10px;
   width: 100%;
 }
+.select-container .disabled.flex {
+  background: var(--BackgroundColor);
+  width: 100%;
+  padding: 5px 0;
+  cursor: default;
+}
+.select-container .disabled.flex h4 {
+  color: default;
+  margin: 0 10px;
+  width: 100%;
+}
 .select-container .select-icon {
   margin: 0 auto;
   margin-right: 15px;

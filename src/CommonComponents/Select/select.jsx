@@ -2,12 +2,15 @@ import { useState } from 'react';
 import './select.css';
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
         
-const Select = ({ options, onSelect, InitialValue }) => {
+const Select = ({ options, onSelect, InitialValue, disabled }) => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
     const handleToggleDropdown = () => {
-      setIsDropdownOpen(!isDropdownOpen);
+      if(disabled===false){
+        setIsDropdownOpen(!isDropdownOpen);
+      }
+      
     };
   
     const handleOptionClick = (option) => {
@@ -17,10 +20,10 @@ const Select = ({ options, onSelect, InitialValue }) => {
     };
     return (
         <div className="select-container">
-            <div className={selectedOption ? "active flex":"selected-option flex"} onClick={handleToggleDropdown}>
+          <div className={selectedOption ? "active flex":"selected-option flex" || disabled ? 'disabled flex':null} onClick={handleToggleDropdown}>
             <h4>{selectedOption ? selectedOption.label : InitialValue }</h4> {!isDropdownOpen ? <IoIosArrowDown className='select-icon'/> : <IoIosArrowUp className='select-icon'/>}
-            </div>
-            {isDropdownOpen && (
+          </div>
+          {isDropdownOpen && (
             <div className="dropdown-menu">
                 {options.map((option) => (
                 <div
