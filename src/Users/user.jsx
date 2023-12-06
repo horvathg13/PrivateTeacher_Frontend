@@ -6,7 +6,7 @@ import ComponentTitle from '../CommonComponents/ComponentTitle/componentTitle';
 import ServiceClient from '../ServiceClient';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
-import SelectedUser from './selectedUser';
+import SelectedUser from './selectedUserHandler/selectedUser';
 import { Outlet, useNavigate } from 'react-router-dom';
 
         
