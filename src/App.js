@@ -6,9 +6,10 @@ import Header from './Header/header';
 import Login from './Login/login';
 import Home from './Home/home';
 import Users from './Users/user';
+import userRoles from './Users/userRolesHandler/userRoles';
 import Protected from './ProtectedRoutes';
 import { UserContextProvider } from './Context/UserContext';
-import SelectedUserComponent from './Users/selectedUser';
+import SelectedUserComponent from './Users/selectedUserHandler/selectedUser';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/home" element={<Home />}/>
             <Route path="/users" element={<Users />}>
               <Route path=":userId" element={<SelectedUserComponent />}/>
+              <Route path=":userId/roles" element={<userRoles />}/>
             </Route>
             
           </Route>
