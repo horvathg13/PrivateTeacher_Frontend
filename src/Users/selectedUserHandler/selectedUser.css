@@ -1,6 +1,5 @@
 .selectedUser-main {
   width: 900px;
-  height: -moz-fit-content;
   height: fit-content;
   margin: 2% auto;
   color: var(--PrimaryColor);
@@ -69,7 +68,6 @@
   height: 350px;
 }
 .selectedUser-main form .user-container.passwords, .selectedUser-main form .user-container .roles {
-  height: -moz-fit-content;
   height: fit-content;
 }
 .selectedUser-main form .form-title {
@@ -95,13 +93,11 @@
   width: 100%;
   height: 30px;
   transition: 0.1s ease-in-out;
-}
-.selectedUser-main form .field input:-moz-read-only {
-  background: none;
-  border-bottom: 1px solid var(--DarkBlue);
+  border: 1px solid var(--GreyColor);
 }
 .selectedUser-main form .field input:read-only {
   background: none;
+  border: none;
   border-bottom: 1px solid var(--DarkBlue);
 }
 .selectedUser-main form button {
@@ -137,7 +133,7 @@
   margin-right: 5px;
 }
 .selectedUser-main form .roles-container.flex label {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}/*# sourceMappingURL=selectedUser.css.map */
+  user-select: none;
+}
+
+/*# sourceMappingURL=selectedUser.css.map */
