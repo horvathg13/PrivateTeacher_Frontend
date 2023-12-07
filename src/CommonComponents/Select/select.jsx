@@ -25,9 +25,9 @@ const Select = ({ options, onSelect, InitialValue, disabled }) => {
           </div>
           {isDropdownOpen && (
             <div className="dropdown-menu">
-                {options.map((option) => (
+                {options.map((option,index) => (
                 <div
-                    key={option.value}
+                    key={index}
                     className="dropdown-option"
                     onClick={() => handleOptionClick(option)}
                 >
