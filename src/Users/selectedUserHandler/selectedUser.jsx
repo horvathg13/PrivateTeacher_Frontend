@@ -34,6 +34,9 @@ const SelectedUser = ({userData}) => {
     /*Roles */
     const [roles, setRoles]=useState([]);
 
+    /*Statuses*/
+    const [statuses, setStatuses]=useState();
+
     /*event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
@@ -66,7 +69,49 @@ const SelectedUser = ({userData}) => {
     const updateUser =(e)=>{
         e.preventDefault()
 
-        //Update user request sending.
+        setBtnDisabled(true);
+        setLoader(true);
+
+        if(password != cpassword){
+            setCPasswordError(true);
+            setPasswordError(true);
+            setErrors(['Passwords does not match']);
+            setBtnDisabled(false);
+            setLoader(false);
+            return
+        }
+
+        let userInfo ={
+            "first_name":fname,
+            "last_name":lname,
+            "email":email,
+        }
+        
+        let dataPost={}
+        dataPost.id=userId;
+        dataPost.userInfo=userInfo;
+        dataPost.newPassword=password;
+        dataPost.confirmPassword= cpassword;
+
+        let url='http://127.0.0.1:8000/api/updateUser';
+
+        ServiceClient.post(url,dataPost).then((response)=>{
+            if(response.status===200){
+                setSuccess(true);
+                setLoader(false);
+                setCPassword(null);
+                setPassword(null);
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
+                setBtnDisabled(false);
+            }
+        }).catch((error)=>{
+            setServerError(error);
+            setBtnDisabled(false);
+            setLoader(false);
+        })
+
     }
     
     const banUserActionButton=()=>{
@@ -97,8 +142,20 @@ const SelectedUser = ({userData}) => {
     },[])*/
 
     useLayoutEffect(()=>{
-        //Státuszok lekérdezése és átadása a Select komponensnek
+        let url='http://127.0.0.1:8000/api/getUserStatuses';
+
+        ServiceClient.post(url).then((response)=>{
+            if(response.status===200){
+               
+                setStatuses(response.data);
+                
+            }
+        }).catch((error)=>{
+            setServerError(error);
+        })
     },[]);
+
+    useEffect(()=>{console.log(statuses)},[statuses])
     return (
         <>
         <EventHandler 
@@ -117,7 +174,7 @@ const SelectedUser = ({userData}) => {
                     {/*<button className='btn action flex' onClick={()=>banUserActionButton()}><FaBan className='icon'/>Ban </button>*/}
 
                 </div>
-                <form className='flex'>
+                <form className='flex' onSubmit={updateUser}>
                     <div className="user-container info">
                         <div className="form-title"><h2>Info <MdEdit className='icon' onClick={()=>setReadOnlyInfo(!readOnlyInfo)}/></h2></div>
                         <div className="fields flex">
@@ -152,10 +209,7 @@ const SelectedUser = ({userData}) => {
                             <div className="status field">
                                 <label>Status</label>
                                 <Select 
-                                options={[
-                                { label: 'Option 1', value: 'option1' },
-                                { label: 'Option 2', value: 'option2' },
-                                { label: 'Option 3', value: 'option3' },]}
+                                options={statuses}
                                 onSelect={(option)=>setStatus(option.value)}
                                 InitialValue={status}
                                 disabled={readOnlyInfo}/>
@@ -164,7 +218,7 @@ const SelectedUser = ({userData}) => {
                         </div>
                     </div>
                     <div className="user-container passwords">
-                        <div className="form-title"><h2>Password Reset <MdEdit className='icon' onClick={()=>setReadOnlyPsw(!readOnlyPsw)}/></h2></div>
+                        <div className="form-title"><h2>New Password <MdEdit className='icon' onClick={()=>setReadOnlyPsw(!readOnlyPsw)}/></h2></div>
                         <div className="fields flex">
                             <div className="psw field">
                                 <label>Password</label>
