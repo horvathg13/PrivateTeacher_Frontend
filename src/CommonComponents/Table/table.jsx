@@ -6,7 +6,7 @@ import { GrFormPrevious } from "react-icons/gr";
 import { useEffect, useState } from 'react';
 
 
-const Table = ({datas, loader, page, perPage,selectedRow}) => {
+const Table = ({datas, loader, page, perPage, selectedRow}) => {
     /* data: */
 
     const [activeRow, setActiveRow]=useState();
