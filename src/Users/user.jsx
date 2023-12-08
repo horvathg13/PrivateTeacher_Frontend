@@ -7,7 +7,7 @@ import ServiceClient from '../ServiceClient';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import SelectedUser from './selectedUserHandler/selectedUser';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
         
 const User = () => {
@@ -63,21 +63,18 @@ const User = () => {
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-        <ComponentTitle />
-        {!selectedRow ? 
-        <ClickAwayListener onClickAway={()=>setSelectedRow(null)}>
+        <ComponentTitle /> 
+        <ClickAwayListener onClickAway={()=>setSelectedRow('')}>
             <div className="table-main-container">
                 <Table 
                 datas={users ? users :null}
                 loader={loader}
                 page={pageCounter}
                 perPage={setPerPage}
-                selectedRow={setSelectedRow}/>
+                selectedRow={(e)=>[setSelectedRow(e)]}/>
             </div>
-        </ClickAwayListener>:
-        <SelectedUser userData={selectedRow}/>}
+        </ClickAwayListener>
         <SideMenu active={selectedRow?true:false}/>
-        
         </>
             
         
