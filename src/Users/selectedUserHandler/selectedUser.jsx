@@ -10,14 +10,18 @@ import {MdEdit} from 'react-icons/md';
 import AreYouSure from '../../CommonComponents/AreYouSure/areyousure'
 import Select from '../../CommonComponents/Select/select';
 import ServiceClient from '../../ServiceClient';
+import { useLoaderData } from 'react-router-dom';
+import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
+import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
 
         
-const SelectedUser = ({userData}) => {
+const SelectedUser = () => {
+    const userData = useLoaderData();
     /*Form fields*/
-    const [fname, setFname]=useState(userData.firstname);
-    const [lname, setLname]=useState(userData.lastname);
-    const [email, setEmail]=useState(userData.email);
-    const [status, setStatus]=useState(userData.status);
+    const [fname, setFname]=useState(userData.data.firstname);
+    const [lname, setLname]=useState(userData.data.lastname);
+    const [email, setEmail]=useState(userData.data.email);
+    const [status, setStatus]=useState(userData.data.status);
     const [emailError, setEmailError]=useState(false);
 
     const[showPasswordFields, setShowPasswordField]=useState(false);
@@ -57,15 +61,15 @@ const SelectedUser = ({userData}) => {
     let { userId }=useParams();
 
     /*methods: */
-    const functionControl=(name)=>{
+    /*const functionControl=(name)=>{
         if(name === 'ban'){
-            banUser(userId);
+            updateUser();
             setTransitionsProp(false);
         }else{
             setShowAreYouSure(false);
             setTransitionsProp(false);
         }
-    }
+    }*/
     const updateUser =(e)=>{
         e.preventDefault()
 
@@ -85,6 +89,7 @@ const SelectedUser = ({userData}) => {
             "first_name":fname,
             "last_name":lname,
             "email":email,
+            "status":status,
         }
         
         let dataPost={}
@@ -114,15 +119,11 @@ const SelectedUser = ({userData}) => {
 
     }
     
-    const banUserActionButton=()=>{
+    /*const banUserActionButton=()=>{
         setAreYouSureName('ban');
         setTransitionsProp(true);
         setShowAreYouSure(true);
-    }
-
-    const banUser=(userId)=>{
-        console.log(userId);
-    }
+    }*/
 
     /*useLayoutEffect(()=>{
         let url='http://127.0.0.1:8000/api/getRoles';
@@ -155,7 +156,7 @@ const SelectedUser = ({userData}) => {
         })
     },[]);
 
-    useEffect(()=>{console.log(statuses)},[statuses])
+    useEffect(()=>{console.log(fname,lname,email, userData)},[userData])
     return (
         <>
         <EventHandler 
@@ -163,11 +164,13 @@ const SelectedUser = ({userData}) => {
             errors={errors} 
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-        
-        <AreYouSure
+        <ComponentTitle />
+        <SideMenu/> 
+       {/*  <AreYouSure
         name={AreYouSureName}
         answer={functionControl}
-        transitionProp={transitionProp}/>
+        transitionProp={transitionProp}
+        label={"Are you would like to Bann this user?"}/>*/}
         <div className="selectedUser-main">
             <div className="userDetails">
                 <div className="action-container flex">
@@ -183,8 +186,10 @@ const SelectedUser = ({userData}) => {
                                 <input 
                                 type="text" 
                                 readOnly={readOnlyInfo} 
-                                required value={fname} 
-                                onChange={(e)=>{setFname(e.target.value)}}/>
+                                required 
+                                value={fname} 
+                                onChange={(e)=>{setFname(e.target.value)}}
+                                />
                             </div>
                             <div className="last-name field">
                                 <label>Last Name</label>
@@ -210,8 +215,8 @@ const SelectedUser = ({userData}) => {
                                 <label>Status</label>
                                 <Select 
                                 options={statuses}
-                                onSelect={(option)=>setStatus(option.value)}
-                                InitialValue={status}
+                                onSelect={(option)=>setStatus(option.id)}
+                                InitialValue={userData.data.status}
                                 disabled={readOnlyInfo}/>
                             </div>
                             
