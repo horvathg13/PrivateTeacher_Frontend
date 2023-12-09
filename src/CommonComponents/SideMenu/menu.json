@@ -2,12 +2,14 @@
     {
         "id":1,
         "name":"Users",
-        "icon":"FaUsers"
+        "icon":"FaUsers",
+        "url":"/users"
     },
     {
         "id":2,
         "name":"Create",
-        "icon":"FaUserPlus"
+        "icon":"FaUserPlus",
+        "url":"/users/create"
     }
 
 ]

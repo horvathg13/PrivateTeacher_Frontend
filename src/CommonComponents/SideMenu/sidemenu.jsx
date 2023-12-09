@@ -1,12 +1,15 @@
 import './sidemenu.css';
-import {FaBan, FaUsers ,FaUserPlus} from 'react-icons/fa';
+import {FaBan, FaUsers ,FaUserPlus, FaChild, FaSearch,} from 'react-icons/fa';
+import { BiSolidMessageDetail } from "react-icons/bi";
 import {RiLockPasswordFill} from 'react-icons/ri';
-import {FaScaleUnbalanced} from 'react-icons/fa6';
+import {FaScaleUnbalanced, FaSchool} from 'react-icons/fa6';
 import {RxUpdate} from 'react-icons/rx';
 import menu from './menu.json'        
+import homeMenu from '../../Home/homeMenu.json';
 import { CSSTransition } from 'react-transition-group';
 import { useRef, useState } from 'react';
 import '../../transitions.css'
+import { NavLink } from 'react-router-dom';
 
 const SideMenu = ({active}) => {
     const getIcon=(iconName)=>{
@@ -16,6 +19,10 @@ const SideMenu = ({active}) => {
             //case 'RiLockPasswordFill': return <RiLockPasswordFill className='menu-icon icon'/>;
             case 'FaUsers': return <FaUsers className='menu-icon icon'/>;
             case 'FaUserPlus':return <FaUserPlus className='menu-icon icon'/>;
+            case 'FaChild': return <FaChild className='menu-icon icon'/>;
+            case 'FaSearch': return <FaSearch className='menu-icon icon'/>;
+            case 'BiSolidMessageDetail': return <BiSolidMessageDetail className='menu-icon icon'/>;
+            case 'FaSchool':return <FaSchool  className='menu-icon icon'/>;
             default: return null;
         }
     }
@@ -26,9 +33,11 @@ const SideMenu = ({active}) => {
     return (
         <div className="side-main-conainer" ref={nodeRef}>
             {
-                menu.map((e,i)=>
+                homeMenu.map((e,i)=>
                     <div className="element-container flex" key={i}>
-                        <div className={selectedMenu === e.id ? "icon-container active" : "icon-container"} onClick={()=>setSelectedMenu(e.id, console.log(e))}>{getIcon(e.icon)}</div>
+                        <NavLink to={e.url}>
+                            <div className={ e.url === window.location.pathname ? "icon-container active" : "icon-container"}>{getIcon(e.icon)}</div>
+                        </NavLink>
                         <div className="name-container"><h4>{e.name}</h4></div>
                     </div>
                 )
