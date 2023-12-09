@@ -13,30 +13,6 @@
         
     },
     {
-        "name":"Requests Control",
-        "role":["SchoolAdmin","Teacher"],
-        "icon":"HiDocumentDownload"
-        
-    },
-    {
-        "name":"Timetable",
-        "role":["SchoolAdmin","Teacher"],
-        "icon":"BsCalendar3"
-        
-    },
-    {
-        "name":"Payments",
-        "role":["Admin","SchoolAdmin","Teacher"],
-        "icon":"MdPayment"
-        
-    },
-    {
-        "name":"Students",
-        "role":["SchoolAdmin","Teacher"],
-        "icon":"PiStudentBold"
-        
-    },
-    {
         "name":"Messages",
         "role":["Admin","SchoolAdmin","Teacher","Parent"],
         "icon":"BiSolidMessageDetail"
@@ -50,11 +26,7 @@
         "name":"Child Menu",
         "role":["Parent"],
         "icon":"FaChild"
-    },
-    {
-        "name":"Courses",
-        "role":["Parent"],
-        "icon":"IoMdSchool"
     }
+   
     
 ]

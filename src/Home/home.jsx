@@ -18,14 +18,14 @@ const Home = () => {
     const getIcon=(iconName)=>{
         switch (iconName) {
             case 'FaUsers':return <FaUsers />;
-            case 'HiDocumentDownload': return <HiDocumentDownload />;
-            case 'IoMdSchool': return <IoMdSchool />;
+            //case 'HiDocumentDownload': return <HiDocumentDownload />;
+            //case 'IoMdSchool': return <IoMdSchool />;
             case 'FaChild': return <FaChild/>;
             case 'FaSearch': return <FaSearch/>;
             case 'BiSolidMessageDetail': return <BiSolidMessageDetail/>;
-            case 'PiStudentBold': return <PiStudentBold/>;
-            case 'MdPayment': return <MdPayment/>;
-            case 'BsCalendar3': return <BsCalendar3/>;
+            //case 'PiStudentBold': return <PiStudentBold/>;
+            //case 'MdPayment': return <MdPayment/>;
+            //case 'BsCalendar3': return <BsCalendar3/>;
             case 'FaSchool':return <FaSchool  />;
             default: return null;
         }
