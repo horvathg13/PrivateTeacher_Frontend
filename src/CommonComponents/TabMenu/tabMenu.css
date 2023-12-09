@@ -5,7 +5,7 @@
   background: var(--ButtonBlue);
   border: none;
   border-radius: 5px 50px 0 5px;
-  padding: 10px 50px;
+  padding: 10px 30px;
   color: var(--whiteColorDeam);
   text-align: center;
   letter-spacing: 0.5px;
@@ -23,6 +23,27 @@
 .tabMenu-container.flex .active {
   background: var(--DarkBlue);
   box-shadow: 6px 0px 2px #4c4c4c;
+  padding: 10px 50px;
+  animation: activTabMenu 0.7s ease-in-out;
+}
+
+@keyframes activTabMenu {
+  0% {
+    background: var(--ButtonBlue);
+    border: none;
+    border-radius: 5px 50px 0 5px;
+    padding: 10px 30px;
+    color: var(--whiteColorDeam);
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin: 0 5px;
+  }
+  100% {
+    background: var(--DarkBlue);
+    box-shadow: 6px 0px 2px #4c4c4c;
+    padding: 10px 50px;
+    transition: padding 0.2s ease;
+  }
 }
 
 /*# sourceMappingURL=tabMenu.css.map */
