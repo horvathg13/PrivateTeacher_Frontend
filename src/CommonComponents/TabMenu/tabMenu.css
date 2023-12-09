@@ -1,0 +1,28 @@
+.tabMenu-container.flex {
+  margin: 20px auto;
+}
+.tabMenu-container.flex .action {
+  background: var(--ButtonBlue);
+  border: none;
+  border-radius: 5px 50px 0 5px;
+  padding: 10px 50px;
+  color: var(--whiteColorDeam);
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin: 0 5px;
+  transition: 0.5s ease-in-out;
+}
+.tabMenu-container.flex .action:hover {
+  background: var(--DarkBlue);
+  transition: 0.3s ease-in-out;
+}
+.tabMenu-container.flex .action .icon {
+  font-size: 17px;
+  margin: auto 5px;
+}
+.tabMenu-container.flex .active {
+  background: var(--DarkBlue);
+  box-shadow: 6px 0px 2px #4c4c4c;
+}
+
+/*# sourceMappingURL=tabMenu.css.map */

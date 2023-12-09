@@ -1,0 +1,29 @@
+.tabMenu-container.flex{
+    .action{
+        background: var(--ButtonBlue);
+        border: none;
+        border-radius: 5px 50px 0 5px;
+        padding: 10px 50px;
+        color: var(--whiteColorDeam);
+        text-align: center;
+        letter-spacing: .5px;
+        //box-shadow: 1px 2px 1px #4c4c4c;
+        margin: 0 5px;
+        transition: .5s ease-in-out;
+        &:hover{
+            //transform: scale(1.1);
+            background: var(--DarkBlue);
+            transition: .3s ease-in-out;
+        }
+
+        .icon{
+            font-size: 17px;
+            margin: auto 5px;
+        }
+    }
+    .active{
+        background: var(--DarkBlue);
+        box-shadow: 6px 0px 2px #4c4c4c;
+    }
+    margin: 20px auto;
+}
