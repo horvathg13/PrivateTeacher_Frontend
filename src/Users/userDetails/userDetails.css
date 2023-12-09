@@ -38,7 +38,7 @@
   transition: 0.5s ease-in-out;
 }
 .selectedUser-main .action-container.flex .action:hover {
-  background: var(--GreenColor);
+  background: var(--DarkBlue);
   transition: 0.3s ease-in-out;
 }
 .selectedUser-main .action-container.flex .action .icon {
@@ -103,7 +103,7 @@
 .selectedUser-main form button {
   background: var(--ButtonBlue);
   color: var(--whiteColorDeam);
-  padding: 10px 20px;
+  padding: 15px 20px;
   border: none;
   border-radius: 10px;
   margin: 15px auto;
@@ -117,7 +117,11 @@
 .selectedUser-main form button:hover {
   transform: scale(1.1);
   transition: 0.3s ease-in-out;
-  background: var(--GreenColor);
+  background: var(--DarkBlue);
+}
+.selectedUser-main form button .user-submit-icon {
+  font-size: 1.3rem;
+  margin: 0 5px;
 }
 .selectedUser-main form .roles-container.flex {
   margin: auto auto;
@@ -136,4 +140,4 @@
   user-select: none;
 }
 
-/*# sourceMappingURL=selectedUser.css.map */
+/*# sourceMappingURL=userDetails.css.map */
