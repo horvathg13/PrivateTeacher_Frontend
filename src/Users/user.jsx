@@ -6,7 +6,6 @@ import ComponentTitle from '../CommonComponents/ComponentTitle/componentTitle';
 import ServiceClient from '../ServiceClient';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
-import SelectedUser from './selectedUserHandler/selectedUser';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
         
@@ -57,25 +56,27 @@ const User = () => {
         
     },[selectedRow])
     return (
-        <>
-        <EventHandler 
-        success={success} 
-        errors={errors} 
-        serverError={serverError} 
-        closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-        <ComponentTitle /> 
-        <ClickAwayListener onClickAway={()=>setSelectedRow('')}>
-            <div className="table-main-container">
-                <Table 
-                datas={users ? users :null}
-                loader={loader}
-                page={pageCounter}
-                perPage={setPerPage}
-                selectedRow={(e)=>[setSelectedRow(e)]}/>
-            </div>
-        </ClickAwayListener>
-        <SideMenu active={selectedRow?true:false}/>
-        </>
+        <div className="user-main-container">
+            <SideMenu active={selectedRow?true:false}/>
+           
+            <EventHandler 
+            success={success} 
+            errors={errors} 
+            serverError={serverError} 
+            closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+            <ComponentTitle /> 
+            <ClickAwayListener onClickAway={()=>setSelectedRow('')}>
+                <div className="table-main-container">
+                    <Table 
+                    datas={users ? users :null}
+                    loader={loader}
+                    page={pageCounter}
+                    perPage={setPerPage}
+                    selectedRow={(e)=>[setSelectedRow(e)]}/>
+                </div>
+            </ClickAwayListener>
+            
+        </div>
             
         
     );
