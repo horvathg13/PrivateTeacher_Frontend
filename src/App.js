@@ -6,7 +6,7 @@ import Header from './Header/header';
 import Login from './Login/login';
 import Home from './Home/home';
 import Users from './Users/user';
-import userRoles from './Users/userRolesHandler/userRoles';
+import UserRoles from './Users/userRolesHandler/userRoles';
 import Protected from './ProtectedRoutes';
 import { UserContextProvider } from './Context/UserContext';
 import UserDetailsComponent from './Users/userDetails/userDetails';
@@ -40,7 +40,7 @@ function App() {
           <Route path="/home" element={<Home />}/>
           <Route path="/users" element={<Users />}/>
           <Route path="/users/:userId" loader={({params})=>{ return userDataLoader(params) }} element={<UserDetailsComponent />}/>
-          <Route path="/users/:userId/roles" element={<userRoles />}/>
+          <Route path="/users/:userId/roles" element={<UserRoles />}/>
           
         </Route>
           
