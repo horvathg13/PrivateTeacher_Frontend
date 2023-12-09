@@ -1,0 +1,29 @@
+.nav-main-conatiner.flex {
+  width: 250px;
+  height: fit-content;
+  flex-direction: column;
+  position: fixed;
+  margin: 100px;
+  border: 1px solid var(--GreyTransparent);
+  background: var(--GreyTransparent);
+}
+.nav-main-conatiner.flex .nav-header.flex {
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  border-bottom: 2px dotted var(--GreenColor);
+}
+.nav-main-conatiner.flex .links {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+.nav-main-conatiner.flex .links li {
+  padding: 10px;
+  background: var(--GreyTransparent);
+}
+.nav-main-conatiner.flex .links li:hover {
+  background: var(--LightBlueTransparent);
+}
+
+/*# sourceMappingURL=navMenu.css.map */
