@@ -14,6 +14,7 @@ import ServiceClient from '../../ServiceClient';
 import { useLoaderData } from 'react-router-dom';
 import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
 import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
+import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
 
 
         
@@ -37,9 +38,6 @@ const UserDetails = () => {
     const[readOnlyPsw, setReadOnlyPsw]=useState(true);
     const [rolesDisabled, setRolesDisabled]=useState(true);
 
-    /*Roles */
-    const [roles, setRoles]=useState([]);
-
     /*Statuses*/
     const [statuses, setStatuses]=useState();
 
@@ -61,7 +59,25 @@ const UserDetails = () => {
     /*DataSave*/
     const [dataSave, setDataSave]=useState();
     let { userId }=useParams();
-
+    /*TabMenu */
+    const tabData=[
+        {
+            "id":"1",
+            "name":"Info",
+            "url":`/users/${userId}`
+        },
+        {
+            "id":"2",
+            "name":"Roles",
+            "url":`/users/${userId}/roles`
+        },
+        {
+            "id":"3",
+            "name":"Logs",
+            "url":`/users/${userId}/logs`
+        }
+        
+    ]
     /*methods: */
     /*const functionControl=(name)=>{
         if(name === 'ban'){
@@ -175,11 +191,7 @@ const UserDetails = () => {
             label={"Are you would like to Bann this user?"}/>*/}
             <div className="selectedUser-main">
                 <div className="userDetails">
-                    <div className="action-container flex">
-                        {/*<button className='btn action flex' onClick={()=>banUserActionButton()}><FaScaleUnbalanced className='icon'/>Roles</button>*/}
-                        <button className='btn action flex'>Roles</button>
-                        <button className='btn action flex'>Logs</button>
-                    </div>
+                    <TabMenu menu={tabData}/>
                     <form className='flex' onSubmit={updateUser}>
                         <div className="user-container info">
                             <div className="form-title"><h2>Info <MdEdit className='icon' onClick={()=>setReadOnlyInfo(!readOnlyInfo)}/></h2></div>

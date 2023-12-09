@@ -22,29 +22,6 @@
 .selectedUser-main .emailPassword-fields.grid label {
   padding-top: 10px;
 }
-.selectedUser-main .action-container.flex {
-  margin: 20px auto;
-}
-.selectedUser-main .action-container.flex .action {
-  background: var(--ButtonBlue);
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  color: var(--whiteColorDeam);
-  text-align: center;
-  letter-spacing: 0.5px;
-  box-shadow: 1px 2px 1px #4c4c4c;
-  margin: 0 5px;
-  transition: 0.5s ease-in-out;
-}
-.selectedUser-main .action-container.flex .action:hover {
-  background: var(--DarkBlue);
-  transition: 0.3s ease-in-out;
-}
-.selectedUser-main .action-container.flex .action .icon {
-  font-size: 17px;
-  margin: auto 5px;
-}
 .selectedUser-main form {
   flex-direction: column;
 }
