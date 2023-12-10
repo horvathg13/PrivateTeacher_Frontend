@@ -9,5 +9,17 @@
   letter-spacing: 1.5px;
 }
 .component-title-container.flex h4 {
+  font-size: 15px;
+}
+.component-title-container.flex .breadcumbs.flex {
+  justify-content: center;
+}
+.component-title-container.flex .breadcumbs.flex h4 a.active {
+  color: var(--ButtonBlue);
+}
+.component-title-container.flex .breadcumbs.flex .breadicon {
   font-size: 13px;
-}/*# sourceMappingURL=componentTitle.css.map */
+  margin: 0 5px;
+}
+
+/*# sourceMappingURL=componentTitle.css.map */

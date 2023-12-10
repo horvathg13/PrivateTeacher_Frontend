@@ -14,7 +14,19 @@
     }
     
     h4{
-        font-size: 13px;
+        font-size: 15px;
     }
 
+    .breadcumbs.flex{
+        justify-content: center;
+        h4{
+            a.active{
+                color: var(--ButtonBlue);
+            }
+        }
+        .breadicon{
+            font-size: 13px;
+            margin: 0 5px;
+        }
+    }
 }
