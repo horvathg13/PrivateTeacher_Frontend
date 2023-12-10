@@ -1,0 +1,12 @@
+form .name-fields.flex {
+  justify-content: space-between;
+}
+form .name-fields.flex label, form .name-fields.flex input {
+  margin-right: 10px;
+}
+form label {
+  margin: 15px 0;
+  margin-bottom: 5px;
+}
+
+/*# sourceMappingURL=createUser.css.map */
