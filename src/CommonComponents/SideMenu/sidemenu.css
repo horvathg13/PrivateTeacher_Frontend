@@ -30,7 +30,7 @@
   margin: 0 auto;
   padding: 15px;
 }
-.side-main-conainer .element-container.flex .icon-container.active {
+.side-main-conainer .element-container.flex .active .icon-container {
   border-radius: 50%;
   background: var(--ButtonBlue);
   color: var(--whiteColorDeam);

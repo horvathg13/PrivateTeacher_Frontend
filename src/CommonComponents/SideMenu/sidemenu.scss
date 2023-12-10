@@ -30,11 +30,11 @@
                 padding: 15px;
                            
             }
-            &.active{
-                border-radius: 50%;
-                background: var(--ButtonBlue);
-                color: var(--whiteColorDeam);
-            }
+        }
+        .active .icon-container {
+            border-radius: 50%;
+            background: var(--ButtonBlue);
+            color: var(--whiteColorDeam);
         }
         .name-container{
             width: 100%;

@@ -2,7 +2,7 @@ import './sidemenu.css';
 import {FaBan, FaUsers ,FaUserPlus, FaChild, FaSearch,} from 'react-icons/fa';
 import { BiSolidMessageDetail } from "react-icons/bi";
 import {RiLockPasswordFill} from 'react-icons/ri';
-import {FaScaleUnbalanced, FaSchool} from 'react-icons/fa6';
+import {FaScaleUnbalanced, FaSchool, FaTruckMedical} from 'react-icons/fa6';
 import {RxUpdate} from 'react-icons/rx';
 import menu from './menu.json'        
 import homeMenu from '../../Home/homeMenu.json';
@@ -36,7 +36,7 @@ const SideMenu = ({active}) => {
                 homeMenu.map((e,i)=>
                     <div className="element-container flex" key={i}>
                         <NavLink to={e.url}>
-                            <div className={ e.url === window.location.pathname ? "icon-container active" : "icon-container"}>{getIcon(e.icon)}</div>
+                            <div className="icon-container">{getIcon(e.icon)}</div>
                         </NavLink>
                         <div className="name-container"><h4>{e.name}</h4></div>
                     </div>
