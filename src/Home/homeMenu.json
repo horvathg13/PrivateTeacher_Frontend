@@ -9,23 +9,27 @@
     {
         "name":"School Operations",
         "role":["Admin"],
-        "icon":"FaSchool"
+        "icon":"FaSchool",
+        "url":"/schools"
         
     },
     {
         "name":"Messages",
         "role":["Admin","SchoolAdmin","Teacher","Parent"],
-        "icon":"BiSolidMessageDetail"
+        "icon":"BiSolidMessageDetail",
+        "url":"/messages"
     },
     {
         "name":"Search Teacher",
         "role":["Admin", "SchoolAdmin","Teacher", "Parent"],
-        "icon":"FaSearch"
+        "icon":"FaSearch",
+        "url":"/search-teachers"
     },
     {
         "name":"Child Menu",
         "role":["Parent"],
-        "icon":"FaChild"
+        "icon":"FaChild",
+        "url":"/child-menu"
     }
    
     
