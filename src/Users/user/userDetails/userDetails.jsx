@@ -25,7 +25,7 @@ const UserDetails = () => {
     const [fname, setFname]=useState(userData.firstname);
     const [lname, setLname]=useState(userData.lastname);
     const [email, setEmail]=useState(userData.email);
-    const [status, setStatus]=useState(userData.status);
+    const [status, setStatus]=useState(userData.statusId);
     const [emailError, setEmailError]=useState(false);
 
     const[showPasswordFields, setShowPasswordField]=useState(false);
