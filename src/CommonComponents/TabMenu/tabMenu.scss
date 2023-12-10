@@ -23,16 +23,16 @@
             margin: auto 5px;
         }
     }
-    .active{
-        background: var(--DarkBlue);
-        box-shadow: 6px 0px 2px #4c4c4c;
-        padding: 10px 50px;
-        animation: activTabMenu .7s ease-in-out;
-    }
+    
     
     margin: 20px auto;
 }
-
+.tabMenu-container .active > .btn.action{
+    background: var(--DarkBlue);
+    box-shadow: 6px 0px 2px #4c4c4c;
+    padding: 10px 50px;
+    animation: activTabMenu .7s ease-in-out;
+}
 @keyframes activTabMenu{
     0%{
         background: var(--ButtonBlue);

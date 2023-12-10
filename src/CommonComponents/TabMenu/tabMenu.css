@@ -20,7 +20,8 @@
   font-size: 17px;
   margin: auto 5px;
 }
-.tabMenu-container.flex .active {
+
+.tabMenu-container .active > .btn.action {
   background: var(--DarkBlue);
   box-shadow: 6px 0px 2px #4c4c4c;
   padding: 10px 50px;

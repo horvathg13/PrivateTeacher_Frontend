@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './tabMenu.css';
         
 const TabMenu = ({menu}) => {
@@ -7,7 +7,7 @@ const TabMenu = ({menu}) => {
         
         <div className="tabMenu-container flex">
         { menu.map((e)=>
-            <button onClick={()=>{navigate(e.url)}} className={window.location.pathname === e.url ? 'btn action active flex' :'btn action flex'}>{e.name}</button>
+           <NavLink to={e.url} end={e.end}><button className={'btn action flex'}>{e.name}</button></NavLink>
         )}
         </div>
         
