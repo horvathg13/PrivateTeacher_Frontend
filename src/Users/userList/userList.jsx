@@ -7,6 +7,7 @@ import ServiceClient from '../../ServiceClient';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
 
         
 const UserList = () => {
@@ -21,8 +22,15 @@ const UserList = () => {
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
-
-
+    /*TabData */
+    const tabData=[
+        {
+            "id":"1",
+            "name":"create",
+            "url":"/user-create"
+        }
+    ]
+    /*Methods: */
     const pageCounter=(data)=>{
         switch (data){
             case 'next': return setCounter(counter+1);
@@ -57,14 +65,13 @@ const UserList = () => {
     },[selectedRow])
     return (
         <div className="user-main-container">
-            <SideMenu active={selectedRow?true:false}/>
            
             <EventHandler 
             success={success} 
             errors={errors} 
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-            <ComponentTitle /> 
+            
             <ClickAwayListener onClickAway={()=>setSelectedRow('')}>
                 <div className="table-main-container">
                     <Table 
