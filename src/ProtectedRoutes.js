@@ -1,11 +1,11 @@
 import {Outlet, Navigate} from 'react-router-dom';
 
-const ProtectedRoutes=()=>{
+const ProtectedRoutes=(props)=>{
 
     if(localStorage.getItem('token')){
-        return (
-            <Outlet/>
-        )
+        return props.children
+            
+        
     }else{
         return(
         <Navigate to={'/'}/>
