@@ -13,8 +13,11 @@ import { UserContextProvider } from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
-import { userDataLoader } from './dataLoader';
+import { generatedUserLoader, userDataLoader } from './dataLoader';
 import User from './Users/user/user';
+import Users from './Users/userHome/users';
+import UserCreate from './Users/createUser/createUser';
+import GeneratedUser from './Users/GeneratedUser/generatedUser';
 
 function App() {
 
@@ -51,7 +54,17 @@ const router = createBrowserRouter([
       },
       {
         path:"users",
-        element:<Protected><UserList /></Protected>,
+        element:<Protected><Users /></Protected>,
+        children:[
+          {
+            path:"list",
+            element:<UserList />,
+          },
+          {
+            path:"create",
+            element:<UserCreate />,
+          }
+        ]
       },
       {
         path:"users/:userId",
@@ -72,6 +85,11 @@ const router = createBrowserRouter([
             element:<UserLog />
           }
         ]
+      },
+      {
+        path:"/generated-user/:token",
+        element:<GeneratedUser/>,
+        loader:({params})=>{return generatedUserLoader(params)}
       }
     ],
   },
