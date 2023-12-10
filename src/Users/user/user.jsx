@@ -35,24 +35,23 @@ const User = () => {
             "id":"1",
             "name":"Home",
             "url":"/home",
-            "icon":"IoIosArrowForward"
+            "icon":"IoIosArrowForward",
+            
         },
         {
             "id":"2",
             "name":"Users",
             "url":"/users",
-            "icon":"IoIosArrowForward"
+            "icon":"IoIosArrowForward",
+            "end":true,
         },
         {
             "id":"3",
             "name":`${userData.firstname}`,
-            "url":"/users",
-            "icon":"IoIosArrowForward"
+            "url":`/users/${userData.id}`,
         },
     ]
-    /*useEffect(()=>{
-        console.log(userData);
-    },[userData])*/
+    
     return (
         <userInfoContext.Provider value={userData}>
         <div className="user-main-container">
