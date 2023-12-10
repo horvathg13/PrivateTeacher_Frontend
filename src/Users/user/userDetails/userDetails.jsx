@@ -22,10 +22,10 @@ import { userInfoContext } from '../../../Context/UserContext';
 const UserDetails = () => {
     const userData = useContext(userInfoContext);
     /*Form fields*/
-    const [fname, setFname]=useState(userData.data.firstname);
-    const [lname, setLname]=useState(userData.data.lastname);
-    const [email, setEmail]=useState(userData.data.email);
-    const [status, setStatus]=useState(userData.data.status);
+    const [fname, setFname]=useState(userData.firstname);
+    const [lname, setLname]=useState(userData.lastname);
+    const [email, setEmail]=useState(userData.email);
+    const [status, setStatus]=useState(userData.status);
     const [emailError, setEmailError]=useState(false);
 
     const[showPasswordFields, setShowPasswordField]=useState(false);
@@ -230,7 +230,7 @@ const UserDetails = () => {
                                 <Select 
                                 options={statuses}
                                 onSelect={(option)=>setStatus(option.id)}
-                                InitialValue={userData.data.status}
+                                InitialValue={userData.status}
                                 disabled={readOnlyInfo}/>
                             </div>
                             
