@@ -21,11 +21,11 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
         <div className="table-main-container">
 
 
-            <div className="table-action-menu flex">
+            {/*<div className="table-action-menu flex">
                 <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
                 <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
                 <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
-            </div>
+        </div>*/}
             <table>
                 <thead>
 
