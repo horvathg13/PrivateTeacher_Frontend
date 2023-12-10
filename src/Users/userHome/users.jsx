@@ -19,11 +19,24 @@ const Users = () => {
             "name":"Create",
             "url":'/users/create'
         },
-        
+    ]
+
+    const breadcumbs=[
+        {
+            "id":"1",
+            "name":"Home",
+            "url":"/home",
+            "icon":"IoIosArrowForward"
+        },
+        {
+            "id":"2",
+            "name":"Users",
+            "url":"/users",
+        },
     ]
     return (
         <div className="user-main-container">
-            <ComponentTitle />
+            <ComponentTitle breadcumbs={breadcumbs}/>
             <SideMenu/> 
             <div className="user-main">
                 { window.location.pathname === '/users' ? 

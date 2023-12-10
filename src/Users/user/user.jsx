@@ -4,9 +4,12 @@ import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
 import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
 import {userInfoContext} from "../../Context/UserContext";
 import "./user.css";
+import { useContext, useEffect } from "react";
         
 const User = () => {
     let { userId }=useParams();
+    const userData = useLoaderData();
+
     const tabData=[
         {
             "id":"1",
@@ -26,13 +29,37 @@ const User = () => {
         }
         
     ]
-    const userData = useLoaderData();
+    
+    const breadcumbs=[
+        {
+            "id":"1",
+            "name":"Home",
+            "url":"/home",
+            "icon":"IoIosArrowForward"
+        },
+        {
+            "id":"2",
+            "name":"Users",
+            "url":"/users",
+            "icon":"IoIosArrowForward"
+        },
+        {
+            "id":"3",
+            "name":`${userData.firstname}`,
+            "url":"/users",
+            "icon":"IoIosArrowForward"
+        },
+    ]
+    /*useEffect(()=>{
+        console.log(userData);
+    },[userData])*/
     return (
         <userInfoContext.Provider value={userData}>
         <div className="user-main-container">
-            <ComponentTitle />
+            <ComponentTitle breadcumbs={breadcumbs}/>
             <SideMenu/> 
             <div className="user-main">
+                {console.log(userData.firstname)}
                 <TabMenu menu={tabData}/>
                 <Outlet/>
             </div>

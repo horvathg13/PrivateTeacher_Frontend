@@ -30,6 +30,9 @@ const UserList = () => {
             "url":"/user-create"
         }
     ]
+
+ 
+   
     /*Methods: */
     const pageCounter=(data)=>{
         switch (data){
