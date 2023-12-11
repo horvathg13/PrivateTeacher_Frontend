@@ -116,7 +116,7 @@ const UserCreate = () => {
                 
                 {!loader ?
                     <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn'}>Generate <FaArrowCircleRight className='btn-icon'/></button> :
-                    <span className='loader'></span>
+                    <span className='loader createUser'></span>
                 }
             </form>:
 

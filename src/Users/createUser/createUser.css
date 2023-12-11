@@ -8,5 +8,9 @@ form label {
   margin: 15px 0;
   margin-bottom: 5px;
 }
+form .loader.createUser {
+  border-top: 4px solid var(--DarkBlue) !important;
+  margin: 20px auto;
+}
 
 /*# sourceMappingURL=createUser.css.map */

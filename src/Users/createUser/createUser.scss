@@ -11,8 +11,9 @@ form{
         margin: 15px 0;
         margin-bottom: 5px;
     }
-}
 
-.generatedLink.grid{
-    
+    .loader.createUser{
+        border-top:  4px solid var(--DarkBlue) !important;
+        margin: 20px auto;
+    }
 }
