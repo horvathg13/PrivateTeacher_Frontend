@@ -17,7 +17,7 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
     return (
         <>
         {!loader ?
-        <><button onClick={()=>setActiveRow(false)}>Delete Selection</button>
+        
         <div className="table-main-container">
 
 
@@ -25,7 +25,7 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
                 <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
                 <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
                 <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
-        </div>*/}
+            </div>*/}
             <table>
                 <thead>
 
@@ -66,7 +66,8 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
             </div>
 
 
-        </div></>: <span className='loader table'></span>}
+        </div>: 
+        <span className='loader table'></span>}
         </>
            
     );
