@@ -35,9 +35,11 @@ const Users = () => {
         },
     ]
     return (
-        <div className="user-main-container">
+        <>
+        <SideMenu/> 
+        <div className="content-main-container">
             <ComponentTitle breadcumbs={breadcumbs}/>
-            <SideMenu/> 
+            
             <div className="user-main">
                 { window.location.pathname === '/users' ? 
                 <div className="button-main-container flex">
@@ -54,6 +56,7 @@ const Users = () => {
                 <Outlet/>
             </div>
         </div>
+        </>
     );
 };
 export default Users;

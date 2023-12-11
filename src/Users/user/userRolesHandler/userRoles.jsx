@@ -40,15 +40,19 @@ const UserRoles = () => {
         
     ]
     return (
+
+        <>
+        <EventHandler 
+        success={success} 
+        errors={errors} 
+        serverError={serverError} 
+        closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
         <div className="userRoles-main-container">
-            <EventHandler 
-                success={success} 
-                errors={errors} 
-                serverError={serverError} 
-                closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+            
             
             
         </div>
+        </>
     );
 };
 export default UserRoles;

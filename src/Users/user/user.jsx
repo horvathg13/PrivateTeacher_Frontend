@@ -53,10 +53,12 @@ const User = () => {
     ]
     
     return (
+
         <userInfoContext.Provider value={userData}>
-        <div className="user-main-container">
+        <SideMenu/>    
+        <div className="content-main-container">
             <ComponentTitle breadcumbs={breadcumbs}/>
-            <SideMenu/> 
+            
             <div className="user-main">
                 {console.log(userData.firstname)}
                 <TabMenu menu={tabData}/>

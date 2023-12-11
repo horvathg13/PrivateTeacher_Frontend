@@ -67,7 +67,7 @@ const UserList = () => {
         
     },[selectedRow])
     return (
-        <div className="user-main-container">
+        <div className="content-main-container">
            
             <EventHandler 
             success={success} 

@@ -81,12 +81,14 @@ const UserCreate = () => {
         })
     }
     return (
-        <div className="user-create-container">
-            <EventHandler 
-            success={success} 
-            errors={errors} 
-            serverError={serverError} 
-            closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+        <>
+       <EventHandler 
+        success={success} 
+        errors={errors} 
+        serverError={serverError} 
+        closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+                  
+        <div className="content-main-container">
             
            
             {!generatedLink ? 
@@ -125,7 +127,8 @@ const UserCreate = () => {
                 <input type="text" readOnly value={generatedLink}/>
             </div>}
         </div>
-            
+        </>
+    
         
     );
 };

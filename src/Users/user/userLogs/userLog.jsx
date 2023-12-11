@@ -43,14 +43,18 @@ const UserLog = () => {
          
      ]
     return (
-        <div className="userLogs-main-container">
-            <EventHandler 
-                success={success} 
-                errors={errors} 
-                serverError={serverError} 
-                closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-            
-        </div>
+    <>
+    <EventHandler
+    success={success}
+    errors={errors}
+    serverError={serverError}
+    closeErrorMessage={(data) => { if (data === true) { setErrors([]); } } } />
+    
+    <div className="content-main-container">
+
+
+    </div>
+    </>
     );
 };
 export default UserLog;
