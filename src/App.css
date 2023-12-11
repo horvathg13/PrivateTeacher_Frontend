@@ -130,3 +130,10 @@ input:read-only{
   cursor: default;
   border: none;
 }
+
+.content-main-container{
+  width: 900px;
+  height: fit-content;
+  margin: 2% auto;
+  color: var(--PrimaryColor);
+}
