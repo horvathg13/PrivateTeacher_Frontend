@@ -1,83 +1,79 @@
-.selectedUser-main {
-  width: 900px;
-  height: fit-content;
-  margin: 2% auto;
-  color: var(--PrimaryColor);
-}
-.selectedUser-main .fields.flex {
+.fields.flex {
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
 }
-.selectedUser-main .fields.flex label {
+.fields.flex label {
   padding: 10px 0px;
 }
-.selectedUser-main .fields.flex input {
+.fields.flex input {
   width: 100%;
   margin-bottom: 15px;
 }
-.selectedUser-main .emailPassword-fields.grid {
+
+.emailPassword-fields.grid {
   padding-top: 10px;
 }
-.selectedUser-main .emailPassword-fields.grid label {
+.emailPassword-fields.grid label {
   padding-top: 10px;
 }
-.selectedUser-main form {
+
+form {
   flex-direction: column;
 }
-.selectedUser-main form .icon {
+form .icon {
   font-size: 20px;
   border-radius: 50%;
   padding: 2px;
 }
-.selectedUser-main form .icon:hover {
+form .icon:hover {
   color: var(--ButtonBlue);
   transition: 0.3s;
 }
-.selectedUser-main form .select-container {
+form .select-container {
   margin-bottom: 15px;
 }
-.selectedUser-main form .user-container {
+form .user-container {
   width: 100%;
   flex-wrap: wrap;
 }
-.selectedUser-main form .user-container.info {
+form .user-container.info {
   height: 350px;
 }
-.selectedUser-main form .user-container.passwords, .selectedUser-main form .user-container .roles {
+form .user-container.passwords, form .user-container .roles {
   height: fit-content;
 }
-.selectedUser-main form .form-title {
+form .form-title {
   width: 100%;
   border-bottom: 1px dotted var(--GreenColor);
 }
-.selectedUser-main form .form-title h2 {
+form .form-title h2 {
   margin-bottom: 0;
 }
-.selectedUser-main form .fields.flex {
+form .fields.flex {
   padding: 10px 0;
 }
-.selectedUser-main form .field {
+form .field {
   width: 420px;
   height: 115px;
   display: flex;
   flex-direction: column;
 }
-.selectedUser-main form .field label {
+form .field label {
   padding: 10px 0;
 }
-.selectedUser-main form .field input {
+form .field input {
   width: 100%;
   height: 30px;
   transition: 0.1s ease-in-out;
   border: 1px solid var(--GreyColor);
 }
-.selectedUser-main form .field input:read-only {
+form .field input:read-only {
   background: none;
   border: none;
   border-bottom: 1px solid var(--DarkBlue);
 }
-.selectedUser-main form button {
+form button {
   background: var(--ButtonBlue);
   color: var(--whiteColorDeam);
   padding: 15px 20px;
@@ -91,30 +87,34 @@
   float: left;
   transition: 0.3s ease-in-out;
 }
-.selectedUser-main form button:hover {
+form button:hover {
   transform: scale(1.1);
   transition: 0.3s ease-in-out;
   background: var(--DarkBlue);
 }
-.selectedUser-main form button .user-submit-icon {
+form button .user-submit-icon {
   font-size: 1.3rem;
   margin: 0 5px;
 }
-.selectedUser-main form .roles-container.flex {
+form .roles-container.flex {
   margin: auto auto;
   margin-left: 0;
   padding: 5px;
 }
-.selectedUser-main form .roles-container.flex label, .selectedUser-main form .roles-container.flex input {
+form .roles-container.flex label, form .roles-container.flex input {
   cursor: pointer;
   padding: 0;
   margin: 0;
 }
-.selectedUser-main form .roles-container.flex input {
+form .roles-container.flex input {
   margin-right: 5px;
 }
-.selectedUser-main form .roles-container.flex label {
+form .roles-container.flex label {
   user-select: none;
+}
+
+.userDetails form .btn-container .loader.userDetails {
+  border-top: 4px solid var(--DarkBlue) !important;
 }
 
 /*# sourceMappingURL=userDetails.css.map */
