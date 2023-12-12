@@ -1,6 +1,6 @@
 .side-main-conainer {
   width: 90px;
-  height: auto;
+  height: 100%;
   position: absolute;
   background: var(--BackgroundColor);
   top: 92px; /* header icon height: 91.4 px + contentTitle 91 */
