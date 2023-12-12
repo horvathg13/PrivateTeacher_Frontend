@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 import './login.css';
-import { FaArrowCircleRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import ServiceClient from '../ServiceClient'
 import { UserContext } from '../Context/UserContext';
 import  EventHandler  from '../EventHandler/eventhandler';
+import { FaArrowCircleRight } from 'react-icons/fa';
 
 const Login = () => {
     /*Form fields*/
