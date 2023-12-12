@@ -65,13 +65,13 @@
 .reg-container.flex .right-container .form-container form .name-fields.flex input {
   width: 90%;
 }
-.reg-container.flex .right-container .form-container form button {
+.reg-container.flex .right-container .form-container form button.registerFormSubmit {
   display: flex;
   align-items: center;
   padding: 10px 55px;
   font-size: 15px;
   float: right;
-  margin: 30px 20px;
+  margin: 15px 20px;
   border: none;
   transition: 0.5s ease-in-out;
   border-radius: 10px;
@@ -79,7 +79,7 @@
   font-weight: 500;
   max-width: 180px;
 }
-.reg-container.flex .right-container .form-container form button:hover {
+.reg-container.flex .right-container .form-container form button.registerFormSubmit:hover {
   background: var(--GreenColor);
 }
 .reg-container.flex .right-container .form-container form span {
@@ -93,4 +93,6 @@
   .reg-container.flex .left-container {
     display: none;
   }
-}/*# sourceMappingURL=register.css.map */
+}
+
+/*# sourceMappingURL=register.css.map */
