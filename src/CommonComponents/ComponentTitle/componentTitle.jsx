@@ -2,7 +2,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import "./componentTitle.css";
 import { NavLink } from "react-router-dom";
         
-const ComponentTitle = ({breadcumbs}) => {
+const ComponentTitle = ({title, breadcrumbs}) => {
     const getIcon=(iconName)=>{
         switch (iconName) {
             case 'IoIosArrowForward':return <IoIosArrowForward className='breadicon'/>;
@@ -12,10 +12,10 @@ const ComponentTitle = ({breadcumbs}) => {
     return (
         <div className="component-title-container flex">
             <div className="title">
-                <h1>Users</h1>
+                <h1>{title}</h1>
             </div>
-            <div className="breadcumbs flex">
-                {breadcumbs.map((e)=>
+            <div className="breadcrumbs flex">
+                {breadcrumbs.map((e)=>
                 <><h4 key={e.id}><NavLink to={e.url} end={e.end}>{e.name}</NavLink></h4>{getIcon(e.icon)}</>
                 )}
             </div>

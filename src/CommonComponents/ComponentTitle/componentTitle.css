@@ -11,13 +11,13 @@
 .component-title-container.flex h4 {
   font-size: 15px;
 }
-.component-title-container.flex .breadcumbs.flex {
+.component-title-container.flex .breadcrumbs.flex {
   justify-content: center;
 }
-.component-title-container.flex .breadcumbs.flex h4 a.active {
+.component-title-container.flex .breadcrumbs.flex h4 a.active {
   color: var(--ButtonBlue);
 }
-.component-title-container.flex .breadcumbs.flex .breadicon {
+.component-title-container.flex .breadcrumbs.flex .breadicon {
   font-size: 13px;
   margin: 0 5px;
 }
