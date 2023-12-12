@@ -13,6 +13,29 @@
 
 form {
   flex-direction: column;
+  /*button{
+      background: var(--ButtonBlue);
+      color: var(--whiteColorDeam);
+      padding: 15px 20px;
+      border: none;
+      border-radius: 10px;
+      margin: 15px auto;
+      width: 150px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      float: left;
+      transition: .3s ease-in-out;
+      &:hover{
+          transform: scale(1.1);
+          transition: .3s ease-in-out;
+          background: var(--DarkBlue);
+      }
+      .user-submit-icon{
+          font-size: 1.3rem;
+          margin: 0 5px;
+      }
+  }*/
 }
 form .icon {
   font-size: 20px;
@@ -65,29 +88,6 @@ form .field input:read-only {
   background: none;
   border: none;
   border-bottom: 1px solid var(--DarkBlue);
-}
-form button {
-  background: var(--ButtonBlue);
-  color: var(--whiteColorDeam);
-  padding: 15px 20px;
-  border: none;
-  border-radius: 10px;
-  margin: 15px auto;
-  width: 150px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  float: left;
-  transition: 0.3s ease-in-out;
-}
-form button:hover {
-  transform: scale(1.1);
-  transition: 0.3s ease-in-out;
-  background: var(--DarkBlue);
-}
-form button .user-submit-icon {
-  font-size: 1.3rem;
-  margin: 0 5px;
 }
 
 /*# sourceMappingURL=user.css.map */
