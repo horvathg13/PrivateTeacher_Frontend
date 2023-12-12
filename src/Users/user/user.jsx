@@ -30,7 +30,7 @@ const User = () => {
         
     ]
     
-    const breadcumbs=[
+    const breadcrumbs=[
         {
             "id":"1",
             "name":"Home",
@@ -57,7 +57,9 @@ const User = () => {
         <userInfoContext.Provider value={userData}>
         <SideMenu/>    
         <div className="content-main-container">
-            <ComponentTitle breadcumbs={breadcumbs}/>
+            <ComponentTitle 
+            title={"Users"}
+            breadcrumbs={breadcrumbs}/>
             
             <div className="user-main">
                 {console.log(userData.firstname)}

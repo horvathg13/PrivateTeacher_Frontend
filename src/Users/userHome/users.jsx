@@ -21,7 +21,7 @@ const Users = () => {
         },
     ]
 
-    const breadcumbs=[
+    const breadcrumbs=[
         {
             "id":"1",
             "name":"Home",
@@ -38,9 +38,11 @@ const Users = () => {
         <>
         <SideMenu/> 
         <div className="content-main-container">
-            <ComponentTitle breadcumbs={breadcumbs}/>
+            <ComponentTitle 
+            title={"Users"}
+            breadcrumbs={breadcrumbs}/>
             
-            <div className="user-main">
+            <div className="home-component-main">
                 { window.location.pathname === '/users' ? 
                 <div className="button-main-container flex">
                     <div className="button-container">
