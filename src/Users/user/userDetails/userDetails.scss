@@ -75,24 +75,8 @@ form{
             }
         }
     }
-    button{
-        background: var(--ButtonBlue);
-        color: var(--whiteColorDeam);
-        padding: 15px 20px;
-        border: none;
-        border-radius: 10px;
-        margin: 15px auto;
-        width: 150px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        float: left;
-        transition: .3s ease-in-out;
-        &:hover{
-            transform: scale(1.1);
-            transition: .3s ease-in-out;
-            background: var(--DarkBlue);
-        }
+    button.formButton{
+       
         .user-submit-icon{
             font-size: 1.3rem;
             margin: 0 5px;

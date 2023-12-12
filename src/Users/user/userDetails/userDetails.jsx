@@ -277,7 +277,7 @@ const UserDetails = () => {
                     <div className="btn-container">
                         {!loader ?
                         
-                        <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled' : 'btn action flex'}><RxUpdate className='user-submit-icon'/>Update </button>
+                        <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled' : 'btn action formButton flex'}><RxUpdate className='user-submit-icon'/>Update </button>
                         :<span className='loader userDetails'></span>
                         
                         }
