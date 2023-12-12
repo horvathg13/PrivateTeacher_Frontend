@@ -18,6 +18,9 @@ import User from './Users/user/user';
 import Users from './Users/userHome/users';
 import UserCreate from './Users/createUser/createUser';
 import GeneratedUser from './Users/GeneratedUser/generatedUser';
+import SchoolHome from "./Schools/SchoolsHome/schoolsHome";
+import SchoolList from "./Schools/SchoolsList/schoolList";
+import SchoolCreate from "./Schools/SchoolsCreate/schoolCreate";
 
 function App() {
 
@@ -90,6 +93,21 @@ const router = createBrowserRouter([
         path:"/generated-user/:token",
         element:<GeneratedUser/>,
         loader:({params})=>{return generatedUserLoader(params)}
+      },
+      {
+        path:"/schools",
+        element:<Protected><SchoolHome/></Protected>,
+        children:
+        [
+          {
+            path:"list",
+            element:<SchoolList/>
+          },
+          {
+            path:"create",
+            element:<SchoolCreate/>
+          },
+        ]
       }
     ],
   },
