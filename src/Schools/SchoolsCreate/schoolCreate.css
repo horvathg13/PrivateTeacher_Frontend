@@ -17,7 +17,7 @@
 .content-main-container .SchoolForm .school-form .flex input {
   width: 65%;
 }
-.content-main-container .SchoolForm button {
+.content-main-container .SchoolForm button.formButton {
   margin: 20px auto;
   float: right;
 }

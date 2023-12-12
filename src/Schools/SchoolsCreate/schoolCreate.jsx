@@ -95,7 +95,7 @@ const SchoolCreate = () => {
                     <button 
                     type='submit' 
                     disabled={btndisabled} 
-                    className={btndisabled ? 'btn disabled':'btn'}>
+                    className={btndisabled ? 'btn disabled':'btn formButton'}>
                         Create <FaArrowCircleRight className='btn-icon'/>
                     </button>:
                     <span className='loader schoolCreate'></span>
