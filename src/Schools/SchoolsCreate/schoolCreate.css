@@ -1,0 +1,28 @@
+.content-main-container .SchoolForm {
+  margin: 0 5%;
+  height: 500px;
+}
+.content-main-container .SchoolForm .school-form {
+  flex-direction: column;
+  width: 100%;
+}
+.content-main-container .SchoolForm .school-form .flex {
+  text-align: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.content-main-container .SchoolForm .school-form .flex label {
+  margin: 10px 10px;
+}
+.content-main-container .SchoolForm .school-form .flex input {
+  width: 65%;
+}
+.content-main-container .SchoolForm button {
+  margin: 20px auto;
+  float: right;
+}
+.content-main-container .SchoolForm .loader.schoolCreate {
+  border-top: 4px solid var(--DarkBlue);
+}
+
+/*# sourceMappingURL=schoolCreate.css.map */
