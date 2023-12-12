@@ -12,5 +12,8 @@ form .loader.createUser {
   border-top: 4px solid var(--DarkBlue) !important;
   margin: 20px auto;
 }
+form button.formButton {
+  float: left;
+}
 
 /*# sourceMappingURL=createUser.css.map */
