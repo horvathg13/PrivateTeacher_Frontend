@@ -21,17 +21,7 @@ const UserList = () => {
     /*event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
-    const [serverError, setServerError]=useState([]);
-    /*TabData */
-    const tabData=[
-        {
-            "id":"1",
-            "name":"create",
-            "url":"/user-create"
-        }
-    ]
-
- 
+    const [serverError, setServerError]=useState([]); 
    
     /*Methods: */
     const pageCounter=(data)=>{
@@ -46,18 +36,18 @@ const UserList = () => {
 
     useLayoutEffect(()=>{
         setLoader(true);
-       let url=`http://127.0.0.1:8000/api/getUsers?perPage=${perPage}&page=${counter}`;
-       ServiceClient.post(url).then((response)=>{
-        if(response.status===200){
+        let url=`http://127.0.0.1:8000/api/getUsers?perPage=${perPage}&page=${counter}`;
+        ServiceClient.post(url).then((response)=>{
+            if(response.status===200){
+                setLoader(false);
+                setUsers(response.data);
+                setLastPage(response.data.pagination.lastPageNumber)
+                console.log(response.data)
+            }
+        }).catch((error)=>{
+            setServerError(error);
             setLoader(false);
-            setUsers(response.data);
-            setLastPage(response.data.pagination.lastPageNumber)
-            console.log(response.data)
-        }
-       }).catch((error)=>{
-        setServerError(error);
-        setLoader(false);
-       })
+        })
     },[counter, perPage])
 
     useEffect(()=>{
@@ -75,16 +65,14 @@ const UserList = () => {
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
             
-            <ClickAwayListener onClickAway={()=>setSelectedRow('')}>
-                <div className="table-main-container">
-                    <Table 
-                    datas={users ? users :null}
-                    loader={loader}
-                    page={pageCounter}
-                    perPage={setPerPage}
-                    selectedRow={(e)=>[setSelectedRow(e)]}/>
-                </div>
-            </ClickAwayListener>
+            <div className="table-main-container">
+                <Table 
+                datas={users ? users :null}
+                loader={loader}
+                page={pageCounter}
+                perPage={setPerPage}
+                selectedRow={(e)=>[setSelectedRow(e)]}/>
+            </div>
             
         </div>
             
