@@ -9,23 +9,23 @@ import { useEffect, useState } from 'react';
 const Table = ({datas, loader, page, perPage, selectedRow}) => {
     /* data: */
 
+    const [sort, setSort]=useState(true);
+    const [column, setColumn]=useState();
     const [activeRow, setActiveRow]=useState();
    
     /* methods:*/
-
-    useEffect(()=>{console.log(datas, loader)},[datas])
+    const handleSort=(e)=>{
+        setColumn(e);
+        setSort(!sort)
+        
+        
+    }
+    useEffect(()=>{console.log(column)},[column])
     return (
         <>
         {!loader ?
         
         <div className="table-main-container">
-
-
-            {/*<div className="table-action-menu flex">
-                <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
-                <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
-                <button className='btn table-btn'><FaFilter className='table-menu-icon' />Filter</button>
-            </div>*/}
             <table>
                 <thead>
 
@@ -33,7 +33,10 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
                     <tr>
                         {datas.header ? Object.keys(datas.header).map((e, i) => (
 
-                            <th key={i}>{e} {datas.header[e] === true ? <><FaSortAmountUp className='table-icon' /><FaSortAmountDown className='table-icon' /></> : null}</th>
+                            <th key={i}>{e} {datas.header[e] === true ? 
+                                <button onClick={()=>handleSort(e)} className='table-icon' > {column === e && sort  ? <FaSortAmountUp /> : <FaSortAmountDown />}</button> 
+                                : null}
+                            </th>
 
                         )) : null}
 
@@ -44,11 +47,9 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
                 <tbody>
                     {datas.data?.map((e) => (
                         <tr key={e.id} onClick={() => [selectedRow(e), setActiveRow(e)]} className={activeRow === e ? 'active' : ''}>
-                            <td>{e.id}</td>
-                            <td>{e.firstname}</td>
-                            <td>{e.lastname}</td>
-                            <td>{e.email}</td>
-                            <td>{e.status}</td>
+                           { Object.values(e).map((j=>
+                            <td>{j}</td>
+                           ))}
                         </tr>
                     ))}
 
@@ -61,7 +62,9 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
 
                 </div>
                 <div className="pagination flex">
-                    <MdFirstPage className='table-icon' onClick={() => page('first')} /><GrFormPrevious className='table-icon' onClick={() => page('prev')} />{datas?.pagination?.currentPageNumber} / {datas?.pagination?.lastPageNumber}{datas?.pagination?.hasMorePages ? <><MdNavigateNext className='table-icon' onClick={() => page('next')} /><MdLastPage className='table-icon' onClick={() => page('last')} /></> : null}
+                    <MdFirstPage className='paginate-icon' onClick={() => page('first')} />
+                    <GrFormPrevious className='paginate-icon' onClick={() => page('prev')} /> 
+                    {datas?.pagination?.currentPageNumber} / {datas?.pagination?.lastPageNumber}{datas?.pagination?.hasMorePages ? <><MdNavigateNext className='paginate-icon' onClick={() => page('next')} /><MdLastPage className='paginate-icon' onClick={() => page('last')} /></> : null}
                 </div>
             </div>
 
