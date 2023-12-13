@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
 import ComponentTitle from "../../CommonComponents/ComponentTitle/componentTitle";
 import { FaArrowCircleRight } from "react-icons/fa";
+import ServiceClient from "../../ServiceClient";
         
 const SchoolCreate = () => {
 
@@ -28,6 +29,44 @@ const SchoolCreate = () => {
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
+
+    /*Methods: */
+
+    const createSchool=(e)=>{
+        e.preventDefault();
+        setBtnDisabled(true);
+        setLoader(true);
+
+        let dataPost={};
+        dataPost.name = schoolName;
+        dataPost.country = schoolCountry;
+        dataPost.zip = schoolZip;
+        dataPost.city = schoolCity;
+        dataPost.street = schoolStreet;
+        dataPost.number = schoolNumber;
+
+        let url='http://127.0.0.1:8000/api/schoolCreate';
+        ServiceClient.post(url,dataPost).then((response)=>{
+            if(response.status===200){
+                setSuccess(true);
+                setLoader(false);
+                setBtnDisabled(false);
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
+                setSchoolCountry('');
+                setSchoolName('');
+                setSchoolCity('');
+                setSchoolZip('');
+                setSchoolStreet('');
+                setSchoolNumber('');
+            }
+        }).catch((error)=>{
+            setServerError(error);
+            setLoader(false);
+            setBtnDisabled(false);
+        })
+    }
     return (
         <>
         <EventHandler 
@@ -37,7 +76,7 @@ const SchoolCreate = () => {
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
         <div className="content-main-container">
             <div className="title"><h2>School Creation</h2></div>
-            <form className="SchoolForm">
+            <form onSubmit={(e)=>createSchool(e)} className="SchoolForm">
                 
                 <div className="school-form flex">
 
@@ -45,7 +84,8 @@ const SchoolCreate = () => {
                         <label>School Name</label>
                         <input type="text" 
                         required 
-                        onChange={(e)=>{setSchoolName(e.target.value)}}/>
+                        onChange={(e)=>{setSchoolName(e.target.value)}}
+                        value={schoolName}/>
                     </div>    
                     
                 
@@ -54,7 +94,8 @@ const SchoolCreate = () => {
                         <label>Country</label>
                         <input type="text" 
                         required 
-                        onChange={(e)=>{setSchoolCountry(e.target.value)}}/>
+                        onChange={(e)=>{setSchoolCountry(e.target.value)}}
+                        value={schoolCountry}/>
                     </div>
                     
                    
@@ -62,7 +103,8 @@ const SchoolCreate = () => {
                         <label>Zip Code</label>
                         <input type="number"
                         required  
-                        onChange={(e)=>{setSchoolZip(e.target.value)}}/>
+                        onChange={(e)=>{setSchoolZip(e.target.value)}}
+                        value={schoolZip}/>
                     </div>
                    
                     <div className="flex">
@@ -70,7 +112,8 @@ const SchoolCreate = () => {
                         <input
                         type="text" 
                         required  
-                        onChange={(e)=>{setSchoolCity(e.target.value)}}/>
+                        onChange={(e)=>{setSchoolCity(e.target.value)}}
+                        value={schoolCity}/>
                     </div>
 
                     <div className="flex">
@@ -78,7 +121,8 @@ const SchoolCreate = () => {
                         <input  
                         type="text" 
                         required 
-                        onChange={(e)=>{setSchoolStreet(e.target.value)}}/>
+                        onChange={(e)=>{setSchoolStreet(e.target.value)}}
+                        value={schoolStreet}/>
                     </div>
                     
                     <div className="flex">
@@ -86,7 +130,8 @@ const SchoolCreate = () => {
                         <input  
                         type="number" 
                         required 
-                        onChange={(e)=>{setSchoolNumber(e.target.value)}}/>
+                        onChange={(e)=>{setSchoolNumber(e.target.value)}}
+                        value={schoolNumber}/>
                     </div>
                     
                 </div>
