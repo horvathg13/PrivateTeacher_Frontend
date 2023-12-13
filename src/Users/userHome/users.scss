@@ -16,8 +16,8 @@
             color: var(--DarkBlue);
         }
         .icon-container{
-            border-radius: 50%;
-            border: 1.5px solid var(--DarkBlue);
+            border-radius: 10px;
+            border: 3px solid var(--DarkBlue);
             height: auto;
             width: auto;
             transition: .3s ease-in-out;
@@ -28,12 +28,20 @@
             }
 
             &:hover{
-                background: var(--ButtonBlue);
-                color: var(--whiteColorDeam);
+                //background: var(--ButtonBlue);
+                color: var(--ButtonBlue);
+                border-color: var(--ButtonBlue);
                 .icon{
                     transform: scale(1.1);
                 }
             }
+        }
+
+        .icon-text{
+            h3{
+                 font-weight: 500;
+            }
+           
         }
     }
 }

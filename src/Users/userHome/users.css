@@ -15,8 +15,8 @@
   color: var(--DarkBlue);
 }
 .button-main-container.flex .button-container .icon-container {
-  border-radius: 50%;
-  border: 1.5px solid var(--DarkBlue);
+  border-radius: 10px;
+  border: 3px solid var(--DarkBlue);
   height: auto;
   width: auto;
   transition: 0.3s ease-in-out;
@@ -27,11 +27,14 @@
   transition: 0.3s ease-in-out;
 }
 .button-main-container.flex .button-container .icon-container:hover {
-  background: var(--ButtonBlue);
-  color: var(--whiteColorDeam);
+  color: var(--ButtonBlue);
+  border-color: var(--ButtonBlue);
 }
 .button-main-container.flex .button-container .icon-container:hover .icon {
   transform: scale(1.1);
+}
+.button-main-container.flex .button-container .icon-text h3 {
+  font-weight: 500;
 }
 
 /*# sourceMappingURL=users.css.map */
