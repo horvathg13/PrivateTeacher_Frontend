@@ -29,3 +29,5 @@ export const UserContextProvider = ({children})=>{
 }
 
 export const userInfoContext=createContext(null);
+
+export const schoolInfoContext = createContext(null);
