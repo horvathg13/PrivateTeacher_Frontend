@@ -52,6 +52,13 @@ const SchoolList = () => {
         })
     },[counter, perPage])
 
+    useEffect(()=>{
+       console.log(selectedRow);
+       if(selectedRow){
+        navigation(`/school/${selectedRow.id}`)
+       }
+    },[selectedRow])
+
     useEffect(()=>{console.log(schools)},[schools])
     return (
         <>
