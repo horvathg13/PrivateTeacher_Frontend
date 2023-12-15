@@ -112,6 +112,24 @@ button{
   transition: .3s ease-in-out;
   background: var(--DarkBlue);
 }
+
+.formBtnDisabled{
+  background: var(--GreyColor);
+  color: var(--DarkBlue);
+  font-size: 15px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  margin: 15px auto;
+  width: 150px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  cursor: default;
+}
+.formIcon{
+  font-size: 1.5rem;
+}
 input{
   font-size: 100%;
   font-family: 'Poppins';
