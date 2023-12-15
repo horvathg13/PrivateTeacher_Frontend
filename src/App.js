@@ -13,7 +13,7 @@ import { UserContextProvider } from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
-import { generatedUserLoader, userDataLoader } from './dataLoader';
+import { generatedUserLoader, userDataLoader, getSchoolInfo } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/userHome/users';
 import UserCreate from './Users/createUser/createUser';
@@ -21,6 +21,8 @@ import GeneratedUser from './Users/GeneratedUser/generatedUser';
 import SchoolHome from "./Schools/SchoolsHome/schoolsHome";
 import SchoolList from "./Schools/SchoolsList/schoolList";
 import SchoolCreate from "./Schools/SchoolsCreate/schoolCreate";
+import School from './Schools/School/school';
+import SchoolDetails from './Schools/School/SchoolDetails/schoolDetails';
 
 function App() {
 
@@ -108,7 +110,20 @@ const router = createBrowserRouter([
             element:<SchoolCreate/>
           },
         ]
-      }
+      },
+      {
+        path:"school/:schoolId",
+        element:<Protected><School/></Protected>,
+        loader:({params})=>{ return getSchoolInfo(params) },
+        children:[
+          {
+            path:"",
+            element:<SchoolDetails/>            
+          },
+
+         
+        ]
+      },
     ],
   },
 ]);
