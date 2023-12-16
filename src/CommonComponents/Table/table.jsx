@@ -45,7 +45,7 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
 
                 </thead>
                 <tbody>
-                    {datas.data?.map((e) => (
+                    { datas.data?.map((e) => (
                         <tr key={e.id} onClick={() => [selectedRow(e), setActiveRow(e)]} className={activeRow === e ? 'active' : ''}>
                            { Object.values(e).map((j=>
                             <td>{j}</td>
