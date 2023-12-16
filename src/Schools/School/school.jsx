@@ -19,7 +19,7 @@ const School = () => {
         {
             "id":"2",
             "name":"School Year",
-            "url":""
+            "url":`/school/${schoolId}/school-year-operations`
         },
         {
             "id":"3",
@@ -65,7 +65,7 @@ const School = () => {
             <SideMenu/>    
             <div className="content-main-container">
                 <ComponentTitle 
-                title={"Users"}
+                title={"Schools"}
                 breadcrumbs={breadcrumbs}/>
                 
                 <div className="user-main">
