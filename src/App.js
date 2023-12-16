@@ -23,6 +23,8 @@ import SchoolList from "./Schools/SchoolsList/schoolList";
 import SchoolCreate from "./Schools/SchoolsCreate/schoolCreate";
 import School from './Schools/School/school';
 import SchoolDetails from './Schools/School/SchoolDetails/schoolDetails';
+import SchoolYear from './Schools/School/SchoolYearList/schoolYearList';
+import SchoolYearList from './Schools/School/SchoolYearList/schoolYearList';
 
 function App() {
 
@@ -120,6 +122,10 @@ const router = createBrowserRouter([
             path:"",
             element:<SchoolDetails/>            
           },
+          {
+            path:"school-year-operations",
+            element:<SchoolYearList/>
+          }
 
          
         ]
