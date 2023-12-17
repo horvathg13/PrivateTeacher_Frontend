@@ -19,7 +19,7 @@ const School = () => {
         {
             "id":"2",
             "name":"School Year",
-            "url":`/school/${schoolId}/school-year-operations`
+            "url":`/school/${schoolId}/school-year-list`
         },
         {
             "id":"3",
