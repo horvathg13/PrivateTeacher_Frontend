@@ -39,6 +39,23 @@ p, h1, h2, h3, h4, h5{
   
   color: var(--whiteColorDeam);
 }
+.table-action{
+  width:35px;
+  height: 35px;
+  margin: 0 5px;
+  
+}
+.table-action-icon{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: var(--ButtonBlue);
+  transition: .3s;
+}
+.table-action-icon:hover{
+  color: var(--DarkBlue);
+  transform: scale(1.1);
+}
 .paginate-icon{
   color:var(--DarkBlue);
   margin: 0 5px;
