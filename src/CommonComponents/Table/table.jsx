@@ -1,9 +1,10 @@
 import './table.css';
 import { FaSortAmountUp, FaSortAmountDown } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
-import { MdLastPage, MdFirstPage, MdNavigateNext, } from "react-icons/md";
+import { MdLastPage, MdFirstPage, MdNavigateNext, MdDelete, } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { useEffect, useState } from 'react';
+import { FaCirclePlus } from 'react-icons/fa6';
 
 
 const Table = ({datas, loader, page, perPage, selectedRow}) => {
@@ -26,6 +27,11 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
         {!loader ?
         
         <div className="table-main-container">
+            <div className="table-action-menu flex">
+                <div className="table-action"><MdDelete className='table-action-icon'/></div>
+                <div className="table-action"><FaCirclePlus className='table-action-icon'/></div>
+
+            </div>
             <table>
                 <thead>
 
