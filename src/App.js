@@ -123,8 +123,8 @@ const router = createBrowserRouter([
             element:<SchoolDetails/>            
           },
           {
-            path:"school-year-operations",
-            element:<SchoolYearList/>
+            path:"school-year-list",
+            element:<SchoolYearList/>,
           }
 
          
