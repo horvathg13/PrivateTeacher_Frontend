@@ -4,8 +4,9 @@ import { FaCirclePlus } from "react-icons/fa6";
 import Table from "../../../CommonComponents/Table/table";
 import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import SideMenu from "../../../CommonComponents/SideMenu/sidemenu";
-import { useContext, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import EventHandler from "../../../EventHandler/eventhandler";
+import ServiceClient from "../../../ServiceClient";
         
 const SchoolYearList = () => {
     /*Datas */
@@ -14,7 +15,7 @@ const SchoolYearList = () => {
     const [perPage, setPerPage]=useState(5);
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId }=useParams();
-    const schoolYearData = useLoaderData();
+    const [schoolYears, setSchoolYears]=useState();
 
     /*event handle*/
     const [errors, setErrors]=useState([]);
@@ -37,6 +38,22 @@ const SchoolYearList = () => {
             default: return counter;
         }
     }
+
+    useLayoutEffect(()=>{
+        let url=`http://127.0.0.1:8000/api/school-year-list/${schoolId}?perPage=${perPage}&page=${counter}`;
+        ServiceClient.post(url).then((response)=>{
+            if(response.status===200){
+                setLoader(false);
+                setSchoolYears(response.data);
+                setLastPage(response.data.pagination.lastPageNumber)
+                console.log(response.data)
+            }
+        }).catch((error)=>{
+            setServerError(error);
+            setLoader(false);
+        })
+       
+    },[counter, perPage])
     return (
         <>
         <EventHandler 
@@ -47,7 +64,7 @@ const SchoolYearList = () => {
         <div className="content-main-container">
             <div className="table-main-container">
                 <Table 
-                datas={null}
+                datas={schoolYears ? schoolYears : null}
                 loader={loader}
                 page={pageCounter}
                 perPage={setPerPage}
