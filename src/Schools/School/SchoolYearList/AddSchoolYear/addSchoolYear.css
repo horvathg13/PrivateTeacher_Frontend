@@ -1,0 +1,47 @@
+.addSchoolYear-main-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(42, 50, 51, 0.66);
+  top: 0;
+  z-index: 999;
+  left: 0;
+  right: 0;
+}
+.addSchoolYear-main-container .addSchoolYear-form {
+  width: 500px;
+  height: 480px;
+  text-align: left;
+  flex-direction: column;
+  margin: 5% auto;
+  border-radius: 5%;
+  background: var(--whiteColorDeam);
+}
+.addSchoolYear-main-container .addSchoolYear-form .addSchoolYear {
+  flex-direction: column;
+  width: fit-content;
+  align-items: end;
+  margin: 10% auto;
+  margin-bottom: 10px;
+}
+.addSchoolYear-main-container .addSchoolYear-form .addSchoolYear label {
+  margin: 10px 5px;
+}
+.addSchoolYear-main-container .addSchoolYear-form .addSchoolYear input {
+  width: 303px;
+}
+.addSchoolYear-main-container .addSchoolYear-form .closeModal {
+  width: 100%;
+}
+.addSchoolYear-main-container .addSchoolYear-form .closeModal .closeModalIcon {
+  float: right;
+  font-size: 2.1rem;
+  color: var(--DarkBlue);
+  margin: 5px 10px;
+}
+.addSchoolYear-main-container .addSchoolYear-form .closeModal .closeModalIcon:hover {
+  color: var(--ButtonBlue);
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=addSchoolYear.css.map */
