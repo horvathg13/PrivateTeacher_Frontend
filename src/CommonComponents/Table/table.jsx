@@ -18,9 +18,8 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
     const handleSort=(e)=>{
         setColumn(e);
         setSort(!sort)
-        
-        
     }
+    
     useEffect(()=>{console.log(column)},[column])
     return (
         <>
