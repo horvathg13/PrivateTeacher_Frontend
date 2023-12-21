@@ -1,3 +1,22 @@
-
+table tbody tr:last-child {
+  background: none !important;
+}
+table tbody tr:last-child:hover {
+  background: none !important;
+  cursor: default !important;
+}
+table tbody tr .table-action-icon {
+  padding: 10px 0px;
+}
+table tbody tr td.no-school {
+  font-style: italic;
+  text-align: center;
+  cursor: default;
+  background: none;
+  user-select: none;
+}
+table tbody tr td.no-school:hover {
+  background: var(--BackgroundColor);
+}
 
 /*# sourceMappingURL=schoolYearList.css.map */

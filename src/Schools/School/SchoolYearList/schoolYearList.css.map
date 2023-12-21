@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"schoolYearList.css"}
+{"version":3,"sourceRoot":"","sources":["schoolYearList.scss"],"names":[],"mappings":"AAGY;EACI;;AACA;EACI;EACA;;AAGR;EACI;;AAKJ;EACE;EACA;EACA;EACA;EACA;;AACE;EACI","file":"schoolYearList.css"}
