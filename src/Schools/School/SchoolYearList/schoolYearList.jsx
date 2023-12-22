@@ -1,4 +1,4 @@
-import { MdEdit } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 import "./schoolYearList.css";
 import "../../../CommonComponents/Table/table.css"
 import { FaCirclePlus } from "react-icons/fa6";
@@ -10,16 +10,21 @@ import EventHandler from "../../../EventHandler/eventhandler";
 import ServiceClient from "../../../ServiceClient";
 import { FaPlus } from "react-icons/fa";
 import AddSchoolYear from "./AddSchoolYear/addSchoolYear";
+import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
         
 const SchoolYearList = () => {
     /*Datas */
-    const [counter, setCounter]=useState(1);
-    const [lastPage, setLastPage]=useState();
-    const [perPage, setPerPage]=useState(5);
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId }=useParams();
     const [schoolYears, setSchoolYears]=useState();
+    
+    /**Popup control */
+    const [showAreYouSure, setShowAreYouSure]=useState(false);
+    const [AreYouSureName, setAreYouSureName]=useState('');
     const [transitionProp, setTransitionProp]=useState(false);
+    const [areYouSureTransitionProp, setAreYouSureTransitionProp]=useState(false);
+
+    /*button control */
     const [btndisabled, setBtnDisabled]=useState(false);
 
     /*event handle*/
@@ -35,6 +40,15 @@ const SchoolYearList = () => {
     const navigation=useNavigate();
 
     /*Methods */
+    const functionControl=(name)=>{
+        if(name === 'delete'){
+            removeSchoolYear();
+            setAreYouSureTransitionProp(false);
+        }else{
+            
+            setAreYouSureTransitionProp(false);
+        }
+    }
     const getSchoolYears=()=>{
         let url=`http://127.0.0.1:8000/api/school-year-list/${schoolId}`;
         ServiceClient.post(url).then((response)=>{
@@ -73,8 +87,29 @@ const SchoolYearList = () => {
             setLoader(false);
             setBtnDisabled(false)
         })
-        
+    }
 
+    const removeSchoolYear=()=>{
+        if(selectedRow){
+            let url="http://127.0.0.1:8000/api/removeSchoolYear";
+            let dataPost={};
+            dataPost.yearId=selectedRow.id;
+            dataPost.schoolId=schoolId;
+
+            ServiceClient.post(url, dataPost).then((response)=>{
+                if(response.status===200){
+                    setSuccess(true);
+                    setTimeout(()=>{
+                        setSuccess(false);
+                    },2000)
+                    getSchoolYears();
+                }
+            }).catch((error)=>{
+                setServerError(error);
+            })
+        }else{
+            setErrors("Something went wrog");
+        }
     }
 
     return (
@@ -91,7 +126,11 @@ const SchoolYearList = () => {
             emitData={(dataForm)=>{CreateSchoolYear(dataForm)}}
             loader={formLoader}
             btndisabled={btndisabled}
-        />  
+        />
+        <AreYouSure
+        name={AreYouSureName}
+        answer={functionControl}
+        transitionProp={areYouSureTransitionProp}/>
         <div className="content-main-container">
             
             <div className="table-main-container">
@@ -105,17 +144,19 @@ const SchoolYearList = () => {
                                 
 
                             )) : null}
-
+                            <th></th>
                         </tr>
 
                     </thead>
                     <tbody>
                         { schoolYears.data?.map((e) => (
-                            <tr key={e.id} onClick={() => selectedRow(e)}>
+                            <tr key={e.id} onClick={() => setSelectedRow(e)}>
                             { Object.values(e).map((j=>
                                 <td>{j}</td>
                             ))}
+                            <td><MdDelete className='table-action-icon' onClick={() => {setSelectedRow(e); setAreYouSureName("delete"); setAreYouSureTransitionProp(true)}}/></td>
                             </tr>
+
                         ))}
                         {schoolYears.data.length===0 ?
                         <tr>
