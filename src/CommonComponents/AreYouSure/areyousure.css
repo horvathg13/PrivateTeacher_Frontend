@@ -4,6 +4,8 @@
   position: fixed;
   background: rgba(42, 50, 51, 0.66);
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 999;
 }
 .are-you-sure-bcg .are-yousure-main {
@@ -47,4 +49,6 @@
   transform: scale(1.1);
   transition: 0.3s ease-in-out;
   background: var(--GreenColor);
-}/*# sourceMappingURL=areyousure.css.map */
+}
+
+/*# sourceMappingURL=areyousure.css.map */
