@@ -113,8 +113,8 @@ const Register = () => {
                         </div>
                         
                         {!loader ?
-                            <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn registerFormSubmit'}>Send <FaArrowCircleRight className='btn-icon'/></button> :
-                            <span className='loader'></span>
+                            <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn registerFormSubmit disabled':'btn registerFormSubmit'}>Send <FaArrowCircleRight className='btn-icon'/></button> :
+                            <span className='loader register'></span>
                         }
                     </form>
                 </div>
