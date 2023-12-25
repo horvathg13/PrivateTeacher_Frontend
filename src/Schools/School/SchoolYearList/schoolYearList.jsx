@@ -18,7 +18,7 @@ const SchoolYearList = () => {
     let { schoolId }=useParams();
     const [schoolYears, setSchoolYears]=useState();
     
-    /**Popup control */
+    /*Popup control */
     const [showAreYouSure, setShowAreYouSure]=useState(false);
     const [AreYouSureName, setAreYouSureName]=useState('');
     const [transitionProp, setTransitionProp]=useState(false);
@@ -112,6 +112,7 @@ const SchoolYearList = () => {
         }
     }
 
+
     return (
         <>
         <EventHandler 
@@ -150,7 +151,7 @@ const SchoolYearList = () => {
                     </thead>
                     <tbody>
                         { schoolYears.data?.map((e) => (
-                            <tr key={e.id} onClick={() => setSelectedRow(e)}>
+                            <tr key={e.id} onClick={() => {setSelectedRow(e); navigation(`/school/${schoolId}/school-year-list/${e.id}`)}}>
                             { Object.values(e).map((j=>
                                 <td>{j}</td>
                             ))}
@@ -162,19 +163,14 @@ const SchoolYearList = () => {
                         <tr>
                              <td colSpan={5} className="no-school" >No registered school year in this school.</td>
                         </tr>:null}
-                        <tr>
+                        <tr className="addNewTableRow">
                             <td><FaPlus className='table-action-icon' onClick={()=>setTransitionProp(true)}/></td>
                         </tr>
                     </tbody>
                 </table> : <span className='loader table'></span>}
-                {/*<Table 
-                datas={schoolYears ? schoolYears : null}
-                loader={loader}
-                page={pageCounter}
-                perPage={setPerPage}
-                selectedRow={(e)=>[setSelectedRow(e)]}/>*/}
+                
             </div>
-            <Outlet/>
+            {/*<Outlet/>*/}
         </div>
         </>
         

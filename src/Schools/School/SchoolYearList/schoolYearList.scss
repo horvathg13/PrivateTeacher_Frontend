@@ -1,7 +1,7 @@
 table{
     tbody{
         tr{
-            &:last-child{
+            &.addNewTableRow{
                 background: none !important;
                 &:hover{
                     background: none !important;

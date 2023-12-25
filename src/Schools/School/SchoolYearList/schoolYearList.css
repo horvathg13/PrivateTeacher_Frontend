@@ -1,7 +1,7 @@
-table tbody tr:last-child {
+table tbody tr.addNewTableRow {
   background: none !important;
 }
-table tbody tr:last-child:hover {
+table tbody tr.addNewTableRow:hover {
   background: none !important;
   cursor: default !important;
 }
