@@ -1,0 +1,42 @@
+.school-year-details-popup-form.flex{
+    width:500px;
+    height: 480px;
+    text-align: left;
+    flex-direction: column;
+    margin: 5% auto;
+    border-radius: 5%;
+    background: var(--whiteColorDeam);
+
+    .closeModal{
+        width: 100%;
+        
+        .closeModalIcon{
+            float: right;
+            font-size: 2.1rem;
+            color: var(--DarkBlue);
+            margin: 5px 10px;
+            &:hover{
+                color: var(--ButtonBlue);
+                cursor: pointer;
+            }
+        }
+    }
+    .formTitle{
+        width: 100%;
+    }
+
+    .school-year-details-popup.flex{
+        flex-direction: column;
+        width: fit-content;
+        align-items: end;
+        margin: 10% auto;
+        margin-bottom: 10px;
+       
+        label{
+            margin: 10px 5px;
+        }
+        input{
+            width: 303px;
+        }
+    }
+}
