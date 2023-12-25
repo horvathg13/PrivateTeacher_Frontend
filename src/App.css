@@ -220,3 +220,14 @@ input:read-only{
   margin: 2% auto;
   color: var(--PrimaryColor);
 }
+
+.popup{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(42, 50, 51, 0.66);
+  top: 0;
+  z-index: 999;
+  left: 0;
+  right: 0;
+}
