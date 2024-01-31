@@ -7,6 +7,8 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import SchoolYearDetailsPopup from "./Popup/popup";
 import AreYouSure from "../../../../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../../../../ServiceClient";
+import { GrUpdate } from "react-icons/gr";
+import { FaTrashAlt } from "react-icons/fa";
         
 const SchoolYearDetails = () => {
     /*datas */
@@ -16,10 +18,14 @@ const SchoolYearDetails = () => {
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId, schoolYearId }=useParams();
     const [alias, setAlias]=useState();
-   
+    const [schoolYear, setSchoolYear]=useState();
+    const [schoolYearName, setSchoolYearName]=useState();
+    const [schoolYearStart, setSchoolYearStart]=useState();
+    const [schoolYearEnd, setSchoolYearEnd]=useState();
+    const [readOnly, setReadOnly]=useState(true);
+
     /*Popup control */
-    const [schoolBrakesPopup, setSchoolBrakesPopup]=useState();
-    const [specialWorkDaysPopup, setSpecialWorkDaysPopup]=useState();
+   
     const [title, setTitle]=useState();
     const [updatePopup, setUpdatePopup]=useState();
     const [transitionProp, setTransitionProp]=useState(false);
@@ -39,44 +45,31 @@ const SchoolYearDetails = () => {
 
     /*Navigation */
     const navigation=useNavigate();
+    
 
     /*button control */
-    const [btndisabled, setBtnDisabled]=useState(false);
+    const [btndisabled, setBtnDisabled]=useState(true);
 
     /*Methods */
-    const functionControl=(dataForm, fn_alias, name)=>{
-        console.log(dataForm, fn_alias, name);
-        if(name === 'deleteBreak'){
-            console.log("HEYHÜ");
-            removeSchoolBreak();
-            console.log("Enter the hook");
-            setAreYouSureTransitionProp(false);
-        }else if(fn_alias==="break"){
-            createSchoolBreak(dataForm);
-            
-        }else if(fn_alias==="specWorkDay"){
-            createSpecialWorkDay(dataForm);
-            
-        }else if(name === 'deleteSpecWorkDay'){
-            removeSpecialWorkDay();
-            setAreYouSureTransitionProp(false);
-            console.log("Enter");
-        }else{
+    const functionControl=(name)=>{
+        
+        if(name === 'delete'){
+            removeSchoolYear();
             setAreYouSureTransitionProp(false);
         }
         
-        
+        setAreYouSureTransitionProp(false);
     }
     
-    const getSchoolYearDetails=()=>{
-        let url=`http://127.0.0.1:8000/api/school/${schoolId}/school-year-details/${schoolYearId}`
+    const getSchoolYearInfos=()=>{
+        let url=`http://127.0.0.1:8000/api/school/${schoolId}/school-year-infos/${schoolYearId}`
         ServiceClient.get(url).then((response)=>{
             if(response.status===200){
-                console.log(response.data[0].specialWorkDays)
-                setHeader(response.data[0].header);
-                setSchoolBrakes(response.data[0].breaks);
-                setSpecialWorkDays(response.data[0].specialWorkDays);
-
+                setSchoolYear(response.data.year);
+                setSchoolYearName(response.data.name);
+                setSchoolYearStart(response.data.start);
+                setSchoolYearEnd(response.data.end);
+                
                 setLoader(false);
 
             }
@@ -85,84 +78,64 @@ const SchoolYearDetails = () => {
             //setLoader(false);
         })
     }
-    const createSchoolBreak=(dataForm)=>{
-        let url="http://127.0.0.1:8000/api/createSchoolBreak";
-        ServiceClient.post(url,dataForm).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                getSchoolYearDetails();
-                setSelectedRow("");
-                setTransitionProp(false);
-            }
-        }).catch((error)=>{
-            setServerError(error);
-        })
-    }
-    const createSpecialWorkDay=(dataForm)=>{
-        let url="http://127.0.0.1:8000/api/createSpecialWorkDay";
-        ServiceClient.post(url,dataForm).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                getSchoolYearDetails();
-                setSelectedRow("");
-                setTransitionProp(false);
-            }
-        }).catch((error)=>{
-            setServerError(error);
-        })
-    }
-    const removeSchoolBreak=()=>{
-        console.log("Heyhó");
-        let url="http://127.0.0.1:8000/api/removeSchoolBreak";
-        let dataPost={};
-        dataPost.schoolId=selectedRow.school_id;
-        dataPost.yearId=selectedRow.school_year_id;
-        dataPost.id=selectedRow.id;
 
-        ServiceClient.post(url,dataPost).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                getSchoolYearDetails();
-                setSelectedRow("");
-                setTransitionProp(false);
-            }
-        }).catch((error)=>{
-            setServerError(error);
-        })
-    }
-    const removeSpecialWorkDay=()=>{
-        let url="http://127.0.0.1:8000/api/removeSpecialWorkDay";
-        let dataPost={};
-        dataPost.schoolId=selectedRow.school_id;
-        dataPost.yearId=selectedRow.school_year_id;
-        dataPost.id=selectedRow.id;
+    const updateSchoolYearInfos=(e)=>{
+        
+        e.preventDefault();
+        setLoader(true);
+        setBtnDisabled(true);
 
-        ServiceClient.post(url,dataPost).then((response)=>{
+        let dataPost={};
+        dataPost.id=schoolYearId;
+        dataPost.year=schoolYear;
+        dataPost.name=schoolYearName;
+        dataPost.startDate=schoolYearStart;
+        dataPost.endDate=schoolYearEnd;
+
+        let url="http://127.0.0.1:8000/api/createSchoolYear";
+        ServiceClient.post(url, dataPost).then((response)=>{
             if(response.status===200){
+                setLoader(false);
                 setSuccess(true);
                 setTimeout(()=>{
                     setSuccess(false);
                 },2000)
-                getSchoolYearDetails();
-                setSelectedRow("");
-                setTransitionProp(false);
+                setBtnDisabled(false);
+                getSchoolYearInfos();
             }
         }).catch((error)=>{
             setServerError(error);
+            setLoader(false);
+            setBtnDisabled(false);
         })
     }
+
+    const removeSchoolYear=()=>{
+        let dataPost={};
+        dataPost.schoolId=schoolId;
+        dataPost.yearId=schoolYearId;
+        let url="http://127.0.0.1:8000/api/removeSchoolYear";
+
+        ServiceClient.post(url, dataPost).then((response)=>{
+            if(response.status===200){
+                
+                setSuccess(true);
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
+                
+                navigation(`/school/${schoolId}/school-year-list`);
+            }
+        }).catch((error)=>{
+            setServerError(error);
+           
+        })
+    }
+    
     useLayoutEffect(()=>{
-        getSchoolYearDetails();
-    },[])
+        getSchoolYearInfos();
+    },[]);
+   
     return (
         <>
         <EventHandler
@@ -173,10 +146,10 @@ const SchoolYearDetails = () => {
         />
         <AreYouSure
         name={AreYouSureName}
-        answer={(name)=> functionControl(null,null,name)}
+        answer={(name)=> functionControl(name)}
         transitionProp={areYouSureTransitionProp}/>
 
-        <SchoolYearDetailsPopup 
+        {/*<SchoolYearDetailsPopup 
         title={title}
         update={updatePopup}
         loader={loader}
@@ -185,139 +158,75 @@ const SchoolYearDetails = () => {
         closeModal={(data)=>{if(data===true){setTransitionProp(!transitionProp); setSelectedRow("")}}}
         fn_alias={alias}
         emitData={(dataForm, fn_alias)=>functionControl(dataForm, fn_alias)}
-        selected={selectedRow}/>
-        <div className="content-main-container">
-            <form className="flex">
-                <div className="school-breaks-container">
-                    <div className="form-title"><h2>School Breaks</h2></div>
-                    <div className="table-main-container">
-                        {!loader ? 
-                        <table>
-                            <thead>
-                                <tr>
-                                    {header ? header.map((e, i) => (
+        selected={selectedRow}/>*/}
+    <div className="content-main-container">
+            
+        <div className="title"><h2>School Year Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
+            <form onSubmit={(e)=>updateSchoolYearInfos(e)} className="SchoolForm">
+                
+                <div className="school-form flex">
 
-                                        <th key={i}>{e}</th>
-                                        
+                    <div className="flex">
+                        <label>Year</label>
+                        <input type="text" 
+                        required 
+                        onChange={(e)=>{setSchoolYear(e.target.value)}}
+                        value={schoolYear}
+                        readOnly={readOnly}/>
+                    </div>    
 
-                                    )) : null}
-                                    <th></th>
-                                    
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                { schoolBrakes?.length>0  ? schoolBrakes.map((e) => (
-                                    <tr key={e.id} onClick={() => setSelectedRow(e)}>
-                                    
-                                        <td>{e.id}</td>
-                                        <td>{e.name}</td>
-                                        <td>{e.start}</td>
-                                        <td>{e.end}</td>
-                                    
-                                        <td>
-                                            <MdDelete className='table-action-icon' onClick={() => [
-                                                setSelectedRow(e), 
-                                                setAreYouSureName("deleteBreak"), 
-                                                setAreYouSureTransitionProp(true)
-                                            ]}/>
-                                            <MdEdit className='table-action-icon' onClick={() => [
-                                                setSelectedRow(e), 
-                                                console.log(selectedRow), 
-                                                setUpdatePopup(true), 
-                                                setAlias("break"), 
-                                                setTitle("Update"), 
-                                                setTransitionProp(true)
-                                            ]}/>
-                                        </td>
-                                    </tr>
-
-                                )) :
-                                <>
-                                    <tr>
-                                        <td colSpan={5} className="no-school">No registered school break in this school.</td>
-                                    </tr>
-                                 </>}    
-                                <tr className="addNewTableRow">
-                                    <td><FaPlus className='table-action-icon' onClick={() => [
-                                        setTitle("Add school brake"),
-                                        setUpdatePopup(false),
-                                        setAlias("break"),
-                                        setTransitionProp(true), 
-                                        setSelectedRow(""),
-                                        console.log(selectedRow)
-                                    ]}/></td>
-                                </tr>
-                            
-                            </tbody>
-                        </table> : <span className='loader table'></span>}
-                        
+                    <div className="flex">
+                        <label>Name</label>
+                        <input type="text" 
+                        required 
+                        onChange={(e)=>{setSchoolYearName(e.target.value)}}
+                        value={schoolYearName}
+                        readOnly={readOnly}/>
                     </div>
-                </div>
-                <div className="special-work-days-container">
-                    <div className="form-title"><h2>Special Work Days</h2></div>
-                    <div className="table-main-container">
-                        {!loader ? 
-                        <table>
-                            <thead>
-                                <tr>
-                                    {header ? header.map((e, i) => (
-
-                                        <th key={i}>{e}</th>
-                                        
-
-                                    )) : null}
-                                    <th></th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                { specialWorkDays?.length>0 ? specialWorkDays.map((e) => (
-                                    <tr key={e.id} onClick={() => setSelectedRow(e)}>
-                                    
-                                        <td>{e.id}</td>
-                                        <td>{e.name}</td>
-                                        <td>{e.start}</td>
-                                        <td>{e.end}</td>
-                                    
-                                    <td>
-                                        <MdDelete className='table-action-icon' onClick={() => {
-                                            setSelectedRow(e); 
-                                            setAreYouSureName("deleteSpecWorkDay"); 
-                                            setAreYouSureTransitionProp(true)
-                                        }}/>
-                                        <MdEdit  className='table-action-icon'onClick={() => {
-                                            setSelectedRow(e); 
-                                            setUpdatePopup(true); 
-                                            setTransitionProp(true); 
-                                            setAlias("specWorkDay");
-                                        }}/>
-                                    </td>
-                                    </tr>
-
-                                )):
-                                
-                                <>
-                                    <tr>
-                                        <td colSpan={5} className="no-school">No registered special work days in this school.</td>
-                                    </tr>
-                                </>}
-                                <tr className="addNewTableRow">
-                                    <td><FaPlus className='table-action-icon' onClick={() => [
-                                        setTitle("Add special work day"),
-                                        setUpdatePopup(false), 
-                                        setAlias("specWorkDay"),
-                                        setTransitionProp(true), 
-                                        setSelectedRow("")
-                                    ]} /></td>
-                                </tr>
-                               
-                            </tbody>
-                        </table> : <span className='loader table'></span>}
-                        
+                    
+                   
+                    <div className="flex">
+                        <label>Start</label>
+                        <input type="date"
+                        required  
+                        onChange={(e)=>{setSchoolYearStart(e.target.value)}}
+                        value={schoolYearStart}
+                        readOnly={readOnly}/>
                     </div>
+                   
+                    <div className="flex">
+                        <label>End</label>
+                        <input
+                        type="date" 
+                        required  
+                        onChange={(e)=>{setSchoolYearEnd(e.target.value)}}
+                        value={schoolYearEnd}
+                        readOnly={readOnly}/>
+                    </div>
+                    
                 </div>
+                
+                {!loader ?
+                    <button 
+                    type='submit' 
+                    disabled={btndisabled} 
+                    className={readOnly ? 'formBtnDisabled':'btn formButton' }>
+                       <GrUpdate  className='btn-icon'/> Update 
+                    </button>:
+                    <span className='loader schoolDetails'></span>
+                }
+                {!loader ?
+                    <button
+                    type="button"
+                    disabled={btndisabled} 
+                    className={readOnly ? 'formBtnDisabled':'btn formButton' }
+                    onClick={()=>{setAreYouSureName("delete"); setAreYouSureTransitionProp(true)}}>
+                       <FaTrashAlt   className='btn-icon'/> Delete 
+                    </button>:
+                    <span className='loader schoolDetails'></span>
+                }
             </form>
+
         </div>
         </>
     );

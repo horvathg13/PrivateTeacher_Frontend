@@ -17,6 +17,7 @@ const SchoolYearList = () => {
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId }=useParams();
     const [schoolYears, setSchoolYears]=useState();
+    const [update, setUpdate]=useState(false);
     
     /*Popup control */
     const [showAreYouSure, setShowAreYouSure]=useState(false);
@@ -40,14 +41,26 @@ const SchoolYearList = () => {
     const navigation=useNavigate();
 
     /*Methods */
+    const RowClickHandle=(e)=>{
+       
+        if(showAreYouSure === true){
+            setAreYouSureTransitionProp(true);
+            
+        }else{
+            console.log(showAreYouSure);
+            navigation(`/school/${schoolId}/school-year-list/${e?.id}`);
+        }
+        return 
+        
+    }
     const functionControl=(name)=>{
         if(name === 'delete'){
             removeSchoolYear();
             setAreYouSureTransitionProp(false);
-        }else{
-            
-            setAreYouSureTransitionProp(false);
         }
+            
+        setAreYouSureTransitionProp(false);
+        
     }
     const getSchoolYears=()=>{
         let url=`http://127.0.0.1:8000/api/school-year-list/${schoolId}`;
@@ -151,11 +164,10 @@ const SchoolYearList = () => {
                     </thead>
                     <tbody>
                         { schoolYears.data?.map((e) => (
-                            <tr key={e.id} onClick={() => {setSelectedRow(e); navigation(`/school/${schoolId}/school-year-list/${e.id}`)}}>
+                            <tr key={e.id} onClick={() => {setSelectedRow(e);  RowClickHandle(e) }}>
                             { Object.values(e).map((j=>
                                 <td>{j}</td>
                             ))}
-                            <td><MdDelete className='table-action-icon' onClick={() => {setSelectedRow(e); setAreYouSureName("delete"); setAreYouSureTransitionProp(true)}}/></td>
                             </tr>
 
                         ))}
@@ -165,6 +177,7 @@ const SchoolYearList = () => {
                         </tr>:null}
                         <tr className="addNewTableRow">
                             <td><FaPlus className='table-action-icon' onClick={()=>setTransitionProp(true)}/></td>
+                            
                         </tr>
                     </tbody>
                 </table> : <span className='loader table'></span>}
