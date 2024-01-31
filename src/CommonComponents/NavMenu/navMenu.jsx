@@ -1,8 +1,13 @@
 import './navMenu.css';
 import { NavLink } from 'react-router-dom';
+import { BsList } from "react-icons/bs";
+import { useState } from 'react';
+import { FaSchool } from 'react-icons/fa6';
+import { MdClose } from 'react-icons/md';
         
-const NavMenu = () => {
-    const links=[
+const NavMenu = ({title, links}) => {
+    const [hideMenu, setHideMenu] = useState(true);
+    /*const links=[
         {
         "id":"1",
         "name":"create",
@@ -23,19 +28,28 @@ const NavMenu = () => {
             "name":"roles",
             "url":"/user/roles"
         }
-    ]
+    ]*/
     return (
-       <div className="nav-main-conatiner flex">
-            <div className="nav-header flex">
-                <h3>Navigation</h3>
-            </div>
+        <>
+        { hideMenu === false ? <div className="nav-menu-circle flex" onClick={() => setHideMenu(!hideMenu)} >
             
-            <div className="links">
-                { links.map((e)=>
-                    <NavLink><li>{e.name}</li></NavLink>
-                )}
-            </div>
-        </div>    
+            <div className="nav-icon-container"><BsList className='nav-icon' /></div>
+        </div> : ""}
+        {links && hideMenu ?
+        <div className="nav-main-conatiner flex">
+
+            
+            <>
+                <div className="nav-header flex">
+                    <h3>{title ? title : "Navigation"}<MdClose  className='nav-icon' onClick={() => setHideMenu(!hideMenu)} /></h3>
+                </div>
+                <div className="links">
+                    {links.map((e) => <NavLink><li>{e.name}</li></NavLink>
+                    )}
+                </div>
+            </> 
+        </div>: ""}
+        </>    
        
     );
 };

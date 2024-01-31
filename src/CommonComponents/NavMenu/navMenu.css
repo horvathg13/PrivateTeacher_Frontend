@@ -1,11 +1,33 @@
-.nav-main-conatiner.flex {
-  width: 250px;
-  height: fit-content;
-  flex-direction: column;
+.nav-menu-circle.flex {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50px;
+  background: var(--ButtonBlue);
+  color: var(--whiteColorDeam);
+  text-align: center;
+  justify-content: center;
+  left: 0;
+  top: 100px;
   position: fixed;
-  margin: 100px;
-  border: 1px solid var(--GreyTransparent);
-  background: var(--GreyTransparent);
+  margin: 50px 100px;
+  cursor: pointer;
+}
+.nav-menu-circle.flex .nav-icon {
+  margin: 0 auto;
+  font-size: 25px;
+}
+
+.nav-main-conatiner.flex {
+  width: 200px;
+  height: 100%;
+  flex-direction: column;
+  position: absolute;
+  margin: 95px 95px;
+  border: 1px 1px 1px 0px solid var(--GreyColor);
+  background: var(--NavBgLightBlue);
+  left: 0;
+  top: 0px;
 }
 .nav-main-conatiner.flex .nav-header.flex {
   width: 100%;
@@ -20,10 +42,18 @@
 }
 .nav-main-conatiner.flex .links li {
   padding: 10px;
-  background: var(--GreyTransparent);
+  color: var(--DarkBlue);
 }
 .nav-main-conatiner.flex .links li:hover {
-  background: var(--LightBlueTransparent);
+  background: var(--ButtonBlue);
+  color: var(--whiteColorDeam);
+}
+.nav-main-conatiner.flex .nav-icon {
+  margin: 0 10px;
+  font-size: 20px;
+}
+.nav-main-conatiner.flex .nav-icon:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=navMenu.css.map */
