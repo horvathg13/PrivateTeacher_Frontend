@@ -25,3 +25,10 @@ export const getSchoolInfo=(params)=>{
     })
 }
 
+export const getSchoolYearInfos=(params)=>{
+    return  ServiceClient.get(`http://127.0.0.1:8000/api/school/${params.schoolId}/school-year-infos/${params.schoolYearId}`).then((response)=>{
+        if(response.status===200){
+            return response.data
+        }
+    });
+}
