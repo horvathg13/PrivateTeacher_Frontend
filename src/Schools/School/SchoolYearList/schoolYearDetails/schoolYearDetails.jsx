@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import EventHandler from "../../../../EventHandler/eventhandler";
 import "./schoolYearDetails.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
 import SchoolYearDetailsPopup from "./Popup/popup";
@@ -9,8 +9,11 @@ import AreYouSure from "../../../../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../../../../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
 import { FaTrashAlt } from "react-icons/fa";
+import TabMenu from "../../../../CommonComponents/TabMenu/tabMenu";
+import ComponentTitle from "../../../../CommonComponents/ComponentTitle/componentTitle";
+import SideMenu from "../../../../CommonComponents/SideMenu/sidemenu";
         
-const SchoolYearDetails = () => {
+const SchoolYearInfos = () => {
     /*datas */
     const [schoolBrakes, setSchoolBrakes]=useState();
     const [specialWorkDays, setSpecialWorkDays]=useState();
@@ -23,6 +26,7 @@ const SchoolYearDetails = () => {
     const [schoolYearStart, setSchoolYearStart]=useState();
     const [schoolYearEnd, setSchoolYearEnd]=useState();
     const [readOnly, setReadOnly]=useState(true);
+    const schoolData = useLoaderData();
 
     /*Popup control */
    
@@ -42,6 +46,7 @@ const SchoolYearDetails = () => {
     /*Loader */
     const [loader, setLoader]=useState(true);
     const [formLoader, setFormLoader]=useState(false);
+    const [deleteLoader, setDeleteLoader]=useState(true);
 
     /*Navigation */
     const navigation=useNavigate();
@@ -49,6 +54,62 @@ const SchoolYearDetails = () => {
 
     /*button control */
     const [btndisabled, setBtnDisabled]=useState(true);
+
+    /*TabMenu*/
+    const tabMenu=[
+        {
+            "id":"1",
+            "name":"Info",
+            "url":""
+        },
+        {
+            "id":"2",
+            "name":"Breaks",
+            "url":""
+        },
+        {
+            "id":"3",
+            "name":"Special Work Days",
+            "url":""
+        },
+        {
+            "id":"4",
+            "name":"Courses",
+            "url":""
+        },
+        {
+            "id":"5",
+            "name":"Students",
+            "url":""
+        }
+    ];
+    const breadcrumbs=[
+        {
+            "id":"1",
+            "name":"Home",
+            "url":"/home",
+            "icon":"IoIosArrowForward",
+            
+        },
+        {
+            "id":"2",
+            "name":"Schools",
+            "url":"/schools",
+            "icon":"IoIosArrowForward",
+            "end":true,
+        },
+        {
+            "id":"3",
+            "name":`${schoolData?.schoolName}`,
+            "url":`/school/${schoolData?.schoolId}`,
+            "icon":"IoIosArrowForward",
+        },
+        {
+            "id":"4",
+            "name":`${schoolData.year}`,
+            "url":`/school/${schoolId}/school-year/${schoolYearId}`,
+        }
+    ]
 
     /*Methods */
     const functionControl=(name)=>{
@@ -71,7 +132,7 @@ const SchoolYearDetails = () => {
                 setSchoolYearEnd(response.data.end);
                 
                 setLoader(false);
-
+                setDeleteLoader(false);
             }
         }).catch((error)=>{
             setServerError(error);
@@ -111,6 +172,7 @@ const SchoolYearDetails = () => {
     }
 
     const removeSchoolYear=()=>{
+        setDeleteLoader(true);
         let dataPost={};
         dataPost.schoolId=schoolId;
         dataPost.yearId=schoolYearId;
@@ -118,7 +180,7 @@ const SchoolYearDetails = () => {
 
         ServiceClient.post(url, dataPost).then((response)=>{
             if(response.status===200){
-                
+                setDeleteLoader(false);
                 setSuccess(true);
                 setTimeout(()=>{
                     setSuccess(false);
@@ -128,7 +190,7 @@ const SchoolYearDetails = () => {
             }
         }).catch((error)=>{
             setServerError(error);
-           
+            setDeleteLoader(false);
         })
     }
     
@@ -149,6 +211,12 @@ const SchoolYearDetails = () => {
         answer={(name)=> functionControl(name)}
         transitionProp={areYouSureTransitionProp}/>
 
+        <SideMenu/> 
+        <ComponentTitle 
+        title={"Schools"}
+        breadcrumbs={breadcrumbs}/>
+       
+
         {/*<SchoolYearDetailsPopup 
         title={title}
         update={updatePopup}
@@ -160,7 +228,7 @@ const SchoolYearDetails = () => {
         emitData={(dataForm, fn_alias)=>functionControl(dataForm, fn_alias)}
         selected={selectedRow}/>*/}
     <div className="content-main-container">
-            
+         <TabMenu menu={tabMenu}/>    
         <div className="title"><h2>School Year Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
             <form onSubmit={(e)=>updateSchoolYearInfos(e)} className="SchoolForm">
                 
@@ -215,7 +283,7 @@ const SchoolYearDetails = () => {
                     </button>:
                     <span className='loader schoolDetails'></span>
                 }
-                {!loader ?
+                {!deleteLoader ?
                     <button
                     type="button"
                     disabled={btndisabled} 
@@ -231,4 +299,4 @@ const SchoolYearDetails = () => {
         </>
     );
 };
-export default SchoolYearDetails;
+export default SchoolYearInfos;
