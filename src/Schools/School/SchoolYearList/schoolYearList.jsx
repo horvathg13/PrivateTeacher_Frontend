@@ -48,7 +48,7 @@ const SchoolYearList = () => {
             
         }else{
             console.log(showAreYouSure);
-            navigation(`/school/${schoolId}/school-year-list/${e?.id}`);
+            navigation(`/school/${schoolId}/school-year/${e?.id}`);
         }
         return 
         
@@ -158,7 +158,6 @@ const SchoolYearList = () => {
                                 
 
                             )) : null}
-                            <th></th>
                         </tr>
 
                     </thead>
