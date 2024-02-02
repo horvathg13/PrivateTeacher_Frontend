@@ -13,7 +13,7 @@ import { UserContextProvider } from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
-import { generatedUserLoader, userDataLoader, getSchoolInfo } from './dataLoader';
+import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/userHome/users';
 import UserCreate from './Users/createUser/createUser';
@@ -26,6 +26,7 @@ import SchoolDetails from './Schools/School/SchoolDetails/schoolDetails';
 import SchoolYear from './Schools/School/SchoolYearList/schoolYearList';
 import SchoolYearList from './Schools/School/SchoolYearList/schoolYearList';
 import SchoolYearDetails from './Schools/School/SchoolYearList/schoolYearDetails/schoolYearDetails';
+import SchoolYearInfos from './Schools/School/SchoolYearList/schoolYearDetails/schoolYearDetails';
 
 function App() {
 
@@ -130,10 +131,23 @@ const router = createBrowserRouter([
              
             
           },
-          {
+          /*{
             path:"school-year-list/:schoolYearId",
             element:<SchoolYearDetails/>
-          }
+          }*/
+         
+        ]
+      },
+      {
+        path:"school/:schoolId/school-year/:schoolYearId",
+        element:<Protected><SchoolYearInfos/></Protected>,
+        loader:({params})=>{ return getSchoolYearInfos(params) },
+        children:[
+          {
+            path:"",
+            element:<SchoolYearInfos/>            
+          },
+          
          
         ]
       },
