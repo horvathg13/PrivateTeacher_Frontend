@@ -5,21 +5,28 @@ import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
 import { PiUserListFill  } from "react-icons/pi";
 import { FaUserPlus } from "react-icons/fa6";
 import "./users.css";
+import { useContext, useEffect } from "react";
+import { TabMenuContext } from "../../Context/UserContext";
         
 const Users = () => {
     const navigate= useNavigate();
-    const tabData=[
-        {
-            "id":"1",
-            "name":"User List",
-            "url":'/users/list',
-        },
-        {
-            "id":"2",
-            "name":"Create",
-            "url":'/users/create'
-        },
-    ]
+    /*TabMenu*/
+    const {setMenuItems}=useContext(TabMenuContext);
+    useEffect(()=>{
+        setMenuItems([
+            {
+                "id":"1",
+                "name":"User List",
+                "url":'/users/list',
+            },
+            {
+                "id":"2",
+                "name":"Create",
+                "url":'/users/create'
+            },
+        ]);
+    },[])
+    
 
     const breadcrumbs=[
         {
@@ -54,7 +61,7 @@ const Users = () => {
                         <div className="icon-text"><h3>Create</h3></div>
                     </div>
                    
-                </div>:<TabMenu menu={tabData}/>}
+                </div>:<TabMenu/>}
                 <Outlet/>
             </div>
         </div>
