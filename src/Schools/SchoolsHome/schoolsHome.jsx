@@ -5,21 +5,28 @@ import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
 import { FaListUl } from "react-icons/fa";
 import { IoIosCreate } from "react-icons/io";
 import "./schoolsHome.css";
+import { useContext, useEffect } from "react";
+import { TabMenuContext } from "../../Context/UserContext";
         
 const SchoolsHome = () => {
     const navigate= useNavigate();
-    const tabData=[
-        {
-            "id":"1",
-            "name":"School List",
-            "url":'/schools/list',
-        },
-        {
-            "id":"2",
-            "name":"Create",
-            "url":'/schools/create'
-        },
-    ]
+    /*TabMenu */
+    const {setMenuItems}=useContext(TabMenuContext);
+    useEffect(()=>{
+        setMenuItems([
+            {
+                "id":"1",
+                "name":"School List",
+                "url":'/schools/list',
+            },
+            {
+                "id":"2",
+                "name":"Create",
+                "url":'/schools/create'
+            },
+        ]);
+    },[])
+   
 
     const breadcrumbs=[
         {
@@ -58,7 +65,7 @@ const SchoolsHome = () => {
                     </div>
 
                 </div>
-                :<TabMenu menu={tabData}/>}
+                :<TabMenu/>}
                  <Outlet/>
             </div>
            
