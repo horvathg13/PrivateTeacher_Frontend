@@ -3,7 +3,7 @@ import "./schoolDetails.css";
 import { useContext, useState } from "react";
 import EventHandler from "../../../EventHandler/eventhandler";
 import { FaArrowCircleRight } from "react-icons/fa";
-import { schoolInfoContext } from "../../../Context/UserContext";
+import { TabMenuContext, schoolInfoContext } from "../../../Context/UserContext";
 import { GrUpdate } from "react-icons/gr";
 import { MdEdit } from "react-icons/md";
 import ServiceClient from "../../../ServiceClient";
