@@ -9,7 +9,7 @@ import UserList from './Users/userList/userList';
 import UserRoles from './Users/user/userRolesHandler/userRoles';
 import UserLog from './Users/user/userLogs/userLog';
 import Protected from './ProtectedRoutes';
-import { UserContextProvider } from './Context/UserContext';
+import { TabMenuContextProvider, UserContextProvider } from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
@@ -26,7 +26,7 @@ import SchoolDetails from './Schools/School/SchoolDetails/schoolDetails';
 import SchoolYear from './Schools/School/SchoolYearList/schoolYearList';
 import SchoolYearList from './Schools/School/SchoolYearList/schoolYearList';
 import SchoolYearDetails from './Schools/School/SchoolYearList/schoolYearDetails/schoolYearDetails';
-import SchoolYearInfos from './Schools/School/SchoolYearList/schoolYearDetails/schoolYearDetails';
+import SchoolYearInfos from './Schools/School/SchoolYearList/schoolYearDetails/schoolYearInfos/schoolYearInfos';
 
 function App() {
 
@@ -127,30 +127,16 @@ const router = createBrowserRouter([
           {
             path:"school-year-list",
             element:<SchoolYearList/>,
-            
-             
-            
           },
-          /*{
-            path:"school-year-list/:schoolYearId",
-            element:<SchoolYearDetails/>
-          }*/
-         
-        ]
-      },
-      {
-        path:"school/:schoolId/school-year/:schoolYearId",
-        element:<Protected><SchoolYearInfos/></Protected>,
-        loader:({params})=>{ return getSchoolYearInfos(params) },
-        children:[
           {
-            path:"",
-            element:<SchoolYearInfos/>            
-          },
-          
+            path:"school-year/:schoolYearId",
+            element:<SchoolYearInfos/>,
+            loader:({params})=>{ return getSchoolYearInfos(params) },
+          }
          
         ]
       },
+      
     ],
   },
 ]);
@@ -160,7 +146,9 @@ const router = createBrowserRouter([
   return (
     <>
     <UserContextProvider>
-      <RouterProvider router={router}/>
+      <TabMenuContextProvider>
+        <RouterProvider router={router}/>
+      </TabMenuContextProvider>
     </UserContextProvider>
     </>
   );
