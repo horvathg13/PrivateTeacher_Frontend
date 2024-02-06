@@ -3,41 +3,45 @@ import './school.css';
 import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
 import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
 import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
-import { schoolInfoContext } from '../../Context/UserContext';
+import { TabMenuContext, schoolInfoContext } from '../../Context/UserContext';
+import { useContext, useEffect, useLayoutEffect } from 'react';
         
 const School = () => {
     let { schoolId }=useParams();
     const schoolData = useLoaderData();
-
-    const tabData=[
-        {
-            "id":"1",
-            "name":"Info",
-            "url":`/school/${schoolId}`,
-            "end":true,
-        },
-        {
-            "id":"2",
-            "name":"School Year",
-            "url":`/school/${schoolId}/school-year-list`
-        },
-        {
-            "id":"3",
-            "name":"Courses",
-            "url":""
-        },
-        {
-            "id":"4",
-            "name":"Days and Times",
-            "url":""
-        },
-        {
-            "id":"5",
-            "name":"Students",
-            "url":""
-        },
-        
-    ]
+    const {setMenuItems}=useContext(TabMenuContext);
+    useEffect(()=>{
+        setMenuItems([
+            {
+                "id":"1",
+                "name":"Info",
+                "url":`/school/${schoolId}`,
+                "end":true,
+            },
+            {
+                "id":"2",
+                "name":"School Year",
+                "url":`/school/${schoolId}/school-year-list`
+            },
+            {
+                "id":"3",
+                "name":"Courses",
+                "url":""
+            },
+            {
+                "id":"4",
+                "name":"Days and Times",
+                "url":""
+            },
+            {
+                "id":"5",
+                "name":"Students",
+                "url":""
+            },
+            
+        ])
+    },[])
+    
     
     const breadcrumbs=[
         {
@@ -70,7 +74,7 @@ const School = () => {
                 
                 <div className="user-main">
                    
-                    <TabMenu menu={tabData}/>
+                    <TabMenu />
                     <Outlet/>
                 </div>
             </div>
