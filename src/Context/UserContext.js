@@ -28,8 +28,23 @@ export const UserContextProvider = ({children})=>{
     )
 }
 
+
 export const userInfoContext=createContext(null);
 
 export const schoolInfoContext = createContext(null);
 
 export const schoolYearContext = createContext(null);
+
+export const schoolYearDetailsContext = createContext(null);
+
+export const TabMenuContext = createContext(null);
+
+export const TabMenuContextProvider = ({children})=>{
+    const [menuItem, setMenuItems]=useState([]);
+    const value ={menuItem, setMenuItems};
+    
+    
+    return(
+        <TabMenuContext.Provider value={value}>{children}</TabMenuContext.Provider>
+    )
+}
