@@ -1,14 +1,30 @@
 import "./schoolSpecialWorkDays.css";
 import { useEffect, useLayoutEffect, useState } from "react";
-import EventHandler from "../../../../EventHandler/eventhandler";
-import { useNavigate, useParams } from "react-router-dom";
+import EventHandler from "../../../../../EventHandler/eventhandler";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
-import SchoolYearDetailsPopup from "./Popup/popup";
-import AreYouSure from "../../../../CommonComponents/AreYouSure/areyousure";
-import ServiceClient from "../../../../ServiceClient";
+import SchoolYearDetailsPopup from "../Popup/popup";
+import AreYouSure from "../../../../../CommonComponents/AreYouSure/areyousure";
+import ServiceClient from "../../../../../ServiceClient";
         
 const SchoolSpecialWorkDays = () => {
+
+    /*dataLoader */
+    const dataLoader=useLoaderData();
+    useEffect(()=>{
+        if(dataLoader){
+            console.log(dataLoader, "hopp");
+            setHeader(dataLoader.header);
+            setSpecialWorkDays(dataLoader.specialWorkDays);
+            setLoader(false);
+        }else{
+            setHeader("");
+            setSpecialWorkDays("Something went wrong!");
+            setLoader(false);
+        }
+    },[]);
+
     /*datas */
     const [specialWorkDays, setSpecialWorkDays]=useState();
     const [header, setHeader]=useState();
@@ -70,7 +86,7 @@ const SchoolSpecialWorkDays = () => {
         }).catch((error)=>{
             setServerError(error);
             //setLoader(false);
-        })
+        });
     }
     
     const createSpecialWorkDay=(dataForm)=>{
@@ -111,9 +127,9 @@ const SchoolSpecialWorkDays = () => {
             setServerError(error);
         })
     }
-    useLayoutEffect(()=>{
+   /* useLayoutEffect(()=>{
         getSpecialWorkDays();
-    },[])
+    },[])*/
 
     return (
         <>
@@ -210,4 +226,4 @@ const SchoolSpecialWorkDays = () => {
         </>
     );
 };
-export default FC;
+export default SchoolSpecialWorkDays;
