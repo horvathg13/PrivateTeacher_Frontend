@@ -1,7 +1,7 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import EventHandler from "../../../../../EventHandler/eventhandler";
 import "./schoolYearInfos.css";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
 import AreYouSure from "../../../../../CommonComponents/AreYouSure/areyousure";
@@ -17,22 +17,23 @@ const SchoolYearInfos = () => {
 
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
-    useLayoutEffect(()=>{
+    useEffect(()=>{
         setMenuItems([
             {
                 "id":"1",
                 "name":"Info",
-                "url":""
+                "url":`/school/${schoolId}/school-year/${schoolYearId}`,
+                "end":true
             },
             {
                 "id":"2",
                 "name":"Breaks",
-                "url":""
+                "url":`/school/${schoolId}/school-year/${schoolYearId}/breaks`,
             },
             {
                 "id":"3",
                 "name":"Special Work Days",
-                "url":""
+                "url":`/school/${schoolId}/school-year/${schoolYearId}/special-work-days`,
             },
             {
                 "id":"4",
@@ -266,7 +267,7 @@ const SchoolYearInfos = () => {
                     <span className='loader schoolDetails'></span>
                 }
             </form>
-
+            <Outlet/>
         </div>
         </>
     );
