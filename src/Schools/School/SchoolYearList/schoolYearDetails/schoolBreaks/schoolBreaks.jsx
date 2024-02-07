@@ -1,16 +1,33 @@
 import './schoolBreaks.css';
 import { useEffect, useLayoutEffect, useState } from "react";
-import EventHandler from "../../../../EventHandler/eventhandler";
-import { useNavigate, useParams } from "react-router-dom";
+import EventHandler from "../../../../../EventHandler/eventhandler";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
-import SchoolYearDetailsPopup from "./Popup/popup";
-import AreYouSure from "../../../../CommonComponents/AreYouSure/areyousure";
-import ServiceClient from "../../../../ServiceClient";
+import SchoolYearDetailsPopup from "../Popup/popup";
+import AreYouSure from "../../../../../CommonComponents/AreYouSure/areyousure";
+import ServiceClient from "../../../../../ServiceClient";
         
 const SchoolBreaks = () => {
+
+    /*dataLoader */
+    const dataLoader=useLoaderData();
+    useEffect(()=>{
+        if(dataLoader){
+            console.log(dataLoader, "Hopp");
+            setHeader(dataLoader.header);
+            setSchoolBreaks(dataLoader.breaks);
+            setLoader(false);
+        }else{
+            console.log(dataLoader, "Hopp");
+            setHeader("");
+            setSchoolBreaks("Something went wrong!");
+            setLoader(false);
+        }
+    },[]);
+
     /*datas */
-    const [schoolBrakes, setSchoolBrakes]=useState();
+    const [schoolBreaks, setSchoolBreaks]=useState();
     const [header, setHeader]=useState();
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId, schoolYearId }=useParams();
@@ -59,7 +76,7 @@ const SchoolBreaks = () => {
             if(response.status===200){
                 console.log(response.data[0].specialWorkDays)
                 setHeader(response.data[0].header);
-                setSchoolBrakes(response.data[0].breaks);
+                setSchoolBreaks(response.data[0].breaks);
                 
                 setLoader(false);
 
@@ -109,9 +126,9 @@ const SchoolBreaks = () => {
         })
     }
     
-    useLayoutEffect(()=>{
+   /* useLayoutEffect(()=>{
         getSchoolBreaks();
-    },[])
+    },[])*/
     
     return (
         <>
@@ -158,7 +175,7 @@ const SchoolBreaks = () => {
 
                             </thead>
                             <tbody>
-                                { schoolBrakes?.length>0  ? schoolBrakes.map((e) => (
+                                { schoolBreaks?.length>0  ? schoolBreaks.map((e) => (
                                     <tr key={e.id} onClick={() => setSelectedRow(e)}>
                                     
                                         <td>{e.id}</td>
@@ -188,7 +205,7 @@ const SchoolBreaks = () => {
                                     <tr>
                                         <td colSpan={5} className="no-school">No registered school break in this school.</td>
                                     </tr>
-                                 </>}    
+                                        </>}    
                                 <tr className="addNewTableRow">
                                     <td><FaPlus className='table-action-icon' onClick={() => [
                                         setTitle("Add school brake"),
@@ -201,7 +218,7 @@ const SchoolBreaks = () => {
                                 </tr>
                             
                             </tbody>
-                        </table> : <span className='loader table'></span>}
+                                </table> : <span className='loader table'></span>}
                         
                     </div>
                 </div>
@@ -211,4 +228,4 @@ const SchoolBreaks = () => {
         </>
     );
 };
-export default FC;
+export default SchoolBreaks;
