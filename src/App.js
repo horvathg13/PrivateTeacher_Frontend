@@ -13,7 +13,7 @@ import { TabMenuContextProvider, UserContextProvider } from './Context/UserConte
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
-import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos } from './dataLoader';
+import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/userHome/users';
 import UserCreate from './Users/createUser/createUser';
@@ -27,6 +27,9 @@ import SchoolYear from './Schools/School/SchoolYearList/schoolYearList';
 import SchoolYearList from './Schools/School/SchoolYearList/schoolYearList';
 import SchoolYearDetails from './Schools/School/SchoolYearList/schoolYearDetails/schoolYearDetails';
 import SchoolYearInfos from './Schools/School/SchoolYearList/schoolYearDetails/schoolYearInfos/schoolYearInfos';
+import SchoolBreaks from './Schools/School/SchoolYearList/schoolYearDetails/schoolBreaks/schoolBreaks';
+import SchoolSpecialWorkDays from './Schools/School/SchoolYearList/schoolYearDetails/schoolSpecialWorkDays/schoolSpecialWokDays';
+
 
 function App() {
 
@@ -130,8 +133,25 @@ const router = createBrowserRouter([
           },
           {
             path:"school-year/:schoolYearId",
-            element:<SchoolYearInfos/>,
+            element:<SchoolYearDetails/>,
             loader:({params})=>{ return getSchoolYearInfos(params) },
+            children:
+            [
+              {
+                path:"",
+                element:<SchoolYearInfos/>,
+              },
+              {
+                path:"breaks",
+                element:<SchoolBreaks/>,
+                loader:({params})=>{return getSchoolBreaks(params)},
+              },
+              {
+                path:"special-work-days",
+                element:<SchoolSpecialWorkDays/>,
+                loader:({params})=>{return getSchoolBreaks(params)},
+              }
+            ]
           }
          
         ]
