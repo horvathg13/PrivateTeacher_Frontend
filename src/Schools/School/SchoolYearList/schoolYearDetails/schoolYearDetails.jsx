@@ -100,14 +100,8 @@ const SchoolYearDetails = () => {
     return (
         <>
         <schoolYearDetailsContext.Provider value={schoolData}>
-            <SideMenu/> 
-            <ComponentTitle 
-            title={"Schools"}
-            breadcrumbs={breadcrumbs}/>
-
-
             <div className="content-main-container">
-                <TabMenu/>
+                
                 <Outlet/>
                 
 
