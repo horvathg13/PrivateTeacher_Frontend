@@ -13,7 +13,7 @@ import { TabMenuContextProvider, UserContextProvider } from './Context/UserConte
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
-import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks } from './dataLoader';
+import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks, getSchoolCourses, getSchoolCourseStatuses, getSchoolCourseInfo } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/userHome/users';
 import UserCreate from './Users/createUser/createUser';
@@ -29,6 +29,9 @@ import SchoolYearDetails from './Schools/School/SchoolYearList/schoolYearDetails
 import SchoolYearInfos from './Schools/School/SchoolYearList/schoolYearDetails/schoolYearInfos/schoolYearInfos';
 import SchoolBreaks from './Schools/School/SchoolYearList/schoolYearDetails/schoolBreaks/schoolBreaks';
 import SchoolSpecialWorkDays from './Schools/School/SchoolYearList/schoolYearDetails/schoolSpecialWorkDays/schoolSpecialWokDays';
+import SchoolCoursesList from './Schools/School/SchoolYearList/schoolYearDetails/SchoolCourses/schoolCoursesList';
+import SchoolCourseCreate from './Schools/School/SchoolYearList/schoolYearDetails/SchoolCourses/Create/schoolCourseCreate';
+import SchoolCourseInfo from './Schools/School/SchoolYearList/schoolYearDetails/SchoolCourses/Info/schoolCourseInfo';
 
 
 function App() {
@@ -150,7 +153,22 @@ const router = createBrowserRouter([
                 path:"special-work-days",
                 element:<SchoolSpecialWorkDays/>,
                 loader:({params})=>{return getSchoolBreaks(params)},
-              }
+              },
+              {
+                path:"courses",
+                element:<SchoolCoursesList/>,
+                loader:({params})=>{return getSchoolCourses(params)},
+              },
+              {
+                path:"create-course",
+                element:<SchoolCourseCreate/>,
+                loader:()=>{return getSchoolCourseStatuses()}
+              },
+              {
+                path:"course/:courseId",
+                element:<SchoolCourseInfo/>,
+                loader:({params})=>{return  Promise.all ([getSchoolCourseInfo(params), getSchoolCourseStatuses()])}
+              },
             ]
           }
          
