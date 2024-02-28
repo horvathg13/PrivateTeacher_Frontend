@@ -40,3 +40,27 @@ export const getSchoolBreaks=(params)=>{
         }
     });
 }
+
+export const getSchoolCourses=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/school/${params.schoolId}/school-year-details/${params.schoolYearId}/courses`).then((response)=>{
+        if(response.status===200){
+            return response.data
+        }
+    });
+}
+export const getSchoolCourseInfo=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/school/${params.schoolId}/school-year-details/${params.schoolYearId}/courses/${params.courseId}`).then((response)=>{
+        if(response.status===200){
+            return response.data
+        }
+    });
+}
+
+export const getSchoolCourseStatuses=()=>{
+    return ServiceClient.post("http://127.0.0.1:8000/api/getCourseStatuses").then((response)=>{
+        if(response.status===200){
+            return response.data
+        }
+    });
+}
+
