@@ -38,7 +38,7 @@ const SchoolYearInfos = () => {
             {
                 "id":"4",
                 "name":"Courses",
-                "url":""
+                "url":`/school/${schoolId}/school-year/${schoolYearId}/courses`
             },
             {
                 "id":"5",
