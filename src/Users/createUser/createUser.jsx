@@ -1,4 +1,3 @@
-import './createUser.css';
 import EventHandler from '../../EventHandler/eventhandler';
 import Table from '../../CommonComponents/Table/table';
 import { useState } from 'react';

@@ -1,4 +1,3 @@
-import './schoolBreaks.css';
 import { useEffect, useLayoutEffect, useState } from "react";
 import EventHandler from "../../../../../EventHandler/eventhandler";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";

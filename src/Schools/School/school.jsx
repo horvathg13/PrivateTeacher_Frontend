@@ -1,5 +1,4 @@
 import { Outlet, useLoaderData, useParams } from 'react-router-dom';
-import './school.css';
 import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
 import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
 import TabMenu from '../../CommonComponents/TabMenu/tabMenu';

@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import './addSchoolYear.css';
 import "../../../../transitions.css";
 import { IoIosCloseCircle } from 'react-icons/io';
 import { CSSTransition } from 'react-transition-group';

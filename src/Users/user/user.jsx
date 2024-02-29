@@ -3,7 +3,6 @@ import ComponentTitle from "../../CommonComponents/ComponentTitle/componentTitle
 import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
 import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
 import {TabMenuContext, userInfoContext} from "../../Context/UserContext";
-import "./user.css";
 import { useContext, useEffect } from "react";
         
 const User = () => {
@@ -67,7 +66,7 @@ const User = () => {
             breadcrumbs={breadcrumbs}/>
             
             <div className="user-main">
-                {console.log(userData.firstname)}
+                
                 <TabMenu/>
                 <Outlet/>
             </div>

@@ -4,7 +4,6 @@ import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
 import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
 import { PiUserListFill  } from "react-icons/pi";
 import { FaUserPlus } from "react-icons/fa6";
-import "./users.css";
 import { useContext, useEffect } from "react";
 import { TabMenuContext } from "../../Context/UserContext";
         

@@ -1,5 +1,4 @@
 import { MdDelete, MdEdit } from "react-icons/md";
-import "./schoolYearList.css";
 import "../../../CommonComponents/Table/table.css"
 import { FaCirclePlus } from "react-icons/fa6";
 import Table from "../../../CommonComponents/Table/table";

@@ -4,7 +4,6 @@ import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
 import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
 import { FaListUl } from "react-icons/fa";
 import { IoIosCreate } from "react-icons/io";
-import "./schoolsHome.css";
 import { useContext, useEffect } from "react";
 import { TabMenuContext } from "../../Context/UserContext";
         

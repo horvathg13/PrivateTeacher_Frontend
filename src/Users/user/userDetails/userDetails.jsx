@@ -1,5 +1,4 @@
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
-import "./userDetails.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowCircleRight } from "react-icons/fa";
 import EventHandler from '../../../EventHandler/eventhandler';

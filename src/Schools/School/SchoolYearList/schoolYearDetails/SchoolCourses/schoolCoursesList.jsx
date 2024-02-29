@@ -1,4 +1,3 @@
-import './schoolCoursesList.css';
 import { useEffect, useLayoutEffect, useState } from "react";
 import EventHandler from "../../../../../EventHandler/eventhandler";
 import { Navigate, useLoaderData, useNavigate, useParams } from "react-router-dom";

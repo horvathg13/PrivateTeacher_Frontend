@@ -1,4 +1,3 @@
-import './userList.css';
 import EventHandler from '../../EventHandler/eventhandler';
 import Table from '../../CommonComponents/Table/table';
 import SideMenu from '../../CommonComponents/SideMenu/sidemenu';

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import ComponentTitle from '../../../CommonComponents/ComponentTitle/componentTitle';
 import SideMenu from '../../../CommonComponents/SideMenu/sidemenu';
 import EventHandler from '../../../EventHandler/eventhandler';
-import './userRoles.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import TabMenu from '../../../CommonComponents/TabMenu/tabMenu';
         

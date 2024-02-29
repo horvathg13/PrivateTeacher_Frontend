@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import "./schoolDetails.css";
 import { useContext, useState } from "react";
 import EventHandler from "../../../EventHandler/eventhandler";
 import { FaArrowCircleRight } from "react-icons/fa";

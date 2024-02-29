@@ -1,6 +1,5 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import EventHandler from "../../../../EventHandler/eventhandler";
-import "./schoolYearDetails.css";
 import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";

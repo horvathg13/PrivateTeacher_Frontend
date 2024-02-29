@@ -1,5 +1,4 @@
 import { IoIosCloseCircle } from "react-icons/io";
-import "./popup.css";
 import { CSSTransition } from "react-transition-group";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";

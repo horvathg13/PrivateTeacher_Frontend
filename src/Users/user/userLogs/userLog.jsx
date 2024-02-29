@@ -3,7 +3,6 @@ import ComponentTitle from '../../../CommonComponents/ComponentTitle/componentTi
 import SideMenu from '../../../CommonComponents/SideMenu/sidemenu';
 import TabMenu from '../../../CommonComponents/TabMenu/tabMenu';
 import EventHandler from '../../../EventHandler/eventhandler';
-import './userLog.css';
 import { useNavigate, useParams } from 'react-router-dom';
         
 const UserLog = () => {
