@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import './root.css';
 
+/*Links*/
 a{
   text-decoration: none;
   color: var(--PrimaryColor);
@@ -9,13 +10,36 @@ a{
 li{
   list-style: none;
 }
+
 /*fonts*/
 p, h1, h2, h3, h4, h5{
   color:var(--PrimaryColor);
   letter-spacing: .5px ;
 }
-/*container*/
 
+/*General*/
+
+.flex{
+  display: flex;
+  align-items: center;
+}
+
+.grid{
+  display: grid;
+  align-items: center;
+}
+
+input{
+  font-size: 100%;
+  font-family: 'Poppins';
+}
+
+input:read-only{
+  cursor: default;
+  border: none;
+}
+
+/*Icons*/
 .icon{
   font-size:2rem;
   cursor:pointer;
@@ -23,6 +47,53 @@ p, h1, h2, h3, h4, h5{
 .btn-icon{
   margin: auto 5px;
 }
+
+/*containers*/
+.school-breaks-container {
+  height: auto !important;
+}
+
+.special-work-days-container {
+  height: auto !important;
+}
+
+.table-main-container {
+  height: auto !important;
+}
+
+.selectContainer{
+  height: 90px;
+  margin-top: 10px;
+}
+
+
+
+.courseCreate{
+  height:430px !important;
+}
+
+/*Table*/
+table tbody tr.addNewTableRow {
+  background: none !important;
+}
+table tbody tr.addNewTableRow:hover {
+  background: none !important;
+  cursor: default !important;
+}
+table tbody tr .table-action-icon {
+  padding: 10px 0px;
+}
+table tbody tr td.no-school {
+  font-style: italic;
+  text-align: center;
+  cursor: default;
+  background: none;
+  user-select: none;
+}
+table tbody tr td.no-school:hover {
+  background: var(--BackgroundColor);
+}
+
 .table-icon{
   margin: 0 5px;
   font-size: 15px;
@@ -56,6 +127,8 @@ p, h1, h2, h3, h4, h5{
   color: var(--DarkBlue);
   transform: scale(1.1);
 }
+
+/*Pagination*/
 .paginate-icon{
   color:var(--DarkBlue);
   margin: 0 5px;
@@ -72,15 +145,10 @@ p, h1, h2, h3, h4, h5{
   cursor: pointer;
   color: var(--whiteColorDeam);
 }
-.flex{
-  display: flex;
-  align-items: center;
-}
 
-.grid{
-  display: grid;
-  align-items: center;
-}
+
+/*Button*/
+
 button{
   cursor: pointer;
 }
@@ -109,6 +177,7 @@ button{
   background: #aabbd1d0 !important;
   cursor: auto;
 }
+
 .formButton{
   background: var(--ButtonBlue);
   color: var(--whiteColorDeam);
@@ -144,13 +213,6 @@ button{
   justify-content: center;
   cursor: default;
 }
-.formIcon{
-  font-size: 1.5rem;
-}
-input{
-  font-size: 100%;
-  font-family: 'Poppins';
-}
 
 .main-btn{
   position: absolute;
@@ -173,18 +235,161 @@ input{
   box-shadow: 2px 1px 1px  black;
 }
 
+/*Form*/
 form{
   font-family: 'Poppins';
+  flex-direction: column;
 }
+
+.fields.flex {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.fields.flex label {
+  padding: 10px 0px;
+}
+.fields.flex input {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.formIcon{
+  font-size: 1.5rem;
+}
+form .icon {
+  font-size: 20px;
+  border-radius: 50%;
+  padding: 2px;
+}
+form .icon:hover {
+  color: var(--ButtonBlue);
+  transition: 0.3s;
+}
+form .select-container {
+  margin-bottom: 15px;
+}
+form .user-container {
+  width: 100%;
+  flex-wrap: wrap;
+}
+form .user-container.info {
+  height: 350px;
+}
+form .user-container.passwords, form .user-container .roles {
+  height: fit-content;
+}
+form .form-title {
+  width: 100%;
+  border-bottom: 1px dotted var(--GreenColor);
+}
+form .form-title h2 {
+  margin-bottom: 0;
+}
+form .fields.flex {
+  padding: 10px 0;
+}
+form .field {
+  width: 420px;
+  height: 115px;
+  display: flex;
+  flex-direction: column;
+}
+form .field label {
+  padding: 10px 0;
+}
+form .field input {
+  width: 100%;
+  height: 30px;
+  transition: 0.1s ease-in-out;
+  border: 1px solid var(--GreyColor);
+}
+form .field input:read-only {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--DarkBlue);
+}
+
+form .name-fields.flex {
+  justify-content: space-between;
+}
+form .name-fields.flex label, form .name-fields.flex input {
+  margin-right: 10px;
+}
+form label {
+  margin: 15px 0;
+  margin-bottom: 5px;
+}
+form .loader.createUser {
+  border-top: 4px solid var(--DarkBlue) !important;
+  margin: 20px auto;
+}
+form button.formButton {
+  float: left;
+}
+
+.formBtnDisabled{
+  float: right;
+}
+.emailPassword-fields.grid {
+  padding-top: 10px;
+}
+.emailPassword-fields.grid label {
+  padding-top: 10px;
+}
+
+form button.formButton .user-submit-icon {
+  font-size: 1.3rem;
+  margin: 0 5px;
+}
+
+form .roles-container.flex {
+  margin: auto auto;
+  margin-left: 0;
+  padding: 5px;
+}
+
+form .roles-container.flex label, form .roles-container.flex input {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+form .roles-container.flex input {
+  margin-right: 5px;
+}
+
+form .roles-container.flex label {
+  user-select: none;
+}
+
+.userDetails form .btn-container .loader.userDetails {
+  border-top: 4px solid var(--DarkBlue) !important;
+}
+
+/*Title*/
 
 .formTitle{
   width: 100%;
-  h2{
-    margin: 20px auto;
-    text-align: center;
-    letter-spacing: 1px;
-  }
 }
+
+.formTitle h2{
+  margin: 20px auto;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.title h3{
+  color: var(--whiteColorDeam);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  margin-bottom: 7px;
+}
+
+.courseTitle{
+  justify-content: space-between;
+}
+
+/*Loader*/
 
 .loader {
   width: 48px;
@@ -209,10 +414,12 @@ form{
   border-left: 4px solid transparent;
 }
 
-input:read-only{
-  cursor: default;
-  border: none;
+.loader.schoolDetails{
+  margin: 20px;
+  float: right;
+  border-top: 4px solid var(--DarkBlue);
 }
+
 
 .content-main-container{
   width: 900px;
@@ -220,6 +427,8 @@ input:read-only{
   margin: 2% auto;
   color: var(--PrimaryColor);
 }
+
+/*Popup*/
 
 .popup{
   width: 100%;
@@ -230,4 +439,130 @@ input:read-only{
   z-index: 999;
   left: 0;
   right: 0;
+}
+
+/*schoolYear component*/
+
+.school-year-details-popup-form.flex {
+  width: 500px;
+  height: 480px;
+  text-align: left;
+  flex-direction: column;
+  margin: 5% auto;
+  border-radius: 5%;
+  background: var(--whiteColorDeam);
+}
+.school-year-details-popup-form.flex .closeModal {
+  width: 100%;
+}
+.school-year-details-popup-form.flex .closeModal .closeModalIcon {
+  float: right;
+  font-size: 2.1rem;
+  color: var(--DarkBlue);
+  margin: 5px 10px;
+}
+.school-year-details-popup-form.flex .closeModal .closeModalIcon:hover {
+  color: var(--ButtonBlue);
+  cursor: pointer;
+}
+.school-year-details-popup-form.flex .formTitle {
+  width: 100%;
+}
+.school-year-details-popup-form.flex .school-year-details-popup.flex {
+  flex-direction: column;
+  width: fit-content;
+  align-items: end;
+  margin: 10% auto;
+  margin-bottom: 10px;
+}
+.school-year-details-popup-form.flex .school-year-details-popup.flex label {
+  margin: 10px 5px;
+}
+.school-year-details-popup-form.flex .school-year-details-popup.flex input {
+  width: 303px;
+}
+
+.addSchoolYear-main-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(42, 50, 51, 0.66);
+  top: 0;
+  z-index: 999;
+  left: 0;
+  right: 0;
+}
+.addSchoolYear-main-container .addSchoolYear-form {
+  width: 500px;
+  height: 480px;
+  text-align: left;
+  flex-direction: column;
+  margin: 5% auto;
+  border-radius: 5%;
+  background: var(--whiteColorDeam);
+}
+.addSchoolYear-main-container .addSchoolYear-form .addSchoolYear {
+  flex-direction: column;
+  width: fit-content;
+  align-items: end;
+  margin: 10% auto;
+  margin-bottom: 10px;
+}
+.addSchoolYear-main-container .addSchoolYear-form .addSchoolYear label {
+  margin: 10px 5px;
+}
+.addSchoolYear-main-container .addSchoolYear-form .addSchoolYear input {
+  width: 303px;
+}
+.addSchoolYear-main-container .addSchoolYear-form .closeModal {
+  width: 100%;
+}
+.addSchoolYear-main-container .addSchoolYear-form .closeModal .closeModalIcon {
+  float: right;
+  font-size: 2.1rem;
+  color: var(--DarkBlue);
+  margin: 5px 10px;
+}
+.addSchoolYear-main-container .addSchoolYear-form .closeModal .closeModalIcon:hover {
+  color: var(--ButtonBlue);
+  cursor: pointer;
+}
+/*Tile containers*/
+.button-main-container.flex {
+  width: 100%;
+  height: 200px;
+  justify-content: space-between;
+}
+.button-main-container.flex .button-container {
+  width: 150px;
+  height: 150px;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  margin: 0 15%;
+}
+.button-main-container.flex .button-container a {
+  color: var(--DarkBlue);
+}
+.button-main-container.flex .button-container .icon-container {
+  border-radius: 10px;
+  border: 3px solid var(--DarkBlue);
+  height: auto;
+  width: auto;
+  transition: 0.3s ease-in-out;
+}
+.button-main-container.flex .button-container .icon-container .icon {
+  padding: 30%;
+  font-size: 3rem;
+  transition: 0.3s ease-in-out;
+}
+.button-main-container.flex .button-container .icon-container:hover {
+  color: var(--ButtonBlue);
+  border-color: var(--ButtonBlue);
+}
+.button-main-container.flex .button-container .icon-container:hover .icon {
+  transform: scale(1.1);
+}
+.button-main-container.flex .button-container .icon-text h3 {
+  font-weight: 500;
 }
