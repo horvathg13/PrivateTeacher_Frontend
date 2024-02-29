@@ -2,7 +2,7 @@
   margin: 20px auto;
 }
 .tabMenu-container.flex .action {
-  background: var(--ButtonBlue);
+  background: var(--DarkBlue);
   border: none;
   border-radius: 5px 50px 0 5px;
   padding: 10px 30px;
@@ -13,7 +13,7 @@
   transition: 0.5s ease-in-out;
 }
 .tabMenu-container.flex .action:hover {
-  background: var(--DarkBlue);
+  background: var(--ButtonBlue);
   transition: 0.3s ease-in-out;
 }
 .tabMenu-container.flex .action .icon {
@@ -22,7 +22,7 @@
 }
 
 .tabMenu-container .active > .btn.action {
-  background: var(--DarkBlue);
+  background: var(--ButtonBlue);
   box-shadow: 6px 0px 2px #4c4c4c;
   padding: 10px 50px;
   animation: activTabMenu 0.7s ease-in-out;
@@ -30,7 +30,7 @@
 
 @keyframes activTabMenu {
   0% {
-    background: var(--ButtonBlue);
+    background: var(--DarkBlue);
     border: none;
     border-radius: 5px 50px 0 5px;
     padding: 10px 30px;
@@ -40,7 +40,7 @@
     margin: 0 5px;
   }
   100% {
-    background: var(--DarkBlue);
+    background: var(--ButtonBlue);
     box-shadow: 6px 0px 2px #4c4c4c;
     padding: 10px 50px;
     transition: padding 0.2s ease;

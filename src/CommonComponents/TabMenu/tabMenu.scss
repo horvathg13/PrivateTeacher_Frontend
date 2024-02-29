@@ -2,7 +2,7 @@
 .tabMenu-container.flex{
     
     .action{
-        background: var(--ButtonBlue);
+        background: var(--DarkBlue);
         border: none;
         border-radius: 5px 50px 0 5px;
         padding: 10px 30px;
@@ -14,7 +14,7 @@
         transition: .5s ease-in-out;
         &:hover{
             //transform: scale(1.1);
-            background: var(--DarkBlue);
+            background: var(--ButtonBlue);
             transition: .3s ease-in-out;
         }
 
@@ -28,14 +28,14 @@
     margin: 20px auto;
 }
 .tabMenu-container .active > .btn.action{
-    background: var(--DarkBlue);
+    background: var(--ButtonBlue);
     box-shadow: 6px 0px 2px #4c4c4c;
     padding: 10px 50px;
     animation: activTabMenu .7s ease-in-out;
 }
 @keyframes activTabMenu{
     0%{
-        background: var(--ButtonBlue);
+        background: var(--DarkBlue);
         border: none;
         border-radius: 5px 50px 0 5px;
         padding: 10px 30px;
@@ -46,7 +46,7 @@
         margin: 0 5px;
     }
     100%{
-        background: var(--DarkBlue);
+        background: var(--ButtonBlue);
         box-shadow: 6px 0px 2px #4c4c4c;
         padding: 10px 50px;
         transition: padding .2s ease;
