@@ -12,7 +12,7 @@ const SchoolDetails = () => {
     const schoolData = useContext(schoolInfoContext);
 
     /*Params */
-    const schoolId = useParams();
+    const {schoolId} = useParams();
 
     /*Form fields */
     const [schoolName, setSchoolName]=useState(schoolData?.name);
