@@ -4,6 +4,7 @@ import SideMenu from '../../../CommonComponents/SideMenu/sidemenu';
 import EventHandler from '../../../EventHandler/eventhandler';
 import { useNavigate, useParams } from 'react-router-dom';
 import TabMenu from '../../../CommonComponents/TabMenu/tabMenu';
+import ServiceClient from '../../../ServiceClient';
         
 const UserRoles = () => {
     /*event handle*/
@@ -38,6 +39,8 @@ const UserRoles = () => {
         }
         
     ]
+
+   
     return (
 
         <>
@@ -47,8 +50,6 @@ const UserRoles = () => {
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
         <div className="userRoles-main-container">
-            
-            
             
         </div>
         </>
