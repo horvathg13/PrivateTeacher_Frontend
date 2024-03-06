@@ -27,8 +27,8 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
         
         <div className="table-main-container">
             <div className="table-action-menu flex">
-                <div className="table-action"><MdDelete className='table-action-icon'/></div>
-                <div className="table-action"><FaCirclePlus className='table-action-icon'/></div>
+                {/*<div className="table-action"><MdDelete className='table-action-icon'/></div>
+                <div className="table-action"><FaCirclePlus className='table-action-icon'/></div>*/}
 
             </div>
             <table>
