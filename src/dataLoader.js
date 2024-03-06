@@ -64,3 +64,10 @@ export const getSchoolCourseStatuses=()=>{
     });
 }
 
+export const getUserRoles=(params)=>{
+    return ServiceClient.post(`http://127.0.0.1:8000/api/getUserRoles/${params.userId}`).then((response)=>{
+        if(response.status===200){
+            return response.data
+        }
+    });
+}
