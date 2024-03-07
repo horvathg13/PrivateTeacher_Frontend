@@ -13,7 +13,7 @@ import { TabMenuContextProvider, UserContextProvider } from './Context/UserConte
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
-import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks, getSchoolCourses, getSchoolCourseStatuses, getSchoolCourseInfo, getUserRoles } from './dataLoader';
+import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks, getSchoolCourses, getSchoolCourseStatuses, getSchoolCourseInfo, getUserRoles, getRolesandSchools } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/userHome/users';
 import UserCreate from './Users/createUser/createUser';
@@ -32,7 +32,7 @@ import SchoolSpecialWorkDays from './Schools/School/SchoolYearList/schoolYearDet
 import SchoolCoursesList from './Schools/School/SchoolYearList/schoolYearDetails/SchoolCourses/schoolCoursesList';
 import SchoolCourseCreate from './Schools/School/SchoolYearList/schoolYearDetails/SchoolCourses/Create/schoolCourseCreate';
 import SchoolCourseInfo from './Schools/School/SchoolYearList/schoolYearDetails/SchoolCourses/Info/schoolCourseInfo';
-
+import CreateUserRole from "./Users/user/userRolesHandler/createUserRole";
 
 function App() {
 
@@ -95,6 +95,11 @@ const router = createBrowserRouter([
             path:"roles",
             element:<UserRoles />,
             loader:({params})=>{ return getUserRoles(params) },
+          },
+          {
+            path:"create-role",
+            element:<CreateUserRole />,
+            loader:({params})=>{ return getRolesandSchools(params) },
           },
           {
             path:"logs",
