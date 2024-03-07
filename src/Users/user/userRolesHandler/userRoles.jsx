@@ -28,6 +28,7 @@ const UserRoles = () => {
     const [header, setHeader]=useState();
     const [selectedRow, setSelectedRow]=useState();
     
+    
     /*Event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
@@ -52,14 +53,41 @@ const UserRoles = () => {
     /*Methods: */
     const functionControl=(name)=>{
         if(name === 'delete'){
-            //remove
+            removeUserRole();
             setAreYouSureTransitionProp(false);
         }
             
         setAreYouSureTransitionProp(false);
         
     }
-    
+    const removeUserRole=()=>{
+        setLoader(true);
+        let url=`http://127.0.0.1:8000/api/removeUserRole/${userId}/${selectedRow.roleId}/${selectedRow.reference.id}`
+        
+        ServiceClient.post(url).then((response)=>{
+            if(response.status===200){
+                console.log(response);
+                getUserRoles();
+                setLoader(false);
+            }
+        }).catch((error)=>{
+            setErrors(error);
+            setLoader(false);
+        });
+    }
+    const getUserRoles=()=>{
+        setLoader(true);
+        ServiceClient.post(`http://127.0.0.1:8000/api/getUserRoles/${userId}`).then((response)=>{
+            if(response.status===200){
+                setHeader(response.data.header);
+                setUserRoles(response.data.userRoles);
+                setLoader(false);
+            }
+        }).catch((error)=>{
+            setErrors(error);
+            setLoader(false);
+        });
+    }
     return (
 
         <>
@@ -70,7 +98,7 @@ const UserRoles = () => {
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
         <AreYouSure
         name={AreYouSureName}
-        answer={functionControl}
+        answer={(name)=>functionControl(name)}
         transitionProp={areYouSureTransitionProp}/>
 
         <div className="content-main-container">
@@ -96,7 +124,7 @@ const UserRoles = () => {
                            
                                 <td>{e.role}</td>
                                 <td>{e.reference?.name}</td>
-                                <td><FaTrashCan className='table-action-icon' onClick={()=>{setAreYouSureName("delete");setAreYouSureTransitionProp(true)}}/></td>
+                                <td><FaTrashCan className='table-action-icon' onClick={()=>{setAreYouSureName("delete");setSelectedRow(e); setAreYouSureTransitionProp(true)}}/></td>
                             
                             </tr>
 
