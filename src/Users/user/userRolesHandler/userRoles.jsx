@@ -102,7 +102,7 @@ const UserRoles = () => {
         transitionProp={areYouSureTransitionProp}/>
 
         <div className="content-main-container">
-            <div className='formTitle'><FaPlus className='table-action-icon' /></div> 
+            <div className='formTitle'><FaPlus className='table-action-icon' onClick={()=>navigate(`/users/${userId}/create-role`)}/></div> 
             <div className="table-main-container">
                 {!loader ? 
                 <table>
