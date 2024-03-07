@@ -71,3 +71,11 @@ export const getUserRoles=(params)=>{
         }
     });
 }
+
+export const getRolesandSchools=(params)=>{
+    return ServiceClient.post(`http://127.0.0.1:8000/api/getRolesandSchools/${params.userId}`).then((response)=>{
+        if(response.status===200){
+            return response.data
+        }
+    }).catch((error)=>{console.log(error.response)});
+}
