@@ -1,0 +1,99 @@
+import { useContext, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import ServiceClient from '../ServiceClient'
+import { UserContext } from '../Context/UserContext';
+import  EventHandler  from '../EventHandler/eventhandler';
+import { FaArrowCircleRight } from 'react-icons/fa';
+
+const ChildConnect = () => {
+    /*Form fields*/
+    const [username, setUsername]=useState('');
+    const [password, setPassword]=useState('');
+    const [readOnly, setReadOnly]=useState(false);
+    /*event handle*/
+    const [errors, setErrors]=useState([]);
+    const [success, setSuccess]=useState(false);
+    const [serverError, setServerError]=useState([]);
+
+    /*btn handler*/
+    const [loader, setLoader]=useState(false);
+    const [btndisable, setBtnDisable]=useState(false);
+
+    /*navigate*/
+    const navigate = useNavigate();
+
+    /*methods:*/
+    const connect=(event)=>{
+        event.preventDefault();
+        setLoader(true);
+        setBtnDisable(true);
+        setReadOnly(true);
+
+        if(username.length>0 && password.length>0){
+            let url='http://127.0.0.1:8000/api/connectToChild';
+            let dataPost={};
+            dataPost.username=username;
+            dataPost.psw=password;
+           
+            ServiceClient.post(url,dataPost).then((response)=>{
+                if(response.status===200){
+                    setSuccess(true);
+                    setLoader(false);
+                    setReadOnly(false);
+                    setTimeout(()=>{
+                        navigate('/child');
+                    },1000)
+                }
+            }).catch((error)=>{
+                setServerError(error);
+                setLoader(false);
+                setBtnDisable(false);
+                setReadOnly(false);
+            })
+           
+        }
+    }
+
+    
+    return (
+
+        <>
+        <EventHandler
+        success={success}
+        errors={errors}
+        serverError={serverError}
+        closeErrorMessage={(data) => { if (data === true) { setErrors([]); } } } />
+        <div className="login-container">
+
+
+            <div className="title">
+                <h1>Connect</h1>
+            </div>
+            <div className="form-container connectChild">
+                <form onSubmit={connect}>
+                    <div className="emailPassword-fields grid">
+                        <label>Username</label>
+                        <input 
+                        type="text" 
+                        required 
+                        onChange={(e) => { setUsername(e.target.value); } } 
+                        readOnly={readOnly}/>
+
+                        <label>Password</label>
+                        <input 
+                        type="password" 
+                        required 
+                        onChange={(e) => { setPassword(e.target.value); } } 
+                        readOnly={readOnly}/>
+
+                    </div>
+
+                    {!loader ? <button type='submit' disabled={btndisable} className={!btndisable ? 'btn formButton connectButton' : 'btn formButton connectButton disabled'}>Connect <FaArrowCircleRight className='btn-icon' /></button> :
+                        <span className='loader createUser'></span>}
+                </form>
+            </div>
+        </div>
+        </>
+    );
+};
+export default ChildConnect;
