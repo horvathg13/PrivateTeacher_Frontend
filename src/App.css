@@ -566,3 +566,15 @@ form .roles-container.flex label {
 .button-main-container.flex .button-container .icon-text h3 {
   font-weight: 500;
 }
+
+/*Child compoennt*/
+
+.connectChild{
+  width:65% !important;
+  margin: auto;
+}
+
+.connectButton{
+  margin: 15px auto !important;
+  float:none !important;
+}
