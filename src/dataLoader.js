@@ -77,5 +77,13 @@ export const getRolesandSchools=(params)=>{
         if(response.status===200){
             return response.data
         }
-    }).catch((error)=>{console.log(error.response)});
+    })
+}
+
+export const getConnectedChildren=()=>{
+    return ServiceClient.get('http://127.0.0.1:8000/api/getConnectedChildren').then((response)=>{
+        if(response.status===200){
+            return response.data
+        }
+    })
 }
