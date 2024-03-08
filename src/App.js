@@ -13,7 +13,7 @@ import { TabMenuContextProvider, UserContextProvider } from './Context/UserConte
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
-import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks, getSchoolCourses, getSchoolCourseStatuses, getSchoolCourseInfo, getUserRoles, getRolesandSchools } from './dataLoader';
+import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks, getSchoolCourses, getSchoolCourseStatuses, getSchoolCourseInfo, getUserRoles, getRolesandSchools, getConnectedChildren } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/userHome/users';
 import UserCreate from './Users/createUser/createUser';
@@ -33,6 +33,10 @@ import SchoolCoursesList from './Schools/School/SchoolYearList/schoolYearDetails
 import SchoolCourseCreate from './Schools/School/SchoolYearList/schoolYearDetails/SchoolCourses/Create/schoolCourseCreate';
 import SchoolCourseInfo from './Schools/School/SchoolYearList/schoolYearDetails/SchoolCourses/Info/schoolCourseInfo';
 import CreateUserRole from "./Users/user/userRolesHandler/createUserRole";
+import Child from './Child/child';
+import ChildList from './Child/childList';
+import CreateChild from './Child/createChild';
+import ChildConnect from './Child/childConnect';
 
 function App() {
 
@@ -176,10 +180,31 @@ const router = createBrowserRouter([
                 loader:({params})=>{return  Promise.all ([getSchoolCourseInfo(params), getSchoolCourseStatuses()])}
               },
             ]
-          }
-         
+          },
         ]
       },
+      {
+        path:"child",
+        element:<Child/>,
+        children:
+        [
+          {
+            path:"",
+            element:<ChildList/>,
+            loader:()=>{return getConnectedChildren()}
+          },
+          {
+            path:"create",
+            element:<CreateChild/>
+          },
+          {
+            path:"connect",
+            element:<ChildConnect/>
+          }
+
+        ]
+      }
+      
       
     ],
   },
