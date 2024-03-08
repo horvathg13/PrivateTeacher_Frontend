@@ -29,7 +29,7 @@
         "name":"Child Menu",
         "role":["Parent"],
         "icon":"FaChild",
-        "url":"/child-menu"
+        "url":"/child"
     }
    
     
