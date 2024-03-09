@@ -37,6 +37,7 @@ import Child from './Child/child';
 import ChildList from './Child/childList';
 import CreateChild from './Child/createChild';
 import ChildConnect from './Child/childConnect';
+import Search from './Search/search';
 
 function App() {
 
@@ -203,7 +204,28 @@ const router = createBrowserRouter([
           }
 
         ]
-      }
+      },
+      /*{
+        path:"search",
+        element:<Search/>,
+        children:
+        [
+          {
+            path:"teacher",
+            element:<SearchTeacher/>,
+            
+          },
+          {
+            path:"school",
+            element:<SearchSchool/>
+          },
+          {
+            path:"course",
+            element:<SearchCourse/>
+          }
+
+        ]
+      }*/
       
       
     ],
