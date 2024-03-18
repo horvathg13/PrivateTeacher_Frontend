@@ -23,11 +23,6 @@ const Search = () => {
                 "name":"School",
                 "url":`/search/school`
             },
-            {
-                "id":"3",
-                "name":"Course",
-                "url":`/search/course`
-            }
             
         ]);
     },[])
@@ -43,8 +38,8 @@ const Search = () => {
         },
         {
             "id":"2",
-            "name":"Users",
-            "url":"/users",
+            "name":"Search",
+            "url":"/search",
             "icon":"IoIosArrowForward",
             "end":true,
         },
