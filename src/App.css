@@ -177,7 +177,9 @@ button{
   background: #aabbd1d0 !important;
   cursor: auto;
 }
-
+.btn.disabled:hover{
+  transform: none;
+}
 .formButton{
   background: var(--ButtonBlue);
   color: var(--whiteColorDeam);
@@ -440,6 +442,16 @@ form .roles-container.flex label {
   left: 0;
   right: 0;
 }
+.popupWhite{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgb(246, 249, 250);
+  top: 0;
+  z-index: 999;
+  left: 0;
+  right: 0;
+}
 
 /*schoolYear component*/
 
@@ -460,6 +472,29 @@ form .roles-container.flex label {
   font-size: 2.1rem;
   color: var(--DarkBlue);
   margin: 5px 10px;
+}
+.closeModal .closeModalIcon {
+  float: right;
+  font-size: 2.1rem;
+  color: var(--DarkBlue);
+  margin: 5px 10px;
+}
+.closeModal .closeModalIcon:hover {
+  color: var(--ButtonBlue);
+  cursor: pointer;
+}
+.closeModalWhite .closeModalIcon{
+  float: right;
+  font-size: 2.1rem;
+  color: var(--whiteColorDeam);
+  margin: 5px 10px;
+}
+.closeModalWhite .closeModalIcon:hover{
+  color: var(--ButtonBlue);
+  cursor: pointer;
+}
+.formTitle {
+  width: 100%;
 }
 .school-year-details-popup-form.flex .closeModal .closeModalIcon:hover {
   color: var(--ButtonBlue);
@@ -577,4 +612,76 @@ form .roles-container.flex label {
 .connectButton{
   margin: 15px auto !important;
   float:none !important;
+}
+
+/*Label Component*/
+
+.label-close-button-container{
+  width: auto;
+  height: 50px;
+}
+
+.label-main{
+  width: 800px;
+  height:calc(100% - 100px);
+  margin: 0 auto;
+  background: var(--whiteColorDeam);
+  border-radius: 10px;
+  border: 2px solid var(--DarkBlue);
+  box-shadow: 2px 2px 8px rgb(26, 26, 26);
+}
+.label-header{
+  padding: 3px;
+}
+.label-header h2{
+  border-bottom: 3px dotted var(--GreenColor);
+  padding-bottom: 5px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.label-search{
+  height: 50px;
+  justify-content: space-evenly;
+}
+.label-search input{
+  width: 70%;
+}
+.label-search button{
+  width:20%;
+}
+.label-results{
+  width: 100%;
+  height: 50%;
+  margin: 15px 0;
+  background-color: var(--GreyTransparent);
+  overflow: auto;
+}
+.label-result{
+  border: 2px solid var(--GreyColor);
+  width: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 60px;
+  margin: 5px 5px;
+  border-radius: 5px;
+}
+.label-result:hover{
+  border: 2px solid var(--ButtonBlue);
+  cursor: pointer;
+}
+.label-result .label-action-icon{
+  margin: auto 15px;
+  font-size: 22px;
+}
+.label-success{
+  color: var(--GreenColor);
+}
+.label-action-buttons{
+  justify-content: space-between;
+  margin: auto 10px;
+  height: auto;
+}
+.loader.add-label{
+  border-top: 4px solid var(--DarkBlue) !important;
+  margin:5% 45%;
 }
