@@ -23,7 +23,7 @@
         "name":"Search Teacher",
         "role":["Admin", "SchoolAdmin","Teacher", "Parent"],
         "icon":"FaSearch",
-        "url":"/search-teachers"
+        "url":"/search"
     },
     {
         "name":"Child Menu",
