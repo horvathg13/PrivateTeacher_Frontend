@@ -1,11 +1,11 @@
 import { useState } from "react";
 import EventHandler from "../EventHandler/eventhandler";
-import "./schoolCreate.css";
 import { useNavigate } from "react-router-dom";
 import SideMenu from "../CommonComponents/SideMenu/sidemenu";
 import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
 import { FaArrowCircleRight } from "react-icons/fa";
 import ServiceClient from "../ServiceClient";
+import SearchResult from "./searchResult";
         
 const SearchTeacher = () => {
 
@@ -27,6 +27,11 @@ const SearchTeacher = () => {
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
 
+    /*Popup control */
+
+    const [title, setTitle]=useState();
+    const [transitionProp, setTransitionProp]=useState(false);
+
     /*Methods: */
 
     const searchTeacher=(e)=>{
@@ -35,11 +40,9 @@ const SearchTeacher = () => {
         setLoader(true);
 
         let dataPost={};
-        dataPost.fname = fname;
-        dataPost.lname = lname;
         dataPost.email = email;
 
-        let url='http://127.0.0.1:8000/api/searchTeacher';
+        let url=`http://127.0.0.1:8000/api/searchTeacher`;
         ServiceClient.post(url,dataPost).then((response)=>{
             if(response.status===200){
                 setSuccess(true);
@@ -50,6 +53,8 @@ const SearchTeacher = () => {
                     setSuccess(false);
                 },2000)
                 setResult(response.data);
+                setTitle('Search Result');
+                setTransitionProp(true);
             }
         }).catch((error)=>{
             setServerError(error);
@@ -69,28 +74,18 @@ const SearchTeacher = () => {
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+        <SearchResult
+        transitionProp={transitionProp}
+        closeModal={(data)=>{if(data===true){setTransitionProp(!transitionProp)}}}
+        data={result}
+        title={title}
+        />
+
         <div className="content-main-container">
-            <div className="title"><h2>School Creation</h2></div>
+            <div className="title"><h2>Search Teacher</h2></div>
             <form onSubmit={(e)=>searchTeacher(e)} className="SchoolForm">
                 
                 <div className="school-form flex">
-
-                    <div className="flex">
-                        <label>Firstname</label>
-                        <input type="text" 
-                        onChange={(e)=>{setFname(e.target.value)}}
-                        value={fname}/>
-                    </div>    
-                    
-                
-
-                    <div className="flex">
-                        <label>Lastname</label>
-                        <input type="text" 
-                        onChange={(e)=>{setLname(e.target.value)}}
-                        value={lname}/>
-                    </div>
-                    
                    
                     <div className="flex">
                         <label>Email</label>

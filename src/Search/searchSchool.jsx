@@ -1,11 +1,11 @@
 import { useState } from "react";
 import EventHandler from "../EventHandler/eventhandler";
-import "./schoolCreate.css";
 import { useNavigate } from "react-router-dom";
 import SideMenu from "../CommonComponents/SideMenu/sidemenu";
 import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
 import { FaArrowCircleRight } from "react-icons/fa";
 import ServiceClient from "../ServiceClient";
+import SearchResult from "./searchResult";
         
 const SearchSchool = () => {
 
@@ -31,6 +31,11 @@ const SearchSchool = () => {
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
+
+    /*Popup control */
+
+    const [title, setTitle]=useState();
+    const [transitionProp, setTransitionProp]=useState(false);
 
     /*Methods: */
 
@@ -59,6 +64,8 @@ const SearchSchool = () => {
                 },2000)
                 formClear();
                 setResult(response.data);
+                setTitle('Search Result');
+                setTransitionProp(true);
             }
         }).catch((error)=>{
             setServerError(error);
@@ -81,6 +88,12 @@ const SearchSchool = () => {
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+        <SearchResult
+        transitionProp={transitionProp}
+        closeModal={(data)=>{if(data===true){setTransitionProp(!transitionProp)}}}
+        data={result}
+        title={title}
+        />
         <div className="content-main-container">
             <div className="title"><h2>School Search</h2></div>
             <form onSubmit={(e)=>createSchool(e)} className="SchoolForm">
