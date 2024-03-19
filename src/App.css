@@ -641,7 +641,7 @@ form .roles-container.flex label {
 }
 .label-search{
   height: 50px;
-  justify-content: space-evenly;
+  justify-content: space-evenly !important;
 }
 .label-search input{
   width: 70%;
@@ -658,9 +658,9 @@ form .roles-container.flex label {
 }
 .label-result{
   border: 2px solid var(--GreyColor);
-  width: auto;
+  width: auto !important;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-between !important;
   padding: 0 60px;
   margin: 5px 5px;
   border-radius: 5px;
@@ -677,9 +677,24 @@ form .roles-container.flex label {
   color: var(--GreenColor);
 }
 .label-action-buttons{
-  justify-content: space-between;
+  justify-content: space-between !important;
   margin: auto 10px;
   height: auto;
+  width: auto !important;
+}
+.label-select-button{
+  background: var(--ButtonBlue);
+  color: var(--whiteColorDeam);
+  padding: 15px 15px;
+  border: none;
+  border-radius: 10px;
+  margin: 15px 5px !important;
+  width: 130px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  float: left;
+  transition: .3s ease-in-out;
 }
 .loader.add-label{
   border-top: 4px solid var(--DarkBlue) !important;
@@ -690,4 +705,22 @@ form .roles-container.flex label {
 }
 .label-missing:hover{
   border: 2px solid var(--GreenColor);
+}
+
+/*Label Selector*/
+
+.selector-main{
+  width: 66%;
+  height: fit-content;
+}
+
+.selector-main .selector-input{
+  width:90% !important;
+  border: 1px solid grey;
+}
+.selector-icon{
+  margin: 0 10px;
+  font-size: 23px;
+  color: var(--GreenColor);
+  cursor: pointer;
 }
