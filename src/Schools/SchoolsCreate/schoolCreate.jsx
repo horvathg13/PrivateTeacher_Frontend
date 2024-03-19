@@ -7,6 +7,7 @@ import ComponentTitle from "../../CommonComponents/ComponentTitle/componentTitle
 import { FaArrowCircleRight } from "react-icons/fa";
 import ServiceClient from "../../ServiceClient";
 import LabelPopup from "../../CommonComponents/Label/labelPopup";
+import LabelSelector from "../../CommonComponents/Label/labelSelect";
         
 const SchoolCreate = () => {
 
@@ -75,7 +76,7 @@ const SchoolCreate = () => {
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-        <LabelPopup></LabelPopup>
+        
         <div className="content-main-container">
             <div className="title"><h2>School Creation</h2></div>
             <form onSubmit={(e)=>createSchool(e)} className="SchoolForm">
