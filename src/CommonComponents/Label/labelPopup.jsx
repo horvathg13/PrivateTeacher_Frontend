@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { FaArrowRight, FaCheck, FaMinusCircle, FaPlusCircle, FaSearch } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaArrowRight, FaCheck, FaMinusCircle, FaPlus, FaPlusCircle, FaSearch } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
+import ServiceClient from "../../ServiceClient";
 
        
 const LabelPopup = () => {
@@ -8,6 +9,8 @@ const LabelPopup = () => {
     /*Fields */
     const [keyword, setKeyword]=useState();
     const [labels, setLabels]=useState([]);
+    const [selectedLabels, setSelectedLabels]=useState([]);
+    const [check, setCheck]=useState(false);
 
     /*Btn handle*/
     const [btndisabled, setBtnDisabled]=useState(false);
@@ -20,10 +23,79 @@ const LabelPopup = () => {
 
     /*Methods: */
     const Search=(e)=>{
+        e.preventDefault();
+        setBtnDisabled(true);
+        setLoader(true);
 
+        if(keyword){
+            setLabels([]);
+            let dataPost={};
+            dataPost.keyword = keyword;
+            
+            let url='http://127.0.0.1:8000/api/searchLabel';
+            ServiceClient.post(url,dataPost).then((response)=>{
+                if(response.status===200){
+                    setLabels(response.data);
+                    setLoader(false);
+                    setBtnDisabled(false);
+                    setErrors([]);
+                    const selectedIndex = selectedLabels.findIndex(label => label.id === response.data.id);
+                    console.log(selectedIndex);
+                    if(selectedIndex !== -1) {
+                        setCheck(true);
+                    }else{
+                        setCheck(false);
+                    }
+                }
+            }).catch((error)=>{
+                setLabels([]);
+                setServerError(error);
+                setErrors(error.response.message ? error.response.message :'Label does not exists');
+                setLoader(false);
+                setBtnDisabled(false);
+            })
+        }
     }
     const Select=(e)=>{
-        
+        if(e){
+            const selectedIndex = selectedLabels.findIndex(label => label.id === e.id);
+            if(selectedIndex !== -1) {
+                const newLabels = [...selectedLabels];
+                newLabels.splice(selectedIndex, 1);
+                setSelectedLabels(newLabels);
+                setCheck(false);
+            }else{
+                setSelectedLabels([...selectedLabels, e]);
+                setCheck(true);
+            }
+        }
+    }
+    const createLabel=()=>{
+        setBtnDisabled(true);
+        setLoader(true);
+
+        if(keyword){
+            let dataPost={};
+            dataPost.keyword = keyword;
+            
+            let url='http://127.0.0.1:8000/api/createLabel';
+            ServiceClient.post(url,dataPost).then((response)=>{
+                if(response.status===200){
+                    setSuccess(true);
+                    setLoader(false);
+                    setBtnDisabled(false);
+                    Search(keyword);
+                    setTimeout(()=>{
+                        setSuccess(false);
+                    },2000)
+                    
+                }
+            }).catch((error)=>{
+                setServerError(error);
+                setLoader(false);
+                setBtnDisabled(false);
+            })
+        }
     }
     return (
         <div className="popup">
@@ -35,20 +107,40 @@ const LabelPopup = () => {
                     <h2>Add labels to your course</h2>
                 </div>
                 <div className="label-search flex">
-                    <input placeholder="Search a label..."  disabled={btndisabled}></input>
-                    <button className={btndisabled ? "btn formButton disabled" : "btn formButton"} disabled={btndisabled}><FaSearch className="btn-icon"/>Search</button>
+                    <input placeholder="Search a label..."  
+                    onChange={(e)=>setKeyword(e.target.value)} 
+                    value={keyword} 
+                    disabled={btndisabled}
+                    />
+                    <button 
+                    className={btndisabled ? "btn formButton disabled" : "btn formButton"} 
+                    disabled={btndisabled}
+                    onClick={(e)=>Search(e)}
+                    ><FaSearch className="btn-icon"/>
+                    Search</button>
                 </div>
                 <div className="label-results">
                     {!loader ?
-                    <div className="label-result flex">
-                        <h4>Music</h4>
-                        <div className="label-action"><FaCheck className="label-action-icon label-success" /></div>
-                    </div>
-                    :
-                    <span className='loader add-label'></span>}
+                        Object.entries(labels).length ?
+                            <div className="label-result flex" key={labels.id} onClick={() => Select(labels)}>
+                                <h4>{labels.label}</h4>
+                                <div className="label-action">{check === true ? <FaCheck className="label-action-icon label-success" /> : null}</div>
+                            </div>
+                         : null
+                        :
+                        <span className='loader add-label'></span>
+                    }
+                    
+                    {errors.length ? 
+                        <div className="label-result label-missing flex" onClick={createLabel}>
+                            <h4>Label does not exist, but you can create this one.</h4>
+                            <div className="label-action"><FaPlus className="label-action-icon label-success" /></div>
+                        </div>
+                        : null
+                    }
                 </div>
                 <div className="label-action-buttons flex">
-                    <div className="label-header"><h4>Selected: {labels.length}</h4></div>
+                    <div className="label-header"><h4>Selected: {selectedLabels.length}{selectedLabels.map(e=>e.label)}</h4></div>
                     <button className="btn formButton">Select<FaArrowRight className="btn-icon"/></button>
                 </div>
             </div>
