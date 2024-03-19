@@ -9,6 +9,7 @@ import { GrUpdate } from "react-icons/gr";
 import { FaArrowCircleRight, FaTrashAlt } from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../../../../../../Context/UserContext";
 import Select from "../../../../../../CommonComponents/Select/select";
+import LabelSelector from "../../../../../../CommonComponents/Label/labelSelect";
         
 const SchoolCourseCreate = () => {
     /*Loader */
@@ -23,7 +24,7 @@ const SchoolCourseCreate = () => {
     const [doubleTime, setDoubleTime]=useState();
     const [couresPricePerLesson, setCouresPricePerLesson]=useState();
     const [status, setStatus]=useState();
-    
+    const [labels, setLabels]=useState();
     
     let { schoolId, schoolYearId }=useParams();
 
@@ -63,6 +64,7 @@ const SchoolCourseCreate = () => {
         dataPost.doubleTime=doubleTime;
         dataPost.couresPricePerLesson=couresPricePerLesson;
         dataPost.status=status;
+        dataPost.labels=labels;
 
         let url="http://127.0.0.1:8000/api/createSchoolCourse";
 
@@ -165,7 +167,11 @@ const SchoolCourseCreate = () => {
                             value={couresPricePerLesson}
                             readOnly={readOnly}/>
                         </div>
-
+                        <div className="flex">
+                            <label>Labels</label>
+                            <LabelSelector 
+                            labelEmit={(data)=>setLabels(data)}/>
+                        </div>
                         <div className="flex">
                             <label>Status</label>
                             <div className="selectContainer">
@@ -176,6 +182,7 @@ const SchoolCourseCreate = () => {
                             </div>
                             
                         </div>
+                        
                         
                     </div>
                     
