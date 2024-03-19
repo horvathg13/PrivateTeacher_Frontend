@@ -685,3 +685,9 @@ form .roles-container.flex label {
   border-top: 4px solid var(--DarkBlue) !important;
   margin:5% 45%;
 }
+.label-missing{
+  border: 2px solid var(--RedColor);
+}
+.label-missing:hover{
+  border: 2px solid var(--GreenColor);
+}
