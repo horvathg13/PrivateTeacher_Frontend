@@ -22,8 +22,7 @@ const LabelPopup = () => {
     const [serverError, setServerError]=useState([]);
 
     /*Methods: */
-    const Search=(e)=>{
-        e.preventDefault();
+    const Search=()=>{
         setBtnDisabled(true);
         setLoader(true);
 
@@ -84,7 +83,7 @@ const LabelPopup = () => {
                     setSuccess(true);
                     setLoader(false);
                     setBtnDisabled(false);
-                    Search(keyword);
+                    Search();
                     setTimeout(()=>{
                         setSuccess(false);
                     },2000)
@@ -115,7 +114,7 @@ const LabelPopup = () => {
                     <button 
                     className={btndisabled ? "btn formButton disabled" : "btn formButton"} 
                     disabled={btndisabled}
-                    onClick={(e)=>Search(e)}
+                    onClick={Search}
                     ><FaSearch className="btn-icon"/>
                     Search</button>
                 </div>
