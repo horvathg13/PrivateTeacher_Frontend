@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowRight, FaCheck, FaMinusCircle, FaPlus, FaPlusCircle, FaSearch } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import ServiceClient from "../../ServiceClient";
-
+import {CSSTransition} from 'react-transition-group';
+import '../../transitions.css'
        
-const LabelPopup = () => {
+const LabelPopup = ({labelTransition, closeModal, selection, selected}) => {
 
     /*Fields */
     const [keyword, setKeyword]=useState();
@@ -96,10 +97,17 @@ const LabelPopup = () => {
             })
         }
     }
+
+    useEffect(()=>{
+        if(selected){setSelectedLabels(selected)}
+    },[selected]);
+
+    const nodeRef = useRef(null);
     return (
-        <div className="popup">
+        <CSSTransition nodeRef={nodeRef} in={labelTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
+        <div className="popup" ref={nodeRef}>
             <div className="label-close-button-container closeModalWhite">
-                <IoMdCloseCircle className="closeModalIcon" />
+                <IoMdCloseCircle className="closeModalIcon" onClick={()=>closeModal(true)}/>
             </div>
             <div className="label-main">
                 <div className="label-header">
@@ -139,11 +147,12 @@ const LabelPopup = () => {
                     }
                 </div>
                 <div className="label-action-buttons flex">
-                    <div className="label-header"><h4>Selected: {selectedLabels.length}{selectedLabels.map(e=>e.label)}</h4></div>
-                    <button className="btn formButton">Select<FaArrowRight className="btn-icon"/></button>
+                    <div className="label-header"><h4>Selected: {selectedLabels.length}</h4></div>
+                    <button className="btn label-select-button" onClick={()=>[selection(selectedLabels), closeModal(true)]}>Select<FaArrowRight className="btn-icon"/></button>
                 </div>
             </div>
         </div>
+        </CSSTransition>
     );
 };
 export default LabelPopup;
