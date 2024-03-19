@@ -10,6 +10,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../../../../../../Context/UserContext";
 import TabMenu from "../../../../../../CommonComponents/TabMenu/tabMenu";
 import Select from "../../../../../../CommonComponents/Select/select";
+import LabelSelector from "../../../../../../CommonComponents/Label/labelSelect";
         
 const SchoolCourseInfo = () => {
 
@@ -27,6 +28,7 @@ const SchoolCourseInfo = () => {
     const [doubleTime, setDoubleTime]=useState(courseData?.courses?.double_time);
     const [couresPricePerLesson, setCouresPricePerLesson]=useState(courseData?.courses?.course_price_per_lesson);
     const [status, setStatus]=useState(courseData?.courses?.status_id);
+    const [labels, setLabels]=useState(courseData?.courses?.labels);
     
     const [readOnly, setReadOnly]=useState(true);
     const [selectedRow, setSelectedRow]=useState();
@@ -89,6 +91,7 @@ const SchoolCourseInfo = () => {
         dataPost.doubleTime=doubleTime;
         dataPost.couresPricePerLesson=couresPricePerLesson;
         dataPost.status=status;
+        dataPost.labels=labels;
 
 
         let url="http://127.0.0.1:8000/api/createSchoolCourse";
@@ -224,7 +227,12 @@ const SchoolCourseInfo = () => {
                         value={couresPricePerLesson}
                         readOnly={readOnly}/>
                     </div>
-
+                    <div className="flex">
+                            <label>Labels</label>
+                            <LabelSelector 
+                            labelEmit={(data)=>setLabels(data)}
+                            getLabels={labels}/>
+                        </div>
                     <div className="flex">
                         <label>Status</label>
                         <div className="selectContainer">
