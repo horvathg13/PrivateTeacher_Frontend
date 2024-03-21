@@ -1,16 +1,18 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import "../../../../transitions.css";
 import { IoIosCloseCircle } from 'react-icons/io';
 import { CSSTransition } from 'react-transition-group';
 import { useParams } from 'react-router-dom';
+import ServiceClient from '../../../../ServiceClient';
         
-const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData}) => {
+const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData, schoolYearStatuses}) => {
     const [year, setYear]=useState();
     const [name, setName]=useState();
     const [startDate, setStartDate]=useState();
     const [endDate, setEndDate]=useState();
     const nodeRef = useRef(null);
     const {schoolId}=useParams();
+    const [statuses, setStatuses]=useState([]);
 
    /* Methods:*/ 
 
@@ -27,6 +29,10 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
     emitData(dataForm);
 
    }
+
+   useEffect(()=>{
+    setStatuses(schoolYearStatuses);
+   },[statuses])
 
     return (
         <CSSTransition 
@@ -71,6 +77,13 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                             type='date' 
                             onChange={(e) => setEndDate(e.target.value)}
                             required></input>
+                        </div>
+                        <div className="flex">
+                            <label>Status </label>
+                            <select>
+                                {statuses ? statuses.map((e,i)=>(
+                                <option key={i} value={e.status}>{e.status}</option>)):null}
+                            </select>
                         </div>
                     </div>
                     <button type='submit'
