@@ -128,12 +128,12 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected}) => {
                 </div>
                 <div className="label-results">
                     {!loader ?
-                        Object.entries(labels).length ?
-                            <div className="label-result flex" key={labels.id} onClick={() => Select(labels)}>
-                                <h4>{labels.label}</h4>
+                        labels.length !==0 ? labels.map((e,i)=>(
+                            <div className="label-result flex" key={i} onClick={() => Select(labels)}>
+                                <h4>{e.label}</h4>
                                 <div className="label-action">{check === true ? <FaCheck className="label-action-icon label-success" /> : null}</div>
                             </div>
-                         : null
+                        )) : null
                         :
                         <span className='loader add-label'></span>
                     }
