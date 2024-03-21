@@ -13,7 +13,7 @@ import { TabMenuContextProvider, UserContextProvider } from './Context/UserConte
 import UserDetailsComponent from './Users/user/userDetails/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
-import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks, getSchoolCourses, getSchoolCourseStatuses, getSchoolCourseInfo, getUserRoles, getRolesandSchools, getConnectedChildren } from './dataLoader';
+import { generatedUserLoader, userDataLoader, getSchoolInfo, getSchoolYearInfos, getSchoolBreaks, getSchoolCourses, getSchoolCourseStatuses, getSchoolCourseInfo, getUserRoles, getRolesandSchools, getConnectedChildren, getSchoolYearStatuses } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/userHome/users';
 import UserCreate from './Users/createUser/createUser';
@@ -146,11 +146,12 @@ const router = createBrowserRouter([
           {
             path:"school-year-list",
             element:<SchoolYearList/>,
+            loader:()=>{return getSchoolYearStatuses()},
           },
           {
             path:"school-year/:schoolYearId",
             element:<SchoolYearDetails/>,
-            loader:({params})=>{ return getSchoolYearInfos(params) },
+            loader:({params})=>{ return Promise.all ([getSchoolYearInfos(params), getSchoolYearStatuses()]) },
             children:
             [
               {
