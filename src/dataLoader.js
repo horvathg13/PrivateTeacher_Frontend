@@ -87,3 +87,15 @@ export const getConnectedChildren=()=>{
         }
     })
 }
+
+export const getSchoolYearStatuses=()=>{
+    
+    return ServiceClient.post('http://127.0.0.1:8000/api/getSchoolYearStatuses').then((response)=>{
+        if(response.status===200){
+           return response.data;
+        }
+    }).catch((error)=>{
+        console.log(error);
+    })
+    
+}
