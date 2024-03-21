@@ -29,7 +29,7 @@ p, h1, h2, h3, h4, h5{
   align-items: center;
 }
 
-input{
+input, select, select option{
   font-size: 100%;
   font-family: 'Poppins';
 }
@@ -455,6 +455,7 @@ form .roles-container.flex label {
 
 /*schoolYear component*/
 
+
 .school-year-details-popup-form.flex {
   width: 500px;
   height: 480px;
@@ -516,7 +517,10 @@ form .roles-container.flex label {
 .school-year-details-popup-form.flex .school-year-details-popup.flex input {
   width: 303px;
 }
-
+.addSchoolYear select{
+  width: 311px;
+  height: 31px;
+}
 .addSchoolYear-main-container {
   width: 100%;
   height: 100%;
@@ -540,7 +544,7 @@ form .roles-container.flex label {
   flex-direction: column;
   width: fit-content;
   align-items: end;
-  margin: 10% auto;
+  margin: 5% auto;
   margin-bottom: 10px;
 }
 .addSchoolYear-main-container .addSchoolYear-form .addSchoolYear label {
@@ -561,6 +565,12 @@ form .roles-container.flex label {
 .addSchoolYear-main-container .addSchoolYear-form .closeModal .closeModalIcon:hover {
   color: var(--ButtonBlue);
   cursor: pointer;
+}
+
+.school-year-infos-select{
+  width: 66%;
+  height: 31px;
+  
 }
 /*Tile containers*/
 .button-main-container.flex {
