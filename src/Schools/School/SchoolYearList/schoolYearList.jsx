@@ -17,6 +17,7 @@ const SchoolYearList = () => {
     let { schoolId }=useParams();
     const [schoolYears, setSchoolYears]=useState();
     const [update, setUpdate]=useState(false);
+    const schoolYearStatuses = useLoaderData();
     
     /*Popup control */
     const [showAreYouSure, setShowAreYouSure]=useState(false);
@@ -139,6 +140,7 @@ const SchoolYearList = () => {
             emitData={(dataForm)=>{CreateSchoolYear(dataForm)}}
             loader={formLoader}
             btndisabled={btndisabled}
+            schoolYearStatuses={schoolYearStatuses}
         />
         <AreYouSure
         name={AreYouSureName}
