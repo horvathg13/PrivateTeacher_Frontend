@@ -12,7 +12,7 @@ import TabMenu from "../../../../../CommonComponents/TabMenu/tabMenu";
         
 const SchoolYearInfos = () => {
     /*Context */
-    const schoolData = useContext(schoolYearDetailsContext);
+    const [schoolData, statuses] = useContext(schoolYearDetailsContext);
 
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
@@ -59,6 +59,8 @@ const SchoolYearInfos = () => {
     const [schoolYearStart, setSchoolYearStart]=useState();
     const [schoolYearEnd, setSchoolYearEnd]=useState();
     const [readOnly, setReadOnly]=useState(true);
+    const [schoolYearStatus, setSchoolYearStatus]=useState();
+    const [selectedStatus, setSelectedStatus]=useState();
     
 
     /*Popup control */
@@ -108,6 +110,7 @@ const SchoolYearInfos = () => {
                 setSchoolYearName(response.data.name);
                 setSchoolYearStart(response.data.start);
                 setSchoolYearEnd(response.data.end);
+                setSchoolYearStatus(response.data.status);
                 
                 setLoader(false);
                 setDeleteLoader(false);
@@ -117,7 +120,6 @@ const SchoolYearInfos = () => {
             //setLoader(false);
         })
     }
-
     const updateSchoolYearInfos=(e)=>{
         
         e.preventDefault();
@@ -126,10 +128,12 @@ const SchoolYearInfos = () => {
 
         let dataPost={};
         dataPost.id=schoolYearId;
+        dataPost.schoolId=schoolId;
         dataPost.year=schoolYear;
         dataPost.name=schoolYearName;
         dataPost.startDate=schoolYearStart;
         dataPost.endDate=schoolYearEnd;
+        dataPost.statusId=selectedStatus ? selectedStatus : schoolYearStatus.id;
 
         let url="http://127.0.0.1:8000/api/createSchoolYear";
         ServiceClient.post(url, dataPost).then((response)=>{
@@ -242,6 +246,15 @@ const SchoolYearInfos = () => {
                         onChange={(e)=>{setSchoolYearEnd(e.target.value)}}
                         value={schoolYearEnd}
                         readOnly={readOnly}/>
+                    </div>
+                    <div className="flex">
+                        <label>Status</label>
+                        {readOnly ? <input type="text" 
+                        value={schoolYearStatus?.status}
+                        readOnly={readOnly}/>
+                        :<select className="school-year-infos-select" onChange={(e)=>{setSelectedStatus(e.target.value)}}>
+                            { statuses ? statuses.map((e,i)=>(<option key={i} value={e.id}>{e.status}</option>)):null}
+                        </select>}
                     </div>
                     
                 </div>
