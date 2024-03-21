@@ -17,7 +17,7 @@ const SchoolYearDetails = () => {
     /*datas */
    
     let { schoolId, schoolYearId }=useParams();
-    const schoolData = useLoaderData();
+    const [schoolData, statuses] = useLoaderData();
 
     /*event handle*/
     const [errors, setErrors]=useState([]);
@@ -98,7 +98,7 @@ const SchoolYearDetails = () => {
    
     return (
         <>
-        <schoolYearDetailsContext.Provider value={schoolData}>
+        <schoolYearDetailsContext.Provider value={[schoolData, statuses]}>
             <div className="content-main-container">
                 
                 <Outlet/>
