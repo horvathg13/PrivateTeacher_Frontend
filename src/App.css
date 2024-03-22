@@ -734,3 +734,8 @@ form .roles-container.flex label {
   color: var(--GreenColor);
   cursor: pointer;
 }
+/*Search*/
+
+.searchCourse{
+  height: auto;
+}
