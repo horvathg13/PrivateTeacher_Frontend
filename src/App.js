@@ -40,6 +40,7 @@ import ChildConnect from './Child/childConnect';
 import Search from './Search/search';
 import SearchTeacher from './Search/searchTeacher';
 import SearchSchool from './Search/searchSchool';
+import SearchCourse from './Search/searchCourse';
 
 function App() {
 
@@ -221,6 +222,10 @@ const router = createBrowserRouter([
           {
             path:"school",
             element:<SearchSchool/>
+          },
+          {
+            path:"course",
+            element:<SearchCourse/>
           },
 
         ]
