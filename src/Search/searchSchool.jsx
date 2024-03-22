@@ -39,7 +39,7 @@ const SearchSchool = () => {
 
     /*Methods: */
 
-    const createSchool=(e)=>{
+    const searchSchool=(e)=>{
         e.preventDefault();
         setBtnDisabled(true);
         setLoader(true);
@@ -96,7 +96,7 @@ const SearchSchool = () => {
         />
         <div className="content-main-container">
             <div className="title"><h2>School Search</h2></div>
-            <form onSubmit={(e)=>createSchool(e)} className="SchoolForm">
+            <form onSubmit={(e)=>searchSchool(e)} className="SchoolForm">
                 
                 <div className="school-form flex">
 
@@ -155,7 +155,7 @@ const SearchSchool = () => {
                     type='submit' 
                     disabled={btndisabled} 
                     className={btndisabled ? 'btn disabled':'btn formButton'}>
-                        Create <FaArrowCircleRight className='btn-icon'/>
+                        Search <FaArrowCircleRight className='btn-icon'/>
                     </button>:
                     <span className='loader schoolCreate'></span>
                 }

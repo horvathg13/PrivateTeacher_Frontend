@@ -23,6 +23,11 @@ const Search = () => {
                 "name":"School",
                 "url":`/search/school`
             },
+            {
+                "id":"3",
+                "name":"Course",
+                "url":`/search/course`
+            },
             
         ]);
     },[])
