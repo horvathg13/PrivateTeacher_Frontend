@@ -57,18 +57,24 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected}) => {
         }
     }
     const Select=(e)=>{
-        if(e){
-            const selectedIndex = selectedLabels.findIndex(label => label.id === e.id);
-            if(selectedIndex !== -1) {
-                const newLabels = [...selectedLabels];
-                newLabels.splice(selectedIndex, 1);
-                setSelectedLabels(newLabels);
-                setCheck(false);
-            }else{
-                setSelectedLabels([...selectedLabels, e]);
-                setCheck(true);
-            }
+       
+        const selectedIndex = selectedLabels.findIndex(label => label.id === e.id);
+        if(selectedIndex !== -1) {
+            const newLabels = [...selectedLabels];
+            newLabels.splice(selectedIndex, 1);
+            setSelectedLabels(newLabels);
+            setCheck(false);
+        }else{
+            setSelectedLabels([...selectedLabels, e]);
+            setCheck(true);
         }
+        shouldCheck(e);
+        
+    }
+    const shouldCheck=(e)=>{
+        const check = selectedLabels.filter(label => label.id === e.id);
+        const result = check.length > 0;
+        return result;
     }
     const createLabel=()=>{
         setBtnDisabled(true);
@@ -100,6 +106,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected}) => {
 
     useEffect(()=>{
         if(selected){setSelectedLabels(selected)}
+        
     },[selected]);
 
     const nodeRef = useRef(null);
@@ -129,9 +136,9 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected}) => {
                 <div className="label-results">
                     {!loader ?
                         labels.length !==0 ? labels.map((e,i)=>(
-                            <div className="label-result flex" key={i} onClick={() => Select(labels)}>
+                            <div className="label-result flex" key={i} onClick={() => Select(e)}>
                                 <h4>{e.label}</h4>
-                                <div className="label-action">{check === true ? <FaCheck className="label-action-icon label-success" /> : null}</div>
+                                <div className="label-action">{shouldCheck(e) ? <FaCheck className="label-action-icon label-success" />:null}</div>
                             </div>
                         )) : null
                         :
