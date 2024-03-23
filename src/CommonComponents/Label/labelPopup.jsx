@@ -5,7 +5,7 @@ import ServiceClient from "../../ServiceClient";
 import {CSSTransition} from 'react-transition-group';
 import '../../transitions.css'
        
-const LabelPopup = ({labelTransition, closeModal, selection, selected}) => {
+const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) => {
 
     /*Fields */
     const [keyword, setKeyword]=useState();
@@ -118,10 +118,10 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected}) => {
             </div>
             <div className="label-main">
                 <div className="label-header">
-                    <h2>Add labels to your course</h2>
+                    <h2>{title ? title:null}</h2>
                 </div>
                 <div className="label-search flex">
-                    <input placeholder="Search a label..."  
+                    <input placeholder="Type to search..."
                     onChange={(e)=>setKeyword(e.target.value)} 
                     value={keyword} 
                     disabled={btndisabled}
