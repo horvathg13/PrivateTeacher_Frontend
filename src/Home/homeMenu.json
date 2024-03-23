@@ -20,7 +20,7 @@
         "url":"/messages"
     },
     {
-        "name":"Search Teacher",
+        "name":"Search",
         "role":["Admin", "SchoolAdmin","Teacher", "Parent"],
         "icon":"FaSearch",
         "url":"/search"
