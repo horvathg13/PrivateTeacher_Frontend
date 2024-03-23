@@ -19,24 +19,20 @@ const School = () => {
             },
             {
                 "id":"2",
-                "name":"School Year",
+                "name":"School Years",
                 "url":`/school/${schoolId}/school-year-list`
             },
             {
                 "id":"3",
-                "name":"Courses",
-                "url":""
-            },
-            {
-                "id":"4",
                 "name":"Days and Times",
                 "url":""
             },
             {
-                "id":"5",
-                "name":"Students",
+                "id":"4",
+                "name":"Personal conditions",
                 "url":""
             },
+
             
         ])
     },[])
