@@ -97,5 +97,13 @@ export const getSchoolYearStatuses=()=>{
     }).catch((error)=>{
         console.log(error);
     })
-    
+}
+export const getTeachingDays=(params)=>{
+    return ServiceClient.post(`http://127.0.0.1:8000/api/getTeachingDays/${params.schoolId}`).then((response)=>{
+        if(response.status===200){
+            return response.data;
+        }
+    }).catch((error)=>{
+        console.log(error);
+    })
 }
