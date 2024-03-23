@@ -147,9 +147,13 @@ const SchoolYearList = () => {
         answer={functionControl}
         transitionProp={areYouSureTransitionProp}/>
         <div className="content-main-container">
-            
+            <div className="title">
+                <h2><FaPlus className='table-action-icon' onClick={()=>setTransitionProp(true)}/></h2>
+            </div>
+
             <div className="table-main-container">
-                {!loader ? 
+                {!loader ?
+
                 <table>
                     <thead>
                         <tr>
@@ -175,15 +179,12 @@ const SchoolYearList = () => {
                         <tr>
                              <td colSpan={5} className="no-school" >No registered school year in this school.</td>
                         </tr>:null}
-                        <tr className="addNewTableRow">
-                            <td><FaPlus className='table-action-icon' onClick={()=>setTransitionProp(true)}/></td>
-                            
-                        </tr>
+
                     </tbody>
                 </table> : <span className='loader table'></span>}
                 
             </div>
-            {/*<Outlet/>*/}
+
         </div>
         </>
         
