@@ -24,12 +24,12 @@ const School = () => {
             },
             {
                 "id":"3",
-                "name":"Days and Times",
+                "name":"Teachers",
                 "url":""
             },
             {
                 "id":"4",
-                "name":"Personal conditions",
+                "name":"Locations",
                 "url":""
             },
 
