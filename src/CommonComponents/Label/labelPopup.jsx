@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaArrowRight, FaCheck, FaMinusCircle, FaPlus, FaPlusCircle, FaSearch } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import ServiceClient from "../../ServiceClient";
 import {CSSTransition} from 'react-transition-group';
 import '../../transitions.css'
+import EventHandler from "../../EventHandler/eventhandler";
        
 const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) => {
 
@@ -26,8 +27,9 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
     const Search=()=>{
         setBtnDisabled(true);
         setLoader(true);
+        console.log(keyword);
+        if(keyword !== undefined){
 
-        if(keyword){
             setLabels([]);
             let dataPost={};
             dataPost.keyword = keyword;
@@ -50,10 +52,13 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
             }).catch((error)=>{
                 setLabels([]);
                 setServerError(error);
-                setErrors(error.response.message ? error.response.message :'Label does not exists');
+                setErrors(error.response.message ? error.response.message :['Label does not exists']);
                 setLoader(false);
                 setBtnDisabled(false);
             })
+        }else{
+            setBtnDisabled(false);
+            setLoader(false);
         }
     }
     const Select=(e)=>{
@@ -81,6 +86,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
         setLoader(true);
 
         if(keyword){
+
             let dataPost={};
             dataPost.keyword = keyword;
             
@@ -111,8 +117,14 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
 
     const nodeRef = useRef(null);
     return (
+
         <CSSTransition nodeRef={nodeRef} in={labelTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
-        <div className="popup" ref={nodeRef}>
+            <div className="popup" ref={nodeRef}>
+            <EventHandler
+                success={success}
+                errors={errors}
+                serverError={serverError}
+                closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
             <div className="label-close-button-container closeModalWhite">
                 <IoMdCloseCircle className="closeModalIcon" onClick={()=>closeModal(true)}/>
             </div>
@@ -125,11 +137,16 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
                     onChange={(e)=>setKeyword(e.target.value)} 
                     value={keyword} 
                     disabled={btndisabled}
+                    required
                     />
                     <button 
                     className={btndisabled ? "btn formButton disabled" : "btn formButton"} 
                     disabled={btndisabled}
-                    onClick={Search}
+                    onClick={()=> {
+                        if (keyword !== undefined) {
+                            Search()
+                        }
+                    }}
                     ><FaSearch className="btn-icon"/>
                     Search</button>
                 </div>
