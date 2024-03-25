@@ -27,8 +27,10 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
     const Search=()=>{
         setBtnDisabled(true);
         setLoader(true);
-        console.log(keyword);
-        if(keyword !== undefined){
+        if(errors.length){
+            setErrors([]);
+        }
+        if(keyword !== undefined && keyword !== ""){
 
             setLabels([]);
             let dataPost={};
@@ -51,7 +53,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
                 }
             }).catch((error)=>{
                 setLabels([]);
-                setServerError(error);
+                //setServerError(error);
                 setErrors(error.response.message ? error.response.message :['Label does not exists']);
                 setLoader(false);
                 setBtnDisabled(false);
@@ -107,6 +109,10 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
                 setLoader(false);
                 setBtnDisabled(false);
             })
+        }else{
+            setBtnDisabled(false);
+            setLoader(false);
+            console.log(errors,);
         }
     }
 
@@ -120,11 +126,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
 
         <CSSTransition nodeRef={nodeRef} in={labelTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
             <div className="popup" ref={nodeRef}>
-            <EventHandler
-                success={success}
-                errors={errors}
-                serverError={serverError}
-                closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+
             <div className="label-close-button-container closeModalWhite">
                 <IoMdCloseCircle className="closeModalIcon" onClick={()=>closeModal(true)}/>
             </div>
@@ -142,11 +144,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
                     <button 
                     className={btndisabled ? "btn formButton disabled" : "btn formButton"} 
                     disabled={btndisabled}
-                    onClick={()=> {
-                        if (keyword !== undefined) {
-                            Search()
-                        }
-                    }}
+                    onClick={()=>Search()}
                     ><FaSearch className="btn-icon"/>
                     Search</button>
                 </div>
