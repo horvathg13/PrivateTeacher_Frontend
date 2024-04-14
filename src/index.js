@@ -1,15 +1,29 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {languageConfig} from "./languageConfig";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+
+let Initialized = await languageConfig();
+
+if(Initialized){
+    console.log(languageConfig(), Initialized);
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        root.render(
+            <React.StrictMode>
+                <Suspense fallback="Loading...">
+                    <App />
+                </Suspense>
+            </React.StrictMode>
+        );
+
+
+}
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
