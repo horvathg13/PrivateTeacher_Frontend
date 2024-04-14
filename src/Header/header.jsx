@@ -7,11 +7,24 @@ import ServiceClient from '../ServiceClient';
 import Success from '../SuccessPopup/success';
 import { useNavigate } from 'react-router-dom';
 import EventHandler from '../EventHandler/eventhandler'
-        
+import i18next from "i18next";
+import {ChangeLanguage, languageConfig} from "../languageConfig";
+
 const Header = () => {
     /*General vaiables */
     const [showMobileMenu, setMobileMenu]=useState(false);
     const [name, setName]=useState('');
+    const languageOptions= [
+        {
+            "label":"EN",
+            "value":"en"
+        },
+        {
+            "label":"HU",
+            "value":"hu"
+        }
+
+    ]
 
     /*EventHandlers */
     const [success, setSuccess]=useState(false);
@@ -63,9 +76,9 @@ const Header = () => {
             errors={errors}
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-            <div className='logo-container'>
+            <div className='logo-container' onClick={()=>navigate('/')}>
                 <i className='graduatehat'></i>
-                <h1>PrivateTeacher</h1> 
+                <h1>PrivateTeacher</h1>
             </div>
             {name? <div className="mobile-menu">
                 <FaListUl className='dropdown-btn icon' onClick={()=>{setMobileMenu(!showMobileMenu)}}/>
@@ -84,6 +97,14 @@ const Header = () => {
                 <button className='headerBtn btn'>My Requests</button>
                 <button className='headerBtn btn'>Messages</button>
             </div>:null}
+            <div>
+                <select>
+                    {languageOptions.map(i=> (
+                        <option value={i.value} onClick={()=>[ChangeLanguage(i.value, localStorage.getItem('i18nextLng'))]}>{i.label}</option>
+                    ))}
+
+                </select>
+            </div>
             {name ? <div className="user-container">
                 <button className='headerBtn btn'>{username ? username : null}</button>
                 <button className='headerBtn btn' onClick={logout}>Logout</button>
