@@ -44,7 +44,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
                     setBtnDisabled(false);
                     setErrors([]);
                     const selectedIndex = selectedLabels.findIndex(label => label.id === response.data.id);
-                    console.log(selectedIndex);
+
                     if(selectedIndex !== -1) {
                         setCheck(true);
                     }else{
