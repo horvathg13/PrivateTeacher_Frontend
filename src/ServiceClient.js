@@ -53,6 +53,7 @@ class ServiceClient {
             throw error
         })
     }
+
 }
 
 export default ServiceClient
