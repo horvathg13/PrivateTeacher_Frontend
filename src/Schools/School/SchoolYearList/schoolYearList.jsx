@@ -15,9 +15,9 @@ const SchoolYearList = () => {
     /*Datas */
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId }=useParams();
-    const [schoolYears, setSchoolYears]=useState();
+    /*const [schoolYears, setSchoolYears]=useState();*/
     const [update, setUpdate]=useState(false);
-    const schoolYearStatuses = useLoaderData();
+    const [schoolYearStatuses, schoolYears] = useLoaderData();
     
     /*Popup control */
     const [showAreYouSure, setShowAreYouSure]=useState(false);
@@ -63,7 +63,8 @@ const SchoolYearList = () => {
         
     }
     const getSchoolYears=()=>{
-        let url=`http://127.0.0.1:8000/api/school-year-list/${schoolId}`;
+        ServiceClient.getSchoolYears(schoolId)
+        /*let url=`http://127.0.0.1:8000/api/school-year-list/${schoolId}`;
         ServiceClient.post(url).then((response)=>{
             if(response.status===200){
                 setLoader(false);
@@ -73,7 +74,7 @@ const SchoolYearList = () => {
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
-        })
+        })*/
     }
 
     useLayoutEffect(()=>{

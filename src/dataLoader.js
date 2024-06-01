@@ -32,6 +32,11 @@ export const getSchoolYearInfos=(params)=>{
         }
     });
 }
+export const getSchoolYears=(params)=>{
+    return this.post(`http://127.0.0.1:8000/api/school-year-list/${params.schoolId}`).then((response)=> {
+        return response.data;
+    })
+}
 
 export const getSchoolBreaks=(params)=>{
     return ServiceClient.get(`http://127.0.0.1:8000/api/school/${params.schoolId}/school-year-details/${params.schoolYearId}`).then((response)=>{
