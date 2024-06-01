@@ -12,8 +12,6 @@ class ServiceClient {
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
                 localStorage.removeItem("token");
-              
-
             }
             throw error
         })
@@ -25,13 +23,10 @@ class ServiceClient {
             headers: {
                 ...config.headers,
                 Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',
-                
             }
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
                 localStorage.removeItem("token");
-                
-
             }
             throw error
         })
@@ -47,12 +42,32 @@ class ServiceClient {
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
                 localStorage.removeItem("token");
-                
-
             }
             throw error
         })
     }
+    static login(email, password){
+        return this.post("http://127.0.0.1:8000/api/login", {email:email, psw:password}).then((response)=>{
+            localStorage.setItem('token',response.data.data.token);
+            return response.data
+        })
+    }
+    static register(fname,lname,email,password){
+        return this.post("http://127.0.0.1:8000/api/register", {fname:fname, lname:lname, email:email, psw:password}).then((response)=>{
+            return response.data
+        })
+    }
+    static schoolUpdate(schoolId,name,city,zip,number){
+        return this.post("http://127.0.0.1:8000/api/schoolUpdate", {id: schoolId, name:name, city:city, zip:zip, number:number}).then((response)=>{
+            return response.data
+        })
+    }
+    static getSchoolYears(schoolId){
+        this.post(`http://127.0.0.1:8000/api/school-year-list/${schoolId}`).then((response)=> {
+            return response.data;
+        })
+    }
+
 }
 
 export default ServiceClient

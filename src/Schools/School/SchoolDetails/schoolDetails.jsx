@@ -43,15 +43,28 @@ const SchoolDetails = () => {
         setLoader(true);
         setBtnDisabled(false);
 
-        let dataPost={};
+       /* let dataPost={};
         dataPost.id=schoolId
         dataPost.name=schoolName;
         dataPost.city=schoolCity;
         dataPost.zip=schoolZip;
         dataPost.street=schoolStreet;
-        dataPost.number=schoolNumber;
+        dataPost.number=schoolNumber;*/
 
-        let url="http://127.0.0.1:8000/api/schoolUpdate";
+        ServiceClient.schoolUpdate(schoolId, schoolName, schoolCity, schoolZip, schoolNumber).then(()=>{
+            setSuccess(true);
+            setLoader(false);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            setBtnDisabled(false);
+        }).catch((error)=>{
+            setServerError(error);
+            setBtnDisabled(false);
+            setLoader(false);
+        })
+
+       /* let url="http://127.0.0.1:8000/api/schoolUpdate";
         ServiceClient.post(url, dataPost).then((response)=>{
             if(response.status===200){
                 setSuccess(true);
@@ -65,7 +78,7 @@ const SchoolDetails = () => {
             setServerError(error);
             setBtnDisabled(false);
             setLoader(false);
-        })
+        })*/
     }
     return (
         <>

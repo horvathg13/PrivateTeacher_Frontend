@@ -50,23 +50,14 @@ const Register = () => {
             setCPasswordError(false);
             setPasswordError(false);
         }
-        let url='http://127.0.0.1:8000/api/register';
-        let dataPost={};
-        dataPost.fname=fname;
-        dataPost.lname=lname;
-        dataPost.email=email;
-        dataPost.psw=password;
 
-        ServiceClient.post(url,dataPost).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
-                setLoader(false);
-                setTimeout(()=>{
-                    setSuccess(false);
-                    navigate("/");
-                },2000)
-                
-            }
+        ServiceClient.register(fname,lname,email,password).then(()=>{
+            setSuccess(true);
+            setLoader(false);
+            setTimeout(()=>{
+                setSuccess(false);
+                navigate("/");
+            },2000)
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);

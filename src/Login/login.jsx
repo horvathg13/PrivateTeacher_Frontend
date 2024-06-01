@@ -33,22 +33,13 @@ const Login = () => {
         setBtnDisable(true);
 
         if(email.length>0 && password.length>0){
-            let url='http://127.0.0.1:8000/api/login';
-            let dataPost={};
-            dataPost.email=email;
-            dataPost.psw=password;
-
-            ServiceClient.post(url,dataPost).then((response)=>{
-                if(response.status===200){
-                    setSuccess(true);
-                    localStorage.setItem('token',response.data.data.token);
-                    setUsername(response.data.data.first_name);
-                    setLoader(false)
-                    setTimeout(()=>{
-
-                        navigate('/home');
-                    },1000)
-                }
+            ServiceClient.login(email,password).then((success)=>{
+                setSuccess(true);
+                setUsername(success.data.first_name);
+                setLoader(false)
+                setTimeout(()=>{
+                    navigate('/home');
+                },1000)
             }).catch((error)=>{
                 setServerError(error);
                 setLoader(false);
