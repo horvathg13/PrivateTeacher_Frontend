@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import EventHandler from "../../EventHandler/eventhandler";
-import "./generatedUser.css";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
 import ServiceClient from "../../ServiceClient";
