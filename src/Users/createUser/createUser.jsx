@@ -49,7 +49,7 @@ const UserCreate = () => {
             setLoader(false);
             return
         }
-        if(passwordError==true & cpasswordError==true){
+        if(passwordError===true && cpasswordError===true){
             setCPasswordError(false);
             setPasswordError(false);
         }
@@ -87,7 +87,7 @@ const UserCreate = () => {
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
                   
-        <div className="content-main-container">
+        <div>
             
            
             {!generatedLink ? 

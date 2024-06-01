@@ -188,7 +188,7 @@ const UserDetails = () => {
             transitionProp={transitionProp}
             label={"Are you would like to Bann this user?"}/>*/}
            
-            <div className="content-main-container">
+            <div>
                 
                 <form className='flex' onSubmit={updateUser}>
                     <div className="user-container info">

@@ -75,7 +75,7 @@ const CreateUserRole = () => {
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-        <div className="content-main-container">
+        <div>
             <div className="title"><h2>Permission Control</h2></div>
             <form onSubmit={(e)=>createRole(e)} className="SchoolForm">
                 

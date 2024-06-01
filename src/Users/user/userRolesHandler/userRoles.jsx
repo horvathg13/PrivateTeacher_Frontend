@@ -101,7 +101,7 @@ const UserRoles = () => {
         answer={(name)=>functionControl(name)}
         transitionProp={areYouSureTransitionProp}/>
 
-        <div className="content-main-container">
+        <div>
             <div className='formTitle'><FaPlus className='table-action-icon' onClick={()=>navigate(`/users/${userId}/create-role`)}/></div> 
             <div className="table-main-container">
                 {!loader ? 

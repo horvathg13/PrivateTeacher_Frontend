@@ -2,7 +2,6 @@
   justify-content: space-between;
   margin: 0 auto;
   border-bottom: 3px dotted var(--GreenColor);
-  width: 900px;
   padding: 5px;
 }
 .component-title-container.flex .title h1 {

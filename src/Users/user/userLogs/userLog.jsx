@@ -49,7 +49,7 @@ const UserLog = () => {
     serverError={serverError}
     closeErrorMessage={(data) => { if (data === true) { setErrors([]); } } } />
     
-    <div className="content-main-container">
+    <div>
 
 
     </div>

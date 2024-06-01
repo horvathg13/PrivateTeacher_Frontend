@@ -39,6 +39,7 @@ input:read-only{
   border: none;
 }
 
+
 /*Icons*/
 .icon{
   font-size:2rem;
@@ -315,8 +316,17 @@ form .field input:read-only {
 form .name-fields.flex {
   justify-content: space-between;
 }
-form .name-fields.flex label, form .name-fields.flex input {
-  margin-right: 10px;
+form .name-fields.flex label {
+  margin: 0;
+}
+form .name-fields.flex input{
+  width: 100%;
+}
+form .name-fields.flex .first-name, form .name-fields .last-name{
+  width: 50%;
+}
+form .name-fields .last-name{
+  padding: 0 10px;
 }
 form label {
   margin: 15px 0;
@@ -424,7 +434,8 @@ form .roles-container.flex label {
 
 
 .content-main-container{
-  width: 900px;
+  /*width: 900px;*/
+  width: 80%;
   height: fit-content;
   margin: 2% auto;
   color: var(--PrimaryColor);
