@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import ComponentTitle from '../../../CommonComponents/ComponentTitle/componentTitle';
-import SideMenu from '../../../CommonComponents/SideMenu/sidemenu';
-import TabMenu from '../../../CommonComponents/TabMenu/tabMenu';
-import EventHandler from '../../../EventHandler/eventhandler';
+import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
+import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
+import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
+import EventHandler from '../../EventHandler/eventhandler';
 import { useNavigate, useParams } from 'react-router-dom';
         
 const UserLog = () => {

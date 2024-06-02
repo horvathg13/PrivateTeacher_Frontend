@@ -1,16 +1,16 @@
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
-import EventHandler from "../../../../../../EventHandler/eventhandler";
+import EventHandler from "../../../EventHandler/eventhandler";
 import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus, FaTrashCan } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
-import AreYouSure from "../../../../../../CommonComponents/AreYouSure/areyousure";
-import ServiceClient from "../../../../../../ServiceClient";
+import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
+import ServiceClient from "../../../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
 import { FaTrashAlt } from "react-icons/fa";
-import { TabMenuContext, schoolYearDetailsContext } from "../../../../../../Context/UserContext";
-import TabMenu from "../../../../../../CommonComponents/TabMenu/tabMenu";
-import Select from "../../../../../../CommonComponents/Select/select";
-import LabelSelector from "../../../../../../CommonComponents/Label/labelSelect";
+import { TabMenuContext, schoolYearDetailsContext } from "../../../Context/UserContext";
+import TabMenu from "../../../CommonComponents/TabMenu/tabMenu";
+import Select from "../../../CommonComponents/Select/select";
+import LabelSelector from "../../../CommonComponents/Label/labelSelect";
         
 const SchoolCourseInfo = () => {
 

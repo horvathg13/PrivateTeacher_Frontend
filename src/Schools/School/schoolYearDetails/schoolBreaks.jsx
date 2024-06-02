@@ -1,38 +1,39 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import EventHandler from "../../../../../EventHandler/eventhandler";
+import EventHandler from "../../../EventHandler/eventhandler";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
-import SchoolYearDetailsPopup from "../Popup/popup";
-import AreYouSure from "../../../../../CommonComponents/AreYouSure/areyousure";
-import ServiceClient from "../../../../../ServiceClient";
+import SchoolYearDetailsPopup from "./schoolYearDetailsPopup";
+import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
+import ServiceClient from "../../../ServiceClient";
         
-const SchoolSpecialWorkDays = () => {
+const SchoolBreaks = () => {
 
     /*dataLoader */
     const dataLoader=useLoaderData();
     useEffect(()=>{
         if(dataLoader){
-            console.log(dataLoader, "hopp");
+            console.log(dataLoader, "Hopp");
             setHeader(dataLoader.header);
-            setSpecialWorkDays(dataLoader.specialWorkDays);
+            setSchoolBreaks(dataLoader.breaks);
             setLoader(false);
         }else{
+            console.log(dataLoader, "Hopp");
             setHeader("");
-            setSpecialWorkDays("Something went wrong!");
+            setSchoolBreaks("Something went wrong!");
             setLoader(false);
         }
     },[]);
 
     /*datas */
-    const [specialWorkDays, setSpecialWorkDays]=useState();
+    const [schoolBreaks, setSchoolBreaks]=useState();
     const [header, setHeader]=useState();
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId, schoolYearId }=useParams();
     const [alias, setAlias]=useState();
    
     /*Popup control */
-    const [specialWorkDaysPopup, setSpecialWorkDaysPopup]=useState();
+    const [schoolBrakesPopup, setSchoolBrakesPopup]=useState();
     const [title, setTitle]=useState();
     const [updatePopup, setUpdatePopup]=useState();
     const [transitionProp, setTransitionProp]=useState(false);
@@ -51,52 +52,48 @@ const SchoolSpecialWorkDays = () => {
 
     /*Navigation */
     const navigation=useNavigate();
-    
+
     /*button control */
     const [btndisabled, setBtnDisabled]=useState(false);
 
     /*Methods */
     const functionControl=(dataForm, fn_alias, name)=>{
         console.log(dataForm, fn_alias, name);
-        if(fn_alias==="specWorkDay"){
-            createSpecialWorkDay(dataForm);
-            
-        }else if(name === 'deleteSpecWorkDay'){
-            removeSpecialWorkDay();
+        if(name === 'deleteBreak'){
+            removeSchoolBreak();
             setAreYouSureTransitionProp(false);
-            console.log("Enter");
-        }else{
-            setAreYouSureTransitionProp(false);
+        }else if(fn_alias==="break"){
+            createSchoolBreak(dataForm);
         }
-        
+        setAreYouSureTransitionProp(false);
         
     }
     
-    const getSpecialWorkDays=()=>{
+    const getSchoolBreaks=()=>{
         let url=`http://127.0.0.1:8000/api/school/${schoolId}/school-year-details/${schoolYearId}`
         ServiceClient.get(url).then((response)=>{
             if(response.status===200){
+                console.log(response.data[0].specialWorkDays)
                 setHeader(response.data[0].header);
-                setSpecialWorkDays(response.data[0].specialWorkDays);
-
+                setSchoolBreaks(response.data[0].breaks);
+                
                 setLoader(false);
 
             }
         }).catch((error)=>{
             setServerError(error);
             //setLoader(false);
-        });
+        })
     }
-    
-    const createSpecialWorkDay=(dataForm)=>{
-        let url="http://127.0.0.1:8000/api/createSpecialWorkDay";
+    const createSchoolBreak=(dataForm)=>{
+        let url="http://127.0.0.1:8000/api/createSchoolBreak";
         ServiceClient.post(url,dataForm).then((response)=>{
             if(response.status===200){
                 setSuccess(true);
                 setTimeout(()=>{
                     setSuccess(false);
                 },2000)
-                getSpecialWorkDays();
+                getSchoolBreaks();
                 setSelectedRow("");
                 setTransitionProp(false);
             }
@@ -105,8 +102,9 @@ const SchoolSpecialWorkDays = () => {
         })
     }
     
-    const removeSpecialWorkDay=()=>{
-        let url="http://127.0.0.1:8000/api/removeSpecialWorkDay";
+    const removeSchoolBreak=()=>{
+        
+        let url="http://127.0.0.1:8000/api/removeSchoolBreak";
         let dataPost={};
         dataPost.schoolId=selectedRow.school_id;
         dataPost.yearId=selectedRow.school_year_id;
@@ -118,7 +116,7 @@ const SchoolSpecialWorkDays = () => {
                 setTimeout(()=>{
                     setSuccess(false);
                 },2000)
-                getSpecialWorkDays();
+                getSchoolBreaks();
                 setSelectedRow("");
                 setTransitionProp(false);
             }
@@ -126,10 +124,11 @@ const SchoolSpecialWorkDays = () => {
             setServerError(error);
         })
     }
+    
    /* useLayoutEffect(()=>{
-        getSpecialWorkDays();
+        getSchoolBreaks();
     },[])*/
-
+    
     return (
         <>
         <EventHandler
@@ -156,9 +155,8 @@ const SchoolSpecialWorkDays = () => {
         <div className="content-main-container">
             
             <form className="flex">
-               
-                <div className="special-work-days-container">
-                    <div className="form-title"><h2>Special Work Days</h2></div>
+                <div className="school-breaks-container">
+                    <div className="form-title"><h2>School Breaks</h2></div>
                     <div className="table-main-container">
                         {!loader ? 
                         <table>
@@ -171,11 +169,12 @@ const SchoolSpecialWorkDays = () => {
 
                                     )) : null}
                                     <th></th>
+                                    
                                 </tr>
 
                             </thead>
                             <tbody>
-                                { specialWorkDays?.length>0 ? specialWorkDays.map((e) => (
+                                { schoolBreaks?.length>0  ? schoolBreaks.map((e) => (
                                     <tr key={e.id} onClick={() => setSelectedRow(e)}>
                                     
                                         <td>{e.id}</td>
@@ -183,46 +182,49 @@ const SchoolSpecialWorkDays = () => {
                                         <td>{e.start}</td>
                                         <td>{e.end}</td>
                                     
-                                    <td>
-                                        <MdDelete className='table-action-icon' onClick={() => {
-                                            setSelectedRow(e); 
-                                            setAreYouSureName("deleteSpecWorkDay"); 
-                                            setAreYouSureTransitionProp(true)
-                                        }}/>
-                                        <MdEdit  className='table-action-icon'onClick={() => {
-                                            setSelectedRow(e); 
-                                            setUpdatePopup(true); 
-                                            setTransitionProp(true); 
-                                            setAlias("specWorkDay");
-                                        }}/>
-                                    </td>
+                                        <td>
+                                            <MdDelete className='table-action-icon' onClick={() => [
+                                                setSelectedRow(e), 
+                                                setAreYouSureName("deleteBreak"), 
+                                                setAreYouSureTransitionProp(true)
+                                            ]}/>
+                                            <MdEdit className='table-action-icon' onClick={() => [
+                                                setSelectedRow(e), 
+                                                console.log(selectedRow), 
+                                                setUpdatePopup(true), 
+                                                setAlias("break"), 
+                                                setTitle("Update"), 
+                                                setTransitionProp(true)
+                                            ]}/>
+                                        </td>
                                     </tr>
 
-                                )):
-                                
+                                )) :
                                 <>
                                     <tr>
-                                        <td colSpan={5} className="no-school">No registered special work days in this school.</td>
+                                        <td colSpan={5} className="no-school">No registered school break in this school.</td>
                                     </tr>
-                                </>}
+                                        </>}    
                                 <tr className="addNewTableRow">
                                     <td><FaPlus className='table-action-icon' onClick={() => [
-                                        setTitle("Add special work day"),
-                                        setUpdatePopup(false), 
-                                        setAlias("specWorkDay"),
+                                        setTitle("Add school brake"),
+                                        setUpdatePopup(false),
+                                        setAlias("break"),
                                         setTransitionProp(true), 
-                                        setSelectedRow("")
-                                    ]} /></td>
+                                        setSelectedRow(""),
+                                        console.log(selectedRow)
+                                    ]}/></td>
                                 </tr>
-                               
+                            
                             </tbody>
-                        </table> : <span className='loader table'></span>}
+                                </table> : <span className='loader table'></span>}
                         
                     </div>
                 </div>
+                
             </form>
         </div>
         </>
     );
 };
-export default SchoolSpecialWorkDays;
+export default SchoolBreaks;

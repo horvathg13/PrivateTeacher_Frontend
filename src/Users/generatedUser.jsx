@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import EventHandler from "../../EventHandler/eventhandler";
+import EventHandler from "../EventHandler/eventhandler";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
-import ServiceClient from "../../ServiceClient";
-import { UserContext } from "../../Context/UserContext";
+import ServiceClient from "../ServiceClient";
+import { UserContext } from "../Context/UserContext";
         
 const GeneratedUser = () => {
 

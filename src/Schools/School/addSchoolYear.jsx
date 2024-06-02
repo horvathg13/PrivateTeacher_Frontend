@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import "../../../../transitions.css";
+import "../../transitions.css";
 import { IoIosCloseCircle } from 'react-icons/io';
 import { CSSTransition } from 'react-transition-group';
 import { useParams } from 'react-router-dom';
-import ServiceClient from '../../../../ServiceClient';
+import ServiceClient from '../../ServiceClient';
         
 const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData, schoolYearStatuses}) => {
     const [year, setYear]=useState();

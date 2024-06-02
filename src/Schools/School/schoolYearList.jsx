@@ -1,15 +1,15 @@
 import { MdDelete, MdEdit } from "react-icons/md";
-import "../../../CommonComponents/Table/table.css"
+import "../../CommonComponents/Table/table.css"
 import { FaCirclePlus } from "react-icons/fa6";
-import Table from "../../../CommonComponents/Table/table";
+import Table from "../../CommonComponents/Table/table";
 import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
-import SideMenu from "../../../CommonComponents/SideMenu/sidemenu";
+import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
 import { useContext, useLayoutEffect, useState } from "react";
-import EventHandler from "../../../EventHandler/eventhandler";
-import ServiceClient from "../../../ServiceClient";
+import EventHandler from "../../EventHandler/eventhandler";
+import ServiceClient from "../../ServiceClient";
 import { FaPlus } from "react-icons/fa";
-import AddSchoolYear from "./AddSchoolYear/addSchoolYear";
-import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
+import AddSchoolYear from "./addSchoolYear";
+import AreYouSure from "../../CommonComponents/AreYouSure/areyousure";
         
 const SchoolYearList = () => {
     /*Datas */

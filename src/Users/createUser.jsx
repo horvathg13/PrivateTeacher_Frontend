@@ -1,9 +1,9 @@
-import EventHandler from '../../EventHandler/eventhandler';
-import Table from '../../CommonComponents/Table/table';
+import EventHandler from '../EventHandler/eventhandler';
+import Table from '../CommonComponents/Table/table';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
-import ServiceClient from '../../ServiceClient';
+import ServiceClient from '../ServiceClient';
 
 
         
@@ -102,8 +102,8 @@ const UserCreate = () => {
                         <label>Last Name</label>
                         <input type="text" required onChange={(e)=>{setLname(e.target.value)}}/>
                     </div>
-                    
                 </div>
+
                 <div className="emailPassword-fields grid">
                     <label>Email</label>
                     <input className={emailError ? 'InputError':'emailInput'} type="email" required onChange={(e)=>{setEmail(e.target.value)}}/>
@@ -114,11 +114,13 @@ const UserCreate = () => {
                     <label>Confirm Password</label>
                     <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
                 </div>
-                
+
+                <div className="form-button-container">
                 {!loader ?
                     <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn formButton'}>Generate <FaArrowCircleRight className='btn-icon'/></button> :
                     <span className='loader createUser'></span>
                 }
+                </div>
             </form>:
 
             <div className="generatedLink grid">

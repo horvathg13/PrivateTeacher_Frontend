@@ -1,20 +1,20 @@
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowCircleRight } from "react-icons/fa";
-import EventHandler from '../../../EventHandler/eventhandler';
+import EventHandler from '../../EventHandler/eventhandler';
 import {FaBan, FaUsers ,FaUserPlus} from 'react-icons/fa';
 import {FaScaleUnbalanced} from 'react-icons/fa6';
 import {RiLockPasswordFill} from 'react-icons/ri';
 import {RxUpdate} from 'react-icons/rx';
 import {MdEdit} from 'react-icons/md';
-import AreYouSure from '../../../CommonComponents/AreYouSure/areyousure'
-import Select from '../../../CommonComponents/Select/select';
-import ServiceClient from '../../../ServiceClient';
+import AreYouSure from '../../CommonComponents/AreYouSure/areyousure'
+import Select from '../../CommonComponents/Select/select';
+import ServiceClient from '../../ServiceClient';
 import { useLoaderData } from 'react-router-dom';
-import ComponentTitle from '../../../CommonComponents/ComponentTitle/componentTitle';
-import SideMenu from '../../../CommonComponents/SideMenu/sidemenu';
-import TabMenu from '../../../CommonComponents/TabMenu/tabMenu';
-import { userInfoContext } from '../../../Context/UserContext';
+import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
+import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
+import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
+import { userInfoContext } from '../../Context/UserContext';
 
 
         

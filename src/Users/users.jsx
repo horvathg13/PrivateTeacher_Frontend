@@ -1,11 +1,11 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import ComponentTitle from "../../CommonComponents/ComponentTitle/componentTitle";
-import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
-import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
+import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
+import SideMenu from "../CommonComponents/SideMenu/sidemenu";
+import TabMenu from "../CommonComponents/TabMenu/tabMenu";
 import { PiUserListFill  } from "react-icons/pi";
 import { FaUserPlus } from "react-icons/fa6";
 import { useContext, useEffect } from "react";
-import { TabMenuContext } from "../../Context/UserContext";
+import { TabMenuContext } from "../Context/UserContext";
         
 const Users = () => {
     const navigate= useNavigate();

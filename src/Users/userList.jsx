@@ -1,31 +1,28 @@
-import "./schoolList.css";
-import EventHandler from "../../EventHandler/eventhandler";
-import Table from "../../CommonComponents/Table/table";
-import { useEffect, useLayoutEffect, useState } from "react";
-import ServiceClient from "../../ServiceClient";
-import { useNavigate } from "react-router-dom";
+import EventHandler from '../EventHandler/eventhandler';
+import Table from '../CommonComponents/Table/table';
+import SideMenu from '../CommonComponents/SideMenu/sidemenu';
+import ComponentTitle from '../CommonComponents/ComponentTitle/componentTitle';
+import ServiceClient from '../ServiceClient';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import ClickAwayListener from 'react-click-away-listener';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import TabMenu from '../CommonComponents/TabMenu/tabMenu';
+
         
-const SchoolList = () => {
-    /*Datas*/
-    const [schools, setSchools]=useState();
+const UserList = () => {
+    const [users, setUsers]=useState({});
+    const [loader, setLoader]=useState(false);
     const [counter, setCounter]=useState(1);
     const [lastPage, setLastPage]=useState();
     const [perPage, setPerPage]=useState(5);
     const [selectedRow, setSelectedRow]=useState();
-    
-
-    /*Navigation */
-    const navigation=useNavigate();
-
-    /*Loader */
-    const [loader, setLoader]=useState(true);
-
+    const navigate = useNavigate();
     /*event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
-    const [serverError, setServerError]=useState([]);
-
-    /*Methods */
+    const [serverError, setServerError]=useState([]); 
+   
+    /*Methods: */
     const pageCounter=(data)=>{
         switch (data){
             case 'next': return setCounter(counter+1);
@@ -37,12 +34,12 @@ const SchoolList = () => {
     }
 
     useLayoutEffect(()=>{
-        
-        let url=`http://127.0.0.1:8000/api/schools-list?perPage=${perPage}&page=${counter}`;
+        setLoader(true);
+        let url=`http://127.0.0.1:8000/api/getUsers?perPage=${perPage}&page=${counter}`;
         ServiceClient.post(url).then((response)=>{
             if(response.status===200){
                 setLoader(false);
-                setSchools(response.data);
+                setUsers(response.data);
                 setLastPage(response.data.pagination.lastPageNumber)
                 console.log(response.data)
             }
@@ -53,26 +50,23 @@ const SchoolList = () => {
     },[counter, perPage])
 
     useEffect(()=>{
-       console.log(selectedRow);
-       if(selectedRow){
-        navigation(`/school/${selectedRow.id}`)
-       }
+        if(selectedRow){
+            navigate(`/users/${selectedRow.id}`)
+        }
+        
     },[selectedRow])
-
-    useEffect(()=>{console.log(schools)},[schools])
     return (
-        <>
-        <EventHandler 
+        <div>
+           
+            <EventHandler 
             success={success} 
             errors={errors} 
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-        <div className="content-main-container">
-            
             
             <div className="table-main-container">
                 <Table 
-                datas={schools ? schools : null}
+                datas={users ? users :null}
                 loader={loader}
                 page={pageCounter}
                 perPage={setPerPage}
@@ -80,7 +74,8 @@ const SchoolList = () => {
             </div>
             
         </div>
-        </>
+            
+        
     );
 };
-export default SchoolList;
+export default UserList;

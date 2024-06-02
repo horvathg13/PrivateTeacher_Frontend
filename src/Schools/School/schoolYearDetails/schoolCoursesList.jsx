@@ -1,11 +1,11 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import EventHandler from "../../../../../EventHandler/eventhandler";
+import EventHandler from "../../../EventHandler/eventhandler";
 import { Navigate, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
-import SchoolYearDetailsPopup from "../Popup/popup";
-import AreYouSure from "../../../../../CommonComponents/AreYouSure/areyousure";
-import ServiceClient from "../../../../../ServiceClient";
+import SchoolYearDetailsPopup from "./schoolYearDetailsPopup";
+import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
+import ServiceClient from "../../../ServiceClient";
         
 const SchoolCoursesList = () => {
 

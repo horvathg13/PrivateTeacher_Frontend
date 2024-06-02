@@ -1,11 +1,11 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import ComponentTitle from "../../CommonComponents/ComponentTitle/componentTitle";
-import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
-import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
+import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
+import SideMenu from "../CommonComponents/SideMenu/sidemenu";
+import TabMenu from "../CommonComponents/TabMenu/tabMenu";
 import { FaListUl } from "react-icons/fa";
 import { IoIosCreate } from "react-icons/io";
 import { useContext, useEffect } from "react";
-import { TabMenuContext } from "../../Context/UserContext";
+import { TabMenuContext } from "../Context/UserContext";
         
 const SchoolsHome = () => {
     const navigate= useNavigate();
@@ -44,11 +44,7 @@ const SchoolsHome = () => {
         <>
         <SideMenu/> 
         <div className="content-main-container">
-            
             <div className="home-component-main">
-                
-                
-                
                 <ComponentTitle 
                 title={"Schools"}
                 breadcrumbs={breadcrumbs}/>
@@ -62,12 +58,10 @@ const SchoolsHome = () => {
                         <Link to={"/schools/create"}><div className="icon-container"><IoIosCreate className="icon" /></div></Link>
                         <div className="icon-text"><h3>Create</h3></div>
                     </div>
-
                 </div>
                 :<TabMenu/>}
                  <Outlet/>
             </div>
-           
         </div>
         </>
     );

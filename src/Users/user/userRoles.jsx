@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import ComponentTitle from '../../../CommonComponents/ComponentTitle/componentTitle';
-import SideMenu from '../../../CommonComponents/SideMenu/sidemenu';
-import EventHandler from '../../../EventHandler/eventhandler';
+import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
+import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
+import EventHandler from '../../EventHandler/eventhandler';
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
-import TabMenu from '../../../CommonComponents/TabMenu/tabMenu';
-import ServiceClient from '../../../ServiceClient';
-import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
+import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
+import ServiceClient from '../../ServiceClient';
+import AreYouSure from "../../CommonComponents/AreYouSure/areyousure";
 import { FaPlus } from 'react-icons/fa';
 import { FaTrashCan } from 'react-icons/fa6';
+import CreateUserRole from "./createUserRole";
         
 const UserRoles = () => {
     /*dataLoader */
@@ -27,7 +28,7 @@ const UserRoles = () => {
     const [userRoles, setUserRoles]=useState();
     const [header, setHeader]=useState();
     const [selectedRow, setSelectedRow]=useState();
-    
+    const [createUserRole, setCreateUserRole]=useState(false);
     
     /*Event handle*/
     const [errors, setErrors]=useState([]);
@@ -88,6 +89,7 @@ const UserRoles = () => {
             setLoader(false);
         });
     }
+
     return (
 
         <>
@@ -100,9 +102,13 @@ const UserRoles = () => {
         name={AreYouSureName}
         answer={(name)=>functionControl(name)}
         transitionProp={areYouSureTransitionProp}/>
-
+        {createUserRole ?
+            <CreateUserRole
+                transitionProp={createUserRole}
+                closeModal={(data)=>setCreateUserRole(data)}
+            />:null}
         <div>
-            <div className='formTitle'><FaPlus className='table-action-icon' onClick={()=>navigate(`/users/${userId}/create-role`)}/></div> 
+            <div className='formTitle'><FaPlus className='table-action-icon' onClick={() => setCreateUserRole(!createUserRole)}/></div>
             <div className="table-main-container">
                 {!loader ? 
                 <table>
