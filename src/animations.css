@@ -64,4 +64,23 @@
     100% {
       transform: rotate(360deg);
     }
-  } 
+  }
+
+@keyframes activeTabMenu {
+    0% {
+        background: var(--DarkBlue);
+        border: none;
+        border-radius: 5px 50px 0 5px;
+        padding: 10px 30px;
+        color: var(--whiteColorDeam);
+        text-align: center;
+        letter-spacing: 0.5px;
+        margin: 0 5px;
+    }
+    100% {
+        background: var(--ButtonBlue);
+        box-shadow: 6px 0px 2px #4c4c4c;
+        padding: 10px 50px;
+        transition: padding 0.2s ease;
+    }
+}
