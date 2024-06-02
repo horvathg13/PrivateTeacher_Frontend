@@ -65,6 +65,8 @@ input:read-only{
 .selectContainer{
   height: 90px;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
 }
 
 
@@ -181,13 +183,14 @@ button{
 .btn.disabled:hover{
   transform: none;
 }
+
 .formButton{
   background: var(--ButtonBlue);
   color: var(--whiteColorDeam);
   padding: 15px 20px;
   border: none;
   border-radius: 10px;
-  margin: 15px 5px !important;
+  /*margin: 15px 5px !important;*/
   width: 150px;
   text-align: center;
   display: flex;
@@ -209,7 +212,7 @@ button{
   padding: 15px 20px;
   border: none;
   border-radius: 10px;
-  margin: 15px 5px !important;
+  /*margin: 15px 5px !important;*/
   width: 150px;
   text-align: center;
   display: flex;
@@ -490,6 +493,7 @@ form .roles-container.flex label {
   font-size: 2.1rem;
   color: var(--DarkBlue);
   margin: 5px 10px;
+  transition: .3s ease-in-out;
 }
 .closeModal .closeModalIcon:hover {
   color: var(--ButtonBlue);
@@ -500,9 +504,10 @@ form .roles-container.flex label {
   font-size: 2.1rem;
   color: var(--whiteColorDeam);
   margin: 5px 10px;
+  transition: .3s ease-in-out;
 }
 .closeModalWhite .closeModalIcon:hover{
-  color: var(--ButtonBlue);
+  color: var(--RedColor);
   cursor: pointer;
 }
 .formTitle {
@@ -750,3 +755,33 @@ form .roles-container.flex label {
 .searchCourse{
   height: auto;
 }
+
+/*createUserRole*/
+.createUserRole-main{
+  width: 75%;
+  height: fit-content;
+  /*background-color: rgb(44,96,128);*/
+  background: linear-gradient(145deg, rgb(58, 123, 158), #2a6188, #422863);
+  color: white;
+  border-radius: 10px;
+  padding: 50px;
+  margin: 35px auto;
+  box-shadow: 1px 1px 6px #4eadbc;
+  border: 1px solid var(--DarkBlue);
+  vertical-align: center ;
+  transform: translateY(25%);
+}
+.createUserRole-main .FlexForm{
+  margin: 0 10% !important;
+}
+
+.createUserRole-main .FlexForm .form-children{
+  border-bottom: 1px dotted var(--DarkBlue);
+}
+.createUserRole-main .title h2{
+  color: white;
+  text-align: center;
+}
+
+
+
