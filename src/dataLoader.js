@@ -33,7 +33,7 @@ export const getSchoolYearInfos=(params)=>{
     });
 }
 export const getSchoolYears=(params)=>{
-    return this.post(`http://127.0.0.1:8000/api/school-year-list/${params.schoolId}`).then((response)=> {
+    return ServiceClient.post(`http://127.0.0.1:8000/api/school-year-list/${params.schoolId}`).then((response)=> {
         return response.data;
     })
 }
