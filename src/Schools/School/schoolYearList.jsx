@@ -4,7 +4,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 import Table from "../../CommonComponents/Table/table";
 import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
-import { useContext, useLayoutEffect, useState } from "react";
+import {useContext, useEffect, useLayoutEffect, useState} from "react";
 import EventHandler from "../../EventHandler/eventhandler";
 import ServiceClient from "../../ServiceClient";
 import { FaPlus } from "react-icons/fa";
@@ -34,7 +34,7 @@ const SchoolYearList = () => {
     const [serverError, setServerError]=useState([]);
 
     /*Loader */
-    const [loader, setLoader]=useState(true);
+    const [loader, setLoader]=useState(false);
     const [formLoader, setFormLoader]=useState(false);
 
     /*Navigation */
@@ -47,11 +47,9 @@ const SchoolYearList = () => {
             setAreYouSureTransitionProp(true);
             
         }else{
-            console.log(showAreYouSure);
             navigation(`/school/${schoolId}/school-year/${e?.id}`);
         }
-        return 
-        
+        return
     }
     const functionControl=(name)=>{
         if(name === 'delete'){
@@ -63,28 +61,37 @@ const SchoolYearList = () => {
         
     }
     const getSchoolYears=()=>{
-        ServiceClient.getSchoolYears(schoolId)
-        /*let url=`http://127.0.0.1:8000/api/school-year-list/${schoolId}`;
-        ServiceClient.post(url).then((response)=>{
-            if(response.status===200){
-                setLoader(false);
-                setSchoolYears(response.data);
-                //console.log(response.data)
-            }
+        ServiceClient.getSchoolYears(schoolId).then((schoolYears)=>{
+            setLoader(false);
+            schoolYears(schoolYears.data);
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
-        })*/
+        })
     }
 
-    useLayoutEffect(()=>{
-        getSchoolYears();
+    useEffect(()=>{
+
     },[])
 
     const CreateSchoolYear=(dataForm)=>{
         setFormLoader(true);
         setBtnDisabled(true);
-        console.log(dataForm)
+        console.log(dataForm);
+        ServiceClient.createSchoolYear(dataForm).then((success)=>{
+            setFormLoader(false);
+            setBtnDisabled(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            getSchoolYears();
+        }).catch((error)=>{
+            setServerError(error);
+            setLoader(false);
+            setBtnDisabled(false)
+        })
+        /*console.log(dataForm)
         let url="http://127.0.0.1:8000/api/createSchoolYear";
         ServiceClient.post(url, dataForm).then((response)=>{
             if(response.status===200){
@@ -100,7 +107,7 @@ const SchoolYearList = () => {
             setServerError(error);
             setLoader(false);
             setBtnDisabled(false)
-        })
+        })*/
     }
 
     const removeSchoolYear=()=>{
@@ -147,48 +154,45 @@ const SchoolYearList = () => {
         name={AreYouSureName}
         answer={functionControl}
         transitionProp={areYouSureTransitionProp}/>
-        <div className="content-main-container">
-            
+        <div>
             <div className="table-main-container">
-                {!loader ? 
-                <table>
-                    <thead>
+                <div className="formTitle">
+                    <FaPlus className='table-action-icon' onClick={() => setTransitionProp(true)}/>
+                </div>
+                {!loader ?
+                    <table>
+                        <thead>
                         <tr>
                             {schoolYears.header ? Object.keys(schoolYears.header).map((e, i) => (
 
                                 <th key={i}>{e}</th>
-                                
 
                             )) : null}
                         </tr>
-
-                    </thead>
-                    <tbody>
-                        { schoolYears.data?.map((e) => (
-                            <tr key={e.id} onClick={() => {setSelectedRow(e);  RowClickHandle(e) }}>
-                            { Object.values(e).map((j=>
-                                <td>{j}</td>
-                            ))}
+                        </thead>
+                        <tbody>
+                        {schoolYears.data?.map((e) => (
+                            <tr key={e.id} onClick={() => {
+                                setSelectedRow(e);
+                                RowClickHandle(e)
+                            }}>
+                                {Object.values(e).map((j =>
+                                        <td>{j}</td>
+                                ))}
                             </tr>
-
                         ))}
-                        {schoolYears.data.length===0 ?
-                        <tr>
-                             <td colSpan={5} className="no-school" >No registered school year in this school.</td>
-                        </tr>:null}
-                        <tr className="addNewTableRow">
-                            <td><FaPlus className='table-action-icon' onClick={()=>setTransitionProp(true)}/></td>
-                            
-                        </tr>
-                    </tbody>
-                </table> : <span className='loader table'></span>}
-                
+                        {schoolYears.data.length === 0 ?
+                            <tr>
+                                <td colSpan={5} className="no-school">No registered school year in this school.</td>
+                            </tr> : null}
+                        </tbody>
+                    </table> : <span className='loader table'></span>}
+
             </div>
-            {/*<Outlet/>*/}
         </div>
         </>
-        
-        
+
+
     );
 };
 export default SchoolYearList;
