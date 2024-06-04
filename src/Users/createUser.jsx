@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import ServiceClient from '../ServiceClient';
 
-
         
 const UserCreate = () => {
     /*Form fields*/
@@ -53,26 +52,14 @@ const UserCreate = () => {
             setCPasswordError(false);
             setPasswordError(false);
         }
-
-        let url='http://127.0.0.1:8000/api/createUser';
-        let dataPost={};
-        dataPost.fname=fname;
-        dataPost.lname=lname;
-        dataPost.email=email;
-        dataPost.psw=password;
-
-        ServiceClient.post(url,dataPost).then((response)=>{
-            console.log(response);
-            if(response.status===200){
-                setSuccess(true);
-                setLoader(false);
-                setGeneratedLink(response.data.link);
-                setTimeout(()=>{
-                    setSuccess(false);
-                    setBtnDisabled(false);
-                },2000)
-                
-            }
+        ServiceClient.createUser(fname,lname,email,password).then((success)=>{
+            setSuccess(true);
+            setLoader(false);
+            setGeneratedLink(success.link);
+            setTimeout(()=>{
+                setSuccess(false);
+                setBtnDisabled(false);
+            },2000)
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);

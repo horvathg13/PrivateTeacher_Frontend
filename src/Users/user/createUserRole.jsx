@@ -12,12 +12,17 @@ import '../../transitions.css';
 const CreateUserRole = ({closeModal, transitionProp}) => {
 
     /*Loaders*/
-    const dataLoader =useLoaderData();
+    const [roleOptions, setRoleOption]=useState();
+    const [schoolOptions, setSchoolOption]=useState();
     useEffect(()=>{
-       
         setLoader(false);
         setReadOnly(false);
-        
+        ServiceClient.getRoles().then((roles)=>{
+            setRoleOption(roles)
+        })
+        ServiceClient.getSchools(null, null).then((schools)=>{
+            setSchoolOption(schools.data)
+        })
     },[]);
 
     /*Form fields */
@@ -47,24 +52,16 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
         setLoader(true);
         setReadOnly(true);
 
-        let dataPost={};
-        dataPost.roleId = roles;
-        dataPost.refId = ref_schools;
-        dataPost.userId = userId;
-
-        let url='http://127.0.0.1:8000/api/createUserRole';
-        ServiceClient.post(url,dataPost).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
-                setLoader(false);
-                setBtnDisabled(false);
-                setReadOnly(false);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                setRoles('');
-                setRefSchool('');
-            }
+        ServiceClient.createUserRole(roles, ref_schools, userId).then((success)=>{
+            setSuccess(true);
+            setLoader(false);
+            setBtnDisabled(false);
+            setReadOnly(false);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            setRoles('');
+            setRefSchool('');
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -93,7 +90,7 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
                             <label>Role</label>
                             <div className="selectContainer">
                                 <Select
-                                options={dataLoader?.roles}
+                                options={roleOptions || null}
                                 onSelect={(option)=>setRoles(option.id)}
                                 InitialValue={""}
                                 disabled={readOnly}/>
@@ -104,7 +101,7 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
                             <label>Reference School</label>
                             <div className="selectContainer">
                                 <Select
-                                options={dataLoader?.schools}
+                                options={schoolOptions || null}
                                 onSelect={(option)=>setRefSchool(option.id)}
                                 InitialValue={""}
                                 disabled={readOnly}/>
