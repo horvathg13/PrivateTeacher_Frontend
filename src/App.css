@@ -378,8 +378,57 @@ form .roles-container.flex label {
   user-select: none;
 }
 
-.userDetails form .btn-container .loader.userDetails {
+.userDetails.btn-container {
+  width: 100%;
+  height: 60px;
+}
+.loader.userDetailsLoader {
   border-top: 4px solid var(--DarkBlue) !important;
+  margin: 0 auto !important;
+  display: flex;
+}
+.userDetails.btn-container button{
+  margin: 0 auto;
+  float: unset !important;
+}
+/*FlexForm*/
+.content-main-container .FlexForm {
+  margin: 0 5%;
+  max-height: 500px;
+  height: fit-content;
+}
+.content-main-container .FlexForm .form-items {
+  flex-direction: column;
+  width: 100%;
+}
+.content-main-container .FlexForm .form-items .form-children {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.content-main-container .FlexForm .form-items .form-children label {
+  margin: 10px 10px;
+}
+.content-main-container .FlexForm .form-items .form-children input {
+  width: 65%;
+  height: 20px;
+}
+.content-main-container .FlexForm .form-button-container {
+  width: 100%;
+  padding: 5px 30px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  flex-flow: row-reverse;
+}
+.content-main-container .FlexForm .form-button-container button {
+  margin: 10px 5% !important;
+}
+.content-main-container .FlexForm .form-button-container .loader.schoolCreate {
+  margin: 0 5%;
+  border-top: 4px solid var(--DarkBlue);
 }
 
 /*Title*/
@@ -762,7 +811,7 @@ form .roles-container.flex label {
   width: 75%;
   height: fit-content;
   /*background-color: rgb(44,96,128);*/
-  background: linear-gradient(145deg, rgb(58, 123, 158), #2a6188, #422863);
+  background: linear-gradient(145deg, rgb(147, 178, 193), #32729f, #422863);
   color: white;
   border-radius: 10px;
   padding: 50px;
@@ -775,7 +824,11 @@ form .roles-container.flex label {
 .createUserRole-main .FlexForm{
   margin: 0 10% !important;
 }
-
+@media screen and (max-width: 870px) {
+  .createUserRole-main .FlexForm .form-children{
+    flex-direction: column;
+  }
+}
 .createUserRole-main .FlexForm .form-children{
   border-bottom: 1px dotted var(--DarkBlue);
 }
