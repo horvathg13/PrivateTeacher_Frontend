@@ -94,14 +94,13 @@ const SchoolCourseCreate = () => {
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
         />
         
-        <div className="content-main-container">
-            
+        <div>
             <div className="title"><h2>School Course Creation</h2></div>
-                <form onSubmit={(e)=>CreateSchoolCourse(e)} className="SchoolForm">
+                <form onSubmit={(e)=>CreateSchoolCourse(e)} className="FlexForm">
                     
-                    <div className="school-form courseCreate flex">
+                    <div className="form-items courseCreate flex">
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Name</label>
                             <input type="text" 
                             required 
@@ -110,7 +109,7 @@ const SchoolCourseCreate = () => {
                             readOnly={readOnly}/>
                         </div>    
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Subject</label>
                             <input type="text" 
                             required 
@@ -120,7 +119,7 @@ const SchoolCourseCreate = () => {
                         </div>
                         
                     
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Student Limit</label>
                             <input type="text"
                             required  
@@ -129,7 +128,7 @@ const SchoolCourseCreate = () => {
                             readOnly={readOnly}/>
                         </div>
                     
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Minutes/lesson</label>
                             <input
                             type="text" 
@@ -139,7 +138,7 @@ const SchoolCourseCreate = () => {
                             readOnly={readOnly}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Minimum Teaching Days</label>
                             <input
                             type="text" 
@@ -149,7 +148,7 @@ const SchoolCourseCreate = () => {
                             readOnly={readOnly}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Double Time</label>
                             <input
                             type="checkbox" 
@@ -158,7 +157,7 @@ const SchoolCourseCreate = () => {
                             readOnly={readOnly}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Course Price / Lesson</label>
                             <input
                             type="text" 
@@ -167,12 +166,12 @@ const SchoolCourseCreate = () => {
                             value={couresPricePerLesson}
                             readOnly={readOnly}/>
                         </div>
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Labels</label>
                             <LabelSelector 
                             labelEmit={(data)=>setLabels(data)}/>
                         </div>
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Status</label>
                             <div className="selectContainer">
                                 <Select 

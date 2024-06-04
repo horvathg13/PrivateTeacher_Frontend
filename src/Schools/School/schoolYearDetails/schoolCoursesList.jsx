@@ -90,9 +90,9 @@ const SchoolCoursesList = () => {
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
         />
         
-        <div className="content-main-container">
+        <div>
             
-            <form className="flex">
+            <form>
                 <div className="school-breaks-container">
                     <div className="form-title flex courseTitle">
                        

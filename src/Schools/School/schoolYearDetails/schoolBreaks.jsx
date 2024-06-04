@@ -152,9 +152,9 @@ const SchoolBreaks = () => {
         fn_alias={alias}
         emitData={(dataForm, fn_alias)=>functionControl(dataForm, fn_alias)}
         selected={selectedRow}/>
-        <div className="content-main-container">
+        <div>
             
-            <form className="flex">
+            <form>
                 <div className="school-breaks-container">
                     <div className="form-title"><h2>School Breaks</h2></div>
                     <div className="table-main-container">

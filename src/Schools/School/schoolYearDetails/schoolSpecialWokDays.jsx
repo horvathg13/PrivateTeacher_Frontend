@@ -153,10 +153,8 @@ const SchoolSpecialWorkDays = () => {
         fn_alias={alias}
         emitData={(dataForm, fn_alias)=>functionControl(dataForm, fn_alias)}
         selected={selectedRow}/>
-        <div className="content-main-container">
-            
-            <form className="flex">
-               
+        <div>
+            <form>
                 <div className="special-work-days-container">
                     <div className="form-title"><h2>Special Work Days</h2></div>
                     <div className="table-main-container">

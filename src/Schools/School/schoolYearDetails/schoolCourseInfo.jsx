@@ -153,14 +153,14 @@ const SchoolCourseInfo = () => {
         answer={(name)=> functionControl(name)}
         transitionProp={areYouSureTransitionProp}/>
         
-    <div className="content-main-container">
+    <div>
         
         <div className="title"><h2>School Course Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
-            <form onSubmit={(e)=>updateSchoolYearInfos(e)} className="SchoolForm">
+            <form onSubmit={(e)=>updateSchoolYearInfos(e)} className="FlexForm">
                 
-                <div className="school-form flex courseCreate">
+                <div className="form-items flex courseCreate">
 
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Name</label>
                         <input type="text" 
                         required 
@@ -169,7 +169,7 @@ const SchoolCourseInfo = () => {
                         readOnly={readOnly}/>
                     </div>    
 
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Subject</label>
                         <input type="text" 
                         required 
@@ -179,7 +179,7 @@ const SchoolCourseInfo = () => {
                     </div>
                     
                    
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Student Limit</label>
                         <input type="text"
                         required  
@@ -188,7 +188,7 @@ const SchoolCourseInfo = () => {
                         readOnly={readOnly}/>
                     </div>
                    
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Minutes/lesson</label>
                         <input
                         type="text" 
@@ -198,7 +198,7 @@ const SchoolCourseInfo = () => {
                         readOnly={readOnly}/>
                     </div>
 
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Minimum Teaching Days</label>
                         <input
                         type="text" 
@@ -208,7 +208,7 @@ const SchoolCourseInfo = () => {
                         readOnly={readOnly}/>
                     </div>
 
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Double Time</label>
                         <input
                         type="checkbox"
@@ -218,7 +218,7 @@ const SchoolCourseInfo = () => {
                         readOnly={readOnly}/>
                     </div>
 
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Course Price / Lesson</label>
                         <input
                         type="text" 
@@ -227,13 +227,13 @@ const SchoolCourseInfo = () => {
                         value={couresPricePerLesson}
                         readOnly={readOnly}/>
                     </div>
-                    <div className="flex">
+                    <div className="form-children">
                             <label>Labels</label>
                             <LabelSelector 
                             labelEmit={(data)=>setLabels(data)}
                             getLabels={labels}/>
                         </div>
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Status</label>
                         <div className="selectContainer">
                             <Select 
