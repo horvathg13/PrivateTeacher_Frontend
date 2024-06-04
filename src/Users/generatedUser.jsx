@@ -112,7 +112,6 @@ const GeneratedUser = () => {
                             
                             <label>Confirm Password</label>
                             <input type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
-                            
                         </div>
                         
                         {!loader ? <button type='submit' disabled={btndisabled} className={!btndisabled ? 'btn' : 'btn disabled'}>Log In <FaArrowCircleRight className='btn-icon'/></button>:
