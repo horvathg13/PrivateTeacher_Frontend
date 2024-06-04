@@ -337,7 +337,8 @@ form label {
 }
 form .loader.createUser {
   border-top: 4px solid var(--DarkBlue) !important;
-  margin: 20px auto;
+  float: left;
+  margin:10px 5% !important;
 }
 form button.formButton {
   float: left;
