@@ -78,7 +78,7 @@ const UserCreate = () => {
             
            
             {!generatedLink ? 
-            <form onSubmit={(e)=>createUser(e)}>
+            <form className="FlexForm" onSubmit={(e)=>createUser(e)}>
                 <div className="title"><h2>User Creation</h2></div>
                 <div className="name-fields flex">
                     <div className="first-name">
