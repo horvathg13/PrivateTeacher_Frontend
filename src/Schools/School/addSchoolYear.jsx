@@ -13,6 +13,7 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
     const nodeRef = useRef(null);
     const {schoolId}=useParams();
     const [statuses, setStatuses]=useState([]);
+    const [selectedStatus, setSelectedStatus]=useState();
 
    /* Methods:*/ 
 
@@ -20,12 +21,12 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
     e.preventDefault();
 
     let dataForm={};
-    dataForm.year=year
+    dataForm.schoolYear=year
     dataForm.schoolId=schoolId
     dataForm.name=name
     dataForm.startDate=startDate
     dataForm.endDate=endDate
-
+    dataForm.status=selectedStatus
     emitData(dataForm);
 
    }
@@ -33,6 +34,10 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
    useEffect(()=>{
     setStatuses(schoolYearStatuses);
    },[statuses])
+
+    useEffect(()=>{
+        console.log(selectedStatus)
+    },[selectedStatus])
 
     return (
         <CSSTransition 
@@ -80,9 +85,9 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                         </div>
                         <div className="flex">
                             <label>Status </label>
-                            <select>
+                            <select onChange={(e)=>{setSelectedStatus(e.target.value)}}>
                                 {statuses ? statuses.map((e,i)=>(
-                                <option key={i} value={e.status}>{e.status}</option>)):null}
+                                <option key={i} value={e.id}>{e.status}</option>)):null}
                             </select>
                         </div>
                     </div>
