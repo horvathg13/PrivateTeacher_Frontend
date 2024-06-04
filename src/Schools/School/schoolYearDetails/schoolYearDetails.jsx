@@ -44,22 +44,22 @@ const SchoolYearDetails = () => {
             {
                 "id":"2",
                 "name":"Breaks",
-                "url":""
+                "url":`school-year/${schoolYearId}/breaks`
             },
             {
                 "id":"3",
                 "name":"Special Work Days",
-                "url":""
+                "url":`school-year/${schoolYearId}/special-work-days`
             },
             {
                 "id":"4",
                 "name":"Courses",
-                "url":""
+                "url":`school-year/${schoolYearId}/courses`
             },
             {
                 "id":"5",
-                "name":"Students",
-                "url":""
+                "name":"Teaching Days",
+                "url":`school-year/${schoolYearId}/teaching-days`
             }
         ]);
     },[])
@@ -99,11 +99,8 @@ const SchoolYearDetails = () => {
     return (
         <>
         <schoolYearDetailsContext.Provider value={[schoolData, statuses]}>
-            <div className="content-main-container">
-                
+            <div>
                 <Outlet/>
-                
-
             </div>
         </schoolYearDetailsContext.Provider>
         </>
