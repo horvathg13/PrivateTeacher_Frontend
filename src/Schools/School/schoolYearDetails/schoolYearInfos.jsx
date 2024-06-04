@@ -203,84 +203,98 @@ const SchoolYearInfos = () => {
         fn_alias={alias}
         emitData={(dataForm, fn_alias)=>functionControl(dataForm, fn_alias)}
         selected={selectedRow}/>*/}
-    <div className="content-main-container">
-        
+    <div>
         <div className="title"><h2>School Year Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
-            <form onSubmit={(e)=>updateSchoolYearInfos(e)} className="SchoolForm">
-                
-                <div className="school-form flex">
+        <form onSubmit={(e) => updateSchoolYearInfos(e)} className="FlexForm">
 
-                    <div className="flex">
-                        <label>Year</label>
-                        <input type="text" 
-                        required 
-                        onChange={(e)=>{setSchoolYear(e.target.value)}}
-                        value={schoolYear}
-                        readOnly={readOnly}/>
-                    </div>    
+            <div className="form-items flex">
 
-                    <div className="flex">
-                        <label>Name</label>
-                        <input type="text" 
-                        required 
-                        onChange={(e)=>{setSchoolYearName(e.target.value)}}
-                        value={schoolYearName}
-                        readOnly={readOnly}/>
-                    </div>
-                    
-                   
-                    <div className="flex">
-                        <label>Start</label>
-                        <input type="date"
-                        required  
-                        onChange={(e)=>{setSchoolYearStart(e.target.value)}}
-                        value={schoolYearStart}
-                        readOnly={readOnly}/>
-                    </div>
-                   
-                    <div className="flex">
-                        <label>End</label>
-                        <input
-                        type="date" 
-                        required  
-                        onChange={(e)=>{setSchoolYearEnd(e.target.value)}}
+                <div className="form-children">
+                    <label>Year</label>
+                    <input type="text"
+                           required
+                           onChange={(e) => {
+                               setSchoolYear(e.target.value)
+                           }}
+                           value={schoolYear}
+                           readOnly={readOnly}/>
+                </div>
+
+                <div className="form-children">
+                    <label>Name</label>
+                    <input type="text"
+                           required
+                           onChange={(e) => {
+                               setSchoolYearName(e.target.value)
+                           }}
+                           value={schoolYearName}
+                           readOnly={readOnly}/>
+                </div>
+
+
+                <div className="form-children">
+                    <label>Start</label>
+                    <input type="date"
+                           required
+                           onChange={(e) => {
+                               setSchoolYearStart(e.target.value)
+                           }}
+                           value={schoolYearStart}
+                           readOnly={readOnly}/>
+                </div>
+
+                <div className="form-children">
+                    <label>End</label>
+                    <input
+                        type="date"
+                        required
+                        onChange={(e) => {
+                            setSchoolYearEnd(e.target.value)
+                        }}
                         value={schoolYearEnd}
                         readOnly={readOnly}/>
-                    </div>
-                    <div className="flex">
-                        <label>Status</label>
-                        {readOnly ? <input type="text" 
-                        value={schoolYearStatus?.status}
-                        readOnly={readOnly}/>
-                        :<select className="school-year-infos-select" onChange={(e)=>{setSelectedStatus(e.target.value)}}>
-                            { statuses ? statuses.map((e,i)=>(<option key={i} value={e.id}>{e.status}</option>)):null}
-                        </select>}
-                    </div>
-                    
                 </div>
-                
+                <div className="form-children">
+                    <label>Status</label>
+                    {readOnly ? <input type="text"
+                                       value={schoolYearStatus?.status}
+                                       readOnly={readOnly}/>
+                        : <select className="school-year-infos-select" onChange={(e) => {
+                            setSelectedStatus(e.target.value)
+                        }}>
+                            {statuses ? statuses.map((e, i) => (
+                                <option key={i} value={e.id}>{e.status}</option>)) : null}
+                        </select>}
+                </div>
+
+            </div>
+            <div className="form-button-container">
                 {!loader ?
-                    <button 
-                    type='submit' 
-                    disabled={btndisabled} 
-                    className={readOnly ? 'formBtnDisabled':'btn formButton' }>
-                       <GrUpdate  className='btn-icon'/> Update 
-                    </button>:
+                    <button
+                        type='submit'
+                        disabled={btndisabled}
+                        className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                        <GrUpdate className='btn-icon'/> Update
+                    </button> :
                     <span className='loader schoolDetails'></span>
                 }
+
                 {!deleteLoader ?
                     <button
-                    type="button"
-                    disabled={btndisabled} 
-                    className={readOnly ? 'formBtnDisabled':'btn formButton' }
-                    onClick={()=>{setAreYouSureName("delete"); setAreYouSureTransitionProp(true)}}>
-                       <FaTrashAlt   className='btn-icon'/> Delete 
-                    </button>:
+                        type="button"
+                        disabled={btndisabled}
+                        className={readOnly ? 'formBtnDisabled' : 'btn formButton'}
+                        onClick={() => {
+                            setAreYouSureName("delete");
+                            setAreYouSureTransitionProp(true)
+                        }}>
+                        <FaTrashAlt className='btn-icon'/> Delete
+                    </button> :
                     <span className='loader schoolDetails'></span>
                 }
-            </form>
-            <Outlet/>
-        </div>
+            </div>
+        </form>
+    </div>
         </>
     );
 };
