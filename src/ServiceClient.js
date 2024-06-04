@@ -57,6 +57,21 @@ class ServiceClient {
             return response.data
         })
     }
+    static createUser(fname,lname,email,password){
+        return this.post("http://127.0.0.1:8000/api/createUser", {fname:fname, lname:lname, email:email, psw:password}).then((response)=>{
+            return response.data
+        })
+    }
+    static createUserRole(roleId, refId, userId){
+        return this.post("http://127.0.0.1:8000/api/createUserRole", {roleId:roleId, refId:refId, userId:userId}).then((response)=>{
+            return response.data
+        })
+    }
+    static getRoles(){
+        return this.post("http://127.0.0.1:8000/api/getAllRoles").then((response)=>{
+            return response.data
+        })
+    }
     static schoolUpdate(schoolId,name,city,zip,street, number){
         return this.post("http://127.0.0.1:8000/api/schoolUpdate", {id: schoolId, name:name, city:city, zip:zip, street:street, number:number}).then((response)=>{
             return response.data
@@ -67,13 +82,35 @@ class ServiceClient {
             return response.data;
         })
     }
-    static getSchools(perPage,counter){
-        return this.post(`http://127.0.0.1:8000/api/schools-list?perPage=${perPage}&page=${counter}`).then((response)=>{
+    static getSchools(){
+        return this.post("http://127.0.0.1:8000/api/schools-list").then((response)=>{
             return response.data
         })
     }
     static schoolCreate(name,country, zip, city, street, number){
         return this.post("http://127.0.0.1:8000/api/schoolCreate", {name:name, country:country, city:city, zip:zip, street:street, number:number}).then((response)=>{
+            return response.data
+        })
+    }
+    static createSchoolYear(dataForm){
+        return this.post("http://127.0.0.1:8000/api/createSchoolYear", {schoolYear:dataForm.schoolYear, startDate:dataForm.startDate, endDate:dataForm.endDate, schoolId:dataForm.schoolId, name:dataForm.name, statusId:dataForm.status}).then((response)=>{
+            return response.data
+        })
+    }
+    static createTeachingDay(name, teacherId, startDate, endDate, locationId){
+        return this.post("http://127.0.0.1:8000/api/createTeachingDay",{name:name, teacherId:teacherId, start:startDate, end:endDate, locationId:locationId}).then((response)=>{
+            return response.data
+        })
+    }
+    static createSchoolLocation(name, country, city, zip, street, number, floor, door, schoolId, locationId){
+        return this.post("http://127.0.0.1:8000/api/createSchoolLocation",{
+            name:name, country:country, city:city, zip:zip, street:street, number:number, floor:floor, door:door, schoolId:schoolId, locationId:locationId||null
+        }).then((response)=>{
+            return response.data
+        })
+    }
+    static getSchoolLocations(){
+        return this.post("http://127.0.0.1:8000/api/getSchoolLocations").then((response)=>{
             return response.data
         })
     }
