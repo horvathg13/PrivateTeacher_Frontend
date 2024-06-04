@@ -15,7 +15,7 @@ const SchoolYearInfos = () => {
     const [schoolData, statuses] = useContext(schoolYearDetailsContext);
 
     /*TabMenu*/
-    const {setMenuItems}=useContext(TabMenuContext);
+    /*const {setMenuItems}=useContext(TabMenuContext);
     useEffect(()=>{
         setMenuItems([
             {
@@ -45,7 +45,7 @@ const SchoolYearInfos = () => {
                 "url":""
             }
         ]);
-    },[])
+    },[])*/
 
     /*datas */
     const [schoolBrakes, setSchoolBrakes]=useState();
