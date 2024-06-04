@@ -102,5 +102,11 @@ export const getSchoolYearStatuses=()=>{
     }).catch((error)=>{
         console.log(error);
     })
-    
+}
+export const getSchoolLocations=(params)=>{
+    return ServiceClient.post("http://127.0.0.1:8000/api/getSchoolLocations?perPage=1&page=1",{schoolId:params.schoolId}).then((response)=>{
+        return response.data
+    }).catch((error)=>{
+        console.log(error);
+    })
 }
