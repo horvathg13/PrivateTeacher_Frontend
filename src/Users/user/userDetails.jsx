@@ -190,7 +190,7 @@ const UserDetails = () => {
            
             <div>
                 
-                <form className='flex' onSubmit={updateUser}>
+                <form className='FlexForm' onSubmit={updateUser}>
                     <div className="user-container info">
                         <div className="form-title"><h2>Info <MdEdit className='icon' onClick={()=>setReadOnlyInfo(!readOnlyInfo)}/></h2></div>
                         <div className="fields flex">
@@ -273,15 +273,14 @@ const UserDetails = () => {
                         </div>
                     </div>*/}
                     
-                    <div className="btn-container">
+                    <div className="userDetails btn-container">
                         {!loader ?
                         
                         <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled' : 'btn action formButton flex'}><RxUpdate className='user-submit-icon'/>Update </button>
-                        :<span className='loader userDetails'></span>
+                        :<span className='loader userDetailsLoader'></span>
                         
                         }
                     </div>
-                
                 </form>
             
             </div>
