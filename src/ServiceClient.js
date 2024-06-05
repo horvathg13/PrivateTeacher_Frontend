@@ -114,6 +114,16 @@ class ServiceClient {
             return response.data
         })
     }
+    static getSchoolLocation(schoolId, locationId){
+        return this.post("http://127.0.0.1:8000/api/getSchoolLocation", {schoolId:schoolId, locationId:locationId}).then((response)=>{
+            return response.data
+        })
+    }
+    static removeSchoolLocation(schoolId, locationId){
+        return this.post("http://127.0.0.1:8000/api/removeSchoolLocation",{schoolId:schoolId, locationId:locationId}).then((response)=>{
+            return response.data
+        });
+    }
 }
 
 export default ServiceClient
