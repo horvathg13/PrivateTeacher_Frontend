@@ -1,5 +1,5 @@
 import React, {useLayoutEffect, useState} from 'react';
-import {Outlet, useNavigate, useParams} from "react-router-dom";
+import {Outlet, useLoaderData, useNavigate, useParams} from "react-router-dom";
 import ServiceClient from "../../../ServiceClient";
 import EventHandler from "../../../EventHandler/eventhandler";
 import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
@@ -10,20 +10,20 @@ import {FaTrashAlt} from "react-icons/fa";
 const Location = () => {
     /*Data */
     const { schoolId, locationId }=useParams();
+    const schoolLocation=useLoaderData();
 
-    const [name, setName]=useState();
-    const [country, setCountry]=useState();
-    const [zip , setZip]=useState();
-    const [selectedRow, setSelectedRow]=useState();
-    const [alias, setAlias]=useState();
-    const [city, setCity]=useState();
-    const [street, setStreet]=useState();
-    const [number, setNumber]=useState();
-    const [floor, setFloor]=useState();
-    const [door, setDoor]=useState();
+    const [name, setName]=useState(schoolLocation?.name);
+    const [country, setCountry]=useState(schoolLocation?.country);
+    const [zip , setZip]=useState(schoolLocation?.zip);
+    const [city, setCity]=useState(schoolLocation?.city);
+    const [street, setStreet]=useState(schoolLocation?.street);
+    const [number, setNumber]=useState(schoolLocation?.number);
+    const [floor, setFloor]=useState(schoolLocation?.floor);
+    const [door, setDoor]=useState(schoolLocation?.door);
 
     const [readOnly, setReadOnly]=useState(true);
-
+    const [selectedRow, setSelectedRow]=useState();
+    const [alias, setAlias]=useState();
 
     /*Popup control */
     const [AreYouSureName, setAreYouSureName]=useState('');
@@ -35,8 +35,8 @@ const Location = () => {
     const [serverError, setServerError]=useState([]);
 
     /*Loader */
-    const [loader, setLoader]=useState(true);
-    const [deleteLoader, setDeleteLoader]=useState(true);
+    const [loader, setLoader]=useState(false);
+    const [deleteLoader, setDeleteLoader]=useState(false);
 
     /*Navigation */
     const navigation=useNavigate();
@@ -56,24 +56,22 @@ const Location = () => {
     }
 
     const getLocations=()=>{
-        let url=`http://127.0.0.1:8000/api/school/${schoolId}/location/${locationId}`
-        ServiceClient.get(url).then((response)=>{
-            if(response.status===200){
-                setName(response.data.name);
-                setCountry(response.data.country);
-                setZip(response.data.zip);
-                setCity(response.data.city);
-                setStreet(response.data.street);
-                setNumber(response.data.number);
-                setFloor(response.data.floor);
-                setDoor(response.data.door);
+        setLoader(true);
+        ServiceClient.getSchoolLocation(schoolId, locationId).then((data)=>{
+            setName(data.name);
+            setCountry(data.country);
+            setZip(data.zip);
+            setCity(data.city);
+            setStreet(data.street);
+            setNumber(data.number);
+            setFloor(data.floor);
+            setDoor(data.door);
 
-                setLoader(false);
-                setDeleteLoader(false);
-            }
+            setLoader(false);
+            setDeleteLoader(false);
         }).catch((error)=>{
             setServerError(error);
-            //setLoader(false);
+            setLoader(false);
         })
     }
     const updateLocationInfo=(e)=>{
@@ -82,28 +80,14 @@ const Location = () => {
         setLoader(true);
         setBtnDisabled(true);
 
-        let dataPost={};
-        dataPost.id=locationId;
-        dataPost.name=name;
-        dataPost.country=country;
-        dataPost.zip=zip;
-        dataPost.city=city;
-        dataPost.street=street;
-        dataPost.number=number;
-        dataPost.floor=floor;
-        dataPost.door=door;
-
-        let url="http://127.0.0.1:8000/api/createLocation";
-        ServiceClient.post(url, dataPost).then((response)=>{
-            if(response.status===200){
-                setLoader(false);
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                setBtnDisabled(false);
-                getLocations();
-            }
+        ServiceClient.createSchoolLocation(name,country,city,zip,street,number,floor,door,schoolId,locationId).then((success)=>{
+            setLoader(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            setBtnDisabled(false);
+            getLocations();
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -117,18 +101,14 @@ const Location = () => {
         dataPost.schoolId=schoolId;
         dataPost.locationId=locationId;
 
-        let url="http://127.0.0.1:8000/api/removeLocation";
+        ServiceClient.removeSchoolLocation(schoolId, locationId).then((success)=>{
+            setDeleteLoader(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
 
-        ServiceClient.post(url, dataPost).then((response)=>{
-            if(response.status===200){
-                setDeleteLoader(false);
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-
-                navigation(`/school/${schoolId}/locations`);
-            }
+            navigation(`/school/${schoolId}/locations`);
         }).catch((error)=>{
             setServerError(error);
             setDeleteLoader(false);
