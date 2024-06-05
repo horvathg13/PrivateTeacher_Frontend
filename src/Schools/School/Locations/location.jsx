@@ -128,14 +128,14 @@ const Location = () => {
                 answer={(name)=> functionControl(name)}
                 transitionProp={areYouSureTransitionProp}/>
 
-            <div className="content-main-container">
+            <div>
 
                 <div className="title"><h2>Location Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
-                <form onSubmit={(e)=>updateLocationInfo(e)} className="SchoolForm">
+                <form onSubmit={(e)=>updateLocationInfo(e)} className="FlexForm">
 
-                    <div className="school-form flex">
+                    <div className="form-items flex">
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Name</label>
                             <input type="text"
                                    required
@@ -146,7 +146,7 @@ const Location = () => {
                                    readOnly={readOnly}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Country</label>
                             <input type="text"
                                    required
@@ -158,7 +158,7 @@ const Location = () => {
                         </div>
 
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Zip</label>
                             <input type="text"
                                    required
@@ -169,7 +169,7 @@ const Location = () => {
                                    readOnly={readOnly}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>City</label>
                             <input
                                 type="text"
@@ -180,7 +180,7 @@ const Location = () => {
                                 value={city}
                                 readOnly={readOnly}/>
                         </div>
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Street</label>
                             <input
                                 type="text"
@@ -191,7 +191,7 @@ const Location = () => {
                                 value={street}
                                 readOnly={readOnly}/>
                         </div>
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Floor</label>
                             <input
                                 type="text"
@@ -202,7 +202,7 @@ const Location = () => {
                                 value={street}
                                 readOnly={readOnly}/>
                         </div>
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Door</label>
                             <input
                                 type="text"
@@ -215,7 +215,7 @@ const Location = () => {
                         </div>
 
                     </div>
-
+                    <div className="form-button-container">
                     {!loader ?
                         <button
                             type='submit'
@@ -235,6 +235,7 @@ const Location = () => {
                         </button>:
                         <span className='loader schoolDetails'></span>
                     }
+                    </div>
                 </form>
 
             </div>
