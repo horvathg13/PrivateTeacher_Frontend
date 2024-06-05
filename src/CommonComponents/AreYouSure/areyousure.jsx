@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import './areyousure.css';
+import '../common.css';
 import { CSSTransition } from 'react-transition-group';
 import '../../transitions.css'
         

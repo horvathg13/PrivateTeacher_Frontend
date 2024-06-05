@@ -1,4 +1,4 @@
-import './sidemenu.css';
+import '../common.css';
 import {FaBan, FaUsers ,FaUserPlus, FaChild, FaSearch,} from 'react-icons/fa';
 import { BiSolidMessageDetail } from "react-icons/bi";
 import {RiLockPasswordFill} from 'react-icons/ri';

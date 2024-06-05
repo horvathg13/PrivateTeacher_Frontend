@@ -55,7 +55,6 @@ const SchoolYearDetailsPopup = ({fn_alias,title, update, selected, loader ,btndi
         mountOnEnter 
         unmountOnExit>
             <div className="popup" ref={nodeRef} >
-                
                 <form className='school-year-details-popup-form flex' onSubmit={(e)=>FormDataEmit(e)}>
                     <div className="closeModal"><IoIosCloseCircle className='closeModalIcon' onClick={() => closeModal(true)} /></div>
                     <div className="formTitle"><h2>{title ? title : ''}</h2></div>

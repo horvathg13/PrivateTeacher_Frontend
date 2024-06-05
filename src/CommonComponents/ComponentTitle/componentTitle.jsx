@@ -1,5 +1,5 @@
 import { IoIosArrowForward } from "react-icons/io";
-import "./componentTitle.css";
+import "../common.css";
 import { NavLink } from "react-router-dom";
         
 const ComponentTitle = ({title, breadcrumbs}) => {

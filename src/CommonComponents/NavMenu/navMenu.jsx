@@ -1,4 +1,4 @@
-import './navMenu.css';
+import '../common.css';
 import { NavLink } from 'react-router-dom';
 import { BsList } from "react-icons/bs";
 import { useState } from 'react';

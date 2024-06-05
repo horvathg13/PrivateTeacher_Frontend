@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import './tabMenu.css';
+import '../common.css';
 import { useContext } from 'react';
 import { TabMenuContext } from '../../Context/UserContext';
         

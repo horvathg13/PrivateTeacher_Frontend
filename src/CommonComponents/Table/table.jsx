@@ -1,4 +1,4 @@
-import './table.css';
+import '../common.css';
 import { FaSortAmountUp, FaSortAmountDown } from "react-icons/fa";
 import { FaFilter } from "react-icons/fa";
 import { MdLastPage, MdFirstPage, MdNavigateNext, MdDelete, } from "react-icons/md";
