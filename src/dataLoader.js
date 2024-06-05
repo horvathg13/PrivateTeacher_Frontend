@@ -110,3 +110,10 @@ export const getSchoolLocations=(params)=>{
         console.log(error);
     })
 }
+export const getSchoolLocation=(params)=>{
+    return ServiceClient.post("http://127.0.0.1:8000/api/getSchoolLocation", {schoolId:params.schoolId, locationId:params.locationId}).then((response)=>{
+        return response.data
+    }).catch((error)=>{
+        console.log(error);
+    })
+}
