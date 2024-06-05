@@ -26,7 +26,7 @@ import {
   getRolesandSchools,
   getConnectedChildren,
   getSchoolYearStatuses,
-  getSchoolYears
+  getSchoolYears, getSchoolLocations, getSchoolLocation
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
@@ -55,6 +55,12 @@ import Search from './Search/search';
 import SearchTeacher from './Search/searchTeacher';
 import SearchSchool from './Search/searchSchool';
 import SearchCourse from './Search/searchCourse';
+import TeachingDaysList from "./Schools/School/DaysAndTimes/teachingDaysList";
+import AddTeachingDay from "./Schools/School/DaysAndTimes/addTeachingDay";
+import LocationList from "./Schools/School/Locations/locationList";
+import AddNewLocation from "./Schools/School/Locations/addNewLocation";
+import Location from "./Schools/School/Locations/location";
+import LocationOutlet from "./Schools/School/Locations/locationOutlet";
 
 function App() {
 
@@ -184,6 +190,21 @@ const router = createBrowserRouter([
                 loader:({params})=>{return getSchoolBreaks(params)},
               },
               {
+                path:"teaching-days",
+                element:<TeachingDaysList/>,
+                loader:({params})=>{return getSchoolBreaks(params)},
+              },
+              {
+                path:"create-teaching-day",
+                element:<AddTeachingDay/>,
+                loader:({params})=>{return getSchoolBreaks(params)},
+              },
+              /*{
+                path:"students",
+                element:<StudentList/>,
+                loader:({params})=>{return },
+              },*/
+              {
                 path:"courses",
                 element:<SchoolCoursesList/>,
                 loader:({params})=>{return getSchoolCourses(params)},
@@ -200,6 +221,29 @@ const router = createBrowserRouter([
               },
             ]
           },
+          {
+            path:"locations",
+            element: <LocationOutlet/>,
+            /*location loader*/
+            children:[
+              {
+                path:"",
+                element: <LocationList/>,
+                loader:({params})=>{return  getSchoolLocations(params)}
+
+              },
+              {
+                path:":locationId",
+                element: <Location/>,
+                loader:({params})=>{return getSchoolLocation(params)}
+
+              },
+              {
+                path:"create-location",
+                element: <AddNewLocation/>
+              }
+            ]
+          }
         ]
       },
       {
