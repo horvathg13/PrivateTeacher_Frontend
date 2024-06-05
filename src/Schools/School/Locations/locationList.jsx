@@ -94,13 +94,13 @@ const LocationList = () => {
                         {schoolLocations.data?.length > 0 ? schoolLocations.data.map((e, i) => (
                                 <tr key={i}>
                                     {Object.values(e).map(j =>
-                                        <td>{j}</td>
+                                        <td onClick={()=>navigate(`/school/${schoolId}/locations/${e.id}`)}>{j}</td>
                                     )}
                                 </tr>
                             )) :
                             <>
                                 <tr>
-                                    <td colSpan={3} className="no-school">No registered school course in this school.
+                                    <td colSpan={3} className="no-school">No registered location in this school.
                                     </td>
                                 </tr>
                             </>}
