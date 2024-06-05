@@ -1,0 +1,383 @@
+@import "../animations.css";
+
+/*AreYouSure*/
+.are-you-sure-bcg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(42, 50, 51, 0.66);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+.are-you-sure-bcg .are-yousure-main {
+    position: fixed;
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 25%;
+    background: var(--gradientBlue);
+    z-index: 9999;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px black;
+}
+.are-you-sure-bcg .are-yousure-main .title, .are-you-sure-bcg .are-yousure-main h1 {
+    width: 100%;
+    margin: 0 auto;
+    color: var(--whiteColorDeam);
+    text-align: center;
+}
+.are-you-sure-bcg .are-yousure-main .answers.flex {
+    width: 100%;
+}
+.are-you-sure-bcg .are-yousure-main .answers.flex button {
+    padding: 10px 30px;
+    background: var(--ButtonBlue);
+    border: none;
+    border-radius: 10px;
+    color: var(--whiteColorDeam);
+    text-align: center;
+    letter-spacing: 0.5px;
+    box-shadow: 1px 2px 1px #4c4c4c;
+    margin: 0 5px;
+    transition: 0.5s ease-in-out;
+    margin: 10px auto;
+    font-weight: 600;
+}
+.are-you-sure-bcg .are-yousure-main .answers.flex button:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+    background: var(--GreenColor);
+}
+
+/*ComponentTitle*/
+.component-title-container.flex {
+    justify-content: space-between;
+    margin: 0 auto;
+    border-bottom: 3px dotted var(--GreenColor);
+    padding: 5px;
+}
+.component-title-container.flex .title h1 {
+    letter-spacing: 1.5px;
+}
+.component-title-container.flex h4 {
+    font-size: 15px;
+}
+.component-title-container.flex .breadcrumbs.flex {
+    justify-content: center;
+}
+.component-title-container.flex .breadcrumbs.flex h4 a.active {
+    color: var(--ButtonBlue);
+}
+.component-title-container.flex .breadcrumbs.flex .breadicon {
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+/*NavMenu*/
+.nav-menu-circle.flex {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50px;
+    background: var(--ButtonBlue);
+    color: var(--whiteColorDeam);
+    text-align: center;
+    justify-content: center;
+    left: 0;
+    top: 100px;
+    position: fixed;
+    margin: 50px 100px;
+    cursor: pointer;
+}
+.nav-menu-circle.flex .nav-icon {
+    margin: 0 auto;
+    font-size: 25px;
+}
+
+.nav-main-conatiner.flex {
+    width: 200px;
+    height: 100%;
+    flex-direction: column;
+    position: absolute;
+    margin: 95px 95px;
+    border: 1px 1px 1px 0px solid var(--GreyColor);
+    background: var(--NavBgLightBlue);
+    left: 0;
+    top: 0px;
+}
+.nav-main-conatiner.flex .nav-header.flex {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    border-bottom: 2px dotted var(--GreenColor);
+}
+.nav-main-conatiner.flex .links {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+.nav-main-conatiner.flex .links li {
+    padding: 10px;
+    color: var(--DarkBlue);
+}
+.nav-main-conatiner.flex .links li:hover {
+    background: var(--ButtonBlue);
+    color: var(--whiteColorDeam);
+}
+.nav-main-conatiner.flex .nav-icon {
+    margin: 0 10px;
+    font-size: 20px;
+}
+.nav-main-conatiner.flex .nav-icon:hover {
+    cursor: pointer;
+}
+
+/*Select*/
+.select-container {
+    width: 420px;
+    height: fit-content;
+    background: white;
+    cursor: pointer;
+    color: var(--DarkBlue);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.select-container .selected-option.flex {
+    width: 100%;
+    padding: 5px 0;
+    background: white;
+    text-align: center;
+}
+.select-container .selected-option.flex h4 {
+    margin: 0 10px;
+    width: 100%;
+}
+.select-container .active.flex {
+    background-color: var(--GreenColor);
+    width: 100%;
+    padding: 5px 0;
+}
+.select-container .active.flex h4 {
+    color: var(--DarkBlue) !important;
+    margin: 0 10px;
+    width: 100%;
+}
+.select-container .disabled.flex {
+    background: var(--BackgroundColor);
+    width: 100%;
+    padding: 5px 0;
+    cursor: default;
+}
+.select-container .disabled.flex h4 {
+    color: unset;
+    margin: 0 10px;
+    width: 100%;
+}
+.select-container .select-icon {
+    margin: 0 auto;
+    margin-right: 15px;
+}
+.select-container .dropdown-menu {
+    background-color: var(--GreyTransparent);
+    border: 1px solid var(--DarkBlue);
+    border-top: none;
+    height: 80px;
+    overflow: auto;
+}
+.select-container .dropdown-menu .dropdown-option {
+    padding: 5px;
+    text-align: center;
+}
+.select-container .dropdown-menu .dropdown-option:hover {
+    background-color: var(--LightBlue);
+    color: white;
+}
+/*SideMenu*/
+.side-main-conainer {
+    width: 90px;
+    height: 100%;
+    position: absolute;
+    background: var(--BackgroundColor);
+    top: 92px; /* header icon height: 91.4 px + contentTitle 91 */
+    box-shadow: 2px 5px 3px #888;
+    border-radius: 0 0px 5px 0;
+    border-left: none;
+    border-top: none;
+}
+.side-main-conainer .element-container.flex {
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    text-align: center;
+    border-bottom: 2px dotted var(--GreyColor);
+    padding: 10px 0;
+    transition: 0.5s ease-in-out;
+}
+.side-main-conainer .element-container.flex .icon-container {
+    width: 60px;
+    min-height: 60px;
+    color: var(--DarkBlue);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.side-main-conainer .element-container.flex .icon-container .icon {
+    margin: 0 auto;
+    padding: 15px;
+}
+.side-main-conainer .element-container.flex .active .icon-container {
+    border-radius: 50%;
+    background: var(--ButtonBlue);
+    color: var(--whiteColorDeam);
+}
+.side-main-conainer .element-container.flex .name-container {
+    width: 100%;
+}
+.side-main-conainer .element-container.flex .name-container h4 {
+    margin: 0;
+    color: var(--PrimaryColor);
+    font-size: 11px;
+}
+.side-main-conainer .element-container.flex:hover .icon-container {
+    border-radius: 50%;
+    background: var(--ButtonBlue);
+    color: var(--whiteColorDeam);
+    transition: 0.5s ease-in-out;
+}
+.side-main-conainer .menu-icon:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+}
+
+/*Table*/
+.table-main-container {
+    height: 500px;
+    margin: 1% auto;
+}
+.table-main-container .table-action-menu.flex {
+    max-width: 100%;
+    padding: 20px;
+    flex-flow: row-reverse;
+}
+.table-main-container .table-action-menu.flex button {
+    padding: 10px 20px;
+    background: var(--ButtonBlue);
+    color: var(--whiteColorDeam);
+    border-radius: 10px;
+    border: none;
+    letter-spacing: 0.5px;
+    box-shadow: 2px 2px 4px #4c4c4c;
+    margin: 0 5px;
+}
+.table-main-container .table-action-menu.flex button:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+}
+.table-main-container .table-action-menu.flex button .table-menu-icon {
+    padding: 0 5px;
+}
+.table-main-container table {
+    border-spacing: 0;
+    width: 100%;
+}
+.table-main-container table thead tr th {
+    padding: 15px;
+    text-align: left;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--PrimaryColor);
+    background: var(--DarkBlue);
+    color: var(--whiteColorDeam);
+}
+.table-main-container table thead tr th td {
+    display: flex;
+    align-items: center;
+}
+.table-main-container table tbody tr:nth-child(2n) {
+    background: var(--GreyTransparent);
+}
+.table-main-container table tbody tr td {
+    padding: 10px;
+}
+.table-main-container table tbody tr:hover {
+    background-color: var(--LightBlueTransparent);
+    cursor: pointer;
+}
+.table-main-container table tbody tr.active {
+    background-color: var(--LightBlueTransparent);
+}
+.table-main-container .pagination-continer.flex {
+    font-size: 12px;
+    color: var(--PrimaryColor);
+    padding: 20px;
+    justify-content: space-between;
+    width: auto;
+}
+.table-main-container .pagination-continer.flex .show-container {
+    min-width: 130px;
+    padding: 5px;
+}
+.table-main-container .pagination-continer.flex .show-container input {
+    border-radius: 5px;
+    width: 50px;
+    height: 23px;
+    border: none;
+    margin: 0 5%;
+    background-color: var(--ButtonBlue);
+    color: var(--whiteColorDeam);
+    cursor: var(--whiteColorDeam);
+}
+.table-main-container .pagination-continer.flex .pagination.flex {
+    width: fit-content;
+    font-size: 13px;
+}
+.table-main-container .pagination-continer.flex .pagination.flex .table-icon {
+    font-size: 17px;
+    margin: 0 8px;
+}
+
+.loader.table {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 50% !important;
+    margin: 0 auto;
+    border-top: 4px solid var(--DarkBlue) !important;
+}
+
+/*TabMnu*/
+.tabMenu-container.flex {
+    margin: 20px auto;
+}
+.tabMenu-container.flex .action {
+    background: var(--DarkBlue);
+    border: none;
+    border-radius: 5px 50px 0 5px;
+    padding: 10px 30px;
+    color: var(--whiteColorDeam);
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin: 0 5px;
+    transition: 0.5s ease-in-out;
+}
+.tabMenu-container.flex .action:hover {
+    background: var(--ButtonBlue);
+    transition: 0.3s ease-in-out;
+}
+.tabMenu-container.flex .action .icon {
+    font-size: 17px;
+    margin: auto 5px;
+}
+
+.tabMenu-container .active > .btn.action {
+    background: var(--ButtonBlue);
+    box-shadow: 6px 0px 2px #4c4c4c;
+    padding: 10px 50px;
+    animation: activeTabMenu 0.7s ease-in-out;
+}
+
