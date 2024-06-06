@@ -61,6 +61,9 @@ import LocationList from "./Schools/School/Locations/locationList";
 import AddNewLocation from "./Schools/School/Locations/addNewLocation";
 import Location from "./Schools/School/Locations/location";
 import LocationOutlet from "./Schools/School/Locations/locationOutlet";
+import TeacherOutlet from "./Schools/School/Teachers/teacherOutlet";
+import SearchResult from "./Search/searchResult";
+import TeachersList from "./Schools/School/Teachers/teachersList";
 
 function App() {
 
@@ -243,6 +246,11 @@ const router = createBrowserRouter([
                 element: <AddNewLocation/>
               }
             ]
+          },
+          {
+            path:"teachers",
+            element: <TeachersList/>,
+
           }
         ]
       },
