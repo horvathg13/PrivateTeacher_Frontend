@@ -6,7 +6,7 @@ import Table from "../../../CommonComponents/Table/table";
 
 const TeachersList = () => {
     /*Data*/
-    const schoolId = useParams()
+    const {schoolId}= useParams();
     const [teachers, setTeachers]=useState({});
     const [selectedRow, setSelectedRow]=useState();
 
@@ -39,8 +39,8 @@ const TeachersList = () => {
 
     useEffect(()=>{
         setLoader(true);
-        let url=`http://127.0.0.1:8000/api/getTeachers?perPage=${perPage}&page=${counter}`;
-        ServiceClient.post(url).then((response)=>{
+        let url=`http://127.0.0.1:8000/api/getSchoolTeachers?perPage=${perPage}&page=${counter}`;
+        ServiceClient.post(url,{schoolId:schoolId}).then((response)=>{
             if(response.status===200){
                 setLoader(false);
                 setTeachers(response.data);
@@ -60,8 +60,7 @@ const TeachersList = () => {
 
     },[selectedRow])
     return (
-        <div className="content-main-container">
-
+        <div>
             <EventHandler
                 success={success}
                 errors={errors}
@@ -74,6 +73,7 @@ const TeachersList = () => {
                     loader={loader}
                     page={pageCounter}
                     perPage={setPerPage}
+                    selectableRow="false"
                     selectedRow={(e)=>[setSelectedRow(e)]}/>
             </div>
 
