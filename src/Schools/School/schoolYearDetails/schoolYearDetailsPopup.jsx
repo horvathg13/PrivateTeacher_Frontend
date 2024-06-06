@@ -23,9 +23,14 @@ const SchoolYearDetailsPopup = ({fn_alias,title, update, selected, loader ,btndi
     dataForm.end=endDate
     dataForm.id=id ? id : null
 
-
-    return emitData(dataForm, fn_alias);
-
+    emitData(dataForm, fn_alias);
+    return clearFormFields();
+   }
+   const clearFormFields=()=>{
+       setName("");
+       setStartDate("");
+       setEndDate("");
+       setId("");
    }
 
    useEffect(()=>{
@@ -45,7 +50,6 @@ const SchoolYearDetailsPopup = ({fn_alias,title, update, selected, loader ,btndi
     
    },[selected])
 
-   useEffect(()=>{console.log(selected,"rosszmanó")},[selected])
     return (
         <CSSTransition 
         nodeRef={nodeRef} 
