@@ -66,69 +66,46 @@ const SchoolBreaks = () => {
             createSchoolBreak(dataForm);
         }
         setAreYouSureTransitionProp(false);
-        
     }
     
     const getSchoolBreaks=()=>{
-        let url=`http://127.0.0.1:8000/api/school/${schoolId}/school-year-details/${schoolYearId}`
-        ServiceClient.get(url).then((response)=>{
-            if(response.status===200){
-                console.log(response.data[0].specialWorkDays)
-                setHeader(response.data[0].header);
-                setSchoolBreaks(response.data[0].breaks);
-                
-                setLoader(false);
-
-            }
+        ServiceClient.getSchoolBreaksAndScpecialWorkDays(schoolId, schoolYearId).then((success)=>{
+            setHeader(success.header);
+            setSchoolBreaks(success.breaks);
+            setLoader(false);
         }).catch((error)=>{
             setServerError(error);
-            //setLoader(false);
-        })
+            setLoader(false);
+        });
     }
     const createSchoolBreak=(dataForm)=>{
-        let url="http://127.0.0.1:8000/api/createSchoolBreak";
-        ServiceClient.post(url,dataForm).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                getSchoolBreaks();
-                setSelectedRow("");
-                setTransitionProp(false);
-            }
+        ServiceClient.createSchoolBreak(dataForm.schoolId, dataForm.yearId, dataForm.name, dataForm.start, dataForm.end,dataForm.id).then((success)=>{
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            getSchoolBreaks();
+            setSelectedRow("");
+            setTransitionProp(false);
         }).catch((error)=>{
             setServerError(error);
         })
     }
     
     const removeSchoolBreak=()=>{
-        
-        let url="http://127.0.0.1:8000/api/removeSchoolBreak";
-        let dataPost={};
-        dataPost.schoolId=selectedRow.school_id;
-        dataPost.yearId=selectedRow.school_year_id;
-        dataPost.id=selectedRow.id;
-
-        ServiceClient.post(url,dataPost).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                getSchoolBreaks();
-                setSelectedRow("");
-                setTransitionProp(false);
-            }
+        ServiceClient.removeSchoolBreak(schoolId, schoolYearId,selectedRow.id).then((success)=>{
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            getSchoolBreaks();
+            setSelectedRow("");
+            setTransitionProp(false);
         }).catch((error)=>{
             setServerError(error);
         })
     }
-    
-   /* useLayoutEffect(()=>{
-        getSchoolBreaks();
-    },[])*/
-    
+
     return (
         <>
         <EventHandler
@@ -153,10 +130,17 @@ const SchoolBreaks = () => {
         emitData={(dataForm, fn_alias)=>functionControl(dataForm, fn_alias)}
         selected={selectedRow}/>
         <div>
-            
             <form>
-                <div className="school-breaks-container">
-                    <div className="form-title"><h2>School Breaks</h2></div>
+                <div>
+                    <div className="form-title">
+                        <FaPlus className='table-action-icon' onClick={() => [
+                            setTitle("Add school brake"),
+                            setUpdatePopup(false),
+                            setAlias("break"),
+                            setTransitionProp(true),
+                            setSelectedRow(""),
+                        ]}/>
+                    </div>
                     <div className="table-main-container">
                         {!loader ? 
                         <table>
@@ -190,8 +174,7 @@ const SchoolBreaks = () => {
                                             ]}/>
                                             <MdEdit className='table-action-icon' onClick={() => [
                                                 setSelectedRow(e), 
-                                                console.log(selectedRow), 
-                                                setUpdatePopup(true), 
+                                                setUpdatePopup(true),
                                                 setAlias("break"), 
                                                 setTitle("Update"), 
                                                 setTransitionProp(true)
@@ -204,24 +187,11 @@ const SchoolBreaks = () => {
                                     <tr>
                                         <td colSpan={5} className="no-school">No registered school break in this school.</td>
                                     </tr>
-                                        </>}    
-                                <tr className="addNewTableRow">
-                                    <td><FaPlus className='table-action-icon' onClick={() => [
-                                        setTitle("Add school brake"),
-                                        setUpdatePopup(false),
-                                        setAlias("break"),
-                                        setTransitionProp(true), 
-                                        setSelectedRow(""),
-                                        console.log(selectedRow)
-                                    ]}/></td>
-                                </tr>
-                            
+                                </>}
                             </tbody>
                                 </table> : <span className='loader table'></span>}
-                        
                     </div>
                 </div>
-                
             </form>
         </div>
         </>
