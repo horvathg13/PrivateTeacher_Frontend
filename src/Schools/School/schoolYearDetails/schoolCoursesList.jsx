@@ -91,13 +91,10 @@ const SchoolCoursesList = () => {
         />
         
         <div>
-            
             <form>
                 <div className="school-breaks-container">
                     <div className="form-title flex courseTitle">
-                       
-                        <h2>School Courses</h2><FaPlus  className='table-action-icon' onClick={()=>navigation(`/school/${schoolId}/school-year/${schoolYearId}/create-course`)}/>
-                        
+                       <FaPlus className='table-action-icon' onClick={()=>navigation(`/school/${schoolId}/school-year/${schoolYearId}/create-course`)}/>
                     </div>
                     <div className="table-main-container">
                         {!loader ? 
@@ -127,21 +124,9 @@ const SchoolCoursesList = () => {
                                     <tr>
                                         <td colSpan={3} className="no-school">No registered school course in this school.</td>
                                     </tr>
-                                        </>}    
-                                {/*<tr className="addNewTableRow">
-                                    <td><FaPlus className='table-action-icon' onClick={() => [
-                                        setTitle("Add school course"),
-                                        setUpdatePopup(false),
-                                        setAlias("course"),
-                                        setTransitionProp(true), 
-                                        setSelectedRow(""),
-                                        console.log(selectedRow)
-                                    ]}/></td>
-                                </tr>*/}
-                            
+                                </>}
                             </tbody>
                                 </table> : <span className='loader table'></span>}
-                        
                     </div>
                 </div>
                 
