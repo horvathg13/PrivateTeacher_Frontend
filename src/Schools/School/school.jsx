@@ -19,14 +19,19 @@ const School = () => {
             },
             {
                 "id":"2",
-                "name":"School Year",
+                "name":"Years",
                 "url":`/school/${schoolId}/school-year-list`
             },
             {
                 "id":"3",
-                "name":"School Locations",
+                "name":"Locations",
                 "url":`/school/${schoolId}/locations`
             },
+            {
+                "id":"4",
+                "name":"Teachers",
+                "url":`/school/${schoolId}/teachers`
+            }
             /*TODO: Global student search*/
             
         ])
