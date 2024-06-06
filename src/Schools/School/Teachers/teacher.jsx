@@ -30,14 +30,14 @@ const Teacher = () => {
     const [serverError, setServerError]=useState([]);
 
     /*Loader */
-    const [loader, setLoader]=useState(true);
-    const [deleteLoader, setDeleteLoader]=useState(true);
+    const [loader, setLoader]=useState(false);
+    const [deleteLoader, setDeleteLoader]=useState(false);
 
     /*Navigation */
     const navigation=useNavigate();
 
     /*Button Control */
-    const [btndisabled, setBtnDisabled]=useState(true);
+    const [btndisabled, setBtnDisabled]=useState(false);
 
     /*Methods */
     const functionControl=(name)=>{
@@ -103,14 +103,13 @@ const Teacher = () => {
                 answer={(name)=> functionControl(name)}
                 transitionProp={areYouSureTransitionProp}/>
 
-            <div className="content-main-container">
-
+            <div>
                 <div className="title"><h2>Location Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
-                <form onSubmit={(e)=>updateLocationInfo(e)} className="SchoolForm">
+                <form onSubmit={(e)=>updateLocationInfo(e)} className="FlexForm">
 
-                    <div className="school-form flex">
+                    <div className="form-items flex">
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Firstname</label>
                             <input type="text"
                                    required
@@ -121,7 +120,7 @@ const Teacher = () => {
                                    readOnly={true}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Lastname</label>
                             <input type="text"
                                    required
@@ -133,7 +132,7 @@ const Teacher = () => {
                         </div>
 
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Email</label>
                             <input type="text"
                                    required
@@ -144,7 +143,7 @@ const Teacher = () => {
                                    readOnly={true}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Courses</label>
                             {readOnly ? <input type="text"
                                                value={teacherCourses? teacherCourses.map((e)=>( e.name)) : null}
@@ -153,7 +152,7 @@ const Teacher = () => {
                                     { courses ? courses.map((e,i)=>(<option key={i} value={e.id}>{e.status}</option>)):null}
                                 </select>}
                         </div>
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Status</label>
                             {readOnly ? <input type="text"
                                                value={teacherStatuses?.status}
@@ -162,7 +161,7 @@ const Teacher = () => {
                                     { status ? status.map((e,i)=>(<option key={i} value={e.id}>{e.status}</option>)):null}
                                 </select>}
                         </div>
-
+                    <div className="form-button-container">
                     {!deleteLoader ?
                         <button
                             type="button"
@@ -173,6 +172,7 @@ const Teacher = () => {
                         </button>:
                         <span className='loader schoolDetails'></span>
                     }
+                    </div>
                     </div>
                 </form>
 
