@@ -86,6 +86,7 @@ table tbody tr.addNewTableRow:hover {
 table tbody tr .table-action-icon {
   padding: 10px 0px;
 }
+
 table tbody tr td.no-school {
   font-style: italic;
   text-align: center;

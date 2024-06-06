@@ -308,6 +308,9 @@
     background-color: var(--LightBlueTransparent);
     cursor: pointer;
 }
+.table-main-container table tbody tr.disableSelection{
+    cursor: default !important;
+}
 .table-main-container table tbody tr.active {
     background-color: var(--LightBlueTransparent);
 }
