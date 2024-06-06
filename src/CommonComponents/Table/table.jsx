@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { FaCirclePlus } from 'react-icons/fa6';
 
 
-const Table = ({datas, loader, page, perPage, selectedRow}) => {
+const Table = ({datas, loader, page, perPage, selectedRow, selectableRow}) => {
     /* data: */
 
     const [sort, setSort]=useState(true);
@@ -18,6 +18,18 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
     const handleSort=(e)=>{
         setColumn(e);
         setSort(!sort)
+    }
+    const rowClasses=(e)=>{
+        let classes = [];
+
+        if (activeRow === e) {
+            classes.push('active');
+        }
+        if (selectableRow === "false") {
+            classes.push('disableSelection');
+        }
+
+        return classes.join(' ');
     }
     
     useEffect(()=>{console.log(column)},[column])
@@ -39,7 +51,7 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
                         {datas.header ? Object.keys(datas.header).map((e, i) => (
 
                             <th key={i}>{e} {datas.header[e] === true ? 
-                                <button onClick={()=>handleSort(e)} className='table-icon' > {column === e && sort  ? <FaSortAmountUp /> : <FaSortAmountDown />}</button> 
+                                <button onClick={()=>handleSort(e)} className='table-icon' > {column === e && sort  ? <FaSortAmountUp /> : <FaSortAmountDown />}</button>
                                 : null}
                             </th>
 
@@ -51,7 +63,7 @@ const Table = ({datas, loader, page, perPage, selectedRow}) => {
                 </thead>
                 <tbody>
                     { datas.data?.map((e) => (
-                        <tr key={e.id} onClick={() => [selectedRow(e), setActiveRow(e)]} className={activeRow === e ? 'active' : ''}>
+                        <tr key={e.id} onClick={() => {if(selectableRow!=="false"){selectedRow(e);setActiveRow(e)}}} className={rowClasses(e)}>
                            { Object.values(e).map((j=>
                             <td>{j}</td>
                            ))}
