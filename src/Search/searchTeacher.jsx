@@ -1,6 +1,6 @@
 import { useState } from "react";
 import EventHandler from "../EventHandler/eventhandler";
-import { useNavigate } from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import SideMenu from "../CommonComponents/SideMenu/sidemenu";
 import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
 import { FaArrowCircleRight } from "react-icons/fa";
@@ -74,27 +74,20 @@ const SearchTeacher = () => {
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-        <SearchResult
-        transitionProp={transitionProp}
-        closeModal={(data)=>{if(data===true){setTransitionProp(!transitionProp)}}}
-        data={result}
-        title={title}
-        />
-
-        <div className="content-main-container">
+        <div>
             <div className="title"><h2>Search Teacher</h2></div>
-            <form onSubmit={(e)=>searchTeacher(e)} className="SchoolForm">
+            <form onSubmit={(e)=>searchTeacher(e)} className="FlexForm">
                 
-                <div className="school-form flex">
+                <div className="form-items flex">
                    
-                    <div className="flex">
+                    <div className="form-children">
                         <label>Email</label>
                         <input type="email"
                         onChange={(e)=>{setEmail(e.target.value)}}
                         value={email}/>
                     </div>
                 </div>
-                
+                <div className="form-button-container">
                 {!loader ?
                     <button 
                     type='submit' 
@@ -104,8 +97,8 @@ const SearchTeacher = () => {
                     </button>:
                     <span className='loader schoolCreate'></span>
                 }
+                </div>
             </form>
-
          </div>
          </>
     );
