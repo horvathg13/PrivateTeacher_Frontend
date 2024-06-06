@@ -48,23 +48,18 @@ const SchoolYearInfos = () => {
     },[])*/
 
     /*datas */
-    const [schoolBrakes, setSchoolBrakes]=useState();
-    const [specialWorkDays, setSpecialWorkDays]=useState();
-    const [header, setHeader]=useState();
-    const [selectedRow, setSelectedRow]=useState();
     let { schoolId, schoolYearId }=useParams();
-    const [alias, setAlias]=useState();
-    const [schoolYear, setSchoolYear]=useState();
-    const [schoolYearName, setSchoolYearName]=useState();
-    const [schoolYearStart, setSchoolYearStart]=useState();
-    const [schoolYearEnd, setSchoolYearEnd]=useState();
-    const [readOnly, setReadOnly]=useState(true);
-    const [schoolYearStatus, setSchoolYearStatus]=useState();
+
+    /*Form fields*/
+    const [schoolYear, setSchoolYear]=useState(schoolData.year);
+    const [schoolYearName, setSchoolYearName]=useState(schoolData.name);
+    const [schoolYearStart, setSchoolYearStart]=useState(schoolData.start);
+    const [schoolYearEnd, setSchoolYearEnd]=useState(schoolData.end);
+    const [schoolYearStatus, setSchoolYearStatus]=useState(schoolData.status);
     const [selectedStatus, setSelectedStatus]=useState();
-    
+    const [readOnly, setReadOnly]=useState(true);
 
     /*Popup control */
-   
     const [title, setTitle]=useState();
     const [updatePopup, setUpdatePopup]=useState();
     const [transitionProp, setTransitionProp]=useState(false);
@@ -79,9 +74,9 @@ const SchoolYearInfos = () => {
     const [serverError, setServerError]=useState([]);
 
     /*Loader */
-    const [loader, setLoader]=useState(true);
+    const [loader, setLoader]=useState(false);
     const [formLoader, setFormLoader]=useState(false);
-    const [deleteLoader, setDeleteLoader]=useState(true);
+    const [deleteLoader, setDeleteLoader]=useState(false);
 
     /*Navigation */
     const navigation=useNavigate();
@@ -103,82 +98,56 @@ const SchoolYearInfos = () => {
     }
     
     const getSchoolYearInfos=()=>{
-        let url=`http://127.0.0.1:8000/api/school/${schoolId}/school-year-infos/${schoolYearId}`
-        ServiceClient.get(url).then((response)=>{
-            if(response.status===200){
-                setSchoolYear(response.data.year);
-                setSchoolYearName(response.data.name);
-                setSchoolYearStart(response.data.start);
-                setSchoolYearEnd(response.data.end);
-                setSchoolYearStatus(response.data.status);
-                
-                setLoader(false);
-                setDeleteLoader(false);
-            }
+        ServiceClient.getSchoolYearInfos(schoolId, schoolYearId).then((success)=>{
+            setSchoolYear(success.year);
+            setSchoolYearName(success.name);
+            setSchoolYearStart(success.start);
+            setSchoolYearEnd(success.end);
+            setSchoolYearStatus(success.status);
+
+            setLoader(false);
+            setDeleteLoader(false);
         }).catch((error)=>{
             setServerError(error);
             //setLoader(false);
-        })
+        });
     }
     const updateSchoolYearInfos=(e)=>{
         
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
-
-        let dataPost={};
-        dataPost.id=schoolYearId;
-        dataPost.schoolId=schoolId;
-        dataPost.year=schoolYear;
-        dataPost.name=schoolYearName;
-        dataPost.startDate=schoolYearStart;
-        dataPost.endDate=schoolYearEnd;
-        dataPost.statusId=selectedStatus ? selectedStatus : schoolYearStatus.id;
-
-        let url="http://127.0.0.1:8000/api/createSchoolYear";
-        ServiceClient.post(url, dataPost).then((response)=>{
-            if(response.status===200){
-                setLoader(false);
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                setBtnDisabled(false);
-                getSchoolYearInfos();
-            }
+        ServiceClient.updateSchoolYear(schoolYearId,schoolId,schoolYear,schoolYearName,schoolYearStart, schoolYearEnd, selectedStatus || schoolYearStatus.id).then((success)=>{
+            setLoader(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            setBtnDisabled(false);
+            getSchoolYearInfos();
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
             setBtnDisabled(false);
-        })
+        });
     }
 
     const removeSchoolYear=()=>{
         setDeleteLoader(true);
-        let dataPost={};
-        dataPost.schoolId=schoolId;
-        dataPost.yearId=schoolYearId;
-        let url="http://127.0.0.1:8000/api/removeSchoolYear";
 
-        ServiceClient.post(url, dataPost).then((response)=>{
-            if(response.status===200){
-                setDeleteLoader(false);
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                
-                navigation(`/school/${schoolId}/school-year-list`);
-            }
+        ServiceClient.removeSchoolYear(schoolId, schoolYearId).then((success)=>{
+            setDeleteLoader(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+
+            navigation(`/school/${schoolId}/school-year-list`);
         }).catch((error)=>{
             setServerError(error);
             setDeleteLoader(false);
-        })
+        });
     }
-    
-    useLayoutEffect(()=>{
-        getSchoolYearInfos();
-    },[]);
    
     return (
         <>
@@ -193,108 +162,97 @@ const SchoolYearInfos = () => {
         answer={(name)=> functionControl(name)}
         transitionProp={areYouSureTransitionProp}/>
 
-        {/*<SchoolYearDetailsPopup 
-        title={title}
-        update={updatePopup}
-        loader={loader}
-        btndisabled={btndisabled}
-        transitionProp={transitionProp}
-        closeModal={(data)=>{if(data===true){setTransitionProp(!transitionProp); setSelectedRow("")}}}
-        fn_alias={alias}
-        emitData={(dataForm, fn_alias)=>functionControl(dataForm, fn_alias)}
-        selected={selectedRow}/>*/}
-    <div>
-        <div className="title"><h2>School Year Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
-        <form onSubmit={(e) => updateSchoolYearInfos(e)} className="FlexForm">
+        <div>
+            <div className="title"><h2>School Year Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
+                <form onSubmit={(e) => updateSchoolYearInfos(e)} className="FlexForm">
 
-            <div className="form-items flex">
+                    <div className="form-items flex">
 
-                <div className="form-children">
-                    <label>Year</label>
-                    <input type="text"
-                           required
-                           onChange={(e) => {
-                               setSchoolYear(e.target.value)
-                           }}
-                           value={schoolYear}
-                           readOnly={readOnly}/>
-                </div>
+                        <div className="form-children">
+                            <label>Year</label>
+                            <input type="text"
+                                   required
+                                   onChange={(e) => {
+                                       setSchoolYear(e.target.value)
+                                   }}
+                                   value={schoolYear}
+                                   readOnly={readOnly}/>
+                        </div>
 
-                <div className="form-children">
-                    <label>Name</label>
-                    <input type="text"
-                           required
-                           onChange={(e) => {
-                               setSchoolYearName(e.target.value)
-                           }}
-                           value={schoolYearName}
-                           readOnly={readOnly}/>
-                </div>
+                        <div className="form-children">
+                            <label>Name</label>
+                            <input type="text"
+                                   required
+                                   onChange={(e) => {
+                                       setSchoolYearName(e.target.value)
+                                   }}
+                                   value={schoolYearName}
+                                   readOnly={readOnly}/>
+                        </div>
 
 
-                <div className="form-children">
-                    <label>Start</label>
-                    <input type="date"
-                           required
-                           onChange={(e) => {
-                               setSchoolYearStart(e.target.value)
-                           }}
-                           value={schoolYearStart}
-                           readOnly={readOnly}/>
-                </div>
+                        <div className="form-children">
+                            <label>Start</label>
+                            <input type="date"
+                                   required
+                                   onChange={(e) => {
+                                       setSchoolYearStart(e.target.value)
+                                   }}
+                                   value={schoolYearStart}
+                                   readOnly={readOnly}/>
+                        </div>
 
-                <div className="form-children">
-                    <label>End</label>
-                    <input
-                        type="date"
-                        required
-                        onChange={(e) => {
-                            setSchoolYearEnd(e.target.value)
-                        }}
-                        value={schoolYearEnd}
-                        readOnly={readOnly}/>
-                </div>
-                <div className="form-children">
-                    <label>Status</label>
-                    {readOnly ? <input type="text"
-                                       value={schoolYearStatus?.status}
-                                       readOnly={readOnly}/>
-                        : <select className="school-year-infos-select" onChange={(e) => {
-                            setSelectedStatus(e.target.value)
-                        }}>
-                            {statuses ? statuses.map((e, i) => (
-                                <option key={i} value={e.id}>{e.status}</option>)) : null}
-                        </select>}
-                </div>
+                        <div className="form-children">
+                            <label>End</label>
+                            <input
+                                type="date"
+                                required
+                                onChange={(e) => {
+                                    setSchoolYearEnd(e.target.value)
+                                }}
+                                value={schoolYearEnd}
+                                readOnly={readOnly}/>
+                        </div>
+                        <div className="form-children">
+                            <label>Status</label>
+                            {readOnly ? <input type="text"
+                                               value={schoolYearStatus}
+                                               readOnly={readOnly}/>
+                                : <select className="school-year-infos-select" onChange={(e) => {
+                                    setSelectedStatus(e.target.value)
+                                }}>
+                                    {statuses ? statuses.map((e, i) => (
+                                        <option key={i} value={e.id}>{e.status}</option>)) : null}
+                                </select>}
+                        </div>
+                    </div>
+                    <div className="form-button-container">
+                        {!loader ?
+                            <button
+                                type='submit'
+                                disabled={btndisabled}
+                                className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                <GrUpdate className='btn-icon'/> Update
+                            </button> :
+                            <span className='loader schoolDetails'></span>
+                        }
 
-            </div>
-            <div className="form-button-container">
-                {!loader ?
-                    <button
-                        type='submit'
-                        disabled={btndisabled}
-                        className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                        <GrUpdate className='btn-icon'/> Update
-                    </button> :
-                    <span className='loader schoolDetails'></span>
-                }
-
-                {!deleteLoader ?
-                    <button
-                        type="button"
-                        disabled={btndisabled}
-                        className={readOnly ? 'formBtnDisabled' : 'btn formButton'}
-                        onClick={() => {
-                            setAreYouSureName("delete");
-                            setAreYouSureTransitionProp(true)
-                        }}>
-                        <FaTrashAlt className='btn-icon'/> Delete
-                    </button> :
-                    <span className='loader schoolDetails'></span>
-                }
-            </div>
-        </form>
-    </div>
+                        {!deleteLoader ?
+                            <button
+                                type="button"
+                                disabled={btndisabled}
+                                className={readOnly ? 'formBtnDisabled' : 'btn formButton'}
+                                onClick={() => {
+                                    setAreYouSureName("delete");
+                                    setAreYouSureTransitionProp(true)
+                                }}>
+                                <FaTrashAlt className='btn-icon'/> Delete
+                            </button> :
+                            <span className='loader schoolDetails'></span>
+                        }
+                    </div>
+            </form>
+        </div>
         </>
     );
 };
