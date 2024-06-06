@@ -124,6 +124,31 @@ class ServiceClient {
             return response.data
         });
     }
+    static getSchoolBreaksAndScpecialWorkDays(schoolId, schoolYearId){
+        return this.get(`http://127.0.0.1:8000/api/school/${schoolId}/school-year-details/${schoolYearId}`).then((response)=>{
+            return response.data
+        });
+    }
+    static createSchoolBreak(schoolId, yearId, name, startDate, endDate, id){
+       return this.post("http://127.0.0.1:8000/api/createSchoolBreak",{schoolId:schoolId, yearId:yearId, name:name,start:startDate, end:endDate, id:id||null}).then((response)=>{
+           return response.data
+       })
+    }
+    static removeSchoolBreak(schoolId, yearId, id){
+        return this.post("http://127.0.0.1:8000/api/removeSchoolBreak", {schoolId:schoolId, yearId:yearId, id:id}).then((response)=>{
+            return response.data
+        })
+    }
+    static createSpecialWorkDay(schoolId, yearId, name, startDate, endDate, id){
+        return this.post("http://127.0.0.1:8000/api/createSpecialWorkDay",{schoolId:schoolId, yearId:yearId, name:name,start:startDate, end:endDate, id:id||null}).then((response)=>{
+            return response.data
+        });
+    }
+    static removeSpecialWorkDay(schoolId, yearId, id){
+        return this.post("http://127.0.0.1:8000/api/removeSpecialWorkDay", {schoolId:schoolId, yearId:yearId, id:id}).then((response)=>{
+            return response.data
+        });
+    }
 }
 
 export default ServiceClient
