@@ -77,7 +77,7 @@ const SchoolYearList = () => {
     const CreateSchoolYear=(dataForm)=>{
         setFormLoader(true);
         setBtnDisabled(true);
-        console.log(dataForm);
+
         ServiceClient.createSchoolYear(dataForm).then((success)=>{
             setFormLoader(false);
             setBtnDisabled(false);
@@ -89,25 +89,9 @@ const SchoolYearList = () => {
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
+            setFormLoader(false);
             setBtnDisabled(false)
-        })
-        /*console.log(dataForm)
-        let url="http://127.0.0.1:8000/api/createSchoolYear";
-        ServiceClient.post(url, dataForm).then((response)=>{
-            if(response.status===200){
-                setFormLoader(false);
-                setBtnDisabled(false);
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                getSchoolYears();
-            }
-        }).catch((error)=>{
-            setServerError(error);
-            setLoader(false);
-            setBtnDisabled(false)
-        })*/
+        });
     }
 
     const removeSchoolYear=()=>{
