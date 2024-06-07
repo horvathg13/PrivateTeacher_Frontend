@@ -117,7 +117,7 @@ const SchoolYearInfos = () => {
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
-        ServiceClient.updateSchoolYear(schoolYearId,schoolId,schoolYear,schoolYearName,schoolYearStart, schoolYearEnd, selectedStatus || schoolYearStatus.id).then((success)=>{
+        ServiceClient.updateSchoolYear(schoolYearId,schoolId,schoolYear,schoolYearName,schoolYearStart, schoolYearEnd, 'ACTIVE').then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{

@@ -98,12 +98,12 @@ class ServiceClient {
         })
     }
     static createSchoolYear(dataForm){
-        return this.post("http://127.0.0.1:8000/api/createSchoolYear", {schoolYear:dataForm.schoolYear, startDate:dataForm.startDate, endDate:dataForm.endDate, schoolId:dataForm.schoolId, name:dataForm.name, statusId:dataForm.status}).then((response)=>{
+        return this.post("http://127.0.0.1:8000/api/createSchoolYear", {schoolYear:dataForm.schoolYear, startDate:dataForm.startDate, endDate:dataForm.endDate, schoolId:dataForm.schoolId, name:dataForm.name, status:dataForm.status}).then((response)=>{
             return response.data
         })
     }
-    static updateSchoolYear(id, schoolId, schoolYear, name, startDate, endDate, statusId){
-        return this.post("http://127.0.0.1:8000/api/createSchoolYear", {schoolYear:schoolYear, startDate:startDate, endDate:endDate, schoolId:schoolId, name:name, statusId:statusId}).then((response)=>{
+    static updateSchoolYear(schoolYearId, schoolId, schoolYear, name, startDate, endDate, status){
+        return this.post("http://127.0.0.1:8000/api/createSchoolYear", {id:schoolYearId,schoolYear:schoolYear, startDate:startDate, endDate:endDate, schoolId:schoolId, name:name, status:status}).then((response)=>{
             return response.data
         });
     }
