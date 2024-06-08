@@ -9,6 +9,7 @@ import { GrUpdate } from "react-icons/gr";
 import { FaTrashAlt } from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../../../Context/UserContext";
 import TabMenu from "../../../CommonComponents/TabMenu/tabMenu";
+import Select from "react-select";
         
 const SchoolYearInfos = () => {
     /*Context */
@@ -117,7 +118,7 @@ const SchoolYearInfos = () => {
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
-        ServiceClient.updateSchoolYear(schoolYearId,schoolId,schoolYear,schoolYearName,schoolYearStart, schoolYearEnd, 'ACTIVE').then((success)=>{
+        ServiceClient.updateSchoolYear(schoolYearId,schoolId,schoolYear,schoolYearName,schoolYearStart, schoolYearEnd, selectedStatus).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
@@ -215,7 +216,15 @@ const SchoolYearInfos = () => {
                         </div>
                         <div className="form-children">
                             <label>Status</label>
-                            {readOnly ? <input type="text"
+                            <Select
+                                options={statuses}
+                                defaultValue={{value: schoolYearStatus, label: schoolYearStatus}}
+                                onChange={(selected)=>{setSelectedStatus(selected.value)}}
+                                isDisabled={readOnly}
+                                isSearchable={false}
+                                className="school-year-infos-select"
+                            />
+                            {/*readOnly ? <input type="text"
                                                value={schoolYearStatus}
                                                readOnly={readOnly}/>
                                 : <select className="school-year-infos-select" onChange={(e) => {
@@ -223,7 +232,7 @@ const SchoolYearInfos = () => {
                                 }}>
                                     {statuses ? statuses.map((e, i) => (
                                         <option key={i} value={e.id}>{e.status}</option>)) : null}
-                                </select>}
+                                </select>*/}
                         </div>
                     </div>
                     <div className="form-button-container">

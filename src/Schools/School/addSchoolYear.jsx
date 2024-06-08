@@ -4,6 +4,7 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { CSSTransition } from 'react-transition-group';
 import { useParams } from 'react-router-dom';
 import ServiceClient from '../../ServiceClient';
+import Select from "react-select";
         
 const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData, schoolYearStatuses}) => {
     const [year, setYear]=useState();
@@ -14,11 +15,12 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
     const {schoolId}=useParams();
     const [statuses, setStatuses]=useState([]);
     const [selectedStatus, setSelectedStatus]=useState();
-
+    const [disable, setDisable]=useState(false);
    /* Methods:*/ 
 
    const FormDataEmit=(e)=>{
     e.preventDefault();
+    setDisable(true)
 
     let dataForm={};
     dataForm.schoolYear=year
@@ -29,6 +31,7 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
     dataForm.status=selectedStatus
     emitData(dataForm);
 
+    setDisable(false);
    }
 
    useEffect(()=>{
@@ -36,7 +39,7 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
    },[statuses])
 
     useEffect(()=>{
-        console.log(selectedStatus)
+       // console.log(selectedStatus)
     },[selectedStatus])
 
     return (
@@ -85,10 +88,17 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                         </div>
                         <div className="flex">
                             <label>Status </label>
-                            <select onChange={(e)=>{setSelectedStatus(e.target.value)}}>
+                            <Select
+                                options={statuses}
+                                onChange={(selected)=>{setSelectedStatus(selected.value)}}
+                                isDisabled={disable}
+                                isSearchable={false}
+                                className="select"
+                            />
+                            {/*<select onChange={(e)=>{setSelectedStatus(e.target.value)}}>
                                 {statuses ? statuses.map((e,i)=>(
                                 <option key={i} value={e.id}>{e.status}</option>)):null}
-                            </select>
+                            </select>*/}
                         </div>
                     </div>
                     <button type='submit'

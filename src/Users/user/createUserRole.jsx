@@ -3,10 +3,11 @@ import EventHandler from "../../EventHandler/eventhandler";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
 import ServiceClient from "../../ServiceClient";
-import Select from "../../CommonComponents/Select/select";
+//import Select from "../../CommonComponents/Select/select";
 import {IoCloseCircle} from "react-icons/io5";
 import {CSSTransition} from "react-transition-group";
 import '../../transitions.css';
+import Select from "react-select"
 
         
 const CreateUserRole = ({closeModal, transitionProp}) => {
@@ -21,7 +22,7 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
             setRoleOption(roles)
         })
         ServiceClient.getSchools(null, null).then((schools)=>{
-            setSchoolOption(schools.data)
+            setSchoolOption(schools.data.map(e=>({value:e.id, label:e.name})));
         })
     },[]);
 
@@ -90,10 +91,16 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
                             <label>Role</label>
                             <div className="selectContainer">
                                 <Select
+                                    options={roleOptions}
+                                    onChange={(selected)=>{setRoles(selected.value)}}
+                                    isDisabled={readOnly}
+                                    isSearchable={false}
+                                />
+                                {/*<Select
                                 options={roleOptions || null}
                                 onSelect={(option)=>setRoles(option.id)}
                                 InitialValue={""}
-                                disabled={readOnly}/>
+                                disabled={readOnly}/>*/}
                             </div>
                         </div>
 
@@ -101,10 +108,16 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
                             <label>Reference School</label>
                             <div className="selectContainer">
                                 <Select
+                                    options={schoolOptions}
+                                    onChange={(selected)=>{setRoles(selected.value)}}
+                                    isDisabled={readOnly}
+                                    isSearchable={false}
+                                />
+                                {/*<Select
                                 options={schoolOptions || null}
                                 onSelect={(option)=>setRefSchool(option.id)}
                                 InitialValue={""}
-                                disabled={readOnly}/>
+                                disabled={readOnly}/>*/}
                             </div>
                         </div>
 
