@@ -65,8 +65,9 @@ input:read-only{
 .selectContainer{
   height: 90px;
   margin-top: 10px;
-  display: flex;
-  align-items: center;
+  color: initial !important;
+  font-family: 'Poppins', 'sans-serif';
+  text-align: left !important;
 }
 
 
@@ -584,9 +585,9 @@ form .roles-container.flex label {
 .school-year-details-popup-form.flex .school-year-details-popup.flex input {
   width: 303px;
 }
-.addSchoolYear select{
-  width: 311px;
-  height: 31px;
+.addSchoolYear .select{
+  width: 311px !important;
+  /*height: 31px;*/
 }
 .addSchoolYear-main-container {
   width: 100%;
@@ -637,6 +638,7 @@ form .roles-container.flex label {
 .school-year-infos-select{
   width: 66%;
   height: 31px;
+  text-align: left;
   
 }
 /*Tile containers*/
