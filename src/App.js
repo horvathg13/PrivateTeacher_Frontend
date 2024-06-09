@@ -9,7 +9,7 @@ import UserList from './Users/userList';
 import UserRoles from './Users/user/userRoles';
 import UserLog from './Users/user/userLog';
 import Protected from './ProtectedRoutes';
-import { TabMenuContextProvider, UserContextProvider } from './Context/UserContext';
+import {ComponentTitleProvider, TabMenuContextProvider, UserContextProvider} from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails';
 import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ServiceClient from './ServiceClient';
@@ -307,9 +307,11 @@ const router = createBrowserRouter([
   return (
     <>
     <UserContextProvider>
-      <TabMenuContextProvider>
-        <RouterProvider router={router}/>
-      </TabMenuContextProvider>
+      <ComponentTitleProvider>
+        <TabMenuContextProvider>
+          <RouterProvider router={router}/>
+        </TabMenuContextProvider>
+      </ComponentTitleProvider>
     </UserContextProvider>
     </>
   );
