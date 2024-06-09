@@ -68,6 +68,7 @@ input:read-only{
   color: initial !important;
   font-family: 'Poppins', 'sans-serif';
   text-align: left !important;
+  max-width: 350px;
 }
 
 
