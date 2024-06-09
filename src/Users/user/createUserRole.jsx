@@ -10,7 +10,7 @@ import '../../transitions.css';
 import Select from "react-select"
 
         
-const CreateUserRole = ({closeModal, transitionProp}) => {
+const CreateUserRole = ({closeModal, transitionProp, updateUserRoles}) => {
 
     /*Loaders*/
     const [roleOptions, setRoleOption]=useState();
@@ -20,10 +20,10 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
         setReadOnly(false);
         ServiceClient.getRoles().then((roles)=>{
             setRoleOption(roles)
-        })
+        });
         ServiceClient.getSchools(null, null).then((schools)=>{
             setSchoolOption(schools.data.map(e=>({value:e.id, label:e.name})));
-        })
+        });
     },[]);
 
     /*Form fields */
@@ -53,7 +53,7 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
         setLoader(true);
         setReadOnly(true);
 
-        ServiceClient.createUserRole(roles, ref_schools, userId).then((success)=>{
+       ServiceClient.createUserRole(roles, ref_schools, userId).then((success)=>{
             setSuccess(true);
             setLoader(false);
             setBtnDisabled(false);
@@ -61,8 +61,8 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
-            setRoles('');
-            setRefSchool('');
+
+            updateUserRoles(true);
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -109,7 +109,7 @@ const CreateUserRole = ({closeModal, transitionProp}) => {
                             <div className="selectContainer">
                                 <Select
                                     options={schoolOptions}
-                                    onChange={(selected)=>{setRoles(selected.value)}}
+                                    onChange={(selected)=>{setRefSchool(selected.value)}}
                                     isDisabled={readOnly}
                                     isSearchable={false}
                                 />

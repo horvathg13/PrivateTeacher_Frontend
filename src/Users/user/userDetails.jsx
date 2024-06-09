@@ -8,14 +8,14 @@ import {RiLockPasswordFill} from 'react-icons/ri';
 import {RxUpdate} from 'react-icons/rx';
 import {MdEdit} from 'react-icons/md';
 import AreYouSure from '../../CommonComponents/AreYouSure/areyousure'
-import Select from '../../CommonComponents/Select/select';
+//import Select from '../../CommonComponents/Select/select';
 import ServiceClient from '../../ServiceClient';
 import { useLoaderData } from 'react-router-dom';
 import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
 import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
 import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
 import { userInfoContext } from '../../Context/UserContext';
-
+import Select from "react-select";
 
         
 const UserDetails = () => {
@@ -226,11 +226,18 @@ const UserDetails = () => {
                             </div>
                             <div className="status field">
                                 <label>Status</label>
-                                <Select 
+                                <Select
+                                    defaultValue={{value: userData.status, label:userData.status}}
+                                    options={statuses}
+                                    onChange={(selected)=>{setStatus(selected.value)}}
+                                    isDisabled={readOnlyInfo}
+                                    isSearchable={false}
+                                />
+                                {/*<Select
                                 options={statuses}
                                 onSelect={(option)=>setStatus(option.id)}
                                 InitialValue={userData.status}
-                                disabled={readOnlyInfo}/>
+                                disabled={readOnlyInfo}/>*/}
                             </div>
                             
                         </div>
