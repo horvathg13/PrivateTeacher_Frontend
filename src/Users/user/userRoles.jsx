@@ -103,10 +103,15 @@ const UserRoles = () => {
         answer={(name)=>functionControl(name)}
         transitionProp={areYouSureTransitionProp}/>
         {createUserRole ?
-            <CreateUserRole
-                transitionProp={createUserRole}
-                closeModal={(data)=>setCreateUserRole(data)}
-            />:null}
+        <CreateUserRole
+            transitionProp={createUserRole}
+            closeModal={(data)=>setCreateUserRole(data)}
+            updateUserRoles={(data)=> {
+                if (data === true) {
+                    return getUserRoles()
+                }
+            }}
+        />:null}
         <div>
             <div className='formTitle'><FaPlus className='table-action-icon' onClick={() => setCreateUserRole(!createUserRole)}/></div>
             <div className="table-main-container">
