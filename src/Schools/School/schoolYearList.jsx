@@ -18,6 +18,7 @@ const SchoolYearList = () => {
     /*const [schoolYears, setSchoolYears]=useState();*/
     const [update, setUpdate]=useState(false);
     const [schoolYearStatuses, schoolYears] = useLoaderData();
+    const [schoolYearsList, setSchoolYearsList]=useState(schoolYears?.data);
     
     /*Popup control */
     const [showAreYouSure, setShowAreYouSure]=useState(false);
@@ -51,29 +52,15 @@ const SchoolYearList = () => {
         }
         return
     }
-    const functionControl=(name)=>{
-        if(name === 'delete'){
-            removeSchoolYear();
-            setAreYouSureTransitionProp(false);
-        }
-            
-        setAreYouSureTransitionProp(false);
-        
-    }
-    const getSchoolYears=()=>{
-        ServiceClient.getSchoolYears(schoolId).then((schoolYears)=>{
+    const getYearsOfSchool=()=>{
+         ServiceClient.getSchoolYears(schoolId).then((result)=>{
             setLoader(false);
-            schoolYears(schoolYears.data);
+            setSchoolYearsList(result.data);
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
         })
     }
-
-    useEffect(()=>{
-
-    },[])
-
     const CreateSchoolYear=(dataForm)=>{
         setFormLoader(true);
         setBtnDisabled(true);
@@ -85,7 +72,7 @@ const SchoolYearList = () => {
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
-            getSchoolYears();
+            getYearsOfSchool();
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -93,30 +80,6 @@ const SchoolYearList = () => {
             setBtnDisabled(false)
         });
     }
-
-    const removeSchoolYear=()=>{
-        if(selectedRow){
-            let url="http://127.0.0.1:8000/api/removeSchoolYear";
-            let dataPost={};
-            dataPost.yearId=selectedRow.id;
-            dataPost.schoolId=schoolId;
-
-            ServiceClient.post(url, dataPost).then((response)=>{
-                if(response.status===200){
-                    setSuccess(true);
-                    setTimeout(()=>{
-                        setSuccess(false);
-                    },2000)
-                    getSchoolYears();
-                }
-            }).catch((error)=>{
-                setServerError(error);
-            })
-        }else{
-            setErrors("Something went wrog");
-        }
-    }
-
 
     return (
         <>
@@ -134,10 +97,6 @@ const SchoolYearList = () => {
             btndisabled={btndisabled}
             schoolYearStatuses={schoolYearStatuses}
         />
-        <AreYouSure
-        name={AreYouSureName}
-        answer={functionControl}
-        transitionProp={areYouSureTransitionProp}/>
         <div>
             <div className="table-main-container">
                 <div className="formTitle">
@@ -155,7 +114,7 @@ const SchoolYearList = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {schoolYears.data?.map((e) => (
+                        {schoolYearsList?.map((e) => (
                             <tr key={e.id} onClick={() => {
                                 setSelectedRow(e);
                                 RowClickHandle(e)
@@ -165,7 +124,7 @@ const SchoolYearList = () => {
                                 ))}
                             </tr>
                         ))}
-                        {schoolYears.data.length === 0 ?
+                        {schoolYearsList.length === 0 ?
                             <tr>
                                 <td colSpan={5} className="no-school">No registered school year in this school.</td>
                             </tr> : null}
