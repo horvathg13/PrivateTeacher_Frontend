@@ -14,7 +14,6 @@ const SchoolSpecialWorkDays = () => {
     const dataLoader=useLoaderData();
     useEffect(()=>{
         if(dataLoader){
-            console.log(dataLoader, "hopp");
             setHeader(dataLoader.header);
             setSpecialWorkDays(dataLoader.specialWorkDays);
             setLoader(false);
@@ -34,7 +33,7 @@ const SchoolSpecialWorkDays = () => {
    
     /*Popup control */
     const [specialWorkDaysPopup, setSpecialWorkDaysPopup]=useState();
-    const [title, setTitle]=useState();
+    const [title, setTitle]=useState("Update");
     const [updatePopup, setUpdatePopup]=useState();
     const [transitionProp, setTransitionProp]=useState(false);
     const [showAreYouSure, setShowAreYouSure]=useState(false);
@@ -58,14 +57,12 @@ const SchoolSpecialWorkDays = () => {
 
     /*Methods */
     const functionControl=(dataForm, fn_alias, name)=>{
-        console.log(dataForm, fn_alias, name);
         if(fn_alias==="specWorkDay"){
             createSpecialWorkDay(dataForm);
             
         }else if(name === 'deleteSpecWorkDay'){
             removeSpecialWorkDay();
             setAreYouSureTransitionProp(false);
-            console.log("Enter");
         }else{
             setAreYouSureTransitionProp(false);
         }
