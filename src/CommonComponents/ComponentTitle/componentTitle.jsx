@@ -1,18 +1,21 @@
 import { IoIosArrowForward } from "react-icons/io";
 import "../common.css";
 import { NavLink } from "react-router-dom";
+import {useContext, useState} from "react";
+import {ComponentTitleContext} from "../../Context/UserContext";
         
-const ComponentTitle = ({title, breadcrumbs}) => {
+const ComponentTitle = ({}) => {
     const getIcon=(iconName)=>{
         switch (iconName) {
             case 'IoIosArrowForward':return <IoIosArrowForward className='breadicon'/>;
             default: return null;
         }
     }
+    const {title, breadcrumbs}=useContext(ComponentTitleContext);
     return (
         <div className="component-title-container flex">
             <div className="title">
-                <h1>{title}</h1>
+                <h1 style={{overflow:"auto", textOverflow:"ellipsis"}}>{title}</h1>
             </div>
             <div className="breadcrumbs flex">
                 {breadcrumbs.map((e)=>

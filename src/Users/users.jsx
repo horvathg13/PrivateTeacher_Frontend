@@ -5,12 +5,13 @@ import TabMenu from "../CommonComponents/TabMenu/tabMenu";
 import { PiUserListFill  } from "react-icons/pi";
 import { FaUserPlus } from "react-icons/fa6";
 import { useContext, useEffect } from "react";
-import { TabMenuContext } from "../Context/UserContext";
+import {ComponentTitleContext, TabMenuContext} from "../Context/UserContext";
         
 const Users = () => {
     const navigate= useNavigate();
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
+    const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
     useEffect(()=>{
         setMenuItems([
             {
@@ -24,29 +25,29 @@ const Users = () => {
                 "url":'/users/create'
             },
         ]);
+        setBreadcrumbs([
+            {
+                "id":"1",
+                "name":"Home",
+                "url":"/home",
+                "icon":"IoIosArrowForward"
+            },
+            {
+                "id":"2",
+                "name":"Users",
+                "url":"/users",
+            },
+        ])
+        setTitle("Users");
     },[])
     
 
-    const breadcrumbs=[
-        {
-            "id":"1",
-            "name":"Home",
-            "url":"/home",
-            "icon":"IoIosArrowForward"
-        },
-        {
-            "id":"2",
-            "name":"Users",
-            "url":"/users",
-        },
-    ]
+
     return (
         <>
         <SideMenu/> 
         <div className="content-main-container">
-            <ComponentTitle 
-            title={"Users"}
-            breadcrumbs={breadcrumbs}/>
+            <ComponentTitle />
             
             <div className="home-component-main">
                 { window.location.pathname === '/users' ? 

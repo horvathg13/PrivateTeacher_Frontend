@@ -48,3 +48,24 @@ export const TabMenuContextProvider = ({children})=>{
         <TabMenuContext.Provider value={value}>{children}</TabMenuContext.Provider>
     )
 }
+
+export const ComponentTitleContext = createContext(null);
+
+export const ComponentTitleProvider=({children})=>{
+    const [title, setTitle]=useState('');
+    const [breadcrumbs, setBreadcrumbs]=useState([]);
+    const values= {setTitle, title, setBreadcrumbs, breadcrumbs}
+    /*const handleBreadcrums=(breadcrumb)=>{
+        let checkCrumb= breadcrumbs.some(i=>i===breadcrumb);
+        if(checkCrumb===true){
+            let newArray=breadcrumbs.filter(b=>b !== breadcrumb);
+            setBreadcrumbs(newArray);
+        }else{
+            setBreadcrumbs([...breadcrumbs,breadcrumb])
+        }
+    }*/
+
+    return(
+        <ComponentTitleContext.Provider value={values}>{children}</ComponentTitleContext.Provider>
+    )
+}

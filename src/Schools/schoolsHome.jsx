@@ -5,12 +5,13 @@ import TabMenu from "../CommonComponents/TabMenu/tabMenu";
 import { FaListUl } from "react-icons/fa";
 import { IoIosCreate } from "react-icons/io";
 import { useContext, useEffect } from "react";
-import { TabMenuContext } from "../Context/UserContext";
+import {ComponentTitleContext, TabMenuContext} from "../Context/UserContext";
         
 const SchoolsHome = () => {
     const navigate= useNavigate();
     /*TabMenu */
     const {setMenuItems}=useContext(TabMenuContext);
+    const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
     useEffect(()=>{
         setMenuItems([
             {
@@ -24,30 +25,30 @@ const SchoolsHome = () => {
                 "url":'/schools/create'
             },
         ]);
+        setBreadcrumbs([
+            {
+                "id":"1",
+                "name":"Home",
+                "url":"/home",
+                "icon":"IoIosArrowForward"
+            },
+            {
+                "id":"2",
+                "name":"Schools",
+                "url":"/schools",
+            },
+        ]);
+        setTitle("Schools");
     },[])
    
 
-    const breadcrumbs=[
-        {
-            "id":"1",
-            "name":"Home",
-            "url":"/home",
-            "icon":"IoIosArrowForward"
-        },
-        {
-            "id":"2",
-            "name":"Schools",
-            "url":"/schools",
-        },
-    ]
+
     return (
         <>
         <SideMenu/> 
         <div className="content-main-container">
             <div className="home-component-main">
-                <ComponentTitle 
-                title={"Schools"}
-                breadcrumbs={breadcrumbs}/>
+                <ComponentTitle/>
                 { window.location.pathname === '/schools' ?
                 <div className="button-main-container flex">
                     <div className="button-container">

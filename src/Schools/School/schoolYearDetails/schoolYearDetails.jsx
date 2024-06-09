@@ -11,7 +11,8 @@ import { FaTrashAlt } from "react-icons/fa";
 import TabMenu from "../../../CommonComponents/TabMenu/tabMenu";
 import ComponentTitle from "../../../CommonComponents/ComponentTitle/componentTitle";
 import SideMenu from "../../../CommonComponents/SideMenu/sidemenu";
-import { TabMenuContext, schoolYearDetailsContext } from "../../../Context/UserContext";
+import {TabMenuContext, schoolYearDetailsContext, ComponentTitleContext} from "../../../Context/UserContext";
+import school from "../school";
         
 const SchoolYearDetails = () => {
     /*datas */
@@ -34,6 +35,7 @@ const SchoolYearDetails = () => {
 
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
+    const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
     useLayoutEffect(()=>{
         setMenuItems([
             {
@@ -62,39 +64,38 @@ const SchoolYearDetails = () => {
                 "url":`school-year/${schoolYearId}/teaching-days`
             }
         ]);
+        setBreadcrumbs([
+            {
+                "id":"1",
+                "name":"Home",
+                "url":"/home",
+                "icon":"IoIosArrowForward",
+
+            },
+            {
+                "id":"2",
+                "name":"Schools",
+                "url":"/schools",
+                "icon":"IoIosArrowForward",
+
+            },
+            {
+                "id":"3",
+                "name":`${schoolData?.schoolName}`,
+                "url":`/school/${schoolData?.schoolId}`,
+                "icon":"IoIosArrowForward",
+                "end":true,
+            },
+            {
+                "id":"4",
+                "name":`${schoolData?.year}`,
+                "url":`/school/${schoolId}/school-year/${schoolYearId}`,
+            }
+
+        ]);
     },[])
     
-    const breadcrumbs=[
-        {
-            "id":"1",
-            "name":"Home",
-            "url":"/home",
-            "icon":"IoIosArrowForward",
-            
-        },
-        {
-            "id":"2",
-            "name":"Schools",
-            "url":"/schools",
-            "icon":"IoIosArrowForward",
-            
-        },
-        {
-            "id":"3",
-            "name":`${schoolData?.schoolName}`,
-            "url":`/school/${schoolData?.schoolId}`,
-            "icon":"IoIosArrowForward",
-            "end":true,
-        },
-        {
-            "id":"4",
-            "name":`${schoolData?.year}`,
-            "url":`/school/${schoolId}/school-year/${schoolYearId}`,
-        }
-        
-    ]
 
-   
    
     return (
         <>

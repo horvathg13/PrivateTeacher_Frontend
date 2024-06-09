@@ -2,7 +2,7 @@ import { Outlet, useLoaderData, useParams } from "react-router-dom";
 import ComponentTitle from "../../CommonComponents/ComponentTitle/componentTitle";
 import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
 import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
-import {TabMenuContext, userInfoContext} from "../../Context/UserContext";
+import {ComponentTitleContext, TabMenuContext, userInfoContext} from "../../Context/UserContext";
 import { useContext, useEffect } from "react";
         
 const User = () => {
@@ -11,6 +11,7 @@ const User = () => {
 
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
+    const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
     useEffect(()=>{
         setMenuItems([
             {
@@ -29,41 +30,40 @@ const User = () => {
                 "name":"Logs",
                 "url":`/users/${userId}/logs`
             }
-            
         ]);
+        setBreadcrumbs([
+            {
+                "id":"1",
+                "name":"Home",
+                "url":"/home",
+                "icon":"IoIosArrowForward",
+
+            },
+            {
+                "id":"2",
+                "name":"Users",
+                "url":"/users",
+                "icon":"IoIosArrowForward",
+                "end":true,
+            },
+            {
+                "id":"3",
+                "name":`${userData.firstname}`,
+                "url":`/users/${userData.id}`,
+            },
+        ]);
+        setTitle("User");
     },[])
     
     
-    const breadcrumbs=[
-        {
-            "id":"1",
-            "name":"Home",
-            "url":"/home",
-            "icon":"IoIosArrowForward",
-            
-        },
-        {
-            "id":"2",
-            "name":"Users",
-            "url":"/users",
-            "icon":"IoIosArrowForward",
-            "end":true,
-        },
-        {
-            "id":"3",
-            "name":`${userData.firstname}`,
-            "url":`/users/${userData.id}`,
-        },
-    ]
+
     
     return (
 
         <userInfoContext.Provider value={userData}>
         <SideMenu/>    
         <div className="content-main-container">
-            <ComponentTitle 
-            title={"Users"}
-            breadcrumbs={breadcrumbs}/>
+            <ComponentTitle />
             
             <div className="user-main">
                 
