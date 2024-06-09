@@ -66,12 +66,23 @@
 }
 .component-title-container.flex h4 {
     font-size: 15px;
+    max-width: 200px;
+    max-height: 50px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+
 }
 .component-title-container.flex .breadcrumbs.flex {
     justify-content: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .component-title-container.flex .breadcrumbs.flex h4 a.active {
     color: var(--ButtonBlue);
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
 }
 .component-title-container.flex .breadcrumbs.flex .breadicon {
     font-size: 13px;
@@ -303,6 +314,10 @@
 }
 .table-main-container table tbody tr td {
     padding: 10px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .table-main-container table tbody tr:hover {
     background-color: var(--LightBlueTransparent);
