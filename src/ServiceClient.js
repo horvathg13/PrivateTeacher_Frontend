@@ -72,6 +72,13 @@ class ServiceClient {
             return response.data
         })
     }
+    static getUserRoles=(userId)=>{
+        return this.post(`http://127.0.0.1:8000/api/getUserRoles/${userId}`).then((response)=>{
+            if(response.status===200){
+                return response.data
+            }
+        });
+    }
     static schoolUpdate(schoolId,name,city,zip,street, number){
         return this.post("http://127.0.0.1:8000/api/schoolUpdate", {id: schoolId, name:name, city:city, zip:zip, street:street, number:number}).then((response)=>{
             return response.data
