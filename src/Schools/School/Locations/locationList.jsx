@@ -100,7 +100,7 @@ const LocationList = () => {
                             )) :
                             <>
                                 <tr>
-                                    <td colSpan={3} className="no-school">No registered location in this school.
+                                    <td colSpan={9} className="no-school">No registered location in this school.
                                     </td>
                                 </tr>
                             </>}
