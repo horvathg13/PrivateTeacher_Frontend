@@ -1,32 +1,32 @@
 [
     {
-        "name":"User Operations",
+        "name":"users",
         "role":["Admin"],
         "icon":"FaUsers",
         "url":"/users"
         
     },
     {
-        "name":"School Operations",
+        "name":"schools",
         "role":["Admin"],
         "icon":"FaSchool",
         "url":"/schools"
         
     },
     {
-        "name":"Messages",
+        "name":"messages",
         "role":["Admin","SchoolAdmin","Teacher","Parent"],
         "icon":"BiSolidMessageDetail",
         "url":"/messages"
     },
     {
-        "name":"Search Teacher",
+        "name":"search",
         "role":["Admin", "SchoolAdmin","Teacher", "Parent"],
         "icon":"FaSearch",
         "url":"/search"
     },
     {
-        "name":"Child Menu",
+        "name":"children",
         "role":["Parent"],
         "icon":"FaChild",
         "url":"/child"
