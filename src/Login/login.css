@@ -21,7 +21,6 @@
 }
 .login-container.flex .right-container .text-field {
   margin: 50px 10px;
-  width: -moz-fit-content;
   width: fit-content;
   float: right;
 }
@@ -84,7 +83,7 @@
   width: 90%;
 }
 .login-container.flex .left-container .form-container form button {
-  max-width: 180px;
+  /*max-width: 180px;*/
   display: flex;
   align-items: center;
   padding: 10px 55px;
@@ -116,8 +115,7 @@
   cursor: pointer;
 }
 .login-container.flex .left-container .mobile-nav-to-register.flex span:hover {
-  -webkit-text-decoration: 2px underline var(--GreenColor);
-          text-decoration: 2px underline var(--GreenColor);
+  text-decoration: 2px underline var(--GreenColor);
 }
 @media only screen and (max-width: 905px) {
   .login-container.flex {
@@ -131,4 +129,6 @@
   .login-container.flex .left-container .mobile-nav-to-register.flex {
     display: none;
   }
-}/*# sourceMappingURL=login.css.map */
+}
+
+/*# sourceMappingURL=login.css.map */
