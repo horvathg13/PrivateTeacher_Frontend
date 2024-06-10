@@ -4,33 +4,36 @@ import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle
 import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
 import {TabMenuContext, schoolInfoContext, ComponentTitleContext} from '../../Context/UserContext';
 import { useContext, useEffect, useLayoutEffect } from 'react';
+import {useTranslation} from "react-i18next";
         
 const School = () => {
     let { schoolId }=useParams();
     const schoolData = useLoaderData();
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle,setBreadcrumbs}=useContext(ComponentTitleContext);
+    /*Translation*/
+    const {t}=useTranslation();
     useEffect(()=>{
         setMenuItems([
             {
                 "id":"1",
-                "name":"Info",
+                "name":t('TabMenu.info'),
                 "url":`/school/${schoolId}`,
                 "end":true,
             },
             {
                 "id":"2",
-                "name":"Years",
+                "name":t('TabMenu.years'),
                 "url":`/school/${schoolId}/school-year-list`
             },
             {
                 "id":"3",
-                "name":"Locations",
+                "name":t('TabMenu.locations'),
                 "url":`/school/${schoolId}/locations`
             },
             {
                 "id":"4",
-                "name":"Teachers",
+                "name":t('TabMenu.teachers'),
                 "url":`/school/${schoolId}/teachers`
             }
             /*TODO: Global student search*/
@@ -39,14 +42,14 @@ const School = () => {
         setBreadcrumbs([
             {
                 "id":"1",
-                "name":"Home",
+                "name":t('breadcrumbs.home'),
                 "url":"/home",
                 "icon":"IoIosArrowForward",
 
             },
             {
                 "id":"2",
-                "name":"Schools",
+                "name":t('breadcrumbs.schools'),
                 "url":"/schools",
                 "icon":"IoIosArrowForward",
                 "end":true,
@@ -57,8 +60,8 @@ const School = () => {
                 "url":`/school/${schoolData.id}`,
             },
         ]);
-        setTitle("School");
-    },[])
+        setTitle(t('componentTitles.school'));
+    },[t])
     
     
 

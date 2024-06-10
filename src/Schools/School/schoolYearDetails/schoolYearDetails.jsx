@@ -13,10 +13,10 @@ import ComponentTitle from "../../../CommonComponents/ComponentTitle/componentTi
 import SideMenu from "../../../CommonComponents/SideMenu/sidemenu";
 import {TabMenuContext, schoolYearDetailsContext, ComponentTitleContext} from "../../../Context/UserContext";
 import school from "../school";
+import {useTranslation} from "react-i18next";
         
 const SchoolYearDetails = () => {
     /*datas */
-   
     let { schoolId, schoolYearId }=useParams();
     const [schoolData, statuses] = useLoaderData();
 
@@ -36,45 +36,48 @@ const SchoolYearDetails = () => {
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
+
+    /*Translation*/
+    const {t}=useTranslation();
     useLayoutEffect(()=>{
         setMenuItems([
             {
                 "id":"1",
-                "name":"Info",
-                "url":""
+                "name":t('TabMenu.info'),
+                "url":`school-year/${schoolYearId}`
             },
             {
                 "id":"2",
-                "name":"Breaks",
+                "name":t('TabMenu.breaks'),
                 "url":`school-year/${schoolYearId}/breaks`
             },
             {
                 "id":"3",
-                "name":"Special Work Days",
+                "name":t('TabMenu.specWorkDays'),
                 "url":`school-year/${schoolYearId}/special-work-days`
             },
             {
                 "id":"4",
-                "name":"Courses",
+                "name":t('TabMenu.courses'),
                 "url":`school-year/${schoolYearId}/courses`
             },
             {
                 "id":"5",
-                "name":"Teaching Days",
+                "name":t('TabMenu.teachingDays'),
                 "url":`school-year/${schoolYearId}/teaching-days`
             }
         ]);
         setBreadcrumbs([
             {
                 "id":"1",
-                "name":"Home",
+                "name":t('breadcrumbs.home'),
                 "url":"/home",
                 "icon":"IoIosArrowForward",
 
             },
             {
                 "id":"2",
-                "name":"Schools",
+                "name":t('breadcrumbs.schools'),
                 "url":"/schools",
                 "icon":"IoIosArrowForward",
 
@@ -93,7 +96,7 @@ const SchoolYearDetails = () => {
             }
 
         ]);
-    },[])
+    },[t])
     
 
    

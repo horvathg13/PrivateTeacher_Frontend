@@ -7,8 +7,11 @@ import ServiceClient from '../ServiceClient';
 import ErrorHandle from '../ErrorHandle/errorHandle';
 import { useNavigate } from 'react-router-dom';
 import EventHandler from '../EventHandler/eventhandler';
+import {useTranslation} from "react-i18next";
 
 const Register = () => {
+    /*Translation*/
+    const {t}=useTranslation();
     /*Form fields*/
     const [fname, setFname]=useState('');
     const [lname, setLname]=useState('');
@@ -77,34 +80,34 @@ const Register = () => {
             
             <div className="right-container">
                 <div className="title">
-                    <h2>Registration</h2>
+                    <h2>{t('register.titles.main')}</h2>
                 </div>
                 <div className="form-container">
                     <form onSubmit={sendRegister}>
                         <div className="name-fields flex">
                             <div className="first-name">
-                                <label>First Name</label>
+                                <label>{t('register.form.fname')}</label>
                                 <input type="text" required onChange={(e)=>{setFname(e.target.value)}}/>
                             </div>
                             <div className="last-name">
-                                <label>Last Name</label>
+                                <label>{t('register.form.lname')}</label>
                                 <input type="text" required onChange={(e)=>{setLname(e.target.value)}}/>
                             </div>
                             
                         </div>
                         <div className="emailPassword-fields grid">
-                            <label>Email</label>
+                            <label>{t('register.form.email')}</label>
                             <input className={emailError ? 'InputError':'emailInput'} type="email" required onChange={(e)=>{setEmail(e.target.value)}}/>
                             
-                            <label>Password</label>
+                            <label>{t('register.form.password')}</label>
                             <input className={passwordError ? 'InputError':'passwordInput'} type="password" required onChange={(e)=>{setPassword(e.target.value)}}/>
                             
-                            <label>Confirm Password</label>
+                            <label>{t('register.form.cpassword')}</label>
                             <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
                         </div>
                         
                         {!loader ?
-                            <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn registerFormSubmit disabled':'btn registerFormSubmit'}>Send <FaArrowCircleRight className='btn-icon'/></button> :
+                            <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn registerFormSubmit disabled':'btn registerFormSubmit'}>{t('register.button.register')} <FaArrowCircleRight className='btn-icon'/></button> :
                             <span className='loader register'></span>
                         }
                     </form>

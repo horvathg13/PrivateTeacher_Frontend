@@ -3,8 +3,11 @@ import "../common.css";
 import { NavLink } from "react-router-dom";
 import {useContext, useState} from "react";
 import {ComponentTitleContext} from "../../Context/UserContext";
+import {useTranslation} from "react-i18next";
         
 const ComponentTitle = ({}) => {
+    /*Translation*/
+    const {t}=useTranslation();
     const getIcon=(iconName)=>{
         switch (iconName) {
             case 'IoIosArrowForward':return <IoIosArrowForward className='breadicon'/>;

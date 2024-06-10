@@ -4,10 +4,14 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
 import ServiceClient from "../ServiceClient";
 import { UserContext } from "../Context/UserContext";
+import {useTranslation} from "react-i18next";
         
 const GeneratedUser = () => {
 
     const userData = useLoaderData();
+
+    /*Translation*/
+    const {t}=useTranslation();
     
     /*Form fields*/
     const [password, setPassword]=useState('');
@@ -100,21 +104,21 @@ const GeneratedUser = () => {
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
             <div className="left-container">
                 <div className="title">
-                    <h1>Welcome {userData.firstname}</h1>
-                    <h3>Please, set your new password!</h3>
+                    <h1>{t('home.greeting')} {userData.firstname}</h1>
+                    <h3>{t('home.setNewPassword')}</h3>
                 </div>
                 
                 <div className="form-container">
                     <form onSubmit={(e)=>resetPassword(e)}>
                         <div className="emailPassword-fields grid">
-                            <label>Password</label>
+                            <label>{t('register.form.password')}</label>
                             <input type="password" required onChange={(e)=>{setPassword(e.target.value)}}/>
                             
-                            <label>Confirm Password</label>
+                            <label>{t('register.form.cpassword')}</label>
                             <input type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
                         </div>
                         
-                        {!loader ? <button type='submit' disabled={btndisabled} className={!btndisabled ? 'btn' : 'btn disabled'}>Log In <FaArrowCircleRight className='btn-icon'/></button>:
+                        {!loader ? <button type='submit' disabled={btndisabled} className={!btndisabled ? 'btn' : 'btn disabled'}>{t('login.button.login')}<FaArrowCircleRight className='btn-icon'/></button>:
                         <span className='loader'></span>}
                     </form>
                 </div>

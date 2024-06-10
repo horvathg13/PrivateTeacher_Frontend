@@ -10,8 +10,11 @@ import ServiceClient from "../../ServiceClient";
 import { FaPlus } from "react-icons/fa";
 import AddSchoolYear from "./addSchoolYear";
 import AreYouSure from "../../CommonComponents/AreYouSure/areyousure";
+import {useTranslation} from "react-i18next";
         
 const SchoolYearList = () => {
+    /*Translation*/
+    const {t}=useTranslation();
     /*Datas */
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId }=useParams();
@@ -126,7 +129,7 @@ const SchoolYearList = () => {
                         ))}
                         {schoolYearsList.length === 0 ?
                             <tr>
-                                <td colSpan={5} className="no-school">No registered school year in this school.</td>
+                                <td colSpan={5} className="no-school">{t('empty-table')}</td>
                             </tr> : null}
                         </tbody>
                     </table> : <span className='loader table'></span>}

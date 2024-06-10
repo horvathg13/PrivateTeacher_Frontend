@@ -4,8 +4,11 @@ import ServiceClient from "../../../ServiceClient";
 import EventHandler from "../../../EventHandler/eventhandler";
 import Table from "../../../CommonComponents/Table/table";
 import {FaPlus} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
 
 const LocationList = () => {
+    /*Translation*/
+    const {t}=useTranslation();
     /*Data*/
     const {schoolId} = useParams();
     const schoolLocations=useLoaderData();
@@ -100,7 +103,7 @@ const LocationList = () => {
                             )) :
                             <>
                                 <tr>
-                                    <td colSpan={9} className="no-school">No registered location in this school.
+                                    <td colSpan={9} className="no-school">{t('empty-table')}
                                     </td>
                                 </tr>
                             </>}

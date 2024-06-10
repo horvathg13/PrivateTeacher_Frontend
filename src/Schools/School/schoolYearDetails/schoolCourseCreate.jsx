@@ -10,11 +10,13 @@ import { FaArrowCircleRight, FaTrashAlt } from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../../../Context/UserContext";
 import Select from "../../../CommonComponents/Select/select";
 import LabelSelector from "../../../CommonComponents/Label/labelSelect";
+import {useTranslation} from "react-i18next";
         
 const SchoolCourseCreate = () => {
     /*Loader */
     const courseStatuses = useLoaderData();
-    
+    /*Translation*/
+    const {t}=useTranslation();
     /*datas */
     const [courseName, setCourseName]=useState();
     const [courseSubject, setCourseSubject]=useState();

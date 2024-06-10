@@ -7,8 +7,26 @@ import ServiceClient from '../ServiceClient';
 import Success from '../SuccessPopup/success';
 import { useNavigate } from 'react-router-dom';
 import EventHandler from '../EventHandler/eventhandler'
+import {useTranslation} from "react-i18next";
+import {languageTransform} from "../index";
+import i18next from "i18next";
+import ReactFlagsSelect from "react-flags-select";
         
 const Header = () => {
+    /*Translation*/
+    const [language, setLanguage] = useState("HU");
+    const {t}=useTranslation();
+    const location=useLocation();
+
+    useEffect(() => {
+        console.log(language);
+        i18next.changeLanguage(languageTransform(language)).then(()=>{
+            /*document.title=t('document.title');
+            console.log(location);*/
+        });
+
+    }, [language]);
+
     /*General vaiables */
     const [showMobileMenu, setMobileMenu]=useState(false);
     const [name, setName]=useState('');

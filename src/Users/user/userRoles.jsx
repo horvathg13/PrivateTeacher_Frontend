@@ -9,8 +9,11 @@ import AreYouSure from "../../CommonComponents/AreYouSure/areyousure";
 import { FaPlus } from 'react-icons/fa';
 import { FaTrashCan } from 'react-icons/fa6';
 import CreateUserRole from "./createUserRole";
+import {useTranslation} from "react-i18next";
         
 const UserRoles = () => {
+    /*Translation*/
+    const {t}=useTranslation();
     /*dataLoader */
     const dataLoader=useLoaderData();
     useEffect(()=>{
@@ -142,7 +145,7 @@ const UserRoles = () => {
                         )):null}
                         {!userRoles || userRoles.length===0  ?
                         <tr>
-                             <td colSpan={3} className="no-school" >No registered role to this user.</td>
+                             <td colSpan={3} className="no-school" >{t('empty-table')}</td>
                         </tr>:null}
                         
                     </tbody>

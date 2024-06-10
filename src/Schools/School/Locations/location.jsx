@@ -6,8 +6,11 @@ import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
 import {MdEdit} from "react-icons/md";
 import {GrUpdate} from "react-icons/gr";
 import {FaTrashAlt} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
 
 const Location = () => {
+    /*Translation*/
+    const {t}=useTranslation('translation',{keyPrefix:'schools.school.location.info'});
     /*Data */
     const { schoolId, locationId }=useParams();
     const schoolLocation=useLoaderData();
@@ -130,13 +133,13 @@ const Location = () => {
 
             <div>
 
-                <div className="title"><h2>Location Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
+                <div className="title"><h2>{t('titles.main')}<MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
                 <form onSubmit={(e)=>updateLocationInfo(e)} className="FlexForm">
 
                     <div className="form-items flex">
 
                         <div className="form-children">
-                            <label>Name</label>
+                            <label>{t('form.locationName')}</label>
                             <input type="text"
                                    required
                                    onChange={(e) => {
@@ -147,7 +150,7 @@ const Location = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Country</label>
+                            <label>{t('form.country')}</label>
                             <input type="text"
                                    required
                                    onChange={(e) => {
@@ -159,7 +162,7 @@ const Location = () => {
 
 
                         <div className="form-children">
-                            <label>Zip</label>
+                            <label>{t('form.zip')}</label>
                             <input type="text"
                                    required
                                    onChange={(e) => {
@@ -170,7 +173,7 @@ const Location = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>City</label>
+                            <label>{t('form.city')}</label>
                             <input
                                 type="text"
                                 required
@@ -181,7 +184,7 @@ const Location = () => {
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Street</label>
+                            <label>{t('form.street')}</label>
                             <input
                                 type="text"
                                 required
@@ -192,7 +195,18 @@ const Location = () => {
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Floor</label>
+                            <label>{t('form.number')}</label>
+                            <input
+                                type="text"
+                                required
+                                onChange={(e) => {
+                                    setNumber(e.target.value)
+                                }}
+                                value={number}
+                                readOnly={readOnly}/>
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.floor')}</label>
                             <input
                                 type="text"
                                 required
@@ -203,7 +217,7 @@ const Location = () => {
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Door</label>
+                            <label>{t('form.door')}</label>
                             <input
                                 type="text"
                                 required
@@ -221,7 +235,7 @@ const Location = () => {
                             type='submit'
                             disabled={btndisabled}
                             className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                            <GrUpdate className='btn-icon'/> Update
+                            <GrUpdate className='btn-icon'/> {t('buttons.update')}
                         </button> :
                         <span className='loader schoolDetails'></span>
                     }
@@ -231,7 +245,7 @@ const Location = () => {
                             disabled={btndisabled}
                             className={readOnly ? 'formBtnDisabled':'btn formButton' }
                             onClick={()=>{setAreYouSureName("delete"); setAreYouSureTransitionProp(true)}}>
-                            <FaTrashAlt   className='btn-icon'/> Delete
+                            <FaTrashAlt   className='btn-icon'/> {t('buttons.delete')}
                         </button>:
                         <span className='loader schoolDetails'></span>
                     }

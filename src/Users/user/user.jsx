@@ -4,8 +4,11 @@ import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
 import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
 import {ComponentTitleContext, TabMenuContext, userInfoContext} from "../../Context/UserContext";
 import { useContext, useEffect } from "react";
+import {useTranslation} from "react-i18next";
         
 const User = () => {
+    /*Translation*/
+    const {t}=useTranslation();
     let { userId }=useParams();
     const userData = useLoaderData();
 
@@ -16,32 +19,32 @@ const User = () => {
         setMenuItems([
             {
                 "id":"1",
-                "name":"Info",
+                "name":t('TabMenu.info'),
                 "url":`/users/${userId}`,
                 "end":true,
             },
             {
                 "id":"2",
-                "name":"Roles",
+                "name":t('TabMenu.roles'),
                 "url":`/users/${userId}/roles`
             },
             {
                 "id":"3",
-                "name":"Logs",
+                "name":t('TabMenu.logs'),
                 "url":`/users/${userId}/logs`
             }
         ]);
         setBreadcrumbs([
             {
                 "id":"1",
-                "name":"Home",
+                "name":t('breadcrumbs.home'),
                 "url":"/home",
                 "icon":"IoIosArrowForward",
 
             },
             {
                 "id":"2",
-                "name":"Users",
+                "name":t('breadcrumbs.users'),
                 "url":"/users",
                 "icon":"IoIosArrowForward",
                 "end":true,
@@ -52,8 +55,8 @@ const User = () => {
                 "url":`/users/${userData.id}`,
             },
         ]);
-        setTitle("User");
-    },[])
+        setTitle(t('componentTitles.user'));
+    },[t])
     
     
 

@@ -16,10 +16,16 @@ import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
 import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
 import { userInfoContext } from '../../Context/UserContext';
 import Select from "react-select";
+import {useTranslation} from "react-i18next";
 
         
 const UserDetails = () => {
+    /*Translation*/
+    const {t}=useTranslation('translation', { keyPrefix: 'users.user'});
+
+    /*Context*/
     const userData = useContext(userInfoContext);
+
     /*Form fields*/
     const [fname, setFname]=useState(userData.firstname);
     const [lname, setLname]=useState(userData.lastname);
@@ -136,30 +142,6 @@ const UserDetails = () => {
         })
 
     }
-    
-    /*const banUserActionButton=()=>{
-        setAreYouSureName('ban');
-        setTransitionsProp(true);
-        setShowAreYouSure(true);
-    }*/
-
-    /*useLayoutEffect(()=>{
-        let url='http://127.0.0.1:8000/api/getRoles';
-
-        let dataPost={}
-        dataPost.userId=userId
-
-        ServiceClient.post(url,dataPost).then((response)=>{
-            if(response.status===200){
-               
-                setRoles(response.data);
-                
-            }
-        }).catch((error)=>{
-            setServerError(error);
-        })
-    },[])*/
-
     useLayoutEffect(()=>{
         let url='http://127.0.0.1:8000/api/getUserStatuses';
 
@@ -181,21 +163,16 @@ const UserDetails = () => {
                 success={success} 
                 errors={errors} 
                 serverError={serverError} 
-                closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-            {/*  <AreYouSure
-            name={AreYouSureName}
-            answer={functionControl}
-            transitionProp={transitionProp}
-            label={"Are you would like to Bann this user?"}/>*/}
-           
+                closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
+            />
             <div>
                 
                 <form className='FlexForm' onSubmit={updateUser}>
                     <div className="user-container info">
-                        <div className="form-title"><h2>Info <MdEdit className='icon' onClick={()=>setReadOnlyInfo(!readOnlyInfo)}/></h2></div>
+                        <div className="form-title"><h2>{t('info.titles.main')} <MdEdit className='icon' onClick={()=>setReadOnlyInfo(!readOnlyInfo)}/></h2></div>
                         <div className="fields flex">
                             <div className="first-name field">
-                                <label>First Name</label>
+                                <label>{t('info.form.fname')}</label>
                                 <input 
                                 type="text" 
                                 readOnly={readOnlyInfo} 
@@ -205,7 +182,7 @@ const UserDetails = () => {
                                 />
                             </div>
                             <div className="last-name field">
-                                <label>Last Name</label>
+                                <label>{t('info.form.lname')}</label>
                                 <input 
                                 type="text" 
                                 readOnly={readOnlyInfo} 
@@ -215,7 +192,7 @@ const UserDetails = () => {
                             </div>
                             
                             <div className="email-field field">
-                                <label>Email</label>
+                                <label>{t('info.form.email')}</label>
                                 <input 
                                 className={emailError ? 'InputError':'emailInput'} 
                                 type="email" 
@@ -225,7 +202,7 @@ const UserDetails = () => {
                                 onChange={(e)=>{setEmail(e.target.value)}}/>
                             </div>
                             <div className="status field">
-                                <label>Status</label>
+                                <label>{t('info.form.status')}</label>
                                 <Select
                                     defaultValue={{value: userData.status, label:userData.status}}
                                     options={statuses}
@@ -233,20 +210,15 @@ const UserDetails = () => {
                                     isDisabled={readOnlyInfo}
                                     isSearchable={false}
                                 />
-                                {/*<Select
-                                options={statuses}
-                                onSelect={(option)=>setStatus(option.id)}
-                                InitialValue={userData.status}
-                                disabled={readOnlyInfo}/>*/}
                             </div>
                             
                         </div>
                     </div>
                     <div className="user-container passwords">
-                        <div className="form-title"><h2>New Password <MdEdit className='icon' onClick={()=>setReadOnlyPsw(!readOnlyPsw)}/></h2></div>
+                        <div className="form-title"><h2>{t('info.titles.changePassword')}<MdEdit className='icon' onClick={()=>setReadOnlyPsw(!readOnlyPsw)}/></h2></div>
                         <div className="fields flex">
                             <div className="psw field">
-                                <label>Password</label>
+                                <label>{t('info.form.password')}</label>
                                 <input 
                                 className={passwordError ? 'InputError' : 'passwordInput'} 
                                 type="password" 
@@ -256,7 +228,7 @@ const UserDetails = () => {
 
                             </div>
                             <div className="cpsw field">
-                                <label>Confirm Password</label>
+                                <label>{t('info.form.cpassword')}</label>
                                 <input 
                                 className={cpasswordError ? 'InputError' : 'passwordInput'} 
                                 type="password" 
@@ -266,24 +238,10 @@ const UserDetails = () => {
                             </div>
                         </div>
                     </div>
-                    {/*<div className="user-container roles">
-                        <div className="form-title"><h2>Roles <MdEdit className='icon' onClick={()=>setRolesDisabled(!rolesDisabled)}/></h2></div>
-                        <div className="fields flex">
-                            {
-                                roles ? roles.map((e,i)=>
-                                    <div className="roles-container flex" key={i}>
-                                        <input id={i} type='checkbox' disabled={rolesDisabled}/>
-                                        <label htmlFor={i}>{e.name}</label>
-                                    </div>
-                                ):null
-                            }
-                        </div>
-                    </div>*/}
-                    
                     <div className="userDetails btn-container">
                         {!loader ?
                         
-                        <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled' : 'btn action formButton flex'}><RxUpdate className='user-submit-icon'/>Update </button>
+                        <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled' : 'btn action formButton flex'}><RxUpdate className='user-submit-icon'/>{t('info.button.update')} </button>
                         :<span className='loader userDetailsLoader'></span>
                         
                         }

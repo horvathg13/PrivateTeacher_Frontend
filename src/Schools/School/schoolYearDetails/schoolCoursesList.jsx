@@ -6,9 +6,11 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import SchoolYearDetailsPopup from "./schoolYearDetailsPopup";
 import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../../../ServiceClient";
+import {useTranslation} from "react-i18next";
         
 const SchoolCoursesList = () => {
-
+    /*Translation*/
+    const {t}=useTranslation();
     /*dataLoader */
     const dataLoader=useLoaderData();
     useEffect(()=>{
@@ -122,7 +124,7 @@ const SchoolCoursesList = () => {
                                 )) :
                                 <>
                                     <tr>
-                                        <td colSpan={3} className="no-school">No registered school course in this school.</td>
+                                        <td colSpan={3} className="no-school">{t('empty-table')}</td>
                                     </tr>
                                 </>}
                             </tbody>

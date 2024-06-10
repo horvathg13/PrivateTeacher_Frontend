@@ -6,8 +6,11 @@ import { TabMenuContext, schoolInfoContext } from "../../Context/UserContext";
 import { GrUpdate } from "react-icons/gr";
 import { MdEdit } from "react-icons/md";
 import ServiceClient from "../../ServiceClient";
+import {useTranslation} from "react-i18next";
         
 const SchoolDetails = () => {
+    /*Translation*/
+    const {t}=useTranslation('translation', {keyPrefix:'schools.school.info'})
     /*Context */
     const schoolData = useContext(schoolInfoContext);
 
@@ -64,13 +67,13 @@ const SchoolDetails = () => {
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
         <div className="content-main-container">
-            <div className="title"><h2>School Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
+            <div className="title"><h2>{t('titles.main')} <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
             <form onSubmit={(e)=>update(e)} className="FlexForm">
                 
                 <div className="form-items flex">
 
                     <div className="form-children">
-                        <label>School Name</label>
+                        <label>{t('form.schoolName')}</label>
                         <input type="text" 
                         required 
                         onChange={(e)=>{setSchoolName(e.target.value)}}
@@ -81,7 +84,7 @@ const SchoolDetails = () => {
                 
 
                     <div className="form-children">
-                        <label>Country</label>
+                        <label>{t('form.country')}</label>
                         <input type="text" 
                         required 
                         onChange={(e)=>{setSchoolCountry(e.target.value)}}
@@ -91,7 +94,7 @@ const SchoolDetails = () => {
                     
                    
                     <div className="form-children">
-                        <label>Zip Code</label>
+                        <label>{t('form.zip')}</label>
                         <input type="text"
                         required  
                         onChange={(e)=>{setSchoolZip(e.target.value)}}
@@ -100,7 +103,7 @@ const SchoolDetails = () => {
                     </div>
                    
                     <div className="form-children">
-                        <label>City</label>
+                        <label>{t('form.city')}</label>
                         <input
                         type="text" 
                         required  
@@ -110,7 +113,7 @@ const SchoolDetails = () => {
                     </div>
 
                     <div className="form-children">
-                        <label>Street</label>
+                        <label>{t('form.street')}</label>
                         <input  
                         type="text" 
                         required 
@@ -120,7 +123,7 @@ const SchoolDetails = () => {
                     </div>
                     
                     <div className="form-children">
-                        <label>Number</label>
+                        <label>{t('form.number')}</label>
                         <input  
                         type="text" 
                         required 
@@ -136,7 +139,7 @@ const SchoolDetails = () => {
                     type='submit' 
                     disabled={btndisabled} 
                     className={readOnly ? 'formBtnDisabled':'btn formButton' }>
-                       <GrUpdate  className='btn-icon'/> Update 
+                       <GrUpdate  className='btn-icon'/> {t('button.update')}
                     </button>:
                     <span className='loader schoolDetails'></span>
                 }

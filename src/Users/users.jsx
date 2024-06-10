@@ -6,40 +6,43 @@ import { PiUserListFill  } from "react-icons/pi";
 import { FaUserPlus } from "react-icons/fa6";
 import { useContext, useEffect } from "react";
 import {ComponentTitleContext, TabMenuContext} from "../Context/UserContext";
+import {useTranslation} from "react-i18next";
         
 const Users = () => {
     const navigate= useNavigate();
+    const {t}=useTranslation();
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
+
     useEffect(()=>{
         setMenuItems([
             {
                 "id":"1",
-                "name":"User List",
+                "name":t('TabMenu.user-list'),
                 "url":'/users/list',
             },
             {
                 "id":"2",
-                "name":"Create",
+                "name":t('TabMenu.create'),
                 "url":'/users/create'
             },
         ]);
         setBreadcrumbs([
             {
                 "id":"1",
-                "name":"Home",
+                "name":t('breadcrumbs.home'),
                 "url":"/home",
                 "icon":"IoIosArrowForward"
             },
             {
                 "id":"2",
-                "name":"Users",
+                "name":t('breadcrumbs.users'),
                 "url":"/users",
             },
         ])
-        setTitle("Users");
-    },[])
+        setTitle(t('componentTitles.users'));
+    },[t])
     
 
 
@@ -54,11 +57,11 @@ const Users = () => {
                 <div className="button-main-container flex">
                     <div className="button-container">
                         <Link to={"/users/list"}><div className="icon-container"><PiUserListFill  className="icon"/></div></Link>
-                        <div className="icon-text"><h3>List</h3></div>
+                        <div className="icon-text"><h3>{t('users.home.list')}</h3></div>
                     </div>
                     <div className="button-container">
                         <Link to={"/users/create"}><div className="icon-container" ><FaUserPlus className="icon"/></div></Link>
-                        <div className="icon-text"><h3>Create</h3></div>
+                        <div className="icon-text"><h3>{t('users.home.create')}</h3></div>
                     </div>
                    
                 </div>:<TabMenu/>}

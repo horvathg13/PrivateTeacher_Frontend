@@ -10,8 +10,11 @@ import { FaTrashAlt } from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../../../Context/UserContext";
 import TabMenu from "../../../CommonComponents/TabMenu/tabMenu";
 import Select from "react-select";
+import {useTranslation} from "react-i18next";
         
 const SchoolYearInfos = () => {
+    /*Translation*/
+    const {t}=useTranslation('translation',{keyPrefix:'schools.school.year.info'});
     /*Context */
     const [schoolData, statuses] = useContext(schoolYearDetailsContext);
 
@@ -164,13 +167,13 @@ const SchoolYearInfos = () => {
         transitionProp={areYouSureTransitionProp}/>
 
         <div>
-            <div className="title"><h2>School Year Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
+            <div className="title"><h2>{t('titles.main')}<MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
                 <form onSubmit={(e) => updateSchoolYearInfos(e)} className="FlexForm">
 
                     <div className="form-items flex">
 
                         <div className="form-children">
-                            <label>Year</label>
+                            <label>{t('form.year')}</label>
                             <input type="text"
                                    required
                                    onChange={(e) => {
@@ -181,7 +184,7 @@ const SchoolYearInfos = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Name</label>
+                            <label>{t('form.name')}</label>
                             <input type="text"
                                    required
                                    onChange={(e) => {
@@ -193,7 +196,7 @@ const SchoolYearInfos = () => {
 
 
                         <div className="form-children">
-                            <label>Start</label>
+                            <label>{t('form.start')}</label>
                             <input type="date"
                                    required
                                    onChange={(e) => {
@@ -204,7 +207,7 @@ const SchoolYearInfos = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>End</label>
+                            <label>{t('form.end')}</label>
                             <input
                                 type="date"
                                 required
@@ -215,7 +218,7 @@ const SchoolYearInfos = () => {
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Status</label>
+                            <label>{t('form.status')}</label>
                             <Select
                                 options={statuses}
                                 defaultValue={{value: schoolYearStatus, label: schoolYearStatus}}
@@ -224,15 +227,6 @@ const SchoolYearInfos = () => {
                                 isSearchable={false}
                                 className="school-year-infos-select"
                             />
-                            {/*readOnly ? <input type="text"
-                                               value={schoolYearStatus}
-                                               readOnly={readOnly}/>
-                                : <select className="school-year-infos-select" onChange={(e) => {
-                                    setSelectedStatus(e.target.value)
-                                }}>
-                                    {statuses ? statuses.map((e, i) => (
-                                        <option key={i} value={e.id}>{e.status}</option>)) : null}
-                                </select>*/}
                         </div>
                     </div>
                     <div className="form-button-container">
@@ -241,7 +235,7 @@ const SchoolYearInfos = () => {
                                 type='submit'
                                 disabled={btndisabled}
                                 className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                                <GrUpdate className='btn-icon'/> Update
+                                <GrUpdate className='btn-icon'/> {t('buttons.update')}
                             </button> :
                             <span className='loader schoolDetails'></span>
                         }
@@ -255,7 +249,7 @@ const SchoolYearInfos = () => {
                                     setAreYouSureName("delete");
                                     setAreYouSureTransitionProp(true)
                                 }}>
-                                <FaTrashAlt className='btn-icon'/> Delete
+                                <FaTrashAlt className='btn-icon'/> {t('buttons.delete')}
                             </button> :
                             <span className='loader schoolDetails'></span>
                         }

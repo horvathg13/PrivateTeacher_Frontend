@@ -11,10 +11,12 @@ import { FaSchool } from 'react-icons/fa6';
 import { useContext } from 'react';
 import { UserContext } from '../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import {useTranslation} from "react-i18next";
         
 const Home = () => {
     const {username} =useContext(UserContext);
     const navigate = useNavigate();
+    const {t}=useTranslation();
     const getIcon=(iconName)=>{
         switch (iconName) {
             case 'FaUsers':return <FaUsers />;
@@ -34,14 +36,14 @@ const Home = () => {
     return (
         <>
         <div className="home-text">
-            <h1>Welcome {username}</h1>
-            <p>Let's select a menu</p>
+            <h1>{t('home.greeting')} {username}</h1>
+            <p>{t('home.subtitle')}</p>
         </div>
         <div className="homeMenu-main-container flex">
             {menu.map((e, i) => (
                 <div className="circle-menu-container" key={i}>
                     <div className="icon grid" onClick={()=>navigate(`${e.url}`)}>{getIcon(e.icon)}</div>
-                    <div className="menu-name">{e.name}</div>
+                    <div className="menu-name">{t(`home.menu.${e.name}`)}</div>
                 </div>
             ))}
         </div>

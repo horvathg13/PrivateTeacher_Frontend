@@ -5,7 +5,10 @@ import ServiceClient from "../../../ServiceClient";
 import EventHandler from "../../../EventHandler/eventhandler";
 import {FaPlus} from "react-icons/fa";
 import AddTeachingDay from "./addTeachingDay";
+import {useTranslation} from "react-i18next";
 const TeachingDaysList =()=> {
+    /*Translation*/
+    const {t}=useTranslation();
     /*Data */
     const daysAndTimes = useLoaderData();
     const [selectedRow, setSelectedRow]=useState();
@@ -70,7 +73,7 @@ const TeachingDaysList =()=> {
                             ))}
                             {daysAndTimes.data?.length===0 ?
                                 <tr>
-                                    <td colSpan={5} className="no-school" >No registered teaching day in this school.</td>
+                                    <td colSpan={5} className="no-school" >{t('empty-table')}</td>
                                 </tr>:null}
 
                             </tbody>

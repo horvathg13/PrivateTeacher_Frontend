@@ -7,6 +7,7 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import TabMenu from '../CommonComponents/TabMenu/tabMenu';
+import {useTranslation} from "react-i18next";
 
         
 const UserList = () => {
