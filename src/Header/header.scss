@@ -28,8 +28,8 @@
             letter-spacing: 1px;
         }
     }
-    
-    @media only screen and (max-width: 1010px) {
+
+    @media only screen and (max-width: 1200px) {
         .navbar, .user-container{
             display: none;
         }
@@ -66,9 +66,17 @@
                 }
             }
         }
+
+    }
+    @media only screen and (max-width: 700px){
+        .lng-select button{
+            width: 38px !important;
+            overflow: hidden;
+            padding: 0!important;
+        }
     }
 
-    @media only screen and (min-width: 1010px) {
+    @media only screen and (min-width: 1200px) {
         .mobile-menu{
             display: none;
         }
