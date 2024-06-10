@@ -69,7 +69,7 @@ const TeachersList = () => {
 
             <div className="table-main-container">
                 <Table
-                    datas={teachers ? teachers :null}
+                    datas={teachers || null}
                     loader={loader}
                     page={pageCounter}
                     perPage={setPerPage}
