@@ -1,0 +1,160 @@
+{
+  "login": {
+    "titles": {
+      "main": "Bejelentkezés",
+      "subtitle": "Ha nincs fiókod, kérlek regisztrálj."
+    },
+    "form": {
+      "email": "E-mail",
+      "password": "Jelszó"
+    },
+    "button": {
+      "login": "Bejelentkezés",
+      "register": "Regisztráció"
+    }
+  },
+  "register": {
+    "titles": {
+      "main": "Regisztráció"
+    },
+    "form": {
+      "fname": "Keresztnév",
+      "lname": "Vezetéknév",
+      "email": "E-mail",
+      "password": "Jelszó",
+      "cpassword": "Jelszó megerősítése"
+    },
+    "button": {
+      "register": "Regisztráció"
+    }
+  },
+  "breadcrumbs":{
+    "home": "Kezdőlap",
+    "users": "Felhasználók",
+    "schools": "Iskolák"
+  },
+  "empty-table": "Nincs találat.",
+  "TabMenu": {
+    "info": "Adatok",
+    "user-list": "Felhasználók",
+    "school-list": "Iskolák",
+    "create": "Létrehozás",
+    "roles": "Szerepkörök",
+    "logs": "Naplók",
+    "years": "Tanévek",
+    "locations": "Helyszínek",
+    "teachers": "Tanárok",
+    "breaks": "Tanítási Szünetek",
+    "specWorkDays": "Speciális Munkanapok",
+    "teachingDays": "Tanítási napok",
+    "courses": "Kurzusok"
+  },
+  "componentTitles": {
+    "users": "Felhasználók",
+    "user": "Felhasználó",
+    "schools": "Iskolák",
+    "school": "Iskola"
+  },
+  "home":{
+    "greeting": "Üdvözlöm",
+    "subtitle": "Válasszon egy menüt",
+    "setNewPassword": "Kérem, állítsa be az új jelszavát",
+    "menu": {
+      "users": "Felhasználók",
+      "schools": "Iskolák",
+      "messages": "Üzenetek",
+      "search": "Keresés",
+      "children": "Gyerekek"
+    }
+  },
+  "users": {
+    "home": {
+      "list": "Lista",
+      "create": "Létrehozás"
+    },
+    "user": {
+      "info": {
+        "titles": {
+          "main": "Információ",
+          "changePassword": "Új jelszó"
+        },
+        "form": {
+          "fname": "Keresztnév",
+          "lname": "Vezetéknév",
+          "email": "E-mail",
+          "password": "Jelszó",
+          "cpassword": "Jelszó megerősítése",
+          "status": "Státusz"
+        },
+        "button": {
+          "update": "Frissítés"
+        }
+      }
+    }
+  },
+  "schools": {
+    "home": {
+      "list": "Lista",
+      "create": "Létrehozás"
+    },
+    "school": {
+      "info": {
+        "titles": {
+          "main": "Iskola adatai"
+        },
+        "form": {
+          "schoolName": "Név",
+          "country": "Ország",
+          "zip": "Irányítószám",
+          "city": "Város",
+          "street": "Utca",
+          "number": "Házszám"
+        },
+        "button": {
+          "update": "Frissítés"
+        }
+      },
+      "year": {
+        "info": {
+          "titles": {
+            "main": "Tanév adatai"
+          },
+          "form": {
+            "year": "Tanév",
+            "name": "Név",
+            "start": "Kezdete",
+            "end": "Vége",
+            "status": "Státusz"
+          },
+          "buttons": {
+            "update": "Frissítés",
+            "delete": "Törlés"
+          }
+        }
+
+      },
+      "location": {
+        "info": {
+          "titles": {
+            "main": "Helyszín adatok"
+          },
+          "form": {
+            "locationName": "Név",
+            "country": "Ország",
+            "zip": "Irányítószám",
+            "city": "Város",
+            "street": "Utca",
+            "number": "Házszám",
+            "floor": "Emelet",
+            "door": "Ajtó"
+          },
+          "buttons": {
+            "update": "Frissítés",
+            "delete": "Törlés"
+          }
+        }
+      }
+    }
+  }
+
+}

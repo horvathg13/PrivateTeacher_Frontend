@@ -1,0 +1,159 @@
+{
+  "login": {
+    "titles": {
+      "main": "Login",
+      "subtitle": "If you have no account, please register."
+    },
+    "form": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "button": {
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "register": {
+    "titles": {
+      "main": "Register"
+    },
+    "form": {
+      "fname": "Firstname",
+      "lname": "Lastname",
+      "email": "Email",
+      "password": "Password",
+      "cpassword": "Confirm Password"
+    },
+    "button": {
+      "register": "Register"
+    }
+  },
+  "breadcrumbs":{
+    "home": "Home",
+    "users": "Users",
+    "schools": "Schools"
+  },
+  "TabMenu": {
+    "info": "Info",
+    "user-list": "User List",
+    "school-list": "School List",
+    "create": "Create",
+    "roles": "Roles",
+    "logs": "Logs",
+    "years": "Years",
+    "locations": "Locations",
+    "teachers": "Teachers",
+    "breaks": "Breaks",
+    "specWorkDays": "Special Work Days",
+    "teachingDays": "Teaching Days",
+    "courses": "Courses"
+  },
+  "componentTitles": {
+    "users": "Users",
+    "user": "User",
+    "schools": "Schools",
+    "school": "School"
+  },
+  "empty-table": "Not found.",
+  "home": {
+    "greeting": "Welcome",
+    "subtitle": "Select a menu",
+    "setNewPassword": "Please, set your new password",
+    "menu": {
+      "users": "Users",
+      "schools": "Schools",
+      "messages": "Messages",
+      "search": "Search",
+      "children": "Children"
+    }
+  },
+  "users": {
+    "home": {
+      "list": "List",
+      "create": "Create"
+    },
+    "user": {
+      "info": {
+        "titles": {
+          "main": "Info",
+          "changePassword": "New Password"
+        },
+        "form": {
+          "fname": "Firstname",
+          "lname": "Lastname",
+          "email": "E-mail",
+          "password": "Password",
+          "cpassword": "Confirm Password",
+          "status": "Status"
+        },
+        "button": {
+          "update": "Update"
+        }
+      }
+    }
+  },
+  "schools": {
+    "home": {
+      "list": "List",
+      "create": "Create"
+    },
+    "school": {
+      "info": {
+        "titles": {
+          "main": "School info"
+        },
+        "form": {
+          "schoolName": "Name",
+          "country": "Country",
+          "zip": "Zip Code",
+          "city": "City",
+          "street": "Street",
+          "number": "Number"
+        },
+        "button": {
+          "update": "Update"
+        }
+      },
+      "year": {
+        "info": {
+          "titles": {
+            "main": "School Year Infos"
+          },
+          "form": {
+            "year": "Year",
+            "name": "Name",
+            "start": "Start",
+            "end": "End",
+            "status": "Status"
+          },
+          "buttons": {
+            "update": "Update",
+            "delete": "Delete"
+          }
+        }
+
+      },
+      "location": {
+        "info": {
+          "titles": {
+            "main": "Location info"
+          },
+          "form": {
+            "locationName": "Name",
+            "country": "Country",
+            "zip": "Zip Code",
+            "city": "City",
+            "street": "Street",
+            "number": "Number",
+            "floor": "Floor",
+            "door": "Door"
+          },
+          "buttons": {
+            "update": "Update",
+            "delete": "Delete"
+          }
+        }
+      }
+    }
+  }
+}
