@@ -130,6 +130,21 @@
             "update": "Frissítés",
             "delete": "Törlés"
           }
+        },
+        "create": {
+          "titles": {
+            "main": "Létrehozás"
+          },
+          "form": {
+            "year": "Tanév",
+            "name": "Név",
+            "start": "Kezdete",
+            "end": "Vége",
+            "status": "Státusz"
+          },
+          "button": {
+            "create": "Létrehozás"
+          }
         }
 
       },

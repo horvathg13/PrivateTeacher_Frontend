@@ -130,6 +130,21 @@
             "update": "Update",
             "delete": "Delete"
           }
+        },
+        "create": {
+          "titles": {
+            "main": "Create"
+          },
+          "form": {
+            "year": "Year",
+            "name": "Name",
+            "start": "Start",
+            "end": "End",
+            "status": "Status"
+          },
+          "button": {
+            "create": "Create"
+          }
         }
 
       },
