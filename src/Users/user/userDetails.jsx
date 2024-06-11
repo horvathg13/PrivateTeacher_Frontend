@@ -30,7 +30,7 @@ const UserDetails = () => {
     const [fname, setFname]=useState(userData.firstname);
     const [lname, setLname]=useState(userData.lastname);
     const [email, setEmail]=useState(userData.email);
-    const [status, setStatus]=useState(userData.statusId);
+    const [status, setStatus]=useState(userData.status);
     const [emailError, setEmailError]=useState(false);
 
     const[showPasswordFields, setShowPasswordField]=useState(false);
@@ -115,7 +115,7 @@ const UserDetails = () => {
             "email":email,
             "status":status,
         }
-        ServiceClient.updateUser(userInfo,password,cpassword).then((success)=>{
+        ServiceClient.updateUser(userId, userInfo,password,cpassword).then((success)=>{
             setSuccess(true);
             setLoader(false);
             setCPassword(null);
