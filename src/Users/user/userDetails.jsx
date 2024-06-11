@@ -115,48 +115,29 @@ const UserDetails = () => {
             "email":email,
             "status":status,
         }
-        
-        let dataPost={}
-        dataPost.id=userId;
-        dataPost.userInfo=userInfo;
-        dataPost.newPassword=password;
-        dataPost.confirmPassword= cpassword;
-
-        let url='http://127.0.0.1:8000/api/updateUser';
-
-        ServiceClient.post(url,dataPost).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
-                setLoader(false);
-                setCPassword(null);
-                setPassword(null);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                setBtnDisabled(false);
-            }
+        ServiceClient.updateUser(userInfo,password,cpassword).then((success)=>{
+            setSuccess(true);
+            setLoader(false);
+            setCPassword(null);
+            setPassword(null);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            setBtnDisabled(false);
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);
             setLoader(false);
-        })
-
+        });
     }
-    useLayoutEffect(()=>{
-        let url='http://127.0.0.1:8000/api/getUserStatuses';
-
-        ServiceClient.post(url).then((response)=>{
-            if(response.status===200){
-               
-                setStatuses(response.data);
-                
-            }
+    useEffect(()=>{
+        ServiceClient.getUserStatuses().then((success)=>{
+            setStatuses(success)
         }).catch((error)=>{
             setServerError(error);
-        })
+        });
     },[]);
 
-    useEffect(()=>{console.log(fname,lname,email, userData)},[userData])
     return (
         <>
             <EventHandler 
