@@ -1,4 +1,5 @@
 import axios from 'axios'
+import i18next from "i18next";
 
 class ServiceClient {
 
@@ -7,7 +8,8 @@ class ServiceClient {
             ...config,
             headers: {
                 ...config.headers,
-                Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',         
+                Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',
+                locale:i18next.language
             }
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
@@ -23,6 +25,7 @@ class ServiceClient {
             headers: {
                 ...config.headers,
                 Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',
+                locale:i18next.language
             }
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
@@ -67,8 +70,8 @@ class ServiceClient {
             return response.data
         })
     }
-    static updateUser(userInfo, password, cpassword){
-        return this.post("http://127.0.0.1:8000/api/updateUser",{userInfo:userInfo, newPassword:password, confirmPassword:cpassword}).then((response)=>{
+    static updateUser(userId, userInfo, password, cpassword){
+        return this.post("http://127.0.0.1:8000/api/updateUser",{id:userId, userInfo:userInfo, newPassword:password, confirmPassword:cpassword}).then((response)=>{
             return response.data
         })
     }
