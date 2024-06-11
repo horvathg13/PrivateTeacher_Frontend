@@ -102,7 +102,7 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                     <button type='submit'
                         disabled={btndisabled}
                         className={btndisabled ? 'formBtnDisabled' : 'btn formButton'}>
-                        {t('form.create')}
+                        {t('button.create')}
                     </button></>: <span className='loader table'></span>}
                 </form>
             </div>
