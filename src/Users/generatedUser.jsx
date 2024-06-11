@@ -53,47 +53,29 @@ const GeneratedUser = () => {
             setLoader(false);
             return
         }
-        if(passwordError==true & cpasswordError==true){
+        if(passwordError===true && cpasswordError===true){
             setCPasswordError(false);
             setPasswordError(false);
         }
-
-        let url='http://127.0.0.1:8000/api/resetPassword';
-        let dataPost={};
-        dataPost.userId=userData.id;
-        dataPost.psw=password;
-
-        ServiceClient.post(url,dataPost).then((response)=>{
-            if(response.status===200){
+        ServiceClient.resetPassword(userData.id, password).then(()=>{
+            setSuccess(true);
+            ServiceClient.login(userData.email, password).then((success)=>{
                 setSuccess(true);
-
-                let url='http://127.0.0.1:8000/api/login';
-                let dataPost={};
-                dataPost.email=userData.email;
-                dataPost.psw=password;
-                ServiceClient.post(url,dataPost).then((response)=>{
-                    if(response.status===200){
-                        setSuccess(true);
-                        localStorage.setItem('token',response.data.data.token);
-                        setUsername(response.data.data.first_name);
-                        setLoader(false)
-                        setTimeout(()=>{
-                            navigate('/home');
-                        },1000)
-                    }
-                }).catch((error)=>{
-                    setServerError(error);
-                    setLoader(false);
-                    setBtnDisabled(false);
-                })
-                    
-            }
+                setUsername(success.data.first_name);
+                setLoader(false)
+                setTimeout(()=>{
+                    navigate('/home');
+                },1000)
+            }).catch((error)=>{
+                setServerError(error);
+                setLoader(false);
+                setBtnDisabled(false);
+            })
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);
             setLoader(false);
-        })
-        
+        });
     }
     return (
         <div className="login-container flex">
