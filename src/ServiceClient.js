@@ -57,8 +57,23 @@ class ServiceClient {
             return response.data
         })
     }
+    static resetPassword(userId, password){
+        return this.post("http://127.0.0.1:8000/api/resetPassword",{userId:userId, psw:password}).then((response)=>{
+            return response.data
+        })
+    }
     static createUser(fname,lname,email,password){
         return this.post("http://127.0.0.1:8000/api/createUser", {fname:fname, lname:lname, email:email, psw:password}).then((response)=>{
+            return response.data
+        })
+    }
+    static updateUser(userInfo, password, cpassword){
+        return this.post("http://127.0.0.1:8000/api/updateUser",{userInfo:userInfo, newPassword:password, confirmPassword:cpassword}).then((response)=>{
+            return response.data
+        })
+    }
+    static getUserStatuses(){
+        return this.post("http://127.0.0.1:8000/api/getUserStatuses").then((response)=>{
             return response.data
         })
     }
