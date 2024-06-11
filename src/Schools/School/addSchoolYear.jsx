@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useParams } from 'react-router-dom';
 import ServiceClient from '../../ServiceClient';
 import Select from "react-select";
+import {useTranslation} from "react-i18next";
         
 const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData, schoolYearStatuses}) => {
     const [year, setYear]=useState();
@@ -16,6 +17,7 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
     const [statuses, setStatuses]=useState([]);
     const [selectedStatus, setSelectedStatus]=useState();
     const [disable, setDisable]=useState(false);
+    const {t}=useTranslation('translation', {keyPrefix:"schools.school.year.create"});
    /* Methods:*/ 
 
    const FormDataEmit=(e)=>{
@@ -54,40 +56,40 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                 
                  <form className='addSchoolYear-form flex' onSubmit={FormDataEmit}>
                     <div className="closeModal"><IoIosCloseCircle className='closeModalIcon' onClick={() => closeModal(true)} /></div>
-                    <div className="formTitle"><h2>Create a new school year</h2></div>
+                    <div className="formTitle"><h2>{t('titles.main')}</h2></div>
                     {!loader ?<>
                     <div className="addSchoolYear flex">
                         
                         <div className="add-school-year flex">
-                            <label>Year</label>
+                            <label>{t('form.year')}</label>
                             <input 
                             type='text' 
                             onChange={(e) => setYear(e.target.value)}
                             required></input>
                         </div>
                         <div className="flex">
-                            <label>Name</label>
+                            <label>{t('form.name')}</label>
                             <input 
                             type='text' 
                             onChange={(e) => setName(e.target.value)}
                             required></input>
                         </div>
                         <div className="flex">
-                            <label>Start date</label>
+                            <label>{t('form.start')}</label>
                             <input 
                             type='date' 
                             onChange={(e) => setStartDate(e.target.value)}
                             required></input>
                         </div>
                         <div className="flex">
-                            <label>End date</label>
+                            <label>{t('form.end')}</label>
                             <input 
                             type='date' 
                             onChange={(e) => setEndDate(e.target.value)}
                             required></input>
                         </div>
                         <div className="flex">
-                            <label>Status </label>
+                            <label>{t('form.status')} </label>
                             <Select
                                 options={statuses}
                                 onChange={(selected)=>{setSelectedStatus(selected.value)}}
@@ -95,16 +97,12 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                                 isSearchable={false}
                                 className="select"
                             />
-                            {/*<select onChange={(e)=>{setSelectedStatus(e.target.value)}}>
-                                {statuses ? statuses.map((e,i)=>(
-                                <option key={i} value={e.id}>{e.status}</option>)):null}
-                            </select>*/}
                         </div>
                     </div>
                     <button type='submit'
                         disabled={btndisabled}
                         className={btndisabled ? 'formBtnDisabled' : 'btn formButton'}>
-                            Create
+                        {t('form.create')}
                     </button></>: <span className='loader table'></span>}
                 </form>
             </div>
