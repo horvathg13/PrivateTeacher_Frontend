@@ -10,6 +10,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useRef, useState } from 'react';
 import '../../transitions.css'
 import { NavLink } from 'react-router-dom';
+import {IoMenu} from "react-icons/io5";
 
 const SideMenu = ({active}) => {
     const getIcon=(iconName)=>{
@@ -27,22 +28,52 @@ const SideMenu = ({active}) => {
         }
     }
     const [selectedMenu,setSelectedMenu]=useState(1);
+    const [showMobileMenu, setShowMobileMenu]=useState(false);
         
 
     const nodeRef = useRef(null);
     return (
-        <div className="side-main-conainer" ref={nodeRef}>
-            {
-                homeMenu.map((e,i)=>
-                    <div className="element-container flex" key={i}>
-                        <NavLink to={e.url}>
-                            <div className="icon-container">{getIcon(e.icon)}</div>
-                        </NavLink>
-                        {false&&<div className="name-container"><h4>{e.name}</h4></div>}
-                    </div>
-                )
-            }
-        </div>
+        <>
+            <div className="mobile-sidemenu-container">
+                <div className="mobile-menu-button-container">
+                    <IoMenu className="mobile-menu-open-icon" onClick={()=>setShowMobileMenu(!showMobileMenu)}/>
+                </div>
+                <CSSTransition
+                    nodeRef={nodeRef}
+                    in={showMobileMenu}
+                    classNames="slide"
+                    timeout={500}
+                    mountOnEnter
+                    unmountOnExit
+                >
+                <div className="mobile-side-main-conainer" ref={nodeRef}>
+                {
+                    homeMenu.map((e, i) =>
+                        <div className="element-container" key={i}>
+                            <NavLink to={e.url}>
+                                <div className="icon-container">{getIcon(e.icon)}</div>
+                            </NavLink>
+                            {false && <div className="name-container"><h4>{e.name}</h4></div>}
+                        </div>
+                    )
+                }
+                </div>
+                </CSSTransition>
+            </div>
+            <div className="side-main-conainer">
+                {
+                    homeMenu.map((e, i) =>
+                        <div className="element-container flex" key={i}>
+                            <NavLink to={e.url}>
+                                <div className="icon-container">{getIcon(e.icon)}</div>
+                            </NavLink>
+                            {false && <div className="name-container"><h4>{e.name}</h4></div>}
+                        </div>
+                    )
+                }
+            </div>
+        </>
+
     );
 };
 export default SideMenu;
