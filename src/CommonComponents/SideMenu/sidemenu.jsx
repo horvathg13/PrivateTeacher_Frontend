@@ -11,6 +11,8 @@ import { useRef, useState } from 'react';
 import '../../transitions.css'
 import { NavLink } from 'react-router-dom';
 import {IoMenu} from "react-icons/io5";
+import {AiOutlineMenuFold, AiOutlineMenuUnfold} from "react-icons/ai";
+import {MdMenu, MdMenuOpen} from "react-icons/md";
 
 const SideMenu = ({active}) => {
     const getIcon=(iconName)=>{
@@ -36,7 +38,8 @@ const SideMenu = ({active}) => {
         <>
             <div className="mobile-sidemenu-container">
                 <div className="mobile-menu-button-container">
-                    <IoMenu className="mobile-menu-open-icon" onClick={()=>setShowMobileMenu(!showMobileMenu)}/>
+                    {!showMobileMenu && <MdMenuOpen    className="mobile-menu-open-icon" onClick={()=>setShowMobileMenu(!showMobileMenu)}/>}
+                    {showMobileMenu && <MdMenu className="mobile-menu-open-icon" onClick={()=>setShowMobileMenu(!showMobileMenu)}/>}
                 </div>
                 <CSSTransition
                     nodeRef={nodeRef}
