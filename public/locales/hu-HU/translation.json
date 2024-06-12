@@ -2,7 +2,8 @@
   "login": {
     "titles": {
       "main": "Bejelentkezés",
-      "subtitle": "Ha nincs fiókod, kérlek regisztrálj."
+      "subtitle": "Ha nincs fiókod, kérlek",
+      "span": "regisztrálj."
     },
     "form": {
       "email": "E-mail",

@@ -2,7 +2,8 @@
   "login": {
     "titles": {
       "main": "Login",
-      "subtitle": "If you have no account, please register."
+      "subtitle": "If you have no account, please",
+      "span": "register."
     },
     "form": {
       "email": "Email",
