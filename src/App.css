@@ -255,11 +255,16 @@ form{
   flex-wrap: wrap;
   width: 100%;
 }
+@media screen and (max-width: 950px){
+  .fields.flex {
+    justify-content: space-around !important;
+  }
+}
 .fields.flex label {
   padding: 10px 0px;
 }
 .fields.flex input {
-  width: 100%;
+  width: 80%;
   margin-bottom: 15px;
 }
 
@@ -280,10 +285,7 @@ form .select-container {
 }
 form .user-container {
   width: 100%;
-  flex-wrap: wrap;
-}
-form .user-container.info {
-  height: 350px;
+  height: fit-content!important;
 }
 form .user-container.passwords, form .user-container .roles {
   height: fit-content;
@@ -321,6 +323,7 @@ form .field input:read-only {
 
 form .name-fields.flex {
   justify-content: space-between;
+  height: 50px;
 }
 form .name-fields.flex label {
   margin: 0;
@@ -400,6 +403,27 @@ form .roles-container.flex label {
   max-height: 500px;
   height: fit-content;
 }
+@media screen and (max-width: 700px){
+  .content-main-container .FlexForm{
+    width: 100%;
+    margin: 0 0 !important;
+  }
+  .content-main-container .FlexForm .form-items{
+    width: 80%;
+  }
+  .content-main-container .FlexForm .form-items .form-children{
+    flex-direction: column!important;
+    align-items: baseline !important;
+
+  }
+  .content-main-container .FlexForm .form-items .form-children label{
+    width: 100%;
+    text-align: left !important;
+  }
+  .content-main-container .FlexForm .form-items .form-children input{
+    text-align: left !important;
+  }
+}
 .content-main-container .FlexForm .form-items {
   flex-direction: column;
   width: 100%;
@@ -415,7 +439,7 @@ form .roles-container.flex label {
   margin: 10px 10px;
 }
 .content-main-container .FlexForm .form-items .form-children input {
-  width: 65%;
+  width: 90%;
   height: 20px;
 }
 .content-main-container .FlexForm .form-button-container {
@@ -425,6 +449,16 @@ form .roles-container.flex label {
   display: flex;
   align-items: center;
   flex-flow: row-reverse;
+  flex-wrap: wrap;
+}
+@media screen and (max-width: 700px){
+  .content-main-container .FlexForm .form-button-container {
+    width: 60% !important;
+    min-height: 300px;
+    margin: 20px 0;
+    padding: 0 !important;
+    flex-direction: column !important;
+  }
 }
 .content-main-container .FlexForm .form-button-container button {
   margin: 10px 5% !important;
@@ -496,7 +530,13 @@ form .roles-container.flex label {
   margin: 2% auto;
   color: var(--PrimaryColor);
 }
-
+@media screen and (max-width: 1200px){
+  .content-main-container{
+    margin: 2% 0;
+    padding: 0 10px;
+    width: 100%;
+  }
+}
 /*Popup*/
 
 .popup{
@@ -524,7 +564,7 @@ form .roles-container.flex label {
 
 
 .school-year-details-popup-form.flex {
-  width: 500px;
+  max-width: 500px;
   height: 480px;
   text-align: left;
   flex-direction: column;
@@ -539,7 +579,7 @@ form .roles-container.flex label {
   float: right;
   font-size: 2.1rem;
   color: var(--DarkBlue);
-  margin: 5px 10px;
+  margin: 5px 20px;
 }
 .closeModal .closeModalIcon {
   float: right;
@@ -575,19 +615,23 @@ form .roles-container.flex label {
 }
 .school-year-details-popup-form.flex .school-year-details-popup.flex {
   flex-direction: column;
-  width: fit-content;
+  width: 80%;
   align-items: end;
-  margin: 10% auto;
-  margin-bottom: 10px;
+  margin: 10px 0;
+}
+.school-year-details-popup-form.flex .school-year-details-popup.flex .school-year-details-children.flex{
+  width: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 .school-year-details-popup-form.flex .school-year-details-popup.flex label {
   margin: 10px 5px;
 }
 .school-year-details-popup-form.flex .school-year-details-popup.flex input {
-  width: 303px;
+  width: 70%;
 }
 .addSchoolYear .select{
-  width: 311px !important;
+  width: 70% !important;
   /*height: 31px;*/
 }
 .addSchoolYear-main-container {
@@ -601,7 +645,7 @@ form .roles-container.flex label {
   right: 0;
 }
 .addSchoolYear-main-container .addSchoolYear-form {
-  width: 500px;
+  max-width: 500px;
   height: 480px;
   text-align: left;
   flex-direction: column;
@@ -613,14 +657,20 @@ form .roles-container.flex label {
   flex-direction: column;
   width: fit-content;
   align-items: end;
-  margin: 5% auto;
+  margin: 5% 20px;
   margin-bottom: 10px;
 }
+.addSchoolYear-main-container .addSchoolYear-form .addSchoolYear .add-school-year{
+  width: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
 .addSchoolYear-main-container .addSchoolYear-form .addSchoolYear label {
   margin: 10px 5px;
 }
 .addSchoolYear-main-container .addSchoolYear-form .addSchoolYear input {
-  width: 303px;
+  width: 70%;
 }
 .addSchoolYear-main-container .addSchoolYear-form .closeModal {
   width: 100%;
@@ -629,7 +679,7 @@ form .roles-container.flex label {
   float: right;
   font-size: 2.1rem;
   color: var(--DarkBlue);
-  margin: 5px 10px;
+  margin: 5px 20px;
 }
 .addSchoolYear-main-container .addSchoolYear-form .closeModal .closeModalIcon:hover {
   color: var(--ButtonBlue);
@@ -637,24 +687,24 @@ form .roles-container.flex label {
 }
 
 .school-year-infos-select{
-  width: 66%;
+  width: 90%;
   height: 31px;
   text-align: left;
-  
 }
 /*Tile containers*/
 .button-main-container.flex {
   width: 100%;
   height: 200px;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 .button-main-container.flex .button-container {
   width: 150px;
-  height: 150px;
+  height: auto;
   display: grid;
   align-items: center;
   text-align: center;
-  margin: 0 15%;
+  margin: 5px 15px;
 }
 .button-main-container.flex .button-container a {
   color: var(--DarkBlue);
@@ -846,5 +896,7 @@ form .roles-container.flex label {
   text-align: center;
 }
 
-
-
+/*React Select*/
+.select-component{
+  width: 80%;
+}
