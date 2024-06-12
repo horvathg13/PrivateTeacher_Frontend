@@ -106,16 +106,20 @@
 .login-container.flex .left-container .mobile-nav-to-register.flex {
   width: 100%;
   text-align: center;
-  color: var(--whiteColorDeam);
   margin: 0 auto;
   display: inline-block;
 }
 .login-container.flex .left-container .mobile-nav-to-register.flex span {
-  color: var(--GreenColor);
+  color: var(--DarkBlue);
   cursor: pointer;
+  padding: 5px 10px;
 }
 .login-container.flex .left-container .mobile-nav-to-register.flex span:hover {
-  text-decoration: 2px underline var(--GreenColor);
+  background: rgba(225, 230, 236, 0.11);
+  border-radius: 10px;
+}
+.login-container.flex .left-container .mobile-nav-to-register.flex p {
+  color: var(--whiteColorDeam);
 }
 @media only screen and (max-width: 905px) {
   .login-container.flex {
@@ -123,6 +127,15 @@
   }
   .login-container.flex .right-container {
     display: none;
+  }
+  .login-container.flex .left-container {
+    width: 95%;
+  }
+  .login-container.flex .left-container .form-container {
+    width: 80%;
+    height: 60%;
+    margin: 50px auto;
+    margin-bottom: 0;
   }
 }
 @media only screen and (min-width: 905px) {

@@ -79,16 +79,20 @@ const Login = () => {
                     </form>
                 </div>
                 <div className="mobile-nav-to-register flex">
-                    <p>{t('login.titles.subtitle')}</p>
+                    <p>{t('login.titles.subtitle')} <span onClick={() => {
+                        navigate('/register')
+                    }}>{t('login.titles.span')}</span></p>
                 </div>
             </div>
             <div className="right-container">
                 <div className="text-field">
-                    <p>{t('login.titles.subtitle')}</p>
-                    <button className='outline btn' onClick={()=>{navigate('/register')}}>{t('login.button.register')}</button>
+                    <p>{t('login.titles.subtitle')} <span>{t('login.titles.span')}</span></p>
+                    <button className='outline btn' onClick={() => {
+                        navigate('/register')
+                    }}>{t('login.button.register')}</button>
 
                 </div>
-            </div>            
+            </div>
         </div>
     );
 };

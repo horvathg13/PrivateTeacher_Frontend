@@ -20,12 +20,14 @@ const ComponentTitle = ({}) => {
             <div className="title">
                 <h1 style={{overflow:"auto", textOverflow:"ellipsis"}}>{title}</h1>
             </div>
-            <div className="breadcrumbs flex">
-                {breadcrumbs.map((e)=>
-                <><h4 key={e.id}><NavLink to={e.url} end={e.end}>{e.name}</NavLink></h4>{getIcon(e.icon)}</>
-                )}
+            <div className="breadcrumb-notification-container">
+                <div className="breadcrumbs flex">
+                    {breadcrumbs.map((e)=>
+                    <><h4 key={e.id}><NavLink to={e.url} end={e.end}>{e.name}</NavLink></h4>{getIcon(e.icon)}</>
+                    )}
+                </div>
+                {false && <div className="nofitications"><h4>New Message Arrived</h4></div>}
             </div>
-            <div className="nofitications"><h4>New Message Arrived</h4></div>
         </div>
     );
 };

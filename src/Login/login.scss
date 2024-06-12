@@ -110,17 +110,19 @@
         .mobile-nav-to-register.flex{
             width: 100%;
             text-align: center;
-            color: var(--whiteColorDeam);
             margin: 0 auto;
             display: inline-block;
             span{
-                color: var(--GreenColor);
+                color: var(--DarkBlue);
                 cursor: pointer;
+                padding: 5px 10px;
                 &:hover{
-                  text-decoration: 2px underline var(--GreenColor);  
+                    background: rgba(225, 230, 236, 0.11);
+                    border-radius: 10px;
                 }
-                
-
+            }
+            p{
+                color: var(--whiteColorDeam);
             }
         }
     }
@@ -130,6 +132,15 @@
         
         .right-container{
            display: none;
+        }
+        .left-container{
+            width: 95%;
+        }
+        .left-container .form-container{
+            width: 80%;
+            height: 60%;
+            margin: 50px auto;
+            margin-bottom: 0;
         }
     }
     @media only screen and (min-width:905px) {

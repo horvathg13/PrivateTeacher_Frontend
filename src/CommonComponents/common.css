@@ -13,7 +13,7 @@
 }
 .are-you-sure-bcg .are-yousure-main {
     position: fixed;
-    width: 500px;
+    max-width: 500px;
     height: auto;
     margin: 0 auto;
     left: 0;
@@ -60,6 +60,10 @@
     margin: 0 auto;
     border-bottom: 3px dotted var(--GreenColor);
     padding: 5px;
+    width: 100%;
+}
+.component-title-container.flex .title{
+    width: 50%;
 }
 .component-title-container.flex .title h1 {
     letter-spacing: 1.5px;
@@ -87,6 +91,29 @@
 .component-title-container.flex .breadcrumbs.flex .breadicon {
     font-size: 13px;
     margin: 0 5px;
+}
+.breadcrumb-notification-container{
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+@media screen and (max-width: 700px){
+    .breadcrumb-notification-container{
+        display: block !important;
+    }
+    .component-title-container.flex{
+        flex-direction: column !important;
+    }
+    .component-title-container.flex .breadcrumbs.flex{
+        justify-content: left !important;
+    }
+    .component-title-container.flex .title{
+        width: 100%;
+        text-align: left !important;
+    }
+    .component-title-container.flex .breadcrumb-notification-container{
+        width: 100%;
+    }
 }
 
 /*NavMenu*/
@@ -233,7 +260,6 @@
         height: 50px;
         margin: 0 auto;
         width: 100%;
-        text-align: center;
     }
     .mobile-sidemenu-container .mobile-menu-button-container .mobile-menu-open-icon{
         font-size: 35px;
@@ -323,6 +349,8 @@
 .table-main-container {
     height: 500px;
     margin: 1% auto;
+    width: 100%;
+    overflow: auto;
 }
 .table-main-container .table-action-menu.flex {
     max-width: 100%;
@@ -349,6 +377,7 @@
 .table-main-container table {
     border-spacing: 0;
     width: 100%;
+    table-layout: auto;
 }
 .table-main-container table thead tr th {
     padding: 15px;
@@ -424,6 +453,7 @@
 /*TabMnu*/
 .tabMenu-container.flex {
     margin: 20px auto;
+    flex-wrap: wrap;
 }
 .tabMenu-container.flex .action {
     background: var(--DarkBlue);
@@ -451,4 +481,9 @@
     padding: 10px 50px;
     animation: activeTabMenu 0.7s ease-in-out;
 }
-
+@media screen and (max-width: 700px){
+    .tabMenu-container.flex .action{
+        margin: 5px 5px !important;
+        min-width: 200px;
+    }
+}
