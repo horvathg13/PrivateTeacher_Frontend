@@ -156,7 +156,7 @@ const SchoolCourseCreate = () => {
                             type="checkbox" 
                             onChange={(e)=>{setDoubleTime(e.target.checked)}}
                             value={doubleTime}
-                            readOnly={readOnly}/>
+                            disabled={readOnly}/>
                         </div>
 
                         <div className="form-children">
@@ -171,7 +171,9 @@ const SchoolCourseCreate = () => {
                         <div className="form-children">
                             <label>Labels</label>
                             <LabelSelector 
-                            labelEmit={(data)=>setLabels(data)}/>
+                            labelEmit={(data)=>setLabels(data)}
+                            disabled={readOnly}
+                            popUpTitle={"Add labels"}/>
                         </div>
                         <div className="form-children">
                             <label>Status</label>
