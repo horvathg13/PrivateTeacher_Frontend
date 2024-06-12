@@ -38,7 +38,7 @@ const SideMenu = ({active}) => {
                         <NavLink to={e.url}>
                             <div className="icon-container">{getIcon(e.icon)}</div>
                         </NavLink>
-                        <div className="name-container"><h4>{e.name}</h4></div>
+                        {false&&<div className="name-container"><h4>{e.name}</h4></div>}
                     </div>
                 )
             }
