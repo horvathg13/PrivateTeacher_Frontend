@@ -50,3 +50,54 @@
 .fade-exit-done{
     display: none;
 }
+
+.slide-enter {
+    transform: translateX(-100%);
+}
+
+
+.slide-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+
+.slide-exit {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.slide-exit-active {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+
+.slide-exit-done {
+    display: none;
+}
+.slide-right-enter {
+    transform: translateX(100%);
+}
+
+
+.slide-right-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+
+.slide-right-exit {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.slide-right-exit-active {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+
+.slide-right-exit-done {
+    display: none;
+}
