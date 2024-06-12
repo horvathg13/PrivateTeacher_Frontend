@@ -190,6 +190,7 @@ const UserDetails = () => {
                                     onChange={(selected)=>{setStatus(selected.value)}}
                                     isDisabled={readOnlyInfo}
                                     isSearchable={false}
+                                    className="select-component"
                                 />
                             </div>
                             

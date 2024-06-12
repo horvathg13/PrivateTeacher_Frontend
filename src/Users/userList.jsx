@@ -65,14 +65,14 @@ const UserList = () => {
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
             
-            <div className="table-main-container">
-                <Table 
-                datas={users ? users :null}
-                loader={loader}
-                page={pageCounter}
-                perPage={setPerPage}
-                selectedRow={(e)=>[setSelectedRow(e)]}/>
-            </div>
+
+            <Table
+            datas={users ? users :null}
+            loader={loader}
+            page={pageCounter}
+            perPage={setPerPage}
+            selectedRow={(e)=>[setSelectedRow(e)]}/>
+
             
         </div>
             

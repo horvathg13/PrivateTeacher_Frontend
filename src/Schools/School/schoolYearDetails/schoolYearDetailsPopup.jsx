@@ -65,7 +65,7 @@ const SchoolYearDetailsPopup = ({fn_alias,title, update, selected, loader ,btndi
                     {!loader ?<>
                     <div className="school-year-details-popup flex">
                        
-                        <div className="flex">
+                        <div className="school-year-details-children flex">
                             <label>Name</label>
                             <input 
                             type='text'
@@ -73,7 +73,7 @@ const SchoolYearDetailsPopup = ({fn_alias,title, update, selected, loader ,btndi
                             onChange={(e) => setName(e.target.value)}
                             required></input>
                         </div>
-                        <div className="flex">
+                        <div className="school-year-details-children flex">
                             <label>Start date</label>
                             <input
                             value={startDate}
@@ -81,7 +81,7 @@ const SchoolYearDetailsPopup = ({fn_alias,title, update, selected, loader ,btndi
                             onChange={(e) => setStartDate(e.target.value)}
                             required></input>
                         </div>
-                        <div className="flex">
+                        <div className="school-year-details-children flex">
                             <label>End date</label>
                             <input
                             value={endDate}
