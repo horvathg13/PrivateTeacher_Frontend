@@ -1,50 +1,17 @@
-.tabMenu-container.flex {
-  margin: 20px auto;
-}
-.tabMenu-container.flex .action {
-  background: var(--DarkBlue);
-  border: none;
-  border-radius: 5px 50px 0 5px;
-  padding: 10px 30px;
-  color: var(--whiteColorDeam);
-  text-align: center;
-  letter-spacing: 0.5px;
-  margin: 0 5px;
-  transition: 0.5s ease-in-out;
-}
-.tabMenu-container.flex .action:hover {
-  background: var(--ButtonBlue);
-  transition: 0.3s ease-in-out;
-}
-.tabMenu-container.flex .action .icon {
-  font-size: 17px;
-  margin: auto 5px;
-}
+/* Error: expected selector.
+ *   ,
+ * 2 | .tabMenu-container.flex{
+ *   |                         ^
+ *   '
+ *   tabMenu.scss 2:25  root stylesheet */
 
-.tabMenu-container .active > .btn.action {
-  background: var(--ButtonBlue);
-  box-shadow: 6px 0px 2px #4c4c4c;
-  padding: 10px 50px;
-  animation: activTabMenu 0.7s ease-in-out;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: expected selector.\a   \2577 \a 2 \2502  .tabMenu-container.flex{\d\a   \2502                          ^\a   \2575 \a   tabMenu.scss 2:25  root stylesheet";
 }
-
-@keyframes activTabMenu {
-  0% {
-    background: var(--DarkBlue);
-    border: none;
-    border-radius: 5px 50px 0 5px;
-    padding: 10px 30px;
-    color: var(--whiteColorDeam);
-    text-align: center;
-    letter-spacing: 0.5px;
-    margin: 0 5px;
-  }
-  100% {
-    background: var(--ButtonBlue);
-    box-shadow: 6px 0px 2px #4c4c4c;
-    padding: 10px 50px;
-    transition: padding 0.2s ease;
-  }
-}
-
-/*# sourceMappingURL=tabMenu.css.map */
