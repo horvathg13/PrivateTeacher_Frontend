@@ -67,28 +67,28 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                             onChange={(e) => setYear(e.target.value)}
                             required></input>
                         </div>
-                        <div className="flex">
+                        <div className="add-school-year flex">
                             <label>{t('form.name')}</label>
                             <input 
                             type='text' 
                             onChange={(e) => setName(e.target.value)}
                             required></input>
                         </div>
-                        <div className="flex">
+                        <div className="add-school-year flex">
                             <label>{t('form.start')}</label>
                             <input 
                             type='date' 
                             onChange={(e) => setStartDate(e.target.value)}
                             required></input>
                         </div>
-                        <div className="flex">
+                        <div className="add-school-year flex">
                             <label>{t('form.end')}</label>
                             <input 
                             type='date' 
                             onChange={(e) => setEndDate(e.target.value)}
                             required></input>
                         </div>
-                        <div className="flex">
+                        <div className="add-school-year flex">
                             <label>{t('form.status')} </label>
                             <Select
                                 options={statuses}
