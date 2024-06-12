@@ -221,6 +221,59 @@
     border-left: none;
     border-top: none;
 }
+@media screen and (max-width: 1200px){
+    .side-main-conainer{
+        display: none;
+    }
+    .mobile-sidemenu-container{
+        width: 90px;
+        height: 100%;
+    }
+    .mobile-sidemenu-container .mobile-menu-button-container{
+        height: 50px;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+    }
+    .mobile-sidemenu-container .mobile-menu-button-container .mobile-menu-open-icon{
+        font-size: 35px;
+        color: var(--DarkBlue);
+        margin: 0 auto;
+        padding: 5px 5px;
+        transition: .2s ease-in-out;
+    }
+    .mobile-menu-open-icon:hover{
+        background: var(--ButtonBlue);
+        border-radius: 10px;
+        color: white !important;
+        cursor: pointer;
+    }
+    .mobile-sidemenu-container .mobile-side-main-conainer{
+        background: var(--BackgroundColor);
+        box-shadow: 2px 5px 3px #888;
+        border-radius: 0 0 5px 0;
+        border-left: none !important;
+        border: 2px solid var(--DarkBlue);
+        width: 90px;
+        position: fixed;
+    }
+    .mobile-sidemenu-container .mobile-side-main-conainer .icon-container{
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .mobile-sidemenu-container .mobile-side-main-conainer .icon-container .menu-icon{
+        text-align: center;
+        padding: 10px;
+        transition: .2s ease-in-out;
+    }
+    .mobile-sidemenu-container .mobile-side-main-conainer .icon-container .menu-icon:hover{
+        background: var(--ButtonBlue);
+        border-radius: 10px;
+        color: white !important;
+        cursor: pointer;
+    }
+}
 .side-main-conainer .element-container.flex {
     width: 100%;
     height: fit-content;
