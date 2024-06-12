@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import './header.css';
+import {useEffect, useRef, useState} from 'react';
+import './newheaderCSS.css';
 import { FaListUl } from "react-icons/fa";
 import { useContext } from 'react';
 import { UserContext } from '../Context/UserContext';
@@ -11,13 +11,15 @@ import {useTranslation} from "react-i18next";
 import {languageTransform} from "../index";
 import i18next from "i18next";
 import ReactFlagsSelect from "react-flags-select";
+import {CSSTransition} from "react-transition-group";
+import "../transitions.css";
         
 const Header = () => {
     /*Translation*/
     const [language, setLanguage] = useState("HU");
     const {t}=useTranslation();
     const location=useLocation();
-
+    const nodeRef=useRef(null);
     useEffect(() => {
         console.log(language);
         i18next.changeLanguage(languageTransform(language)).then(()=>{
@@ -87,22 +89,10 @@ const Header = () => {
                 }}/>
             <div className='logo-container'>
                 <i className='graduatehat'></i>
-                <h1>PrivateTeacher</h1>
+                <div className="app-title">
+                    <h1>PrivateTeacher</h1>
+                </div>
             </div>
-
-            {name ? <div className="mobile-menu">
-                <FaListUl className='dropdown-btn icon' onClick={() => {
-                    setMobileMenu(!showMobileMenu)
-                }}/>
-
-                {showMobileMenu ? <div className="menu-container">
-                    <button className='headerBtn btn'>Home</button>
-                    <button className='headerBtn btn'>My Requests</button>
-                    <button className='headerBtn btn'>Messages</button>
-                    <button className='headerBtn btn'>{name}</button>
-                    <button className='headerBtn btn'>Logout</button>
-                </div> : null}
-            </div> : null}
 
             {name ? <div className="navbar">
                 <button className='headerBtn btn'>Home</button>
@@ -123,6 +113,29 @@ const Header = () => {
                     className="menu-flags"
                 />
             </div>
+            {name ?
+               <div className="mobile-menu">
+                <FaListUl className='dropdown-btn' onClick={() => {
+                    setMobileMenu(!showMobileMenu)
+                }}/>
+
+                  <CSSTransition
+                      nodeRef={nodeRef}
+                      in={showMobileMenu}
+                      classNames="slide-right"
+                      timeout={500}
+                      mountOnEnter
+                      unmountOnExit
+                  >
+                    <div className="menu-container" ref={nodeRef}>
+                        <button className='headerBtn btn'>Home</button>
+                        <button className='headerBtn btn'>My Requests</button>
+                        <button className='headerBtn btn'>Messages</button>
+                        <button className='headerBtn btn'>{name}</button>
+                        <button className='headerBtn btn'>Logout</button>
+                    </div>
+                  </CSSTransition>
+            </div> : null}
         </div>
 
 
