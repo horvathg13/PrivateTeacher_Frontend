@@ -215,7 +215,7 @@ const SchoolCourseInfo = () => {
                         checked={doubleTime}
                         onChange={(e)=>{setDoubleTime(e.target.checked)}}
                         value={doubleTime}
-                        readOnly={readOnly}/>
+                        disabled={readOnly}/>
                     </div>
 
                     <div className="form-children">
@@ -231,7 +231,9 @@ const SchoolCourseInfo = () => {
                             <label>Labels</label>
                             <LabelSelector 
                             labelEmit={(data)=>setLabels(data)}
-                            getLabels={labels}/>
+                            getLabels={labels}
+                            disabled={readOnly}
+                            popUpTitle={"Modified the labels"}/>
                         </div>
                     <div className="form-children">
                         <label>Status</label>
