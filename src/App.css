@@ -787,6 +787,11 @@ form .roles-container.flex label {
   border: 2px solid var(--GreenColor);
 }
 
+.attach:hover{
+  cursor: auto;
+  border: 2px solid var(--RedColor);
+}
+
 /*Label Selector*/
 
 .selector-main{
