@@ -1,0 +1,100 @@
+@import '../root.css';
+@import '../animations.css';
+.main-container.flex {
+    justify-content: space-between;
+    width: auto;
+    padding: 0 10px;
+    background: var(--BackgroundColor);
+    color: var(--PrimaryColor);
+    box-shadow: 0 1px 10px #d8d7d7;
+}
+.main-container.flex .logo-container {
+    display: flex;
+    cursor: pointer;
+    margin: 0 5px;
+}
+.main-container.flex .logo-container .graduatehat {
+    width: 70px;
+    height: 70px;
+    background-image: url("../assets/graduationhat.png");
+    background-size: contain;
+    transform: scaleX(-1);
+    background-color: var(--GreenColor);
+    border-radius: 30%;
+    margin: 5px;
+}
+.main-container.flex .logo-container .app-title{
+    display: flex;
+    align-items: center;
+}
+.main-container.flex .logo-container .app-title h1 {
+    font-weight: 400;
+    color: var(--GreenColor);
+    letter-spacing: 1px;
+}
+.main-container.flex .lng-select{
+    margin: 0 5px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .main-container.flex .navbar, .main-container.flex .user-container {
+        display: none;
+    }
+    .main-container.flex .mobile-menu .dropdown-btn {
+        padding: 7px;
+        border-radius: 10px;
+        transition: 0.5s ease-in-out;
+        font-size: 25px;
+    }
+    .main-container.flex .mobile-menu .dropdown-btn:hover {
+        background: var(--ButtonBlue);
+        color: white;
+    }
+    .main-container.flex .mobile-menu .menu-container {
+        position: fixed;
+        z-index: 99;
+        margin: 0 auto;
+        background: var(--BackgroundColor);
+        border-radius: 10px;
+        border: 1px solid var(--PrimaryColor);
+        box-shadow: 1px 1px 6px #888888;
+        top:80px;
+        left: 0;
+        right: 0;
+        max-width: 350px;
+        display: grid;
+        padding: 10px 20px;
+        justify-items: center;
+    }
+    .main-container.flex .mobile-menu .menu-container button {
+        margin-bottom: 15px;
+        width: 250px;
+    }
+    .main-container.flex .logo-container .app-title h1{
+        font-size: 20px;
+        letter-spacing: 0 !important;
+    }
+
+}
+@media only screen and (max-width: 700px) {
+    .main-container.flex .lng-select button {
+        width: 40px !important;
+        overflow:hidden;
+        padding: 0 !important;
+    }
+    .main-container.flex .lng-select ul{
+        overflow: hidden;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .main-container.flex .mobile-menu {
+        display: none;
+    }
+}
+@media screen and (max-width: 450px){
+    .mobile-menu{
+
+    }
+}
+/*# sourceMappingURL=header.css.map */
+/**/
