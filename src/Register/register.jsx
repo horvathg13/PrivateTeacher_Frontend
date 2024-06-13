@@ -8,6 +8,9 @@ import ErrorHandle from '../ErrorHandle/errorHandle';
 import { useNavigate } from 'react-router-dom';
 import EventHandler from '../EventHandler/eventhandler';
 import {useTranslation} from "react-i18next";
+import {FaArrowLeftLong} from "react-icons/fa6";
+import {CSSTransition} from "react-transition-group";
+import "../transitions.css"
 
 const Register = () => {
     /*Translation*/
@@ -31,6 +34,9 @@ const Register = () => {
     /*btn handle*/
     const [btndisabled, setBtnDisabled]=useState(false);
     const [loader, setLoader]=useState(false);
+
+    /*const nodeRef=useRef(null);
+    const [startAnimation, setAnimation]=useState(true)*/
     /*methods*/
     const sendRegister=(event)=>{
         event.preventDefault();
@@ -75,10 +81,11 @@ const Register = () => {
             errors={errors} 
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-            
-            <div className="left-container"></div>
-            
-            <div className="right-container">
+            <div className="left-container">
+                <FaArrowLeftLong className="backToLoginIcon" onClick={()=>navigate("/")}/>
+            </div>
+
+            <div className="right-container" >
                 <div className="title">
                     <h2>{t('register.titles.main')}</h2>
                 </div>
@@ -112,7 +119,7 @@ const Register = () => {
                         }
                     </form>
                 </div>
-            </div>            
+            </div>
         </div>
             
     );
