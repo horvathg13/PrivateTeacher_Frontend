@@ -1,4 +1,5 @@
 @import '../root.css';
+@import '../animations.css';
 .reg-container.flex {
   max-width: 900px;
   height: 500px;
@@ -18,11 +19,24 @@
   border-radius: 15px 40% 60% 15px;
   border: 5px solid var(--GreenColor);
   box-shadow: 5px 5px 8px rgba(28, 28, 28, 0.5333333333);
+  animation: slideInRegister 0.5s ease-in-out;
 }
 .reg-container.flex .left-container h2 {
   color: var(--PrimaryColor);
   font-weight: 400;
   padding: 0 30px;
+}
+.reg-container.flex .left-container .backToLoginIcon {
+  font-size: 30px;
+  color: var(--ButtonBlue);
+  padding: 10px 10px;
+  transition: 0.3s ease-in-out;
+  border-radius: 50%;
+}
+.reg-container.flex .left-container .backToLoginIcon:hover {
+  background: var(--ButtonBlue);
+  color: white;
+  cursor: pointer;
 }
 .reg-container.flex .right-container {
   height: 100%;
