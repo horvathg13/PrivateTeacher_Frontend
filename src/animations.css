@@ -18,6 +18,26 @@
         opacity: 0;
     }
 }
+@keyframes slideInReversLogIn{
+    0% {
+        transform: translateX(30%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+@keyframes slideInRegister{
+    0% {
+        transform: translateX(-30%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 
 @keyframes dropUp{
     0%{
