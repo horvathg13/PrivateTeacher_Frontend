@@ -18,7 +18,7 @@
         box-shadow: 2px 5px 10px #1c1c1c88;
         border-radius: 50% 8px 15px 60%;
         width:50%;
-
+        animation: slideInReversLogIn .5s ease-in-out;
         .text-field{
             margin: 50px 10px;
             width: fit-content;
@@ -43,6 +43,10 @@
                 }
             }
         }
+        .hide{
+            display: none;
+        }
+
     }
 
     .left-container{

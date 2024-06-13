@@ -1,4 +1,4 @@
-import {useContext, useState,} from 'react';
+import {useContext, useRef, useState,} from 'react';
 import './login.css';
 import { useNavigate } from "react-router-dom";
 import ServiceClient from '../ServiceClient'
@@ -6,6 +6,8 @@ import { UserContext } from '../Context/UserContext';
 import  EventHandler  from '../EventHandler/eventhandler';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import {useTranslation} from "react-i18next";
+import Register from "../Register/register";
+import {CSSTransition} from "react-transition-group";
 
 const Login = () => {
     /*Translation*/
@@ -28,6 +30,9 @@ const Login = () => {
 
     /*context*/
     const {setUsername}=useContext(UserContext);
+
+    const nodeRef=useRef(null);
+    const [startAnimation, setAnimation]=useState(true)
 
     /*methods:*/
     const login=(event)=>{
@@ -53,7 +58,8 @@ const Login = () => {
 
     
     return (
-        <div className="login-container flex">
+        <>
+           <div className="login-container flex">
             <EventHandler 
             success={success} 
             errors={errors} 
@@ -85,15 +91,15 @@ const Login = () => {
                 </div>
             </div>
             <div className="right-container">
-                <div className="text-field">
+               <div className="text-field">
                     <p>{t('login.titles.subtitle')} <span>{t('login.titles.span')}</span></p>
                     <button className='outline btn' onClick={() => {
                         navigate('/register')
                     }}>{t('login.button.register')}</button>
-
                 </div>
             </div>
         </div>
+        </>
     );
 };
 export default Login;
