@@ -281,12 +281,14 @@
         border-left: none !important;
         border: 2px solid var(--DarkBlue);
         width: 90px;
+        height: 100%;
         position: fixed;
     }
     .mobile-sidemenu-container .mobile-side-main-conainer .icon-container{
         text-align: center;
         margin: 0 auto;
         width: 100%;
+        border-bottom: 1px dotted var(--DarkBlue);
     }
     .mobile-sidemenu-container .mobile-side-main-conainer .icon-container .menu-icon{
         text-align: center;
