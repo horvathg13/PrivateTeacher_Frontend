@@ -110,6 +110,16 @@ export const getSchoolLocations=(params)=>{
         console.log(error);
     })
 }
+export const getPaymentPeriods=()=>{
+    return ServiceClient.post("http://127.0.0.1:8000/api/getPaymentPeriods").then((response)=>{
+        return response.data
+    });
+}
+export const getSchoolTeachers=(params)=>{
+    return ServiceClient.post(`http://127.0.0.1:8000/api/getSchoolTeachers?perPage=1&page=1`, {schoolId:params.schoolId}).then((response)=>{
+        return response.data
+    })
+}
 export const getSchoolLocation=(params)=>{
     return ServiceClient.post("http://127.0.0.1:8000/api/getSchoolLocation", {schoolId:params.schoolId, locationId:params.locationId}).then((response)=>{
         return response.data
