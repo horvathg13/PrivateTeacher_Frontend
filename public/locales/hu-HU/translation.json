@@ -136,15 +136,31 @@
           "titles": {
             "main": "Létrehozás"
           },
-          "form": {
-            "year": "Tanév",
-            "name": "Név",
-            "start": "Kezdete",
-            "end": "Vége",
-            "status": "Státusz"
-          },
           "button": {
             "create": "Létrehozás"
+          }
+        },
+        "courses": {
+          "not-possible": "Kurzus létrehozása nem lehetséges: nincsenek helyszíenk és/vagy tanárok regisztrálva.",
+          "form": {
+            "name": "Kurzus neve",
+            "subject": "Tantárgy kategória",
+            "student-limit": "Tanulói létszám limit",
+            "minutes-lesson": "Tanóra hossza",
+            "minTeachingDay": "Minimális tanítási alkalom",
+            "doubleTime": "Duplaóra",
+            "course-price-per-lesson": "Kuzus díja alkalmanként",
+            "labels": "Címkék",
+            "status": "Státusz",
+            "location": "Helyszínek",
+            "lang": "Nyelv",
+            "teacher": "Tanár",
+            "payment-period": "Fizetési periódus"
+          },
+          "select": "Válasszon nyelvet",
+          "button":{
+            "create": "Létrehozás",
+            "update": "Frissítés"
           }
         }
 

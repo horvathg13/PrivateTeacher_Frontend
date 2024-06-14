@@ -136,15 +136,31 @@
           "titles": {
             "main": "Create"
           },
-          "form": {
-            "year": "Year",
-            "name": "Name",
-            "start": "Start",
-            "end": "End",
-            "status": "Status"
-          },
           "button": {
             "create": "Create"
+          }
+        },
+        "courses": {
+          "not-possible": "It is not possible to create a course: we do not have locations and/or teachers registered.",
+          "form": {
+            "name": "Name",
+            "subject": "Subject",
+            "student-limit": "Student limit",
+            "minutes-lesson": "Minutes/lesson",
+            "minTeachingDay": "Minimum Teaching Day",
+            "doubleTime": "Double Time",
+            "course-price-per-lesson": "Course Price / Lesson",
+            "labels": "Labels",
+            "status": "Status",
+            "location": "Location",
+            "lang": "Language",
+            "teacher": "Teacher",
+            "payment-period": "Payment Period"
+          },
+          "select": "Select your course language",
+          "button":{
+            "create": "Create",
+            "update": "Update"
           }
         }
 
