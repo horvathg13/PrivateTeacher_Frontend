@@ -6,17 +6,19 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../../../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
-import { FaArrowCircleRight, FaTrashAlt } from "react-icons/fa";
+import {FaArrowCircleRight, FaExclamationTriangle, FaTrashAlt} from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../../../Context/UserContext";
-import Select from "../../../CommonComponents/Select/select";
 import LabelSelector from "../../../CommonComponents/Label/labelSelect";
 import {useTranslation} from "react-i18next";
-        
+import Select from "react-select";
+import ReactFlagsSelect from "react-flags-select";
+import {IoClose} from "react-icons/io5";
+
 const SchoolCourseCreate = () => {
     /*Loader */
-    const courseStatuses = useLoaderData();
+    const [courseStatuses, schoolLocations, paymentPeriods, schoolTeachers] = useLoaderData();
     /*Translation*/
-    const {t}=useTranslation();
+    const {t}=useTranslation("translation", {keyPrefix:'schools.school.year.courses'});
     /*datas */
     const [courseName, setCourseName]=useState();
     const [courseSubject, setCourseSubject]=useState();
@@ -24,9 +26,13 @@ const SchoolCourseCreate = () => {
     const [minutesLesson, setMinutesLesson]=useState();
     const [minTeachingDay, setMinTeachingDay]=useState();
     const [doubleTime, setDoubleTime]=useState();
-    const [couresPricePerLesson, setCouresPricePerLesson]=useState();
+    const [coursePricePerLesson, setcoursePricePerLesson]=useState();
     const [status, setStatus]=useState();
     const [labels, setLabels]=useState();
+    const [location, setLocation]=useState();
+    const [languages, setLanguage]=useState([]);
+    const [teacher, setTeacher]=useState();
+    const [paymentPeriod, setPaymentPeriod]=useState();
     
     let { schoolId, schoolYearId }=useParams();
 
@@ -48,38 +54,30 @@ const SchoolCourseCreate = () => {
     const [readOnly, setReadOnly]=useState(false);
 
     /*Methods */
+    const removeFlag=(l)=>{
+        let newArray = languages.filter(f=>f!==l)
+        setLanguage(newArray);
+    }
+    const handleLanguageSelect=(code)=>{
+        let find = languages.find(f=>f===code);
+        if(!find){
+            setLanguage(prevState => ([...languages, code]))
+        }
+    }
    
     const CreateSchoolCourse=(e)=>{
         
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
-
-        let dataPost={};
-        dataPost.yearId=schoolYearId;
-        dataPost.schoolId=schoolId;
-        dataPost.name=courseName;
-        dataPost.subject=courseSubject;
-        dataPost.studentLimit=studentLimit;
-        dataPost.minutesLesson=minutesLesson;
-        dataPost.minTeachingDay=minTeachingDay;
-        dataPost.doubleTime=doubleTime;
-        dataPost.couresPricePerLesson=couresPricePerLesson;
-        dataPost.status=status;
-        dataPost.labels=labels;
-
-        let url="http://127.0.0.1:8000/api/createSchoolCourse";
-
-        ServiceClient.post(url, dataPost).then((response)=>{
-            if(response.status===200){
-                setLoader(false);
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                setBtnDisabled(false);
-                navigation(`/school/${schoolId}/school-year/${schoolYearId}/courses`);
-            }
+        ServiceClient.createSchoolCourse(schoolYearId, schoolId, courseName, courseSubject, studentLimit, minutesLesson, minTeachingDay,doubleTime,coursePricePerLesson, labels, status, null, languages, teacher, paymentPeriod).then((success)=>{
+            setLoader(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            setBtnDisabled(false);
+            navigation(`/school/${schoolId}/school-year/${schoolYearId}/courses`);
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -95,15 +93,15 @@ const SchoolCourseCreate = () => {
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
         />
-        
-        <div>
+        <div className="courseCreate">
             <div className="title"><h2>School Course Creation</h2></div>
-                <form onSubmit={(e)=>CreateSchoolCourse(e)} className="FlexForm">
+            {(schoolLocations?.message && schoolTeachers?.select) && <div className="component-error-message"><FaExclamationTriangle className='icon'/><h2>{t('')}</h2></div>}
+            {schoolLocations?.select && <form onSubmit={(e)=>CreateSchoolCourse(e)} className="FlexForm">
                     
-                    <div className="form-items courseCreate flex">
+                    <div className="form-items flex">
 
                         <div className="form-children">
-                            <label>Name</label>
+                            <label>{t('form.name')}</label>
                             <input type="text" 
                             required 
                             onChange={(e)=>{setCourseName(e.target.value)}}
@@ -112,7 +110,7 @@ const SchoolCourseCreate = () => {
                         </div>    
 
                         <div className="form-children">
-                            <label>Subject</label>
+                            <label>{t('form.subject')}</label>
                             <input type="text" 
                             required 
                             onChange={(e)=>{setCourseSubject(e.target.value)}}
@@ -122,7 +120,7 @@ const SchoolCourseCreate = () => {
                         
                     
                         <div className="form-children">
-                            <label>Student Limit</label>
+                            <label>{t('form.student-limit')}</label>
                             <input type="text"
                             required  
                             onChange={(e)=>{setStudentLimit(e.target.value)}}
@@ -131,7 +129,7 @@ const SchoolCourseCreate = () => {
                         </div>
                     
                         <div className="form-children">
-                            <label>Minutes/lesson</label>
+                            <label>{t('form.minutes-lesson')}</label>
                             <input
                             type="text" 
                             required  
@@ -141,7 +139,7 @@ const SchoolCourseCreate = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Minimum Teaching Days</label>
+                            <label>{t('form.minTeachingDay')}</label>
                             <input
                             type="text" 
                             required  
@@ -151,7 +149,7 @@ const SchoolCourseCreate = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Double Time</label>
+                            <label>{t('form.doubleTime')}</label>
                             <input
                             type="checkbox" 
                             onChange={(e)=>{setDoubleTime(e.target.checked)}}
@@ -160,47 +158,100 @@ const SchoolCourseCreate = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Course Price / Lesson</label>
+                            <label>{t('form.course-price-per-lesson')}</label>
                             <input
                             type="text" 
                             required  
-                            onChange={(e)=>{setCouresPricePerLesson(e.target.value)}}
-                            value={couresPricePerLesson}
+                            onChange={(e)=>{setcoursePricePerLesson(e.target.value)}}
+                            value={coursePricePerLesson}
                             readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Labels</label>
+                            <label>{t('form.labels')}</label>
                             <LabelSelector 
                             labelEmit={(data)=>setLabels(data)}
                             disabled={readOnly}
                             popUpTitle={"Add labels"}/>
                         </div>
                         <div className="form-children">
-                            <label>Status</label>
-                            <div className="selectContainer">
-                                <Select 
+                            <label>{t('form.status')}</label>
+                            <Select
                                 options={courseStatuses}
-                                onSelect={(option)=>setStatus(option.id)}
-                                disabled={readOnly}/>
-                            </div>
-                            
+                                onChange={(selected)=>{setStatus(selected.value)}}
+                                isDisabled={readOnly}
+                                isSearchable={false}
+                                className="select-component65"
+                            />
                         </div>
-                        
-                        
+                        <div className="form-children">
+                            <label>{t('form.location')}</label>
+                            <Select
+                                options={schoolLocations?.select}
+                                onChange={(selected)=>{setLocation(selected.value)}}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-component65"
+                            />
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.lang')}</label>
+                            <div className="multi-select-react-flags">
+                                <div className="selected-languages">
+                                    {languages?.map(l=>
+                                        <div className="flag">
+                                            {l}<IoClose className="remove-flag" onClick={()=>removeFlag(l)}/>
+                                        </div>
+                                    )}
+                                </div>
+                                <ReactFlagsSelect
+                                    placeholder={t('select')}
+                                    onSelect={(code) => handleLanguageSelect(code)}
+                                    searchable
+                                    disabled={readOnly}
+                                    fullWidth={true}
+                                />
+                            </div>
+                            {false &&<Select
+                                options={schoolLocations?.select}
+                                onChange={(selected)=>{setLanguage(selected.value)}}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-component65"
+                            />}
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.teacher')}</label>
+                            <Select
+                                options={schoolTeachers?.select}
+                                onChange={(selected)=>{setTeacher(selected.value)}}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-component65"
+                            />
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.payment-period')}</label>
+                            <Select
+                                options={paymentPeriods}
+                                onChange={(selected)=>{setPaymentPeriod(selected.value)}}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-component65"
+                            />
+                        </div>
                     </div>
-                    
+                    <div className="form-button-container">
                     {!loader ?
                         <button 
                         type='submit' 
                         disabled={btndisabled} 
                         className={readOnly ? 'formBtnDisabled':'btn formButton' }>
-                        Create <FaArrowCircleRight  className='btn-icon'/>  
+                            {t('button.create')} <FaArrowCircleRight  className='btn-icon'/>
                         </button>:
                         <span className='loader schoolDetails'></span>
                     }
-                    
-                </form>
-                
+                    </div>
+                </form>}
             </div>
         </>
     );
