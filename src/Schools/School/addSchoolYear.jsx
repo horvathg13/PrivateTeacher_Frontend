@@ -17,7 +17,7 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
     const [statuses, setStatuses]=useState([]);
     const [selectedStatus, setSelectedStatus]=useState();
     const [disable, setDisable]=useState(false);
-    const {t}=useTranslation('translation', {keyPrefix:"schools.school.year.create"});
+    const {t}=useTranslation('translation', {keyPrefix:"schools.school.year"});
    /* Methods:*/ 
 
    const FormDataEmit=(e)=>{
