@@ -26,7 +26,7 @@ import {
   getRolesandSchools,
   getConnectedChildren,
   getSchoolYearStatuses,
-  getSchoolYears, getSchoolLocations, getSchoolLocation
+  getSchoolYears, getSchoolLocations, getSchoolLocation, getPaymentPeriods, getSchoolTeachers
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
@@ -215,7 +215,7 @@ const router = createBrowserRouter([
               {
                 path:"create-course",
                 element:<SchoolCourseCreate/>,
-                loader:()=>{return getSchoolCourseStatuses()}
+                loader:({params})=>{return Promise.all([getSchoolCourseStatuses(), getSchoolLocations(params), getPaymentPeriods(), getSchoolTeachers(params)])}
               },
               {
                 path:"course/:courseId",
