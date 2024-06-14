@@ -71,12 +71,6 @@ input:read-only{
   max-width: 350px;
 }
 
-
-
-.courseCreate{
-  height:430px !important;
-}
-
 /*Table*/
 table tbody tr.addNewTableRow {
   background: none !important;
@@ -201,7 +195,39 @@ button{
   /*float: left;*/
   transition: .3s ease-in-out;
 }
-
+.mobileFormButton{
+  background: var(--ButtonBlue);
+  color: var(--whiteColorDeam);
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  margin: 2px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  transition: .3s ease-in-out;
+}
+.mobileFormButton:hover{
+  transform: scale(1.1);
+  transition: .3s ease-in-out;
+  background: var(--DarkBlue);
+}
+.mobileFormButtonDisabled{
+  background: var(--GreyColor);
+  color: var(--whiteColorDeam);
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  margin: 2px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  transition: .3s ease-in-out;
+}
 .formButton:hover{
   transform: scale(1.1);
   transition: .3s ease-in-out;
@@ -526,7 +552,7 @@ form .roles-container.flex label {
 .content-main-container{
   /*width: 900px;*/
   width: 80%;
-  height: fit-content;
+  height: 100%;
   margin: 2% auto;
   color: var(--PrimaryColor);
 }
@@ -687,7 +713,7 @@ form .roles-container.flex label {
 }
 
 .school-year-infos-select{
-  width: 90%;
+  width: 65%;
   height: 31px;
   text-align: left;
 }
@@ -745,20 +771,28 @@ form .roles-container.flex label {
 }
 
 /*Label Component*/
-
+.selector-input{
+  height: 25px !important;
+}
 .label-close-button-container{
   width: auto;
-  height: 50px;
+  height: 40px;
 }
-
+.label-close-button-container .closeModalIcon{
+  margin: 5px 25px;
+}
 .label-main{
-  width: 800px;
+  max-width: 800px;
   height:calc(100% - 100px);
   margin: 0 auto;
   background: var(--whiteColorDeam);
   border-radius: 10px;
   border: 2px solid var(--DarkBlue);
   box-shadow: 2px 2px 8px rgb(26, 26, 26);
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
 }
 .label-header{
   padding: 3px;
@@ -768,23 +802,40 @@ form .roles-container.flex label {
   padding-bottom: 5px;
   text-align: center;
   letter-spacing: 1px;
+  margin-top:0;
 }
 .label-search{
   height: 50px;
-  justify-content: space-evenly !important;
+  padding: 5px 30px;
+}
+@media screen and (max-width:700px){
+  .label-search .desktopBtn button {
+    display: none;
+  }
+}
+@media screen and (min-width:700px){
+  .label-search .mobileBtn{
+    display: none;
+  }
 }
 .label-search input{
   width: 70%;
+  margin: 0 10px;
 }
 .label-search button{
-  width:20%;
+
 }
 .label-results{
-  width: 100%;
+  width: 90%;
   height: 50%;
-  margin: 15px 0;
+  margin: 15px auto;
   background-color: var(--GreyTransparent);
   overflow: auto;
+}
+@media screen and (max-width: 700px){
+  .label-results{
+    margin: 15px 5px !important;
+  }
 }
 .label-result{
   border: 2px solid var(--GreyColor);
@@ -818,8 +869,8 @@ form .roles-container.flex label {
   padding: 15px 15px;
   border: none;
   border-radius: 10px;
-  margin: 15px 5px !important;
-  width: 130px;
+  margin: 15px 25px !important;
+  max-width: 130px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -899,4 +950,79 @@ form .roles-container.flex label {
 /*React Select*/
 .select-component{
   width: 80%;
+}
+.select-component65{
+  width: 65%;
+}
+.multi-select-react-flags ul input{
+  width: 95% !important;
+  height: 30px !important;
+}
+.multi-select-react-flags button{
+  background: white;
+}
+.multi-select-react-flags button span{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.selected-languages{
+  background: transparent;
+  display: flex;
+  padding: 5px 0;
+  flex-wrap: wrap;
+}
+.flag{
+  padding: 5px 10px;
+  background: rgba(44, 26, 202, 0.63);
+  border-radius: 50px;
+  margin: 2px 2px;
+  color: white;
+}
+.remove-flag{
+  color: #ed4444;
+  padding:0 2px;
+  cursor: pointer;
+}
+.multi-select-react-flags{
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  margin: 15px 0;
+}
+.component-error-message{
+  background: var(--RedColor);
+  padding: 15px;
+  border-radius:10px;
+  display:flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 700px){
+  .component-error-message {
+    flex-direction: column;
+    width: 80%;
+  }
+}
+.component-error-message .icon{
+  color: var(--DangerColor);
+  margin: 0 auto;
+}
+.component-error-message h2{
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+/*CreateCourse*/
+.courseCreate{
+  height: 100%;
+  margin: 0 auto;
+}
+.courseCreate .form-children{
+  padding: 10px 0 !important;
+}
+.courseCreate .form-button-container{
+  padding: 20px 0 !important;
+}
+.courseCreate .form-button-container button{
 }
