@@ -126,54 +126,68 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
 
         <CSSTransition nodeRef={nodeRef} in={labelTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
             <div className="popup" ref={nodeRef}>
-
-            <div className="label-close-button-container closeModalWhite">
-                <IoMdCloseCircle className="closeModalIcon" onClick={()=>closeModal(true)}/>
-            </div>
-            <div className="label-main">
-                <div className="label-header">
-                    <h2>{title ? title:null}</h2>
-                </div>
-                <div className="label-search flex">
-                    <input placeholder="Type to search..."
-                    onChange={(e)=>setKeyword(e.target.value)} 
-                    value={keyword} 
-                    disabled={btndisabled}
-                    required
-                    />
-                    <button 
-                    className={btndisabled ? "btn formButton disabled" : "btn formButton"} 
-                    disabled={btndisabled}
-                    onClick={()=>Search()}
-                    ><FaSearch className="btn-icon"/>
-                    Search</button>
+                <div className="label-main">
+                    <div className="label-close-button-container closeModal">
+                        <IoMdCloseCircle className="closeModalIcon" onClick={() => closeModal(true)}/>
+                    </div>
+                    <div className="label-header">
+                        <h2>{title ? title : null}</h2>
+                    </div>
+                    <div className="label-search flex">
+                        <input placeholder="Type to search..."
+                               onChange={(e) => setKeyword(e.target.value)}
+                               value={keyword}
+                               disabled={btndisabled}
+                               required
+                        />
+                        <div className="desktopBtn">
+                            <button
+                                className={btndisabled ? "btn formButton disabled" : "btn formButton"}
+                                disabled={btndisabled}
+                                onClick={() => Search()}
+                            ><FaSearch className="btn-icon"/>
+                                Search
+                            </button>
+                        </div>
+                        <div className="mobileBtn">
+                            <button
+                                className={btndisabled ? "btn mobileFormButton disabled" : "btn mobileFormButton"}
+                                disabled={btndisabled}
+                                onClick={() => Search()}
+                            ><FaSearch className="btn-icon"/>
+                            </button>
+                        </div>
                 </div>
                 <div className="label-results">
                     {!loader ?
-                        labels.length !==0 ? labels.map((e,i)=>(
+                        labels.length !== 0 ? labels.map((e, i) => (
                             <div className="label-result flex" key={i} onClick={() => Select(e)}>
                                 <h4>{e.label}</h4>
-                                <div className="label-action">{shouldCheck(e) ? <FaCheck className="label-action-icon label-success" />:null}</div>
+                                    <div className="label-action">{shouldCheck(e) ?
+                                        <FaCheck className="label-action-icon label-success"/> : null}</div>
+                                </div>
+                            )) : null
+                            :
+                            <span className='loader add-label'></span>
+                        }
+
+                        {errors.length ?
+                            <div className="label-result label-missing flex" onClick={createLabel}>
+                                <h4>Label does not exist, but you can create this one.</h4>
+                                <div className="label-action"><FaPlus className="label-action-icon label-success"/>
+                                </div>
                             </div>
-                        )) : null
-                        :
-                        <span className='loader add-label'></span>
-                    }
-                    
-                    {errors.length ? 
-                        <div className="label-result label-missing flex" onClick={createLabel}>
-                            <h4>Label does not exist, but you can create this one.</h4>
-                            <div className="label-action"><FaPlus className="label-action-icon label-success" /></div>
-                        </div>
-                        : null
-                    }
-                </div>
-                <div className="label-action-buttons flex">
-                    <div className="label-header"><h4>Selected: {selectedLabels.length}</h4></div>
-                    <button className="btn label-select-button" onClick={()=>[selection(selectedLabels), closeModal(true)]}>Select<FaArrowRight className="btn-icon"/></button>
+                            : null
+                        }
+                    </div>
+                    <div className="label-action-buttons flex">
+                        <div className="label-header"><h4>Selected: {selectedLabels.length}</h4></div>
+                        <button className="btn label-select-button"
+                                onClick={() => [selection(selectedLabels), closeModal(true)]}>Select<FaArrowRight
+                            className="btn-icon"/></button>
+                    </div>
                 </div>
             </div>
-        </div>
         </CSSTransition>
     );
 };

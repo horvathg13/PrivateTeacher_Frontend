@@ -24,6 +24,9 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled})
 
 
         <div className="selector-main">
+            <FaPlus className="selector-icon" onClick={()=> {
+                if(disabled === false){setLabelTransition(true)}
+            }}/>
             {labelTransition && !disabled ?
             <LabelPopup 
             labelTransition={labelTransition} 
@@ -31,9 +34,7 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled})
             selection={(data)=>setLabels(data)}
             selected={labels}
             title={popUpTitle}/> : <input className="selector-input" type="text" value={labels?.map(e=>e.label)} readOnly/>}
-            <FaPlus className="selector-icon" onClick={()=> {
-                if(disabled === false){setLabelTransition(true)}
-            }}/>
+
         </div>
     );
 };
