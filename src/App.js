@@ -220,7 +220,7 @@ const router = createBrowserRouter([
               {
                 path:"course/:courseId",
                 element:<SchoolCourseInfo/>,
-                loader:({params})=>{return  Promise.all ([getSchoolCourseInfo(params), getSchoolCourseStatuses()])}
+                loader:({params})=>{return  Promise.all ([getSchoolCourseInfo(params), getSchoolCourseStatuses(),getSchoolLocations(params), getPaymentPeriods(), getSchoolTeachers(params)])}
               },
             ]
           },
