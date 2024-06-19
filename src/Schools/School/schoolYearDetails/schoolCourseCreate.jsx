@@ -6,7 +6,7 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../../../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
-import {FaArrowCircleRight, FaExclamationTriangle, FaTrashAlt} from "react-icons/fa";
+import {FaArrowCircleRight, FaExclamationTriangle, FaMinus, FaTrashAlt} from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../../../Context/UserContext";
 import LabelSelector from "../../../CommonComponents/Label/labelSelect";
 import {useTranslation} from "react-i18next";
@@ -20,8 +20,7 @@ const SchoolCourseCreate = () => {
     /*Translation*/
     const {t}=useTranslation("translation", {keyPrefix:'schools.school.year.courses'});
     /*datas */
-    const [courseName, setCourseName]=useState();
-    const [courseSubject, setCourseSubject]=useState();
+    const [courseName, setCourseName]=useState([{lang: '', name: ''}]);
     const [studentLimit, setStudentLimit]=useState();
     const [minutesLesson, setMinutesLesson]=useState();
     const [minTeachingDay, setMinTeachingDay]=useState();
@@ -30,7 +29,6 @@ const SchoolCourseCreate = () => {
     const [status, setStatus]=useState();
     const [labels, setLabels]=useState();
     const [location, setLocation]=useState();
-    const [languages, setLanguage]=useState([]);
     const [teacher, setTeacher]=useState();
     const [paymentPeriod, setPaymentPeriod]=useState();
     
@@ -64,13 +62,29 @@ const SchoolCourseCreate = () => {
             setLanguage(prevState => ([...languages, code]))
         }
     }
-   
+    const handleInputChange = (e, i) => {
+        const values = [...courseName];
+        if (e.target?.name === 'name') {
+            values[i].name = e.target.value;
+        } else {
+            values[i].lang = e;
+        }
+        setCourseName(values);
+        console.log(courseName)
+    };
+    const handleAddRow = () => {
+        setCourseName([...courseName, { lang: '', name: '' }]);
+    };
+    const handleRemoveRow=(e)=>{
+        let find=courseName.filter((f)=>f !== e);
+       setCourseName(find);
+    }
     const CreateSchoolCourse=(e)=>{
         
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
-        ServiceClient.createSchoolCourse(schoolYearId, schoolId, courseName, courseSubject, studentLimit, minutesLesson, minTeachingDay,doubleTime,coursePricePerLesson, labels, status, null, languages, teacher, paymentPeriod).then((success)=>{
+        ServiceClient.createSchoolCourse(schoolYearId, schoolId, courseName,studentLimit, minutesLesson, minTeachingDay, doubleTime, coursePricePerLesson, labels, status, location, null, teacher, paymentPeriod).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
@@ -99,24 +113,29 @@ const SchoolCourseCreate = () => {
             {schoolLocations?.select && <form onSubmit={(e)=>CreateSchoolCourse(e)} className="FlexForm">
                     
                     <div className="form-items flex">
-
-                        <div className="form-children">
-                            <label>{t('form.name')}</label>
-                            <input type="text" 
-                            required 
-                            onChange={(e)=>{setCourseName(e.target.value)}}
-                            value={courseName}
-                            readOnly={readOnly}/>
-                        </div>    
-
-                        <div className="form-children">
-                            <label>{t('form.subject')}</label>
-                            <input type="text" 
-                            required 
-                            onChange={(e)=>{setCourseSubject(e.target.value)}}
-                            value={courseSubject}
-                            readOnly={readOnly}/>
-                        </div>
+                        {courseName.map((e,i)=>(
+                            <div className="form-children" key={i}>
+                                <label>{t('form.name')}</label>
+                                <div className="course-lng-name">
+                                    <ReactFlagsSelect
+                                        placeholder={t('select')}
+                                        selected={e.lang}
+                                        onSelect={(code) => handleInputChange(code,i)}
+                                        searchable
+                                        disabled={readOnly}
+                                        className="select-component50"
+                                    />
+                                    <input type="text"
+                                    required
+                                    value={e.name}
+                                    name="name"
+                                    onChange={(e)=>{handleInputChange(e,i)}}
+                                    readOnly={readOnly}/>
+                                    <FaPlus onClick={handleAddRow} className="selector-icon"/>
+                                    {i>0 && <FaMinus onClick={()=>handleRemoveRow(e)} className="selector-icon red"/>}
+                                </div>
+                            </div>
+                        ))}
                         
                     
                         <div className="form-children">
