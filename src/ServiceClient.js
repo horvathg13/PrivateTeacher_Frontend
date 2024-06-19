@@ -189,10 +189,15 @@ class ServiceClient {
             return response.data
         });
     }
-    static createSchoolCourse(yearId, schoolId, courseName, subject, studentLimit, minutesLesson, minTeachingDay, doubleTime, coursePricePerLesson, labels, status, locationId, courseId, lang, teacherId, paymentPeriod){
+    static createSchoolCourse(yearId, schoolId, courseName, studentLimit, minutesLesson, minTeachingDay, doubleTime, coursePricePerLesson, labels, status, locationId, courseId, teacherId, paymentPeriod){
         return this.post("http://127.0.0.1:8000/api/createSchoolCourse",{
-            courseId: courseId || null, yearId:yearId,schoolId:schoolId,name:courseName, subject:subject, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, doubleTime:doubleTime, coursePricePerLesson:coursePricePerLesson, status:status, labels:labels, langs:lang, teacherId:teacherId, paymentPeriod:paymentPeriod, location:locationId}).then((response)=>{
+            courseId: courseId || null, yearId:yearId,schoolId:schoolId,name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, doubleTime:doubleTime, coursePricePerLesson:coursePricePerLesson, status:status, labels:labels, teacherId:teacherId, paymentPeriod:paymentPeriod, locationId:locationId}).then((response)=>{
                 return response.data
+        });
+    }
+    static removeSchoolCourse(schoolId, yearId, courseId){
+        return this.post("http://127.0.0.1:8000/api/removeSchoolCourse",{schoolId:schoolId, yearId:yearId, id:courseId}).then((response)=>{
+            return response.data
         });
     }
 }
