@@ -6,12 +6,12 @@ import {CSSTransition} from 'react-transition-group';
 import '../../transitions.css'
 import EventHandler from "../../EventHandler/eventhandler";
        
-const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) => {
+const LabelPopup = ({labelTransition, closeModal, selection, selected, title, initialValues}) => {
 
     /*Fields */
     const [keyword, setKeyword]=useState();
     const [labels, setLabels]=useState([]);
-    const [selectedLabels, setSelectedLabels]=useState([]);
+    const [selectedLabels, setSelectedLabels]=useState( []);
     const [check, setCheck]=useState(false);
 
     /*Btn handle*/
@@ -118,8 +118,11 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title}) =
 
     useEffect(()=>{
         if(selected){setSelectedLabels(selected)}
-        
-    },[selected]);
+        if(initialValues && initialValues.length){
+            setLabels(initialValues)
+            setSelectedLabels(initialValues);
+        }
+    },[selected,initialValues]);
 
     const nodeRef = useRef(null);
     return (

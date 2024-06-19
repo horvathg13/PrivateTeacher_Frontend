@@ -3,7 +3,7 @@ import LabelPopup from "./labelPopup";
 import { FaPlus } from "react-icons/fa";
 
         
-const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled}) => {
+const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, initial}) => {
     
     const [labels, setLabels]=useState();
     const [labelTransition, setLabelTransition]=useState();
@@ -20,8 +20,13 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled})
     useEffect(()=>{
         setLabels(getLabels);
     },[]);
+    useEffect(()=>{
+        if(initial)
+        {
+            setLabels(initial);
+        }
+    },[initial])
     return (
-
 
         <div className="selector-main">
             <FaPlus className="selector-icon" onClick={()=> {
@@ -33,7 +38,9 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled})
             closeModal={(data)=>{if(data===true){setLabelTransition(false)}}} 
             selection={(data)=>setLabels(data)}
             selected={labels}
-            title={popUpTitle}/> : <input className="selector-input" type="text" value={labels?.map(e=>e.label)} readOnly/>}
+            initialValues={initial}
+            title={popUpTitle}/> : <input className="selector-input" type="text" value={labels?.map(e=>e.label)}readOnly
+            />}
 
         </div>
     );
