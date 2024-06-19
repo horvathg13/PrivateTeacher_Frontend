@@ -48,6 +48,9 @@ input:read-only{
 .btn-icon{
   margin: auto 5px;
 }
+.red{
+  color: #ec2929 !important;
+}
 
 /*containers*/
 .school-breaks-container {
@@ -954,6 +957,9 @@ form .roles-container.flex label {
 .select-component65{
   width: 65%;
 }
+.select-component50{
+  width: 50%;
+}
 .multi-select-react-flags ul input{
   width: 95% !important;
   height: 30px !important;
@@ -1024,5 +1030,32 @@ form .roles-container.flex label {
 .courseCreate .form-button-container{
   padding: 20px 0 !important;
 }
-.courseCreate .form-button-container button{
+.courseCreate .course-lng-name{
+  display: flex;
+  align-items: center;
+  width: 65%;
+}
+.courseCreate .course-lng-name input{
+  margin: 0 10px;
+}
+.courseCreate .course-lng-name button{
+  width: 100% !important;
+}
+.courseCreate .course-lng-name ul input{
+  width: 95% !important;
+  height: 30px !important;
+}
+@media screen and (max-width: 700px){
+  .courseCreate .course-lng-name {
+    flex-direction: column;
+    align-items: unset !important;
+    width: 100% !important;
+  }
+  .courseCreate .course-lng-name input{
+    width: 65% !important;
+    margin: 10px 0 !important;
+  }
+  .courseCreate .course-lng-name .selector-icon{
+    margin: 10px !important;
+  }
 }
