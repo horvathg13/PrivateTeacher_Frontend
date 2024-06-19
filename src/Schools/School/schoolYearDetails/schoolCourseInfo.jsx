@@ -6,35 +6,36 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../../../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
-import { FaTrashAlt } from "react-icons/fa";
+import {FaArrowCircleRight, FaExclamationTriangle, FaMinus, FaTrashAlt} from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../../../Context/UserContext";
 import TabMenu from "../../../CommonComponents/TabMenu/tabMenu";
-import Select from "../../../CommonComponents/Select/select";
+import Select from "react-select";
 import LabelSelector from "../../../CommonComponents/Label/labelSelect";
+import {useTranslation} from "react-i18next";
+import ReactFlagsSelect from "react-flags-select";
         
 const SchoolCourseInfo = () => {
 
     /*Loader */
-    const [courseData, statuses]  = useLoaderData();
-    
-    useEffect(()=>{console.log(courseData)},[]);
-    
+    const [courseInfo, courseStatuses, schoolLocations, paymentPeriods, schoolTeachers] = useLoaderData();
+
     /*datas */
-    const [courseName, setCourseName]=useState(courseData?.courses?.name);
-    const [courseSubject, setCourseSubject]=useState(courseData?.courses?.subject);
-    const [studentLimit, setStudentLimit]=useState(courseData?.courses?.student_limit);
-    const [minutesLesson, setMinutesLesson]=useState(courseData?.courses?.minutes_lesson);
-    const [minTeachingDay, setMinTeachingDay]=useState(courseData?.courses?.min_teaching_day);
-    const [doubleTime, setDoubleTime]=useState(courseData?.courses?.double_time);
-    const [couresPricePerLesson, setCouresPricePerLesson]=useState(courseData?.courses?.course_price_per_lesson);
-    const [status, setStatus]=useState(courseData?.courses?.status_id);
-    const [labels, setLabels]=useState(courseData?.courses?.labels);
+    const [courseName, setCourseName]=useState(courseInfo.name);
+    const [studentLimit, setStudentLimit]=useState(courseInfo.student_limit);
+    const [minutesLesson, setMinutesLesson]=useState(courseInfo.minutes_lesson);
+    const [minTeachingDay, setMinTeachingDay]=useState(courseInfo.min_teaching_day);
+    const [doubleTime, setDoubleTime]=useState(courseInfo.double_time);
+    const [coursePricePerLesson, setcoursePricePerLesson]=useState(courseInfo.course_price_per_lesson);
+    const [status, setStatus]=useState(courseInfo.status);
+    const [labels, setLabels]=useState();
+    const [location, setLocation]=useState([{value:courseInfo.location.id, label:courseInfo.location.name}]);
+    const [teacher, setTeacher]=useState(courseInfo.teacher);
+    const [paymentPeriod, setPaymentPeriod]=useState(courseInfo.paymentPeriod);
     
     const [readOnly, setReadOnly]=useState(true);
     const [selectedRow, setSelectedRow]=useState();
     let { schoolId, schoolYearId, courseId }=useParams();
-    const [alias, setAlias]=useState();
-
+    const [initialValueForLabels, setInitialVeluesForLabels]=useState();
     /*Popup control */
    
     const [title, setTitle]=useState();
@@ -60,6 +61,8 @@ const SchoolCourseInfo = () => {
     /*button control */
     const [btndisabled, setBtnDisabled]=useState(true);
     
+    /*Translation*/
+    const {t}=useTranslation("translation", {keyPrefix:'schools.school.year.courses'})
 
     /*Methods */
     const functionControl=(name)=>{
@@ -71,206 +74,273 @@ const SchoolCourseInfo = () => {
         
         setAreYouSureTransitionProp(false);
     }
+    const handleInputChange = (e, i) => {
+        const values = [...courseName];
+        if (e.target?.name === 'name') {
+            values[i].name = e.target.value;
+        } else {
+            values[i].lang = e;
+        }
+        setCourseName(values);
+        console.log(courseName)
+    };
+    const handleAddRow = () => {
+        if(readOnly===false)
+        {
+            setCourseName([...courseName, { lang: '', name: '' }]);
+        }
+    };
+    const handleRemoveRow=(e)=>{
+        if(readOnly === false){
+            let find=courseName.filter((f)=>f !== e);
+            setCourseName(find);
+        }
+    }
 
-    const updateSchoolYearInfos=(e)=>{
-        
+    const updateCourseInfos=(e)=>{
+
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
         setReadOnly(true);
-
-        let dataPost={};
-        dataPost.courseId=courseId;
-        dataPost.yearId=schoolYearId;
-        dataPost.schoolId=schoolId;
-        dataPost.name=courseName;
-        dataPost.subject=courseSubject;
-        dataPost.studentLimit=studentLimit;
-        dataPost.minutesLesson=minutesLesson;
-        dataPost.minTeachingDay=minTeachingDay;
-        dataPost.doubleTime=doubleTime;
-        dataPost.couresPricePerLesson=couresPricePerLesson;
-        dataPost.status=status;
-        dataPost.labels=labels;
-
-
-        let url="http://127.0.0.1:8000/api/createSchoolCourse";
-        ServiceClient.post(url, dataPost).then((response)=>{
-            if(response.status===200){
-                setLoader(false);
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                setBtnDisabled(false);
-                navigation(`/school/${schoolId}/school-year/${schoolYearId}/courses`);
-            }
+        ServiceClient.createSchoolCourse(schoolYearId, schoolId, courseName,studentLimit, minutesLesson, minTeachingDay, doubleTime, coursePricePerLesson, labels, status.value || status, location[0].value|| location, courseId, teacher.value || teacher, paymentPeriod.value || paymentPeriod).then((success)=>{
+            setLoader(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            setBtnDisabled(false);
+            setReadOnly(false);
+            navigation(`/school/${schoolId}/school-year/${schoolYearId}/courses`);
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
             setBtnDisabled(false);
             setReadOnly(false);
-        })
+        });
     }
 
     const removeSchoolCourse=()=>{
         setDeleteLoader(true);
         setBtnDisabled(true);
 
-        let dataPost={};
-        dataPost.schoolId=schoolId;
-        dataPost.yearId=schoolYearId;
-        dataPost.id=courseId;
+        ServiceClient.removeSchoolCourse(schoolId, schoolYearId, courseId).then((success)=>{
+            setDeleteLoader(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
 
-        let url="http://127.0.0.1:8000/api/removeSchoolCourse";
-
-        ServiceClient.post(url, dataPost).then((response)=>{
-            if(response.status===200){
-                setDeleteLoader(false);
-                setSuccess(true);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                
-                navigation(`/school/${schoolId}/school-year/${schoolYearId}/courses`);
-            }
+            navigation(`/school/${schoolId}/school-year/${schoolYearId}/courses`);
         }).catch((error)=>{
             setServerError(error);
-           
-        })
+
+        });
     }
-   
+
+    useEffect(() => {
+        if(courseInfo.labels && courseInfo.labels.length){
+            let init = courseInfo.labels.map((l)=>({id: l.id, label: l.label}));
+            setLabels(init);
+        }
+    }, [courseInfo]);
     return (
         <>
-        <EventHandler
-            success={success} 
-            errors={errors} 
-            serverError={serverError} 
-            closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
-        />
-        <AreYouSure
-        name={AreYouSureName}
-        answer={(name)=> functionControl(name)}
-        transitionProp={areYouSureTransitionProp}/>
-        
-    <div>
-        
-        <div className="title"><h2>School Course Info <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
-            <form onSubmit={(e)=>updateSchoolYearInfos(e)} className="FlexForm">
-                
-                <div className="form-items flex courseCreate">
+            <EventHandler
+                success={success}
+                errors={errors}
+                serverError={serverError}
+                closeErrorMessage={(data) => {
+                    if (data === true) {
+                        setErrors([])
+                    }
+                }}
+            />
+            <AreYouSure
+                name={AreYouSureName}
+                answer={(name) => functionControl(name)}
+                transitionProp={areYouSureTransitionProp}
+            />
 
-                    <div className="form-children">
-                        <label>Name</label>
-                        <input type="text" 
-                        required 
-                        onChange={(e)=>{setCourseName(e.target.value)}}
-                        value={courseName}
-                        readOnly={readOnly}/>
-                    </div>    
+            <div className="courseCreate">
+                <div className="title"><h2>School Course Creation <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/>  </h2></div>
+                <form onSubmit={(e) => updateCourseInfos(e)} className="FlexForm">
 
-                    <div className="form-children">
-                        <label>Subject</label>
-                        <input type="text" 
-                        required 
-                        onChange={(e)=>{setCourseSubject(e.target.value)}}
-                        value={courseSubject}
-                        readOnly={readOnly}/>
-                    </div>
-                    
-                   
-                    <div className="form-children">
-                        <label>Student Limit</label>
-                        <input type="text"
-                        required  
-                        onChange={(e)=>{setStudentLimit(e.target.value)}}
-                        value={studentLimit}
-                        readOnly={readOnly}/>
-                    </div>
-                   
-                    <div className="form-children">
-                        <label>Minutes/lesson</label>
-                        <input
-                        type="text" 
-                        required  
-                        onChange={(e)=>{setMinutesLesson(e.target.value)}}
-                        value={minutesLesson}
-                        readOnly={readOnly}/>
-                    </div>
+                    <div className="form-items flex">
+                        {courseName.map((e, i) => (
+                            <div className="form-children" key={i}>
+                                <label>{t('form.name')}</label>
+                                <div className="course-lng-name">
+                                    <ReactFlagsSelect
+                                        placeholder={t('select')}
+                                        selected={e.lang}
+                                        onSelect={(code) => handleInputChange(code, i)}
+                                        searchable
+                                        disabled={readOnly}
+                                        className="select-component50"
+                                    />
+                                    <input type="text"
+                                           required
+                                           value={e.name}
+                                           name="name"
+                                           onChange={(e) => {
+                                               handleInputChange(e, i)
+                                           }}
+                                           readOnly={readOnly}/>
+                                    <FaPlus onClick={handleAddRow} className="selector-icon"/>
+                                    {i > 0 &&
+                                        <FaMinus onClick={() => handleRemoveRow(e)} className="selector-icon red"/>}
+                                </div>
+                            </div>
+                        ))}
 
-                    <div className="form-children">
-                        <label>Minimum Teaching Days</label>
-                        <input
-                        type="text" 
-                        required  
-                        onChange={(e)=>{setMinTeachingDay(e.target.value)}}
-                        value={minTeachingDay}
-                        readOnly={readOnly}/>
-                    </div>
 
-                    <div className="form-children">
-                        <label>Double Time</label>
-                        <input
-                        type="checkbox"
-                        checked={doubleTime}
-                        onChange={(e)=>{setDoubleTime(e.target.checked)}}
-                        value={doubleTime}
-                        disabled={readOnly}/>
-                    </div>
-
-                    <div className="form-children">
-                        <label>Course Price / Lesson</label>
-                        <input
-                        type="text" 
-                        required  
-                        onChange={(e)=>{setCouresPricePerLesson(e.target.value)}}
-                        value={couresPricePerLesson}
-                        readOnly={readOnly}/>
-                    </div>
-                    <div className="form-children">
-                            <label>Labels</label>
-                            <LabelSelector 
-                            labelEmit={(data)=>setLabels(data)}
-                            getLabels={labels}
-                            disabled={readOnly}
-                            popUpTitle={"Modified the labels"}/>
+                        <div className="form-children">
+                            <label>{t('form.student-limit')}</label>
+                            <input type="number"
+                                   min={1}
+                                   required
+                                   onChange={(e) => {
+                                       setStudentLimit(e.target.value)
+                                   }}
+                                   value={studentLimit}
+                                   readOnly={readOnly}/>
                         </div>
-                    <div className="form-children">
-                        <label>Status</label>
-                        <div className="selectContainer">
-                            <Select 
-                            options={statuses}
-                            onSelect={(option)=>setStatus(option.id)}
-                            InitialValue={courseData.courses?.status}
-                            disabled={readOnly}/>
+
+                        <div className="form-children">
+                            <label>{t('form.minutes-lesson')}</label>
+                            <input
+                                type="number"
+                                min={1}
+                                required
+                                onChange={(e) => {
+                                    setMinutesLesson(e.target.value)
+                                }}
+                                value={minutesLesson}
+                                readOnly={readOnly}/>
+                        </div>
+
+                        <div className="form-children">
+                            <label>{t('form.minTeachingDay')}</label>
+                            <input
+                                type="number"
+                                min={1}
+                                required
+                                onChange={(e) => {
+                                    setMinTeachingDay(e.target.value)
+                                }}
+                                value={minTeachingDay}
+                                readOnly={readOnly}/>
+                        </div>
+
+                        <div className="form-children">
+                            <label>{t('form.doubleTime')}</label>
+                            <input
+                                type="checkbox"
+                                onChange={(e) => {
+                                    setDoubleTime(e.target.checked)
+                                }}
+                                value={doubleTime}
+                                checked={doubleTime}
+                                disabled={readOnly}/>
+                        </div>
+
+                        <div className="form-children">
+                            <label>{t('form.course-price-per-lesson')}</label>
+                            <input
+                                type="text"
+                                required
+                                onChange={(e) => {
+                                    setcoursePricePerLesson(e.target.value)
+                                }}
+                                value={coursePricePerLesson}
+                                readOnly={readOnly}/>
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.labels')}</label>
+                            <LabelSelector
+                                labelEmit={(data) => setLabels(data)}
+                                disabled={readOnly}
+                                popUpTitle={"Add labels"}
+                                initial={labels}
+                            />
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.status')}</label>
+                            <Select
+                                options={courseStatuses}
+                                onChange={(selected) => {
+                                    setStatus(selected.value)
+                                }}
+                                defaultValue={status}
+                                isDisabled={readOnly}
+                                isSearchable={false}
+                                className="select-component65"
+                            />
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.location')}</label>
+                            <Select
+                                options={schoolLocations?.select}
+                                onChange={(selected) => {
+                                    setLocation(selected.value)
+                                }}
+                                defaultValue={location}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-component65"
+                            />
+                        </div>
+
+                        <div className="form-children">
+                            <label>{t('form.teacher')}</label>
+                            <Select
+                                options={schoolTeachers?.select}
+                                onChange={(selected) => {
+                                    setTeacher(selected.value)
+                                }}
+                                defaultValue={teacher}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-component65"
+                            />
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.payment-period')}</label>
+                            <Select
+                                options={paymentPeriods}
+                                onChange={(selected) => {
+                                    setPaymentPeriod(selected.value)
+                                }}
+                                defaultValue={paymentPeriod}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-component65"
+                            />
                         </div>
                     </div>
-                    
-                </div>
-                
-                {!loader ?
-                    <button 
-                    type='submit' 
-                    disabled={btndisabled} 
-                    className={readOnly ? 'formBtnDisabled':'btn formButton' }>
-                       <GrUpdate  className='btn-icon'/> Update 
-                    </button>:
-                    <span className='loader schoolDetails'></span>
-                }
-                {!deleteLoader ?
-                    <button 
-                    type='button' 
-                    disabled={btndisabled}
-                    onClick={()=>[setAreYouSureName("delete"), setAreYouSureTransitionProp(true)]}
-                    className={readOnly ? 'formBtnDisabled':'btn formButton' }>
-                       <FaTrashCan   className='btn-icon'/> Delete 
-                    </button>:
-                    <span className='loader schoolDetails'></span>
-                }
-                
-            </form>
-            
-        </div>
+                    <div className="form-button-container">
+                        {!loader ?
+                            <button
+                                type='submit'
+                                disabled={btndisabled}
+                                className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                {t('button.update')} <GrUpdate className='btn-icon'/>
+                            </button> :
+                            <span className='loader schoolDetails'></span>
+                        }
+                        {!deleteLoader ?
+                            <button
+                                type='submit'
+                                disabled={btndisabled}
+                                className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                {t('button.delete')} <FaTrashAlt className='btn-icon'/>
+                            </button> :
+                            <span className='loader schoolDetails'></span>
+                        }
+                    </div>
+                </form>
+            </div>
         </>
     );
 };
