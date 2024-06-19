@@ -118,6 +118,7 @@ const SchoolCoursesList = () => {
                                     
                                         <td>{e.id}</td>
                                         <td>{e.name}</td>
+                                        <td>{e.lang}</td>
                                         <td>{e.status}</td>
                                     </tr>
 
