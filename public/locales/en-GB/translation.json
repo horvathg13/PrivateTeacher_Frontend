@@ -160,7 +160,8 @@
           "select": "Select your course language",
           "button":{
             "create": "Create",
-            "update": "Update"
+            "update": "Update",
+            "delete": "Delete"
           }
         }
 
