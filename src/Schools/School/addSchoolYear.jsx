@@ -56,40 +56,40 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                 
                  <form className='addSchoolYear-form flex' onSubmit={FormDataEmit}>
                     <div className="closeModal"><IoIosCloseCircle className='closeModalIcon' onClick={() => closeModal(true)} /></div>
-                    <div className="formTitle"><h2>{t('titles.main')}</h2></div>
+                    <div className="formTitle"><h2>{t('create.titles.main')}</h2></div>
                     {!loader ?<>
                     <div className="addSchoolYear flex">
                         
                         <div className="add-school-year flex">
-                            <label>{t('form.year')}</label>
+                            <label>{t('info.form.year')}</label>
                             <input 
                             type='text' 
                             onChange={(e) => setYear(e.target.value)}
                             required></input>
                         </div>
                         <div className="add-school-year flex">
-                            <label>{t('form.name')}</label>
+                            <label>{t('info.form.name')}</label>
                             <input 
                             type='text' 
                             onChange={(e) => setName(e.target.value)}
                             required></input>
                         </div>
                         <div className="add-school-year flex">
-                            <label>{t('form.start')}</label>
+                            <label>{t('info.form.start')}</label>
                             <input 
                             type='date' 
                             onChange={(e) => setStartDate(e.target.value)}
                             required></input>
                         </div>
                         <div className="add-school-year flex">
-                            <label>{t('form.end')}</label>
+                            <label>{t('info.form.end')}</label>
                             <input 
                             type='date' 
                             onChange={(e) => setEndDate(e.target.value)}
                             required></input>
                         </div>
                         <div className="add-school-year flex">
-                            <label>{t('form.status')} </label>
+                            <label>{t('info.form.status')} </label>
                             <Select
                                 options={statuses}
                                 onChange={(selected)=>{setSelectedStatus(selected.value)}}
@@ -102,7 +102,7 @@ const AddSchoolYear = ({loader,btndisabled, transitionProp, closeModal, emitData
                     <button type='submit'
                         disabled={btndisabled}
                         className={btndisabled ? 'formBtnDisabled' : 'btn formButton'}>
-                        {t('button.create')}
+                        {t('create.button.create')}
                     </button></>: <span className='loader table'></span>}
                 </form>
             </div>
