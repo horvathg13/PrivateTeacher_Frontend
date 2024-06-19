@@ -140,7 +140,8 @@ const SchoolCourseCreate = () => {
                     
                         <div className="form-children">
                             <label>{t('form.student-limit')}</label>
-                            <input type="text"
+                            <input type="number"
+                            min={1}
                             required  
                             onChange={(e)=>{setStudentLimit(e.target.value)}}
                             value={studentLimit}
@@ -150,7 +151,8 @@ const SchoolCourseCreate = () => {
                         <div className="form-children">
                             <label>{t('form.minutes-lesson')}</label>
                             <input
-                            type="text" 
+                            type="number"
+                            min={1}
                             required  
                             onChange={(e)=>{setMinutesLesson(e.target.value)}}
                             value={minutesLesson}
@@ -160,7 +162,8 @@ const SchoolCourseCreate = () => {
                         <div className="form-children">
                             <label>{t('form.minTeachingDay')}</label>
                             <input
-                            type="text" 
+                            type="number"
+                            min={1}
                             required  
                             onChange={(e)=>{setMinTeachingDay(e.target.value)}}
                             value={minTeachingDay}
@@ -212,32 +215,7 @@ const SchoolCourseCreate = () => {
                                 className="select-component65"
                             />
                         </div>
-                        <div className="form-children">
-                            <label>{t('form.lang')}</label>
-                            <div className="multi-select-react-flags">
-                                <div className="selected-languages">
-                                    {languages?.map(l=>
-                                        <div className="flag">
-                                            {l}<IoClose className="remove-flag" onClick={()=>removeFlag(l)}/>
-                                        </div>
-                                    )}
-                                </div>
-                                <ReactFlagsSelect
-                                    placeholder={t('select')}
-                                    onSelect={(code) => handleLanguageSelect(code)}
-                                    searchable
-                                    disabled={readOnly}
-                                    fullWidth={true}
-                                />
-                            </div>
-                            {false &&<Select
-                                options={schoolLocations?.select}
-                                onChange={(selected)=>{setLanguage(selected.value)}}
-                                isDisabled={readOnly}
-                                isSearchable={true}
-                                className="select-component65"
-                            />}
-                        </div>
+
                         <div className="form-children">
                             <label>{t('form.teacher')}</label>
                             <Select
