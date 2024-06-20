@@ -161,6 +161,9 @@
             "create": "Létrehozás",
             "update": "Frissítés",
             "delete": "Törlés"
+          },
+          "validate": {
+            "lng-required": "A nyelv megadása kötelező"
           }
         }
 
