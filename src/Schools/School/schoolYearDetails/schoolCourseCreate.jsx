@@ -75,6 +75,14 @@ const SchoolCourseCreate = () => {
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
+        if(!courseName.lang){
+            return [
+                setErrors([t('validate.lng-required')]),
+                setLoader(false),
+                setBtnDisabled(false)
+            ];
+
+        }
         ServiceClient.createSchoolCourse(schoolYearId, schoolId, courseName,studentLimit, minutesLesson, minTeachingDay, doubleTime, coursePricePerLesson, labels, status, location, null, teacher, paymentPeriod).then((success)=>{
             setLoader(false);
             setSuccess(true);
