@@ -52,16 +52,7 @@ const SchoolCourseCreate = () => {
     const [readOnly, setReadOnly]=useState(false);
 
     /*Methods */
-    const removeFlag=(l)=>{
-        let newArray = languages.filter(f=>f!==l)
-        setLanguage(newArray);
-    }
-    const handleLanguageSelect=(code)=>{
-        let find = languages.find(f=>f===code);
-        if(!find){
-            setLanguage(prevState => ([...languages, code]))
-        }
-    }
+
     const handleInputChange = (e, i) => {
         const values = [...courseName];
         if (e.target?.name === 'name') {
