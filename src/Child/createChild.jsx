@@ -4,8 +4,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import ServiceClient from '../ServiceClient';
+import {useTranslation} from "react-i18next";
 
 const CreateChild = () => {
+    /*Translation*/
+    const {t}=useTranslation('translation', {keyPrefix:"child"})
     /*Form fields*/
     const [fname, setFname]=useState('');
     const [lname, setLname]=useState('');
@@ -85,59 +88,55 @@ const CreateChild = () => {
         setCPassword('');
     }
     return (
-        <>
+    <>
        <EventHandler 
         success={success} 
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-                  
-        <div className="content-main-container">
             
-           
-            
-            <form onSubmit={(e)=>createChild(e)}>
-                <div className="title"><h2>Create</h2></div>
-                <div className="name-fields flex">
-                    <div className="field">
-                        <label>First Name</label>
-                        <input type="text" required onChange={(e)=>{setFname(e.target.value)}} value={fname}/>
+        <form className="FlexForm" onSubmit={(e)=>createChild(e)}>
+            <div className="title"><h2>{t('title.create')}</h2></div>
+            <div className="form-items">
+                <div className="form-collapse">
+                    <div className="form-children flexColumnItems">
+                            <label>First Name</label>
+                            <input type="text" required onChange={(e)=>{setFname(e.target.value)}} value={fname}/>
                     </div>
-                    <div className="field">
-                        <label>Last Name</label>
-                        <input type="text" required onChange={(e)=>{setLname(e.target.value)}} value={lname}/>
-                    </div>
-                    
-                </div>
-                <div className="fields flex">
-                    <div className="field">
-                        <label>Username</label>
-                        <input type="text" required onChange={(e)=>{setUsername(e.target.value)}} value={username}/>
-                    </div>
-                    <div className="field">
-                        <label>Birthday</label>
-                        <input type="date" required onChange={(e)=>{setBirthday(e.target.value)}} value={birthday}/>
+                    <div className="form-children flexColumnItems">
+                            <label>Last Name</label>
+                            <input type="text" required onChange={(e)=>{setLname(e.target.value)}} value={lname}/>
                     </div>
                 </div>
-                <div className="fields flex">
-                    <div className="field">
-                        <label>Password</label>
-                        <input className={passwordError ? 'InputError':'passwordInput'} type="password" required onChange={(e)=>{setPassword(e.target.value)}} value={password}/>
+                <div className="form-collapse">
+                    <div className="form-children flexColumnItems">
+                            <label>Birthday</label>
+                            <input type="date" required onChange={(e)=>{setBirthday(e.target.value)}} value={birthday}/>
                     </div>
-                    <div className="field">
-                        <label>Confirm Password</label>
-                        <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}} value={cpassword}/>
-                    </div>                
+                    <div className="form-children flexColumnItems">
+                            <label>Username</label>
+                            <input type="text" required onChange={(e)=>{setUsername(e.target.value)}} value={username}/>
+                    </div>
                 </div>
-                
+                <div className="form-collapse">
+                    <div className="form-children flexColumnItems">
+                            <label>Password</label>
+                            <input className={passwordError ? 'InputError':'passwordInput'} type="password" required onChange={(e)=>{setPassword(e.target.value)}} value={password}/>
+                    </div>
+                    <div className="form-children flexColumnItems">
+                            <label>Confirm Password</label>
+                            <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}} value={cpassword}/>
+                    </div>
+                </div>
+            </div>
+            <div className="form-button-container">
                 {!loader ?
                     <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn formButton disabled':'btn formButton'}>Generate <FaArrowCircleRight className='btn-icon'/></button> :
                     <span className='loader createUser'></span>
                 }
-            </form>
-        </div>
-      </>          
-        
+            </div>
+        </form>
+    </>
     );
 };
 export default CreateChild;

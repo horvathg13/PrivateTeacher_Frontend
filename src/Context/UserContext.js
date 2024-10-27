@@ -7,16 +7,17 @@ export const UserContext = createContext(null);
 
 export const UserContextProvider = ({children})=>{
     const [username, setUsername]=useState('');
-    const value ={username, setUsername};
+    const [roles, setRoles]=useState([]);
+    const value ={username, setUsername, setRoles, roles};
 
     useEffect(()=>{
         ServiceClient.post("http://127.0.0.1:8000/api/getUserData").then((response)=>{
-            console.log(response);
             if(response.status===200){
-                setUsername(response.data.user.first_name)
+                setUsername(response.data.user.first_name);
+                setRoles(response.data.roles);
             }
         }).catch((error)=>{
-            if(error?.response?.status==500){
+            if(error?.response?.status===500){
                 console.log(error.response.data);
             }
         })
@@ -69,3 +70,6 @@ export const ComponentTitleProvider=({children})=>{
         <ComponentTitleContext.Provider value={values}>{children}</ComponentTitleContext.Provider>
     )
 }
+
+export const LocationInfoContext = createContext(null);
+export const ChildInfoContext = createContext(null);

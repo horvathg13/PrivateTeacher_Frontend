@@ -7,7 +7,7 @@ import { BiSolidMessageDetail } from "react-icons/bi";
 import { PiStudentBold } from "react-icons/pi";
 import { MdPayment } from "react-icons/md";
 import { BsCalendar3 } from "react-icons/bs";
-import { FaSchool } from 'react-icons/fa6';
+import {FaSchool, FaUserGraduate} from 'react-icons/fa6';
 import { useContext } from 'react';
 import { UserContext } from '../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +29,8 @@ const Home = () => {
             //case 'MdPayment': return <MdPayment/>;
             //case 'BsCalendar3': return <BsCalendar3/>;
             case 'FaSchool':return <FaSchool  />;
-            default: return null;
+            case 'FaUserGraduate':return <FaUserGraduate/>;
+                default: return null;
         }
     }
 

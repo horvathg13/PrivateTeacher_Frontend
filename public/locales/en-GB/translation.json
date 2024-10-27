@@ -32,7 +32,10 @@
   "breadcrumbs":{
     "home": "Home",
     "users": "Users",
-    "schools": "Schools"
+    "schools": "Schools",
+    "course": "Course",
+    "location": "Location",
+    "child": "Child"
   },
   "TabMenu": {
     "info": "Info",
@@ -47,13 +50,19 @@
     "breaks": "Breaks",
     "specWorkDays": "Special Work Days",
     "teachingDays": "Teaching Days",
-    "courses": "Courses"
+    "courses": "Courses",
+    "add-location": "Add Location",
+    "list": "List",
+    "connect": "Connect"
   },
   "componentTitles": {
     "users": "Users",
     "user": "User",
     "schools": "Schools",
-    "school": "School"
+    "school": "School",
+    "course": "Course",
+    "location": "Location",
+    "child": "Child"
   },
   "empty-table": "Not found.",
   "home": {
@@ -65,7 +74,8 @@
       "schools": "Schools",
       "messages": "Messages",
       "search": "Search",
-      "children": "Children"
+      "children": "Children",
+      "course": "Course"
     }
   },
   "users": {
@@ -96,7 +106,9 @@
   "schools": {
     "home": {
       "list": "List",
-      "create": "Create"
+      "create": "Create",
+      "locations": "Locations",
+      "add-location": "Add Location"
     },
     "school": {
       "info": {
@@ -141,6 +153,12 @@
           }
         },
         "courses": {
+          "title": {
+            "create": "Create a new course"
+          },
+          "info": {
+            "title": "Course Infos"
+          },
           "not-possible": "It is not possible to create a course: we do not have locations and/or teachers registered.",
           "form": {
             "name": "Name",
@@ -155,7 +173,8 @@
             "location": "Location",
             "lang": "Language",
             "teacher": "Teacher",
-            "payment-period": "Payment Period"
+            "payment-period": "Payment Period",
+            "currency": "Currency"
           },
           "select": "Select your course language",
           "button":{
@@ -182,14 +201,60 @@
             "street": "Street",
             "number": "Number",
             "floor": "Floor",
-            "door": "Door"
+            "door": "Door",
+            "course": "Course"
           },
           "buttons": {
+            "create": "Create",
             "update": "Update",
             "delete": "Delete"
           }
+        },
+        "create": {
+          "title": "Add a new location"
+        },
+        "validation": {
+          "selectCourse": "Please, select a course!"
         }
       }
     }
+  },
+  "child": {
+    "title":{
+      "list": "My Connections",
+      "create": "Create",
+      "connect": "Connect",
+      "info": "Info",
+      "changePassword": "Change Password"
+    },
+    "form": {
+      "first-name": "FirstName",
+      "last-name": "LastName",
+      "username": "Username",
+      "birthday": "Birthday",
+      "password": "Password",
+      "c-password": "Confirm Password",
+      "not-match": "Passwords does not match."
+    },
+    "button": {
+      "update": "Update"
+    }
+  },
+  "enums": {
+    "ACTIVE":"Active",
+    "SUSPENDED":"Suspended",
+    "DELETED":"Deleted",
+    "BANNED":"Banned",
+    "PER_LESSON":"Per lesson",
+    "MONTHLY":"Monthly",
+    "YEARLY":"Annual",
+    "HALF_YEAR":"Half year",
+    "MONDAY":"Monday",
+    "TUESDAY":"Tuesday",
+    "WEDNESDAY":"Wednesday",
+    "THURSDAY":"Thursday",
+    "FRIDAY":"Friday",
+    "SATURDAY":"Saturday",
+    "SUNDAY":"Sunday"
   }
 }

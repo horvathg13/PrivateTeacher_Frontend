@@ -2,7 +2,7 @@ import '../common.css';
 import {FaBan, FaUsers ,FaUserPlus, FaChild, FaSearch,} from 'react-icons/fa';
 import { BiSolidMessageDetail } from "react-icons/bi";
 import {RiLockPasswordFill} from 'react-icons/ri';
-import {FaScaleUnbalanced, FaSchool, FaTruckMedical} from 'react-icons/fa6';
+import {FaScaleUnbalanced, FaSchool, FaTruckMedical, FaUserGraduate } from 'react-icons/fa6';
 import {RxUpdate} from 'react-icons/rx';
 import menu from './menu.json'        
 import homeMenu from '../../Home/homeMenu.json';
@@ -26,7 +26,8 @@ const SideMenu = ({active}) => {
             case 'FaSearch': return <FaSearch className='menu-icon icon'/>;
             case 'BiSolidMessageDetail': return <BiSolidMessageDetail className='menu-icon icon'/>;
             case 'FaSchool':return <FaSchool  className='menu-icon icon'/>;
-            default: return null;
+            case 'FaUserGraduate': return <FaUserGraduate className='menu-icon icon'/>;
+                default: return null;
         }
     }
     const [selectedMenu,setSelectedMenu]=useState(1);

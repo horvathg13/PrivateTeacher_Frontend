@@ -4,8 +4,11 @@ import ServiceClient from '../ServiceClient'
 import { UserContext } from '../Context/UserContext';
 import  EventHandler  from '../EventHandler/eventhandler';
 import { FaArrowCircleRight } from 'react-icons/fa';
+import {useTranslation} from "react-i18next";
 
 const ChildConnect = () => {
+    /*Translation*/
+    const {t}=useTranslation('translation', {keyPrefix:"child"})
     /*Form fields*/
     const [username, setUsername]=useState('');
     const [password, setPassword]=useState('');
@@ -64,10 +67,8 @@ const ChildConnect = () => {
         serverError={serverError}
         closeErrorMessage={(data) => { if (data === true) { setErrors([]); } } } />
         <div className="login-container">
-
-
             <div className="title">
-                <h1>Connect</h1>
+                <h1>{t('title.connect')}</h1>
             </div>
             <div className="form-container connectChild">
                 <form onSubmit={connect}>
@@ -88,7 +89,7 @@ const ChildConnect = () => {
 
                     </div>
 
-                    {!loader ? <button type='submit' disabled={btndisable} className={!btndisable ? 'btn formButton connectButton' : 'btn formButton connectButton disabled'}>Connect <FaArrowCircleRight className='btn-icon' /></button> :
+                    {!loader ? <button type='submit' disabled={btndisable} className={!btndisable ? 'btn formButton connectButton' : 'btn formButton connectButton disabled'}>{t('title.connect')} <FaArrowCircleRight className='btn-icon' /></button> :
                         <span className='loader createUser'></span>}
                 </form>
             </div>

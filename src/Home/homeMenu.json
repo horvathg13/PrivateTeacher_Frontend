@@ -7,10 +7,10 @@
         
     },
     {
-        "name":"schools",
+        "name":"course",
         "role":["Admin"],
-        "icon":"FaSchool",
-        "url":"/schools"
+        "icon":"FaUserGraduate",
+        "url":"/course"
         
     },
     {

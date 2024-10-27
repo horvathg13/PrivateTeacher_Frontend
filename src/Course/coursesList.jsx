@@ -1,14 +1,14 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import EventHandler from "../../../EventHandler/eventhandler";
+import EventHandler from "../EventHandler/eventhandler";
 import { Navigate, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
-import SchoolYearDetailsPopup from "./schoolYearDetailsPopup";
-import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
-import ServiceClient from "../../../ServiceClient";
+import SchoolYearDetailsPopup from "../Schools/School/schoolYearDetails/schoolYearDetailsPopup";
+import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
+import ServiceClient from "../ServiceClient";
 import {useTranslation} from "react-i18next";
         
-const SchoolCoursesList = () => {
+const CoursesList = () => {
     /*Translation*/
     const {t}=useTranslation();
     /*dataLoader */
@@ -27,7 +27,7 @@ const SchoolCoursesList = () => {
         }
     },[]);
 
-    /*datas */
+    /*data */
     const [schoolCourses, setSchoolCourses]=useState();
     const [header, setHeader]=useState();
     const [selectedRow, setSelectedRow]=useState();
@@ -58,31 +58,11 @@ const SchoolCoursesList = () => {
     const [btndisabled, setBtnDisabled]=useState(false);
 
     /*Methods */
-    
-    const getSchoolCourses=()=>{
-        let url=`http://127.0.0.1:8000/api/school/${schoolId}/school-year-details/${schoolYearId}/courses`
-        ServiceClient.get(url).then((response)=>{
-            if(response.status===200){
-                setHeader(response.data.header);
-                setSchoolCourses(response.data.courses);
-                
-                setLoader(false);
-
-            }
-        }).catch((error)=>{
-            setServerError(error);
-            //setLoader(false);
-        })
-    }
     const navigationHandler=(e)=>{
         let courseId= e.id
-        navigation(`/school/${schoolId}/school-year/${schoolYearId}/course/${courseId}`);
+        navigation(`/course/${courseId}`);
     }
-    
-    
-    
-    
-    
+
     return (
         <>
         <EventHandler
@@ -95,9 +75,7 @@ const SchoolCoursesList = () => {
         <div>
             <form>
                 <div className="school-breaks-container">
-                    <div className="form-title flex courseTitle">
-                       <FaPlus className='table-action-icon' onClick={()=>navigation(`/school/${schoolId}/school-year/${schoolYearId}/create-course`)}/>
-                    </div>
+
                     <div className="table-main-container">
                         {!loader ? 
                         <table>
@@ -115,17 +93,16 @@ const SchoolCoursesList = () => {
                             <tbody>
                                 { schoolCourses?.length>0  ? schoolCourses.map((e) => (
                                     <tr key={e.id} onClick={() => navigationHandler(e)}>
-                                    
                                         <td>{e.id}</td>
                                         <td>{e.name}</td>
-                                        <td>{e.lang}</td>
+                                        <td>{e.lang.join(', ')}</td>
                                         <td>{e.status}</td>
                                     </tr>
 
                                 )) :
                                 <>
                                     <tr>
-                                        <td colSpan={3} className="no-school">{t('empty-table')}</td>
+                                        <td colSpan={4} className="no-school">{t('empty-table')}</td>
                                     </tr>
                                 </>}
                             </tbody>
@@ -138,4 +115,4 @@ const SchoolCoursesList = () => {
         </>
     );
 };
-export default SchoolCoursesList;
+export default CoursesList;

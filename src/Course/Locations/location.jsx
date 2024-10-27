@@ -1,24 +1,37 @@
-import React, {useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
-import ServiceClient from "../../../ServiceClient";
-import EventHandler from "../../../EventHandler/eventhandler";
-import AreYouSure from "../../../CommonComponents/AreYouSure/areyousure";
+import React, {useLayoutEffect, useState} from 'react';
+import {Outlet, useLoaderData, useNavigate, useParams} from "react-router-dom";
+import ServiceClient from "../../ServiceClient";
+import EventHandler from "../../EventHandler/eventhandler";
+import AreYouSure from "../../CommonComponents/AreYouSure/areyousure";
 import {MdEdit} from "react-icons/md";
+import {GrUpdate} from "react-icons/gr";
+import {FaTrashAlt} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
+import Select from "react-select";
 
-const AddNewLocation = () => {
+const Location = () => {
+    /*Translation*/
+    const {t}=useTranslation('translation',{keyPrefix:'schools.school.location.info'});
     /*Data */
-    const {schoolId} =useParams();
+    const { locationId }=useParams();
+    const schoolLocation=useLoaderData();
 
-    const [name, setName]=useState();
-    const [country, setCountry]=useState();
-    const [zip , setZip]=useState();
-    const [city, setCity]=useState();
-    const [street, setStreet]=useState();
-    const [number, setNumber]=useState();
-    const [floor, setFloor]=useState();
-    const [door, setDoor]=useState();
+    const [name, setName]=useState(schoolLocation?.name);
+    const [country, setCountry]=useState(schoolLocation?.country);
+    const [zip , setZip]=useState(schoolLocation?.zip);
+    const [city, setCity]=useState(schoolLocation?.city);
+    const [street, setStreet]=useState(schoolLocation?.street);
+    const [number, setNumber]=useState(schoolLocation?.number);
+    const [floor, setFloor]=useState(schoolLocation?.floor);
+    const [door, setDoor]=useState(schoolLocation?.door);
 
-    const [readOnly, setReadOnly]=useState(false);
+    const [readOnly, setReadOnly]=useState(true);
+    const [selectedRow, setSelectedRow]=useState();
+    const [alias, setAlias]=useState();
+
+    /*Popup control */
+    const [AreYouSureName, setAreYouSureName]=useState('');
+    const [areYouSureTransitionProp, setAreYouSureTransitionProp]=useState(false);
 
     /*Event handle*/
     const [errors, setErrors]=useState([]);
@@ -27,29 +40,58 @@ const AddNewLocation = () => {
 
     /*Loader */
     const [loader, setLoader]=useState(false);
+    const [deleteLoader, setDeleteLoader]=useState(false);
 
     /*Navigation */
     const navigation=useNavigate();
 
     /*Button Control */
-    const [btndisabled, setBtnDisabled]=useState(false);
+    const [btndisabled, setBtnDisabled]=useState(true);
 
     /*Methods */
+    const functionControl=(name)=>{
 
-    const createLocation=(e)=>{
+        if(name === 'delete'){
+            removeLocation();
+            setAreYouSureTransitionProp(false);
+        }
+
+        setAreYouSureTransitionProp(false);
+    }
+
+    const getLocations=()=>{
+        setLoader(true);
+        ServiceClient.getCourseLocation(locationId).then((data)=>{
+            setName(data.name);
+            setCountry(data.country);
+            setZip(data.zip);
+            setCity(data.city);
+            setStreet(data.street);
+            setNumber(data.number);
+            setFloor(data.floor);
+            setDoor(data.door);
+
+            setLoader(false);
+            setDeleteLoader(false);
+        }).catch((error)=>{
+            setServerError(error);
+            setLoader(false);
+        })
+    }
+    const updateLocationInfo=(e)=>{
 
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
 
-        ServiceClient.createSchoolLocation(name, country, city, zip, street, number, floor, door, schoolId).then((success)=>{
+        ServiceClient.createLocation(name,country,city,zip,street,number,floor,door,locationId).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
             setBtnDisabled(false);
-            navigation(`/school/${schoolId}/locations`);
+            getLocations();
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -57,6 +99,22 @@ const AddNewLocation = () => {
         })
     }
 
+    const removeLocation=()=>{
+        setDeleteLoader(true);
+        let dataPost={};
+        dataPost.locationId=locationId;
+
+        ServiceClient.removeSchoolLocation(locationId).then((success)=>{
+            setDeleteLoader(false);
+            setSuccess(true);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+        }).catch((error)=>{
+            setServerError(error);
+            setDeleteLoader(false);
+        })
+    }
 
     return (
         <>
@@ -66,16 +124,19 @@ const AddNewLocation = () => {
                 serverError={serverError}
                 closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
             />
+            <AreYouSure
+                name={AreYouSureName}
+                answer={(name)=> functionControl(name)}
+                transitionProp={areYouSureTransitionProp}/>
 
             <div>
-
-                <div className="title"><h2>Create Location</h2></div>
-                <form onSubmit={(e)=>createLocation(e)} className="FlexForm">
+                <div className="title"><h2>{t('titles.main')}<MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
+                <form onSubmit={(e)=>updateLocationInfo(e)} className="FlexForm">
 
                     <div className="form-items flex">
 
                         <div className="form-children">
-                            <label>Name</label>
+                            <label>{t('form.locationName')}</label>
                             <input type="text"
                                    required
                                    onChange={(e) => {
@@ -86,7 +147,7 @@ const AddNewLocation = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Country</label>
+                            <label>{t('form.country')}</label>
                             <input type="text"
                                    required
                                    onChange={(e) => {
@@ -98,7 +159,7 @@ const AddNewLocation = () => {
 
 
                         <div className="form-children">
-                            <label>Zip</label>
+                            <label>{t('form.zip')}</label>
                             <input type="text"
                                    required
                                    onChange={(e) => {
@@ -109,7 +170,7 @@ const AddNewLocation = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>City</label>
+                            <label>{t('form.city')}</label>
                             <input
                                 type="text"
                                 required
@@ -120,7 +181,7 @@ const AddNewLocation = () => {
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Street</label>
+                            <label>{t('form.street')}</label>
                             <input
                                 type="text"
                                 required
@@ -131,7 +192,7 @@ const AddNewLocation = () => {
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Number</label>
+                            <label>{t('form.number')}</label>
                             <input
                                 type="text"
                                 required
@@ -142,18 +203,18 @@ const AddNewLocation = () => {
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Floor</label>
+                            <label>{t('form.floor')}</label>
                             <input
                                 type="text"
                                 required
                                 onChange={(e) => {
                                     setFloor(e.target.value)
                                 }}
-                                value={floor}
+                                value={street}
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Door</label>
+                            <label>{t('form.door')}</label>
                             <input
                                 type="text"
                                 required
@@ -171,10 +232,20 @@ const AddNewLocation = () => {
                                 type='submit'
                                 disabled={btndisabled}
                                 className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                                Create
+                                <GrUpdate className='btn-icon'/> {t('buttons.update')}
                             </button> :
                             <span className='loader schoolDetails'></span>
-                        }
+                    }
+                    {!deleteLoader ?
+                        <button
+                            type="button"
+                            disabled={btndisabled}
+                            className={readOnly ? 'formBtnDisabled':'btn formButton' }
+                            onClick={()=>{setAreYouSureName("delete"); setAreYouSureTransitionProp(true)}}>
+                            <FaTrashAlt   className='btn-icon'/> {t('buttons.delete')}
+                        </button>:
+                        <span className='loader schoolDetails'></span>
+                    }
                     </div>
                 </form>
 
@@ -183,4 +254,4 @@ const AddNewLocation = () => {
     );
 };
 
-export default AddNewLocation;
+export default Location;

@@ -1,20 +1,21 @@
-import { Outlet, useLoaderData, useParams } from 'react-router-dom';
-import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
-import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
-import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
-import {TabMenuContext, schoolInfoContext, ComponentTitleContext} from '../../Context/UserContext';
-import { useContext, useEffect, useLayoutEffect } from 'react';
+import React, {useContext, useEffect} from 'react';
+import {Outlet, useLoaderData, useParams} from "react-router-dom";
+import {ComponentTitleContext, LocationInfoContext, TabMenuContext} from "../../Context/UserContext";
 import {useTranslation} from "react-i18next";
-        
-const School = () => {
-    let { schoolId }=useParams();
-    const schoolData = useLoaderData();
+import SideMenu from "../../CommonComponents/SideMenu/sidemenu";
+import ComponentTitle from "../../CommonComponents/ComponentTitle/componentTitle";
+import TabMenu from "../../CommonComponents/TabMenu/tabMenu";
+
+const LocationOutlet = () => {
+
+    let { locationId }=useParams();
+    const locationData = useLoaderData();
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle,setBreadcrumbs}=useContext(ComponentTitleContext);
     /*Translation*/
     const {t}=useTranslation();
     useEffect(()=>{
-        setMenuItems([
+        /*setMenuItems([
             {
                 "id":"1",
                 "name":t('TabMenu.info'),
@@ -37,8 +38,8 @@ const School = () => {
                 "url":`/school/${schoolId}/teachers`
             }
             /*TODO: Global student search*/
-            
-        ]);
+
+        /*]);*/
         setBreadcrumbs([
             {
                 "id":"1",
@@ -49,36 +50,30 @@ const School = () => {
             },
             {
                 "id":"2",
-                "name":t('breadcrumbs.schools'),
+                "name":t('breadcrumbs.location'),
                 "url":"/schools",
                 "icon":"IoIosArrowForward",
                 "end":true,
             },
-            {
-                "id":"3",
-                "name":`${schoolData.name}`,
-                "url":`/school/${schoolData.id}`,
-            },
         ]);
-        setTitle(t('componentTitles.school'));
+        setTitle(t('componentTitles.location'));
     },[t])
-    
-    
+
+
 
     return (
-        <schoolInfoContext.Provider value={schoolData}>
-            <SideMenu/>    
+        <LocationInfoContext.Provider value={locationData}>
+            <SideMenu/>
             <div className="content-main-container">
                 <ComponentTitle/>
-                
                 <div className="user-main">
-                   
                     <TabMenu />
                     <Outlet/>
                 </div>
             </div>
-        </schoolInfoContext.Provider>
-        
+        </LocationInfoContext.Provider>
+
     );
 };
-export default School;
+
+export default LocationOutlet;

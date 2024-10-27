@@ -1,5 +1,6 @@
 import axios from 'axios'
 import i18next from "i18next";
+import school from "./Course/course";
 
 class ServiceClient {
 
@@ -75,13 +76,18 @@ class ServiceClient {
             return response.data
         })
     }
+    static updateChild(childId, childIfo, password, cpassword){
+        return this.post("http://127.0.0.1:8000/api/updateChildInfo",{childId:childId, userInfo:childIfo, password:password, confirmPassword:cpassword}).then((response)=>{
+            return response.data
+        })
+    }
     static getUserStatuses(){
         return this.post("http://127.0.0.1:8000/api/getUserStatuses").then((response)=>{
             return response.data
         })
     }
-    static createUserRole(roleId, refId, userId){
-        return this.post("http://127.0.0.1:8000/api/createUserRole", {roleId:roleId, refId:refId, userId:userId}).then((response)=>{
+    static createUserRole(roleId,userId){
+        return this.post("http://127.0.0.1:8000/api/createUserRole", {roleId:roleId, userId:userId}).then((response)=>{
             return response.data
         })
     }
@@ -137,14 +143,14 @@ class ServiceClient {
             return response.data
         });
     }
-    static createTeachingDay(name, teacherId, startDate, endDate, locationId){
-        return this.post("http://127.0.0.1:8000/api/createTeachingDay",{name:name, teacherId:teacherId, start:startDate, end:endDate, locationId:locationId}).then((response)=>{
+    static createTeachingDay(schoolId, schoolYearId, courseId, days, teacherId, startDate, endDate, locationId){
+        return this.post("http://127.0.0.1:8000/api/createTeachingDay",{schoolId:schoolId, yearId:schoolYearId, courseId: 15, days:days, teacherId:teacherId, startTime:startDate, endTime:endDate, locationId:locationId}).then((response)=>{
             return response.data
         })
     }
-    static createSchoolLocation(name, country, city, zip, street, number, floor, door, schoolId, locationId){
-        return this.post("http://127.0.0.1:8000/api/createSchoolLocation",{
-            name:name, country:country, city:city, zip:zip, street:street, number:number, floor:floor, door:door, schoolId:schoolId, locationId:locationId||null
+    static createLocation(name, country, city, zip, street, number, floor, door, locationId, selectedCourseId){
+        return this.post("http://127.0.0.1:8000/api/createLocation",{
+            name:name, country:country, city:city, zip:zip, street:street, number:number, floor:floor, door:door, locationId:locationId||null, selectedCourseId:selectedCourseId
         }).then((response)=>{
             return response.data
         })
@@ -154,8 +160,8 @@ class ServiceClient {
             return response.data
         })
     }
-    static getSchoolLocation(schoolId, locationId){
-        return this.post("http://127.0.0.1:8000/api/getSchoolLocation", {schoolId:schoolId, locationId:locationId}).then((response)=>{
+    static getCourseLocation=(locationId)=>{
+        return ServiceClient.get(`http://127.0.0.1:8000/api/getLocationInfo/${locationId}`,).then((response)=>{
             return response.data
         })
     }
@@ -189,14 +195,14 @@ class ServiceClient {
             return response.data
         });
     }
-    static createSchoolCourse(yearId, schoolId, courseName, studentLimit, minutesLesson, minTeachingDay, doubleTime, coursePricePerLesson, labels, status, locationId, courseId, teacherId, paymentPeriod){
-        return this.post("http://127.0.0.1:8000/api/createSchoolCourse",{
-            courseId: courseId || null, yearId:yearId,schoolId:schoolId,name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, doubleTime:doubleTime, coursePricePerLesson:coursePricePerLesson, status:status, labels:labels, teacherId:teacherId, paymentPeriod:paymentPeriod, locationId:locationId}).then((response)=>{
+    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, locationId, paymentPeriod, courseId, currency){
+        return this.post("http://127.0.0.1:8000/api/createCourse",{
+            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, labels:labels, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency}).then((response)=>{
                 return response.data
         });
     }
-    static removeSchoolCourse(schoolId, yearId, courseId){
-        return this.post("http://127.0.0.1:8000/api/removeSchoolCourse",{schoolId:schoolId, yearId:yearId, id:courseId}).then((response)=>{
+    static removeCourse(courseId){
+        return this.post("http://127.0.0.1:8000/api/removeCourse",{id:courseId}).then((response)=>{
             return response.data
         });
     }

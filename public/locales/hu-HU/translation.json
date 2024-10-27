@@ -32,7 +32,10 @@
   "breadcrumbs":{
     "home": "Kezdőlap",
     "users": "Felhasználók",
-    "schools": "Iskolák"
+    "schools": "Iskolák",
+    "course": "Kurzus",
+    "location": "Helyszín",
+    "child": "Gyerek"
   },
   "empty-table": "Nincs találat.",
   "TabMenu": {
@@ -48,13 +51,19 @@
     "breaks": "Tanítási Szünetek",
     "specWorkDays": "Speciális Munkanapok",
     "teachingDays": "Tanítási napok",
-    "courses": "Kurzusok"
+    "courses": "Kurzusok",
+    "add-location": "Új helyszín",
+    "list": "Lista",
+    "connect": "Kapcssolódás"
   },
   "componentTitles": {
     "users": "Felhasználók",
     "user": "Felhasználó",
     "schools": "Iskolák",
-    "school": "Iskola"
+    "school": "Iskola",
+    "course": "Kurzus",
+    "location": "Helyszín",
+    "child": "Gyerek"
   },
   "home":{
     "greeting": "Üdvözlöm",
@@ -65,7 +74,8 @@
       "schools": "Iskolák",
       "messages": "Üzenetek",
       "search": "Keresés",
-      "children": "Gyerekek"
+      "children": "Gyerekek",
+      "course": "Kurzus"
     }
   },
   "users": {
@@ -96,7 +106,9 @@
   "schools": {
     "home": {
       "list": "Lista",
-      "create": "Létrehozás"
+      "create": "Létrehozás",
+      "locations": "Helyszínek",
+      "add-location": "Új helyszín"
     },
     "school": {
       "info": {
@@ -141,6 +153,12 @@
           }
         },
         "courses": {
+          "title": {
+            "create": "Új kurzus létrehozása"
+          },
+          "info": {
+            "title": "Kurzus Információk"
+          },
           "not-possible": "Kurzus létrehozása nem lehetséges: nincsenek helyszíenk és/vagy tanárok regisztrálva.",
           "form": {
             "name": "Kurzus neve",
@@ -154,7 +172,8 @@
             "location": "Helyszín",
             "lang": "Nyelv",
             "teacher": "Tanár",
-            "payment-period": "Fizetési periódus"
+            "payment-period": "Fizetési periódus",
+            "currency": "Pénznem"
           },
           "select": "Válasszon nyelvet",
           "button":{
@@ -181,15 +200,61 @@
             "street": "Utca",
             "number": "Házszám",
             "floor": "Emelet",
-            "door": "Ajtó"
+            "door": "Ajtó",
+            "course": "Kurzus"
           },
           "buttons": {
+            "create": "Létrehozás",
             "update": "Frissítés",
             "delete": "Törlés"
           }
+        },
+        "create": {
+          "title": "Új helyszín létrehozása"
+        },
+        "validation": {
+          "selectCourse": "Kérjük, előbb válasszon kurzust!"
         }
       }
     }
+  },
+  "child": {
+    "title":{
+      "list": "Kapcsolatok",
+      "create": "Létrehozás",
+      "connect": "Kapcsolódás",
+      "info": "Információ",
+      "changePassword": "Új jelszó"
+    },
+    "form": {
+      "first-name": "Vezetéknév",
+      "last-name": "Keresztnév",
+      "username": "Felhasználónév",
+      "birthday": "Születési idő",
+      "password": "Jelszó",
+      "c-password": "Jelszó megerősítése",
+      "not-match": "A jelszavak nem egyeznek"
+    },
+    "button": {
+      "update": "Frissítés"
+    }
+  },
+  "enums": {
+    "ACTIVE":"Aktív",
+    "SUSPENDED":"Felfüggesztve",
+    "DELETED":"Törölve",
+    "BANNED":"Tiltva",
+    "PER_LESSON":"Alkalmanként",
+    "MONTHLY":"Havonta",
+    "YEARLY":"Évente",
+    "HALF_YEAR":"Félévente",
+    "MONDAY":"Hétfő",
+    "TUESDAY":"Kedd",
+    "WEDNESDAY":"Szerda",
+    "THURSDAY":"Csütörtök",
+    "FRIDAY":"Péntek",
+    "SATURDAY":"Szombat",
+    "SUNDAY":"Vasárnap"
   }
 
 }

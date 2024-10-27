@@ -8,10 +8,12 @@ import ClickAwayListener from 'react-click-away-listener';
 import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import TabMenu from '../CommonComponents/TabMenu/tabMenu';
 import { FaPlus } from 'react-icons/fa';
+import {useTranslation} from "react-i18next";
 
         
 const ChildList = () => {
-
+    /*Translation*/
+    const {t}=useTranslation();
     /*Loader*/
     const dataLoader = useLoaderData();
     useEffect(()=>{
@@ -37,15 +39,14 @@ const ChildList = () => {
     
 
     return (
-        <div className="content-main-container">
-           
+        <>
             <EventHandler 
             success={success} 
             errors={errors} 
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
 
-            <div className="title"><h2>My connections</h2></div>
+            <div className="title"><h2>{t('child.title.list')}</h2></div>
             <div className="table-main-container">
                 {!loader ? 
                 <table>
@@ -62,8 +63,7 @@ const ChildList = () => {
                     </thead>
                     <tbody>
                         { dataLoader.data?.map((e) => (
-                            <tr key={e.id} onClick={() => {setSelectedRow(e);}}>
-                            
+                            <tr key={e.id} onClick={() => {console.log(e.id); navigate(`/child/${e.id}`)}}>
                                 <td>{e.firstname}</td>
                                 <td>{e.lastname}</td>
                                 <td>{e.birthday}</td>
@@ -72,14 +72,14 @@ const ChildList = () => {
                         ))}
                         {dataLoader.data.length===0 ?
                         <tr>
-                             <td colSpan={5} className="no-school" >No registered child to this user.</td>
+                             <td colSpan={5} className="no-school" >{t('empty-table')}</td>
                         </tr>:null}
                     </tbody>
                 </table> : <span className='loader table'></span>}
                 
             </div>
             
-        </div>
+        </>
         
     );
 };

@@ -1,6 +1,6 @@
 import './App.css';
 import * as React from "react";
-import {BrowserRouter as Router, Routes, Route, RouterProvider, Outlet, useParams} from "react-router-dom";
+import {RouterProvider, Outlet} from "react-router-dom";
 import Register from "./Register/register"
 import Header from './Header/header';
 import Login from './Login/login';
@@ -11,41 +11,30 @@ import UserLog from './Users/user/userLog';
 import Protected from './ProtectedRoutes';
 import {ComponentTitleProvider, TabMenuContextProvider, UserContextProvider} from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails';
-import { createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import ServiceClient from './ServiceClient';
+import { createBrowserRouter } from 'react-router-dom';
 import {
   generatedUserLoader,
   userDataLoader,
-  getSchoolInfo,
-  getSchoolYearInfos,
-  getSchoolBreaks,
-  getSchoolCourses,
-  getSchoolCourseStatuses,
-  getSchoolCourseInfo,
+  getCourseInfo,
+  getCourses,
+  getCourseStatuses,
   getUserRoles,
-  getRolesandSchools,
+  getGlobalRoles,
   getConnectedChildren,
-  getSchoolYearStatuses,
-  getSchoolYears, getSchoolLocations, getSchoolLocation, getPaymentPeriods, getSchoolTeachers
+  getCourseLocations,
+  getCourseLocation,
+  getPaymentPeriods,
+  getCurrenciesISO, getChildInfo
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
 import UserCreate from './Users/createUser';
 import GeneratedUser from './Users/generatedUser';
-import SchoolHome from "./Schools/schoolsHome";
-import SchoolList from "./Schools/schoolList";
-import SchoolCreate from "./Schools/School/schoolCreate";
-import School from './Schools/School/school';
-import SchoolDetails from './Schools/School/schoolDetails';
-import SchoolYear from './Schools/School/schoolYearList';
-import SchoolYearList from './Schools/School/schoolYearList';
-import SchoolYearDetails from './Schools/School/schoolYearDetails/schoolYearDetails';
-import SchoolYearInfos from './Schools/School/schoolYearDetails/schoolYearInfos';
-import SchoolBreaks from './Schools/School/schoolYearDetails/schoolBreaks';
-import SchoolSpecialWorkDays from './Schools/School/schoolYearDetails/schoolSpecialWokDays';
-import SchoolCoursesList from './Schools/School/schoolYearDetails/schoolCoursesList';
-import SchoolCourseCreate from './Schools/School/schoolYearDetails/schoolCourseCreate';
-import SchoolCourseInfo from './Schools/School/schoolYearDetails/schoolCourseInfo';
+import CourseHome from "./Course/courseHome";
+import Course from './Course/course';
+import CoursesList from './Course/coursesList';
+import CourseCreate from './Course/courseCreate';
+import CourseInfo from './Course/courseInfo';
 import CreateUserRole from "./Users/user/createUserRole";
 import Child from './Child/child';
 import ChildList from './Child/childList';
@@ -55,15 +44,14 @@ import Search from './Search/search';
 import SearchTeacher from './Search/searchTeacher';
 import SearchSchool from './Search/searchSchool';
 import SearchCourse from './Search/searchCourse';
-import TeachingDaysList from "./Schools/School/DaysAndTimes/teachingDaysList";
-import AddTeachingDay from "./Schools/School/DaysAndTimes/addTeachingDay";
-import LocationList from "./Schools/School/Locations/locationList";
-import AddNewLocation from "./Schools/School/Locations/addNewLocation";
-import Location from "./Schools/School/Locations/location";
-import LocationOutlet from "./Schools/School/Locations/locationOutlet";
-import TeacherOutlet from "./Schools/School/Teachers/teacherOutlet";
-import SearchResult from "./Search/searchResult";
-import TeachersList from "./Schools/School/Teachers/teachersList";
+import LocationList from "./Course/Locations/locationList";
+import AddNewLocation from "./Course/Locations/addNewLocation";
+import Location from "./Course/Locations/location";
+import LocationOutlet from "./Course/Locations/locationOutlet";
+import RouteBoundary from "./CommonComponents/RouteBoundary";
+import AdminRight from "./AdminRight";
+import ChildDetails from "./Child/childDetails";
+import ChildInfo from "./Child/childInfo";
 
 function App() {
 
@@ -100,7 +88,8 @@ const router = createBrowserRouter([
       },
       {
         path:"users",
-        element:<Protected><Users /></Protected>,
+        element:<Protected><AdminRight><Users /></AdminRight></Protected>,
+        errorElement:<RouteBoundary/>,
         children:[
           {
             path:"list",
@@ -114,8 +103,9 @@ const router = createBrowserRouter([
       },
       {
         path:"users/:userId",
-        element:<Protected><User /></Protected>,
+        element:<Protected><AdminRight><User /></AdminRight></Protected>,
         loader:({params})=>{ return userDataLoader(params) },
+        errorElement:<RouteBoundary/>,
         children:[
           {
             path:"",
@@ -125,12 +115,11 @@ const router = createBrowserRouter([
           {
             path:"roles",
             element:<UserRoles />,
-            loader:({params})=>{ return getUserRoles(params) },
+            loader:({params})=>{ return Promise.all([getUserRoles(params), getGlobalRoles()])  },
           },
           {
             path:"create-role",
             element:<CreateUserRole />,
-            loader:({params})=>{ return getRolesandSchools(params) },
           },
           {
             path:"logs",
@@ -141,122 +130,66 @@ const router = createBrowserRouter([
       {
         path:"/generated-user/:token",
         element:<GeneratedUser/>,
+        errorElement:<RouteBoundary/>,
         loader:({params})=>{return generatedUserLoader(params)}
       },
       {
-        path:"/schools",
-        element:<Protected><SchoolHome/></Protected>,
+        path:"/course",
+        element:<Protected><CourseHome/></Protected>,
+        errorElement:<RouteBoundary/>,
         children:
         [
           {
             path:"list",
-            element:<SchoolList/>
+            element:<CoursesList/>,
+            loader:({params})=>{return getCourses()},
           },
           {
             path:"create",
-            element:<SchoolCreate/>
-          },
-        ]
-      },
-      {
-        path:"school/:schoolId",
-        element:<Protected><School/></Protected>,
-        loader:({params})=>{ return getSchoolInfo(params) },
-        children:[
-          {
-            path:"",
-            element:<SchoolDetails/>            
-          },
-          {
-            path:"school-year-list",
-            element:<SchoolYearList/>,
-            loader:({params})=>{return Promise.all([getSchoolYearStatuses(), getSchoolYears(params)]) },
-          },
-          {
-            path:"school-year/:schoolYearId",
-            element:<SchoolYearDetails/>,
-            loader:({params})=>{ return Promise.all ([getSchoolYearInfos(params), getSchoolYearStatuses()]) },
-            children:
-            [
-              {
-                path:"",
-                element:<SchoolYearInfos/>,
-              },
-              {
-                path:"breaks",
-                element:<SchoolBreaks/>,
-                loader:({params})=>{return getSchoolBreaks(params)},
-              },
-              {
-                path:"special-work-days",
-                element:<SchoolSpecialWorkDays/>,
-                loader:({params})=>{return getSchoolBreaks(params)},
-              },
-              {
-                path:"teaching-days",
-                element:<TeachingDaysList/>,
-                loader:({params})=>{return getSchoolBreaks(params)},
-              },
-              {
-                path:"create-teaching-day",
-                element:<AddTeachingDay/>,
-                loader:({params})=>{return getSchoolBreaks(params)},
-              },
-              /*{
-                path:"students",
-                element:<StudentList/>,
-                loader:({params})=>{return },
-              },*/
-              {
-                path:"courses",
-                element:<SchoolCoursesList/>,
-                loader:({params})=>{return getSchoolCourses(params)},
-              },
-              {
-                path:"create-course",
-                element:<SchoolCourseCreate/>,
-                loader:({params})=>{return Promise.all([getSchoolCourseStatuses(), getSchoolLocations(params), getPaymentPeriods(), getSchoolTeachers(params)])}
-              },
-              {
-                path:"course/:courseId",
-                element:<SchoolCourseInfo/>,
-                loader:({params})=>{return  Promise.all ([getSchoolCourseInfo(params), getSchoolCourseStatuses(),getSchoolLocations(params), getPaymentPeriods(), getSchoolTeachers(params)])}
-              },
-            ]
+            element:<CourseCreate/>,
+            loader:({params})=>{return Promise.all([getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO()])}
           },
           {
             path:"locations",
-            element: <LocationOutlet/>,
-            /*location loader*/
-            children:[
-              {
-                path:"",
-                element: <LocationList/>,
-                loader:({params})=>{return  getSchoolLocations(params)}
+            element: <LocationList/>,
+            loader:({params})=>{return  getCourseLocations(params)}
 
-              },
-              {
-                path:":locationId",
-                element: <Location/>,
-                loader:({params})=>{return getSchoolLocation(params)}
-
-              },
-              {
-                path:"create-location",
-                element: <AddNewLocation/>
-              }
-            ]
           },
           {
-            path:"teachers",
-            element: <TeachersList/>,
-
+            path:"add-location",
+            element: <AddNewLocation/>,
+            loader:({params})=>{ return getCourses()},
           }
+        ]
+      },
+      {
+        path:"location/:locationId",
+        element: <LocationOutlet/>,
+        children:[
+          {
+            path:"",
+            element: <Location/>,
+            loader:({params})=>{return getCourseLocation(params)},
+          },
+            //TODO: /course : a helyszínhez tartozó egyéb kurzusokat kellene kilistázni.
+        ]
+      },
+      {
+        path:"course/:courseId",
+        element:<Protected><Course/></Protected>,
+        errorElement:<RouteBoundary/>,
+        children:[
+          {
+            path:"",
+            element:<CourseInfo/>,
+            loader:({params})=>{return  Promise.all ([getCourseInfo(params), getCourseStatuses(),getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO()])}
+          },
         ]
       },
       {
         path:"child",
         element:<Child/>,
+        errorElement:<RouteBoundary/>,
         children:
         [
           {
@@ -274,6 +207,20 @@ const router = createBrowserRouter([
           }
 
         ]
+      },
+      {
+        path:"/child/:childId",
+        element:<ChildDetails/>,
+        loader:({params})=>{return getChildInfo(params)},
+        errorElement:<RouteBoundary/>,
+        children:
+        [
+          {
+            path:"",
+            element:<ChildInfo/>,
+          }
+        ]
+
       },
       {
         path:"search",
@@ -296,8 +243,6 @@ const router = createBrowserRouter([
 
         ]
       }
-      
-      
     ],
   },
 ]);

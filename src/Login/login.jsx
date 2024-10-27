@@ -29,7 +29,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     /*context*/
-    const {setUsername}=useContext(UserContext);
+    const {setUsername, setRoles}=useContext(UserContext);
 
     const nodeRef=useRef(null);
     const [startAnimation, setAnimation]=useState(true)
@@ -44,6 +44,7 @@ const Login = () => {
             ServiceClient.login(email,password).then((success)=>{
                 setSuccess(true);
                 setUsername(success.data.first_name);
+                setRoles(success.data.roles);
                 setLoader(false)
                 setTimeout(()=>{
                     navigate('/home');

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useLoaderData, useNavigate, useParams} from "react-router-dom";
-import ServiceClient from "../../../ServiceClient";
-import EventHandler from "../../../EventHandler/eventhandler";
-import Table from "../../../CommonComponents/Table/table";
+import ServiceClient from "../../ServiceClient";
+import EventHandler from "../../EventHandler/eventhandler";
+import Table from "../../CommonComponents/Table/table";
 import {FaPlus} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
 
@@ -78,7 +78,6 @@ const LocationList = () => {
 
             <div className="table-main-container">
                 <div className="formTitle">
-                    <FaPlus className='table-action-icon' onClick={() => navigate(`/school/${schoolId}/locations/create-location`)}/>
                 </div>
                 {!loader ?
                     <table>
@@ -97,7 +96,7 @@ const LocationList = () => {
                         {schoolLocations.data?.length > 0 ? schoolLocations.data.map((e, i) => (
                                 <tr key={i}>
                                     {Object.values(e).map(j =>
-                                        <td onClick={()=>navigate(`/school/${schoolId}/locations/${e.id}`)}>{j}</td>
+                                        <td onClick={()=>navigate(`/location/${e.id}`)}>{j}</td>
                                     )}
                                 </tr>
                             )) :

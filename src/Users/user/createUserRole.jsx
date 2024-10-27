@@ -8,34 +8,20 @@ import {IoCloseCircle} from "react-icons/io5";
 import {CSSTransition} from "react-transition-group";
 import '../../transitions.css';
 import Select from "react-select"
+import {userDataLoader} from "../../dataLoader";
 
         
-const CreateUserRole = ({closeModal, transitionProp, updateUserRoles}) => {
-
-    /*Loaders*/
-    const [roleOptions, setRoleOption]=useState();
-    const [schoolOptions, setSchoolOption]=useState();
-    useEffect(()=>{
-        setLoader(false);
-        setReadOnly(false);
-        ServiceClient.getRoles().then((roles)=>{
-            setRoleOption(roles)
-        });
-        ServiceClient.getSchools(null, null).then((schools)=>{
-            setSchoolOption(schools.data.map(e=>({value:e.id, label:e.name})));
-        });
-    },[]);
+const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOptions}) => {
 
     /*Form fields */
     const [ref_schools, setRefSchool]=useState();
     const [roles, setRoles]=useState();
-    const [readOnly, setReadOnly]=useState(true);
-    
+    const [readOnly, setReadOnly]=useState(false);
     const {userId}=useParams();
-    /*btn handle*/
+
+    /*Btn handle*/
     const [btndisabled, setBtnDisabled]=useState(false);
     const [loader, setLoader]=useState(false);
-
     
     /*Navigation */
     const navigate=useNavigate();
@@ -53,7 +39,7 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles}) => {
         setLoader(true);
         setReadOnly(true);
 
-       ServiceClient.createUserRole(roles, ref_schools, userId).then((success)=>{
+       ServiceClient.createUserRole(roles, userId).then((success)=>{
             setSuccess(true);
             setLoader(false);
             setBtnDisabled(false);
@@ -61,8 +47,8 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles}) => {
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
-
             updateUserRoles(true);
+            closeModal(false);
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -96,31 +82,8 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles}) => {
                                     isDisabled={readOnly}
                                     isSearchable={false}
                                 />
-                                {/*<Select
-                                options={roleOptions || null}
-                                onSelect={(option)=>setRoles(option.id)}
-                                InitialValue={""}
-                                disabled={readOnly}/>*/}
                             </div>
                         </div>
-
-                        <div className="form-children">
-                            <label>Reference School</label>
-                            <div className="selectContainer">
-                                <Select
-                                    options={schoolOptions}
-                                    onChange={(selected)=>{setRefSchool(selected.value)}}
-                                    isDisabled={readOnly}
-                                    isSearchable={false}
-                                />
-                                {/*<Select
-                                options={schoolOptions || null}
-                                onSelect={(option)=>setRefSchool(option.id)}
-                                InitialValue={""}
-                                disabled={readOnly}/>*/}
-                            </div>
-                        </div>
-
                     </div>
                     <div className="form-button-container">
                     {!loader ?

@@ -16,15 +16,6 @@ export const generatedUserLoader=(params)=>{
         }
     })
 }
-
-export const getSchoolInfo=(params)=>{
-    return ServiceClient.get(`http://127.0.0.1:8000/api/school/${params.schoolId}`).then((response)=>{
-        if(response.status===200){
-            return response.data
-        }
-    })
-}
-
 export const getSchoolYearInfos=(params)=>{
     return  ServiceClient.get(`http://127.0.0.1:8000/api/school/${params.schoolId}/school-year-infos/${params.schoolYearId}`).then((response)=>{
         if(response.status===200){
@@ -46,22 +37,22 @@ export const getSchoolBreaks=(params)=>{
     });
 }
 
-export const getSchoolCourses=(params)=>{
-    return ServiceClient.get(`http://127.0.0.1:8000/api/school/${params.schoolId}/school-year-details/${params.schoolYearId}/courses`).then((response)=>{
+export const getCourses=()=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getCourses`).then((response)=>{
         if(response.status===200){
             return response.data
         }
     });
 }
-export const getSchoolCourseInfo=(params)=>{
-    return ServiceClient.get(`http://127.0.0.1:8000/api/school/${params.schoolId}/school-year-details/${params.schoolYearId}/courses/${params.courseId}`).then((response)=>{
+export const getCourseInfo=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getCourseInfo/${params.courseId}`).then((response)=>{
         if(response.status===200){
             return response.data
         }
     });
 }
 
-export const getSchoolCourseStatuses=()=>{
+export const getCourseStatuses=()=>{
     return ServiceClient.post("http://127.0.0.1:8000/api/getCourseStatuses").then((response)=>{
         if(response.status===200){
             return response.data
@@ -77,8 +68,8 @@ export const getUserRoles=(params)=>{
     });
 }
 
-export const getRolesandSchools=(params)=>{
-    return ServiceClient.post(`http://127.0.0.1:8000/api/getRolesandSchools/${params.userId}`).then((response)=>{
+export const getGlobalRoles=(params)=>{
+    return ServiceClient.post(`http://127.0.0.1:8000/api/getAllRoles`).then((response)=>{
         if(response.status===200){
             return response.data
         }
@@ -103,8 +94,8 @@ export const getSchoolYearStatuses=()=>{
         console.log(error);
     })
 }
-export const getSchoolLocations=(params)=>{
-    return ServiceClient.post("http://127.0.0.1:8000/api/getSchoolLocations?perPage=1&page=1",{schoolId:params.schoolId}).then((response)=>{
+export const getCourseLocations=()=>{
+    return ServiceClient.post("http://127.0.0.1:8000/api/getLocations",).then((response)=>{
         return response.data
     }).catch((error)=>{
         console.log(error);
@@ -115,15 +106,37 @@ export const getPaymentPeriods=()=>{
         return response.data
     });
 }
+export const getCurrenciesISO=()=>{
+    return ServiceClient.get("http://127.0.0.1:8000/api/getCurrenciesISO").then((response)=>{
+        return response.data
+    });
+}
 export const getSchoolTeachers=(params)=>{
     return ServiceClient.post(`http://127.0.0.1:8000/api/getSchoolTeachers?perPage=1&page=1`, {schoolId:params.schoolId}).then((response)=>{
         return response.data
     })
 }
-export const getSchoolLocation=(params)=>{
-    return ServiceClient.post("http://127.0.0.1:8000/api/getSchoolLocation", {schoolId:params.schoolId, locationId:params.locationId}).then((response)=>{
+export const getCourseLocation=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getLocationInfo/${params.locationId}`,).then((response)=>{
         return response.data
     }).catch((error)=>{
         console.log(error);
+    })
+}
+export const getTeachingDayNames=()=>{
+    return ServiceClient.post("http://127.0.0.1:8000/api/getTeachingDayNames").then((response)=>{
+        return response.data
+    });
+}
+
+export const getTeachingDays=(params)=>{
+    return ServiceClient.post(`http://127.0.0.1:8000/api/getTeachingDays`, {schoolId:params.schoolId, yearId:params.schoolYearId, courseId:15, teacherId:10}).then((response)=>{
+        return response.data
+    })
+}
+
+export const getChildInfo=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getChildInfo/${params.childId}`).then((response)=>{
+        return response.data
     })
 }

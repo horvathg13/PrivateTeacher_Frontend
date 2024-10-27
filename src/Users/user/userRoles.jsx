@@ -15,22 +15,22 @@ const UserRoles = () => {
     /*Translation*/
     const {t}=useTranslation();
     /*dataLoader */
-    const dataLoader=useLoaderData();
+    const [dataLoader, roleOptions]=useLoaderData();
     useEffect(()=>{
         if(dataLoader){
             setHeader(dataLoader.header);
-            setUserRoles(dataLoader.userRoles);
+            /*setUserRoles(dataLoader.userRoles);*/
             setLoader(false);
         }else{
             setHeader("");
-            setUserRoles("Something went wrong!");
             setLoader(false);
         }
     },[]);
-    /*Datas */
-    const [userRoles, setUserRoles]=useState();
+
+    /*Data*/
+    const [userRoles, setUserRoles]=useState(dataLoader.userRoles);
     const [header, setHeader]=useState();
-    const [selectedRow, setSelectedRow]=useState();
+    const [selectedRowId, setSelectedRow]=useState();
     const [createUserRole, setCreateUserRole]=useState(false);
     
     /*Event handle*/
@@ -66,7 +66,8 @@ const UserRoles = () => {
     }
     const removeUserRole=()=>{
         setLoader(true);
-        let url=`http://127.0.0.1:8000/api/removeUserRole/${userId}/${selectedRow.roleId}/${selectedRow.reference.id}`
+        console.log(selectedRowId);
+        let url=`http://127.0.0.1:8000/api/removeUserRole/${userId}/${selectedRowId.roleId}`
         
         ServiceClient.post(url).then((response)=>{
             if(response.status===200){
@@ -114,6 +115,7 @@ const UserRoles = () => {
                     return getUserRoles()
                 }
             }}
+            roleOptions={roleOptions}
         />:null}
         <div>
             <div className='formTitle'><FaPlus className='table-action-icon' onClick={() => setCreateUserRole(!createUserRole)}/></div>
@@ -137,16 +139,14 @@ const UserRoles = () => {
                             <tr key={i} onClick={() => {setSelectedRow(e);}}>
                            
                                 <td>{e.role}</td>
-                                <td>{e.reference?.name}</td>
                                 <td><FaTrashCan className='table-action-icon' onClick={()=>{setAreYouSureName("delete");setSelectedRow(e); setAreYouSureTransitionProp(true)}}/></td>
                             
                             </tr>
 
-                        )):null}
-                        {!userRoles || userRoles.length===0  ?
+                        )):
                         <tr>
                              <td colSpan={3} className="no-school" >{t('empty-table')}</td>
-                        </tr>:null}
+                        </tr>}
                         
                     </tbody>
                 </table> : 
