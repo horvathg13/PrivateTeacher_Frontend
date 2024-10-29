@@ -94,7 +94,7 @@ const SearchSchool = () => {
         data={result}
         title={title}
         />
-        <div className="content-main-container">
+        <div>
             <div className="title"><h2>School Search</h2></div>
             <form onSubmit={(e)=>searchSchool(e)} className="SchoolForm">
                 
