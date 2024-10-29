@@ -73,3 +73,5 @@ export const ComponentTitleProvider=({children})=>{
 
 export const LocationInfoContext = createContext(null);
 export const ChildInfoContext = createContext(null);
+
+export const SearchResults=createContext(null);
