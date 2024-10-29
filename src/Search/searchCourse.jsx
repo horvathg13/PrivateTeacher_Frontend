@@ -14,7 +14,7 @@ import SearchResult from "./searchResult";
         
 const SearchCourse = () => {
     
-    /*datas */
+    /*Data */
     const [courseName, setCourseName]=useState();
     const [courseSubject, setCourseSubject]=useState();
     const [minutesLesson, setMinutesLesson]=useState();
@@ -48,7 +48,6 @@ const SearchCourse = () => {
     const [readOnly, setReadOnly]=useState(false);
 
     /*Popup control */
-
     const [title, setTitle]=useState();
     const [transitionProp, setTransitionProp]=useState(false);
 
@@ -64,11 +63,9 @@ const SearchCourse = () => {
         let dataPost={};
         dataPost.courseName=courseName;
         dataPost.keywords=keywords;
-        dataPost.subject=courseSubject;
         dataPost.min_lesson=minutesLesson;
         dataPost.min_t_days=minTeachingDay;
         dataPost.course_price=couresPricePerLesson;
-        dataPost.name = schoolName;
         dataPost.country = schoolCountry;
         dataPost.zip = schoolZip;
         dataPost.city = schoolCity;
@@ -85,6 +82,7 @@ const SearchCourse = () => {
                 setResult(response.data);
                 setTitle('Search Result');
                 setTransitionProp(true);
+
             }
         }).catch((error)=>{
             setServerError(error);
@@ -107,119 +105,103 @@ const SearchCourse = () => {
         data={result}
         title={title}
         />
-        <div className="content-main-container">
+        <div>
             
             <div className="title"><h2>Search Cours</h2></div>
-                <form onSubmit={(e)=>searchCourse(e)} className="SchoolForm">
-                    
-                    <div className="school-form searchCourse flex">
-                        <div className="flex">
-                            <label>School Name</label>
-                            <input type="text" 
-                            onChange={(e)=>{setSchoolName(e.target.value)}}
-                            value={schoolName}/>
-                        </div>    
-                        
-                    
-
-                        <div className="flex">
+                <form onSubmit={(e)=>searchCourse(e)} className="FlexForm">
+                    <div className="form-items">
+                        <div className="form-children">
                             <label>Country</label>
-                            <input type="text" 
+                            <input type="text"
                             onChange={(e)=>{setSchoolCountry(e.target.value)}}
                             value={schoolCountry}/>
                         </div>
-                        
-                    
-                        <div className="flex">
+
+
+                        <div className="form-children">
                             <label>Zip Code</label>
                             <input type="number"
                             onChange={(e)=>{setSchoolZip(e.target.value)}}
                             value={schoolZip}/>
                         </div>
-                    
-                        <div className="flex">
+
+                        <div className="form-children">
                             <label>City</label>
                             <input
-                            type="text" 
+                            type="text"
                             onChange={(e)=>{setSchoolCity(e.target.value)}}
                             value={schoolCity}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Street</label>
-                            <input  
-                            type="text" 
+                            <input
+                            type="text"
                             onChange={(e)=>{setSchoolStreet(e.target.value)}}
                             value={schoolStreet}/>
                         </div>
-                        
-                        <div className="flex">
+
+                        <div className="form-children">
                             <label>Number</label>
-                            <input  
-                            type="number" 
+                            <input
+                            type="number"
                             onChange={(e)=>{setSchoolNumber(e.target.value)}}
                             value={schoolNumber}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Course Name</label>
-                            <input type="text" 
+                            <input type="text"
                             onChange={(e)=>{setCourseName(e.target.value)}}
                             value={courseName}
                             readOnly={readOnly}/>
                         </div>
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Keywords</label>
-                            <LabelSelector 
-                            labelEmit={(data)=>setKeywords(data)}/>
-                        </div>    
-
-                        <div className="flex">
-                            <label>Subject</label>
-                            <input type="text" 
-                            onChange={(e)=>{setCourseSubject(e.target.value)}}
-                            value={courseSubject}
-                            readOnly={readOnly}/>
+                            <LabelSelector
+                            labelEmit={(data)=>setKeywords(data)}
+                            disabled={readOnly}
+                            popUpTitle={"Add labels"}/>
                         </div>
-                        
-                        <div className="flex">
+
+                        <div className="form-children">
                             <label>Minutes/lesson</label>
                             <input
-                            type="number" 
+                            type="number"
                             onChange={(e)=>{setMinutesLesson(e.target.value)}}
                             value={minutesLesson}
                             readOnly={readOnly}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Minimum Teaching Days</label>
                             <input
-                            type="number" 
+                            type="number"
                             onChange={(e)=>{setMinTeachingDay(e.target.value)}}
                             value={minTeachingDay}
                             readOnly={readOnly}/>
                         </div>
 
-                        <div className="flex">
+                        <div className="form-children">
                             <label>Course Price / Lesson</label>
                             <input
-                            type="number" 
+                            type="number"
                             onChange={(e)=>{setCouresPricePerLesson(e.target.value)}}
                             value={couresPricePerLesson}
                             readOnly={readOnly}/>
                         </div>
-
                     </div>
-                    
-                    {!loader ?
-                        <button 
-                        type='submit' 
-                        disabled={btndisabled} 
-                        className={readOnly ? 'formBtnDisabled':'btn formButton' }>
-                        Search <FaArrowCircleRight  className='btn-icon'/>  
-                        </button>:
-                        <span className='loader schoolDetails'></span>
-                    }
+                    <div className="form-button-container">
+                        {!loader ?
+                            <button
+                            type='submit'
+                            disabled={btndisabled}
+                            className={readOnly ? 'formBtnDisabled':'btn formButton' }>
+                            Search <FaArrowCircleRight  className='btn-icon'/>
+                            </button>:
+                            <span className='loader schoolDetails'></span>
+                        }
+                    </div>
                     
                 </form>
                 

@@ -7,38 +7,27 @@ import { useContext, useEffect, useLayoutEffect } from 'react';
 import {useTranslation} from "react-i18next";
         
 const Course = () => {
-    let { schoolId }=useParams();
+    let { courseId }=useParams();
     const schoolData = useLoaderData();
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle,setBreadcrumbs}=useContext(ComponentTitleContext);
     /*Translation*/
     const {t}=useTranslation();
     useEffect(()=>{
-        /*setMenuItems([
+        setMenuItems([
             {
                 "id":"1",
                 "name":t('TabMenu.info'),
-                "url":`/school/${schoolId}`,
+                "url":`/course/${courseId}`,
                 "end":true,
             },
             {
                 "id":"2",
-                "name":t('TabMenu.years'),
-                "url":`/school/${schoolId}/school-year-list`
+                "name":t('TabMenu.apply'),
+                "url":`/course/${courseId}/course-apply`
             },
-            {
-                "id":"3",
-                "name":t('TabMenu.locations'),
-                "url":`/school/${schoolId}/locations`
-            },
-            {
-                "id":"4",
-                "name":t('TabMenu.teachers'),
-                "url":`/school/${schoolId}/teachers`
-            }
-            /*TODO: Global student search*/
-            
-        /*]);*/
+        ]);
+
         setBreadcrumbs([
             {
                 "id":"1",
@@ -55,7 +44,7 @@ const Course = () => {
                 "end":true,
             },
         ]);
-        setTitle(t('componentTitles.school'));
+        setTitle(t('componentTitles.course'));
     },[t])
     
     

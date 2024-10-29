@@ -26,7 +26,11 @@ const SearchResult = ({data, title,transitionProp, closeModal}) => {
         }
     }
 
-   useEffect(()=>{console.log(data,"rosszmanó")},[data])
+   useEffect(()=>{
+       if(selectedRow){
+           window.open(`/course/${selectedRow.id}`, '_blank' );
+       }
+   },[selectedRow])
 
     return (
         <CSSTransition 

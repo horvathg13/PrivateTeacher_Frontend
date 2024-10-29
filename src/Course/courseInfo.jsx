@@ -163,7 +163,13 @@ const CourseInfo = () => {
             />
 
             <div className="courseCreate">
-                <div className="title"><h2>{t('info.title')} <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/>  </h2></div>
+                <div className="title">
+                    <h2>{t('info.title')}
+
+                        <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/>
+
+                    </h2>
+                </div>
                 <form className="FlexForm">
 
                     <div className="form-items flex">
@@ -309,7 +315,7 @@ const CourseInfo = () => {
                         </div>
 
                     </div>
-                    <div className="form-button-container">
+                        <div className="form-button-container">
                         {!loader ?
                             <button
                                 type='submit'
@@ -320,16 +326,18 @@ const CourseInfo = () => {
                             </button> :
                             <span className='loader schoolDetails'></span>
                         }
-                        {!deleteLoader ?
-                            <button
-                                type="button"
-                                disabled={btndisabled}
-                                onClick={()=>[setAreYouSureName("delete"), setAreYouSureTransitionProp(true)]}
-                                className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                                {t('button.delete')} <MdDelete  className='btn-icon'/>
-                            </button> :
-                            <span className='loader schoolDetails'></span>
-                        }
+
+                            {!deleteLoader ?
+                                <button
+                                    type="button"
+                                    disabled={btndisabled}
+                                    onClick={()=>[setAreYouSureName("delete"), setAreYouSureTransitionProp(true)]}
+                                    className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                    {t('button.delete')} <MdDelete  className='btn-icon'/>
+                                </button> :
+                                <span className='loader schoolDetails'></span>
+                            }
+
                     </div>
                 </form>
             </div>
