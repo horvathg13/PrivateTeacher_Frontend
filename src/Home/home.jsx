@@ -4,7 +4,7 @@ import { HiDocumentDownload } from "react-icons/hi";
 import { IoMdSchool } from "react-icons/io";
 import { FaChild, FaSearch, FaUsers } from "react-icons/fa";
 import { BiSolidMessageDetail } from "react-icons/bi";
-import { PiStudentBold } from "react-icons/pi";
+import {PiNewspaperBold, PiStudentBold} from "react-icons/pi";
 import { MdPayment } from "react-icons/md";
 import { BsCalendar3 } from "react-icons/bs";
 import {FaSchool, FaUserGraduate} from 'react-icons/fa6';

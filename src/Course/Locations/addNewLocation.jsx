@@ -176,7 +176,6 @@ const AddNewLocation = () => {
                                 value={door}
                                 readOnly={readOnly}/>
                         </div>
-
                     </div>
                     <div className="form-button-container">
                         {!loader ?

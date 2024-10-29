@@ -1,11 +1,6 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import EventHandler from "../EventHandler/eventhandler";
-import { Navigate, useLoaderData, useNavigate, useParams } from "react-router-dom";
-import { FaPlus } from "react-icons/fa6";
-import { MdDelete, MdEdit } from "react-icons/md";
-import SchoolYearDetailsPopup from "../Schools/School/schoolYearDetails/schoolYearDetailsPopup";
-import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
-import ServiceClient from "../ServiceClient";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import {useTranslation} from "react-i18next";
         
 const CoursesList = () => {

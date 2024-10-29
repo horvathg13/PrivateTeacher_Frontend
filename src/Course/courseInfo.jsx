@@ -7,7 +7,7 @@ import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
 import {FaArrowCircleRight, FaExclamationTriangle, FaMinus, FaTrashAlt} from "react-icons/fa";
-import { TabMenuContext, schoolYearDetailsContext } from "../Context/UserContext";
+import {TabMenuContext, schoolYearDetailsContext, UserContext} from "../Context/UserContext";
 import TabMenu from "../CommonComponents/TabMenu/tabMenu";
 import Select from "react-select";
 import LabelSelector from "../CommonComponents/Label/labelSelect";
