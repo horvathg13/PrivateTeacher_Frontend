@@ -81,6 +81,11 @@ class ServiceClient {
             return response.data
         })
     }
+    static sendCourseRequest(childId, courseId,numberOfLesson, notice){
+        return this.post("http://127.0.0.1:8000/api/sendCourseRequest", {childId:childId, courseId:courseId, notice:notice, numberOfLesson:numberOfLesson}).then((response)=>{
+            return response.data
+        })
+    }
     static getUserStatuses(){
         return this.post("http://127.0.0.1:8000/api/getUserStatuses").then((response)=>{
             return response.data
