@@ -13,6 +13,7 @@ import { NavLink } from 'react-router-dom';
 import {IoMenu} from "react-icons/io5";
 import {AiOutlineMenuFold, AiOutlineMenuUnfold} from "react-icons/ai";
 import {MdMenu, MdMenuOpen} from "react-icons/md";
+import {PiNewspaperBold} from "react-icons/pi";
 
 const SideMenu = ({active}) => {
     const getIcon=(iconName)=>{
@@ -27,6 +28,7 @@ const SideMenu = ({active}) => {
             case 'BiSolidMessageDetail': return <BiSolidMessageDetail className='menu-icon icon'/>;
             case 'FaSchool':return <FaSchool  className='menu-icon icon'/>;
             case 'FaUserGraduate': return <FaUserGraduate className='menu-icon icon'/>;
+            case 'PiNewspaperBold': return <PiNewspaperBold className='menu-icon icon'/>;
                 default: return null;
         }
     }

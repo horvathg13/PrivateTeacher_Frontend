@@ -30,6 +30,8 @@ const Home = () => {
             //case 'BsCalendar3': return <BsCalendar3/>;
             case 'FaSchool':return <FaSchool  />;
             case 'FaUserGraduate':return <FaUserGraduate/>;
+            case 'PiNewspaperBold':return <PiNewspaperBold/>;
+
                 default: return null;
         }
     }
