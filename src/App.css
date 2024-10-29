@@ -470,7 +470,7 @@ form .roles-container.flex label {
 }
 .content-main-container .FlexForm .form-items .form-children {
   display: flex;
-  text-align: center;
+  text-align: left;
   justify-content: space-between;
   width: 100%;
   align-items: center;
@@ -478,6 +478,7 @@ form .roles-container.flex label {
 }
 .content-main-container .FlexForm .form-items .form-children label{
   margin: 0 5px;
+  min-width: 15%;
 }
 .content-main-container .FlexForm .form-items .form-children .flexColumnItems label {
   margin: 10px 0 !important;
@@ -485,6 +486,11 @@ form .roles-container.flex label {
 .content-main-container .FlexForm .form-items .form-children input {
   width: 100%;
   height: 20px;
+}
+.content-main-container .FlexForm .form-items .form-children textarea{
+  width: 100%;
+  height: 150px;
+  font-size: 16px;
 }
 .content-main-container .FlexForm .form-button-container {
   width: 100%;
