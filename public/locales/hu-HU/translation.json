@@ -35,7 +35,9 @@
     "schools": "Iskolák",
     "course": "Kurzus",
     "location": "Helyszín",
-    "child": "Gyerek"
+    "child": "Gyerek",
+    "search": "Keresés",
+    "requests": "Kérelmek"
   },
   "empty-table": "Nincs találat.",
   "TabMenu": {
@@ -54,7 +56,9 @@
     "courses": "Kurzusok",
     "add-location": "Új helyszín",
     "list": "Lista",
-    "connect": "Kapcssolódás"
+    "connect": "Kapcssolódás",
+    "search": "Keresés",
+    "apply": "Jelentkezés"
   },
   "componentTitles": {
     "users": "Felhasználók",
@@ -63,7 +67,9 @@
     "school": "Iskola",
     "course": "Kurzus",
     "location": "Helyszín",
-    "child": "Gyerek"
+    "child": "Gyerek",
+    "search": "Keresés",
+    "requests": "Kérelmek"
   },
   "home":{
     "greeting": "Üdvözlöm",
@@ -75,7 +81,8 @@
       "messages": "Üzenetek",
       "search": "Keresés",
       "children": "Gyerekek",
-      "course": "Kurzus"
+      "course": "Kurzus",
+      "requests": "Kérelmek"
     }
   },
   "users": {
@@ -237,6 +244,19 @@
     },
     "button": {
       "update": "Frissítés"
+    }
+  },
+  "courseApply": {
+    "title": {
+      "main": "Jelentkezés"
+    },
+    "form": {
+      "child": "Válassza ki a gyerekét",
+      "notice": "Megjegyzés",
+      "number-of-lesson": "Heti óraszám igény"
+    },
+    "button": {
+      "apply": "Küldés"
     }
   },
   "enums": {

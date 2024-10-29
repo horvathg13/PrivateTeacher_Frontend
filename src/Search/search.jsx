@@ -4,10 +4,11 @@ import SideMenu from "../CommonComponents/SideMenu/sidemenu";
 import TabMenu from "../CommonComponents/TabMenu/tabMenu";
 import {ComponentTitleContext, TabMenuContext, userInfoContext} from "../Context/UserContext";
 import { useContext, useEffect } from "react";
+import {useTranslation} from "react-i18next";
         
 const Search = () => {
     
-
+    const {t}=useTranslation();
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
@@ -34,21 +35,21 @@ const Search = () => {
         setBreadcrumbs([
             {
                 "id":"1",
-                "name":"Home",
+                "name":t('breadcrumbs.home'),
                 "url":"/home",
                 "icon":"IoIosArrowForward",
 
             },
             {
                 "id":"2",
-                "name":"Search",
+                "name":t('breadcrumbs.search'),
                 "url":"/search",
                 "icon":"IoIosArrowForward",
                 "end":true,
             },
 
         ]);
-        setTitle('Search');
+        setTitle(t('componentTitles.search'));
     },[])
     
     
