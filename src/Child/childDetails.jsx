@@ -10,7 +10,7 @@ const ChildDetails = () => {
     /*Translation*/
     const {t}=useTranslation();
 
-    const childId =useParams();
+    const {childId} =useParams();
     const childInfo =useLoaderData();
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
