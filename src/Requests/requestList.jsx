@@ -61,11 +61,12 @@ const RequestList = () => {
                         </thead>
                         <tbody>
                         {loaderData.data?.flat().map((e) => (
-                            <tr key={e.id} onClick={() => navigate(`/request/${e.id}`)}>
+                            <tr key={e.id} onClick={() => navigate(`/requests/${e.id}`)}>
                                 <td>{e.id}</td>
                                 <td>{`${e.child_info.first_name} ${e.child_info.last_name}`}</td>
                                 <td>{e.course_names_and_langs[0].name}</td>
                                 <td>{e.created_at.substring(0, 10)}</td>
+                                <td>{e.status}</td>
                             </tr>
                         ))}
                         {loaderData.data.length === 0 ?
