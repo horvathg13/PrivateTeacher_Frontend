@@ -24,7 +24,7 @@ import {
   getCourseLocations,
   getCourseLocation,
   getPaymentPeriods,
-  getCurrenciesISO, getChildInfo, getChildren, getRequests
+  getCurrenciesISO, getChildInfo, getChildren, getRequests, getRequestDetails, getChildCourses
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
@@ -56,6 +56,8 @@ import SearchResult from "./Search/searchResult";
 import CourseApply from "./Course/courseApply";
 import Request from "./Requests/request";
 import RequestList from "./Requests/requestList";
+import RequestDetails from "./Requests/requestDetails";
+import ChildCourses from "./Child/childCourses";
 
 function App() {
 
@@ -192,8 +194,6 @@ const router = createBrowserRouter([
             path:"course-apply",
             element:<CourseApply/>,
             loader:()=> {return getChildren()}
-
-
           },
         ]
       },
@@ -229,6 +229,11 @@ const router = createBrowserRouter([
           {
             path:"",
             element:<ChildInfo/>,
+          },
+          {
+            path: "courses",
+            element: <ChildCourses/>,
+            loader:({params})=>{return getChildCourses(params)}
           }
         ]
 
@@ -271,9 +276,8 @@ const router = createBrowserRouter([
           },
           {
             path:":requestId",
-            element:<RequestList/>,
-            loader:()=>{return getRequests()}
-
+            element:<RequestDetails/>,
+            loader:({params})=>{return getRequestDetails(params)}
           },
         ]
 
