@@ -337,6 +337,11 @@ form .form-title {
 form .form-title h2 {
   margin-bottom: 0;
 }
+form .form-title.distance{
+  display: flex;
+  justify-content: space-between;
+}
+
 form .fields.flex {
   padding: 10px 0;
 }
