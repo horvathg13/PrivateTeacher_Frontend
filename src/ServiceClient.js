@@ -86,6 +86,16 @@ class ServiceClient {
             return response.data
         })
     }
+    static acceptCourseRequest(requestId){
+        return this.post("http://127.0.0.1:8000/api/acceptCourseRequest", {requestId:requestId}).then((response)=>{
+            return response.data
+        })
+    }
+    static rejectCourseRequest(requestId){
+        return this.post("http://127.0.0.1:8000/api/rejectCourseRequest", {requestId:requestId}).then((response)=>{
+            return response.data
+        })
+    }
     static getUserStatuses(){
         return this.post("http://127.0.0.1:8000/api/getUserStatuses").then((response)=>{
             return response.data
@@ -211,6 +221,7 @@ class ServiceClient {
             return response.data
         });
     }
+
 }
 
 export default ServiceClient

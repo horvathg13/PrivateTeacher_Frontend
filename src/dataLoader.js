@@ -145,9 +145,18 @@ export const getChildren=()=>{
         return response.data
     })
 }
-
+export const getChildCourses=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getChildCourses/${params.childId}`).then((response)=>{
+        return response.data
+    })
+}
 export const getRequests=()=>{
     return ServiceClient.get(`http://127.0.0.1:8000/api/getRequests`).then((response)=>{
+        return response.data
+    })
+}
+export const getRequestDetails=(params)=>{
+    return ServiceClient.post(`http://127.0.0.1:8000/api/getRequestDetails`, {requestId:params.requestId}).then((response)=>{
         return response.data
     })
 }
