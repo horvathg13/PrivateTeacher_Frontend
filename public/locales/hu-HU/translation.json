@@ -259,6 +259,29 @@
       "apply": "Küldés"
     }
   },
+  "requestDetails": {
+    "form": {
+      "titles": {
+        "parentInfo": "Szülő Információk",
+        "childInfo": "Gyerek Információk",
+        "requestInfo": "A jelentkezés részletei",
+        "main": "Kérelem",
+        "status": "Státusz"
+      },
+      "fname": "Keresztnév",
+      "lname": "Vezetéknév",
+      "email": "Email",
+      "birthday": "Születési dátum",
+      "courseName": "Kurzus neve",
+      "numberOfLesson": "Heti óraszám igény",
+      "notice": "Megjegyzés",
+
+      "buttons": {
+        "accept": "Elfogad",
+        "reject": "Elutasít"
+      }
+    }
+  },
   "enums": {
     "ACTIVE":"Aktív",
     "SUSPENDED":"Felfüggesztve",

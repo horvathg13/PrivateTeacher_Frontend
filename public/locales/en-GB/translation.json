@@ -260,6 +260,28 @@
       "apply": "Send"
     }
   },
+  "requestDetails": {
+    "form": {
+      "titles": {
+        "parentInfo": "Parent Info",
+        "childInfo": "Child Info",
+        "requestInfo": "Request Details",
+        "main": "Request",
+        "status": "Status"
+      },
+      "fname": "Firstname",
+      "lname": "Lastname",
+      "email": "email",
+      "birthday": "Birthday",
+      "courseName": "Course Name",
+      "numberOfLesson": "Number of lesson per week required",
+      "notice": "Notice",
+      "buttons": {
+        "accept": "Accept",
+        "reject": "Reject"
+      }
+    }
+  },
   "enums": {
     "ACTIVE":"Active",
     "SUSPENDED":"Suspended",
