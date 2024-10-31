@@ -94,11 +94,6 @@ const Header = () => {
                 </div>
             </div>
 
-            {name ? <div className="navbar">
-                <button className='headerBtn btn'>Home</button>
-                <button className='headerBtn btn'>My Requests</button>
-                <button className='headerBtn btn'>Messages</button>
-            </div> : null}
             {name ? <div className="user-container">
                 <button className='headerBtn btn'>{username ? username : null}</button>
                 <button className='headerBtn btn' onClick={logout}>Logout</button>
@@ -128,9 +123,6 @@ const Header = () => {
                       unmountOnExit
                   >
                     <div className="menu-container" ref={nodeRef}>
-                        <button className='headerBtn btn'>Home</button>
-                        <button className='headerBtn btn'>My Requests</button>
-                        <button className='headerBtn btn'>Messages</button>
                         <button className='headerBtn btn'>{name}</button>
                         <button className='headerBtn btn'>Logout</button>
                     </div>

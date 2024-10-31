@@ -16,21 +16,15 @@ const Search = () => {
         setMenuItems([
             {
                 "id":"1",
-                "name":"Teacher",
-                "url":`/search`,
+                "name":"Course",
+                "url":"",
                 "end":true,
             },
             {
                 "id":"2",
-                "name":"School",
-                "url":`/search/school`
+                "name":"Teacher",
+                "url":"/search/teacher",
             },
-            {
-                "id":"3",
-                "name":"Course",
-                "url":`/search/course`
-            },
-            
         ]);
         setBreadcrumbs([
             {
