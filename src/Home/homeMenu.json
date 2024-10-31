@@ -33,7 +33,7 @@
     },
     {
         "name":"requests",
-        "role":["Admin","Teacher"],
+        "role":["Admin","Teacher", "Parent"],
         "icon":"PiNewspaperBold",
         "url":"/requests"
     }
