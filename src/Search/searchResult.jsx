@@ -28,7 +28,7 @@ const SearchResult = ({data, title,transitionProp, closeModal}) => {
 
    useEffect(()=>{
        if(selectedRow){
-           window.open(`/course/${selectedRow.id}`, '_blank' );
+           window.open(`/course/profile/${selectedRow.id}`, '_blank' );
        }
    },[selectedRow])
 
