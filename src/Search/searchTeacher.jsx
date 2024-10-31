@@ -74,6 +74,12 @@ const SearchTeacher = () => {
         errors={errors} 
         serverError={serverError} 
         closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
+        <SearchResult
+            transitionProp={transitionProp}
+            closeModal={(data)=>{if(data===true){setTransitionProp(!transitionProp)}}}
+            data={result}
+            title={title}
+        />
         <div>
             <div className="title"><h2>Search Teacher</h2></div>
             <form onSubmit={(e)=>searchTeacher(e)} className="FlexForm">
