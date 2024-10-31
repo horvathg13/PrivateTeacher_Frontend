@@ -160,3 +160,9 @@ export const getRequestDetails=(params)=>{
         return response.data
     })
 }
+
+export const getCourseProfile=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getCourseProfile/${params.courseId}`).then((response)=>{
+        return response.data
+    })
+}
