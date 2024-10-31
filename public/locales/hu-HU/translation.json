@@ -282,6 +282,17 @@
       }
     }
   },
+  "courseProfile": {
+    "form": {
+      "lang": "Nyelvek",
+      "minutes-lesson": "Tanóra hossza (percben)",
+      "minTeachingDay": "Minimális tanítási alkalom",
+      "course-price-per-lesson": "Kuzus díja alkalmanként",
+      "payment_period": "Fizetési periódus",
+      "location": "Helyszín",
+      "address": "Cím"
+    }
+  },
   "enums": {
     "ACTIVE":"Aktív",
     "SUSPENDED":"Felfüggesztve",

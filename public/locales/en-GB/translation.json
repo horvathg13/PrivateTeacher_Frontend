@@ -282,6 +282,17 @@
       }
     }
   },
+  "courseProfile": {
+    "form": {
+      "lang": "Languages",
+      "minutes-lesson": "Minutes/lesson",
+      "minTeachingDay": "Minimum Teaching Day",
+      "course-price-per-lesson": "Course price per lesson",
+      "payment_period": "Payment Period",
+      "location": "Location",
+      "address": "Address"
+    }
+  },
   "enums": {
     "ACTIVE":"Active",
     "SUSPENDED":"Suspended",
