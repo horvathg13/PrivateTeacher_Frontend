@@ -4,17 +4,15 @@ import {UserContext} from "./Context/UserContext";
 
 const AdminRight=(props)=>{
     const {roles} = useContext(UserContext);
-    const isAdmin=roles.filter(i=> i ==='Admin');
+    const isAdmin=roles.some(i=> i ==='Admin');
 
-    console.log(roles, isAdmin)
-    if(isAdmin.length){
+    if(isAdmin){
         return props.children
     }else{
         return(
             <Navigate to={'/home'}/>
         )
     }
-
 }
 
 export default AdminRight
