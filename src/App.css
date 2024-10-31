@@ -1145,3 +1145,50 @@ form .roles-container.flex label {
     width: auto !important;
   }
 }
+
+/*CourseProfile*/
+.content-main-container .course-titles{
+  width: 100%;
+}
+.content-main-container .course-titles h3{
+  text-align: center;
+  margin: 5px;
+}
+.content-main-container .course-titles .course-name{
+  width: 100%;
+  display: inline-flex;
+  text-align: center;
+  justify-content:center;
+}
+.content-main-container .course-profile-main{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(76, 150, 232, 0.66);
+  border-radius: 10px;
+  border:1px solid var(--DarkBlue);
+  box-shadow:5px 8px 7px #888888
+}
+.content-main-container .course-profile-main .profile-png{
+  width: 40%;
+  height: auto;
+  background-color: #7b98bc;
+  background-image: url("/public/course_profile_2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px dotted var(--DarkBlue);
+  border-radius:  10px 60% 60% 15px;
+}
+.content-main-container .course-profile-main .profile-data{
+  width: 70%;
+}
+.content-main-container .course-profile-main .profile-data h4{
+  margin: 12px;
+}
+.content-main-container .course-profile-main .profile-data .FlexForm .form-items .form-children.courseProfile-form-children{
+  padding: 0 !important;
+  border-bottom:2px dotted white;
+}
