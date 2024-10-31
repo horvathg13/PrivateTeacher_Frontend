@@ -8,13 +8,13 @@ import {PiNewspaperBold, PiStudentBold} from "react-icons/pi";
 import { MdPayment } from "react-icons/md";
 import { BsCalendar3 } from "react-icons/bs";
 import {FaSchool, FaUserGraduate} from 'react-icons/fa6';
-import { useContext } from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { UserContext } from '../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import {useTranslation} from "react-i18next";
         
 const Home = () => {
-    const {username} =useContext(UserContext);
+    const {username,roles} =useContext(UserContext);
     const navigate = useNavigate();
     const {t}=useTranslation();
     const getIcon=(iconName)=>{
@@ -35,7 +35,13 @@ const Home = () => {
                 default: return null;
         }
     }
-
+    const [newMenu, setNewMenu]=useState();
+    const hasAccess=(menuItems, userRole)=>{
+        return setNewMenu(menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r))));
+    }
+    useEffect(() => {
+        hasAccess(menu,roles)
+    }, []);
     return (
         <>
         <div className="home-text">
@@ -43,7 +49,7 @@ const Home = () => {
             <p>{t('home.subtitle')}</p>
         </div>
         <div className="homeMenu-main-container flex">
-            {menu.map((e, i) => (
+            {newMenu?.map((e, i) => (
                 <div className="circle-menu-container" key={i}>
                     <div className="icon grid" onClick={()=>navigate(`${e.url}`)}>{getIcon(e.icon)}</div>
                     <div className="menu-name">{t(`home.menu.${e.name}`)}</div>
