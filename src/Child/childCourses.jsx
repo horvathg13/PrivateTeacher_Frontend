@@ -56,7 +56,7 @@ const ChildCourses = () => {
                         </thead>
                         <tbody>
                         {loaderData.data?.map((e,i) => (
-                            <tr key={i} onClick={() => navigate(`/course/${e.teacher_course_id}`)}>
+                            <tr key={i} onClick={() => navigate(`/course/profile/${e.teacher_course_id}`)}>
                                 <td>{e.id}</td>
                                 <td>{e.name}</td>
                                 <td>{e.teacher}</td>
