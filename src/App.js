@@ -24,7 +24,7 @@ import {
   getCourseLocations,
   getCourseLocation,
   getPaymentPeriods,
-  getCurrenciesISO, getChildInfo, getChildren, getRequests, getRequestDetails, getChildCourses
+  getCurrenciesISO, getChildInfo, getChildren, getRequests, getRequestDetails, getChildCourses, getCourseProfile
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
@@ -58,6 +58,9 @@ import Request from "./Requests/request";
 import RequestList from "./Requests/requestList";
 import RequestDetails from "./Requests/requestDetails";
 import ChildCourses from "./Child/childCourses";
+import CourseProfile from "./Course/courseProfile";
+import CourseProfileHome from "./Course/courseProfileHome";
+import TeacherRight from "./TeacherRight";
 
 function App() {
 
@@ -141,7 +144,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/course",
-        element:<Protected><CourseHome/></Protected>,
+        element:<Protected><TeacherRight><CourseHome/></TeacherRight></Protected>,
         errorElement:<RouteBoundary/>,
         children:
         [
@@ -182,7 +185,7 @@ const router = createBrowserRouter([
       },
       {
         path:"course/:courseId",
-        element:<Protected><Course/></Protected>,
+        element:<Protected><TeacherRight><AdminRight><Course/></AdminRight></TeacherRight></Protected>,
         errorElement:<RouteBoundary/>,
         children:[
           {
@@ -190,12 +193,26 @@ const router = createBrowserRouter([
             element:<CourseInfo/>,
             loader:({params})=>{return  Promise.all ([getCourseInfo(params), getCourseStatuses(),getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO()])}
           },
+
+        ]
+      },
+      {
+        path:"course/profile/:courseId",
+        element:<Protected><CourseProfileHome /></Protected>,
+        errorElement:<RouteBoundary/>,
+        children:[
+          {
+            path: "",
+            element: <CourseProfile />,
+            loader:({params})=>{return getCourseProfile(params)}
+          },
           {
             path:"course-apply",
             element:<CourseApply/>,
             loader:()=> {return getChildren()}
           },
-        ]
+        ],
+
       },
       {
         path:"child",
@@ -245,16 +262,12 @@ const router = createBrowserRouter([
         [
           {
             path:"",
-            element:<SearchTeacher/>,
-            
-          },
-          {
-            path:"school",
-            element:<SearchSchool/>
-          },
-          {
-            path:"course",
             element:<SearchCourse/>
+          },
+          {
+            path:"teacher",
+            element:<SearchTeacher/>,
+
           },
           {
             path:"results",
