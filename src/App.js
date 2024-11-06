@@ -9,7 +9,12 @@ import UserList from './Users/userList';
 import UserRoles from './Users/user/userRoles';
 import UserLog from './Users/user/userLog';
 import Protected from './ProtectedRoutes';
-import {ComponentTitleProvider, TabMenuContextProvider, UserContextProvider} from './Context/UserContext';
+import {
+  ComponentTitleProvider,
+  TabMenuContextProvider,
+  UserContextProvider,
+  NotificationsContext
+} from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails';
 import { createBrowserRouter } from 'react-router-dom';
 import {
@@ -24,7 +29,14 @@ import {
   getCourseLocations,
   getCourseLocation,
   getPaymentPeriods,
-  getCurrenciesISO, getChildInfo, getChildren, getRequests, getRequestDetails, getChildCourses, getCourseProfile
+  getCurrenciesISO,
+  getChildInfo,
+  getChildren,
+  getRequests,
+  getRequestDetails,
+  getChildCourses,
+  getCourseProfile,
+  haveUnreadNotifications
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
@@ -61,6 +73,9 @@ import ChildCourses from "./Child/childCourses";
 import CourseProfile from "./Course/courseProfile";
 import CourseProfileHome from "./Course/courseProfileHome";
 import TeacherRight from "./TeacherRight";
+import ServiceClient from "./ServiceClient";
+import {useContext, useEffect, useState} from "react";
+import success from "./SuccessPopup/success";
 
 function App() {
 
@@ -298,8 +313,17 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-  
+  const [notificationResult, setNotifications]=useState();
+  useEffect(() => {
+    const interval = setInterval(()=>{
+      haveUnreadNotifications().then(success=>{
+        setNotifications(success);
+      })
+    },15000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <>
@@ -307,7 +331,9 @@ const router = createBrowserRouter([
     <UserContextProvider>
       <ComponentTitleProvider>
         <TabMenuContextProvider>
-          <RouterProvider router={router}/>
+          <NotificationsContext.Provider value={notificationResult}>
+            <RouterProvider router={router}/>
+          </NotificationsContext.Provider>
         </TabMenuContextProvider>
       </ComponentTitleProvider>
     </UserContextProvider>
