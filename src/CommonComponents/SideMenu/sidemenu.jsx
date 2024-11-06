@@ -1,5 +1,5 @@
 import '../common.css';
-import {FaBan, FaUsers ,FaUserPlus, FaChild, FaSearch,} from 'react-icons/fa';
+import {FaBan, FaUsers, FaUserPlus, FaChild, FaSearch, FaEnvelope,} from 'react-icons/fa';
 import { BiSolidMessageDetail } from "react-icons/bi";
 import {RiLockPasswordFill} from 'react-icons/ri';
 import {FaScaleUnbalanced, FaSchool, FaTruckMedical, FaUserGraduate } from 'react-icons/fa6';
@@ -12,7 +12,7 @@ import '../../transitions.css'
 import { NavLink } from 'react-router-dom';
 import {IoMenu} from "react-icons/io5";
 import {AiOutlineMenuFold, AiOutlineMenuUnfold} from "react-icons/ai";
-import {MdMenu, MdMenuOpen} from "react-icons/md";
+import {MdMenu, MdMenuOpen, MdNotificationsActive} from "react-icons/md";
 import {PiNewspaperBold} from "react-icons/pi";
 
 const SideMenu = ({active}) => {
@@ -29,7 +29,9 @@ const SideMenu = ({active}) => {
             case 'FaSchool':return <FaSchool  className='menu-icon icon'/>;
             case 'FaUserGraduate': return <FaUserGraduate className='menu-icon icon'/>;
             case 'PiNewspaperBold': return <PiNewspaperBold className='menu-icon icon'/>;
-                default: return null;
+            case 'FaEnvelope': return <FaEnvelope className='menu-icon icon'/>;
+
+            default: return null;
         }
     }
     const [selectedMenu,setSelectedMenu]=useState(1);
