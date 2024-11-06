@@ -35,7 +35,7 @@ i18next
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Suspense fallback={"Loading..."}>
-    <App />
+      <App />
   </Suspense>
 );
 
