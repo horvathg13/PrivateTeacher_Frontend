@@ -2,10 +2,10 @@ import './home.css';
 import menu from './homeMenu.json';
 import { HiDocumentDownload } from "react-icons/hi";
 import { IoMdSchool } from "react-icons/io";
-import { FaChild, FaSearch, FaUsers } from "react-icons/fa";
+import {FaChild, FaEnvelope, FaSearch, FaUsers} from "react-icons/fa";
 import { BiSolidMessageDetail } from "react-icons/bi";
 import {PiNewspaperBold, PiStudentBold} from "react-icons/pi";
-import { MdPayment } from "react-icons/md";
+import {MdNotificationsActive, MdPayment} from "react-icons/md";
 import { BsCalendar3 } from "react-icons/bs";
 import {FaSchool, FaUserGraduate} from 'react-icons/fa6';
 import {useContext, useEffect, useState} from 'react';
@@ -31,7 +31,7 @@ const Home = () => {
             case 'FaSchool':return <FaSchool  />;
             case 'FaUserGraduate':return <FaUserGraduate/>;
             case 'PiNewspaperBold':return <PiNewspaperBold/>;
-
+            case 'FaEnvelope': return <FaEnvelope className='menu-icon icon'/>;
                 default: return null;
         }
     }
