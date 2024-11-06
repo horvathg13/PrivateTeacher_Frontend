@@ -75,3 +75,5 @@ export const LocationInfoContext = createContext(null);
 export const ChildInfoContext = createContext(null);
 
 export const SearchResults=createContext(null);
+
+export const NotificationsContext = createContext({});
