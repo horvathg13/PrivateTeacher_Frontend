@@ -71,6 +71,11 @@
     "requests": "Requests"
   },
   "empty-table": "Not found.",
+  "header": {
+    "notifications": {
+      "loader": "Loading..."
+    }
+  },
   "home": {
     "greeting": "Welcome",
     "subtitle": "Select a menu",
@@ -267,8 +272,11 @@
         "childInfo": "Child Info",
         "requestInfo": "Request Details",
         "main": "Request",
-        "status": "Status"
+        "status": "Status",
+        "answer": "Answer"
       },
+      "justification": "Write a justification",
+      "name": "Name",
       "fname": "Firstname",
       "lname": "Lastname",
       "email": "email",
@@ -309,5 +317,9 @@
     "FRIDAY":"Friday",
     "SATURDAY":"Saturday",
     "SUNDAY":"Sunday"
+  },
+  "validator": {
+    "type":"The given type is not correct int the following field: {{field}}",
+    "numberRange": "The given number range is incorrect: {{field}}"
   }
 }

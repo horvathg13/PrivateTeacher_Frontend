@@ -40,6 +40,11 @@
     "requests": "Kérelmek"
   },
   "empty-table": "Nincs találat.",
+  "header": {
+    "notifications": {
+      "loader": "Az adatok töltődnek..."
+    }
+  },
   "TabMenu": {
     "info": "Adatok",
     "user-list": "Felhasználók",
@@ -266,8 +271,11 @@
         "childInfo": "Gyerek Információk",
         "requestInfo": "A jelentkezés részletei",
         "main": "Kérelem",
-        "status": "Státusz"
+        "status": "Státusz",
+        "answer": "Válasz"
       },
+      "justification": "Írjon indoklást",
+      "name": "Név",
       "fname": "Keresztnév",
       "lname": "Vezetéknév",
       "email": "Email",
@@ -309,6 +317,10 @@
     "FRIDAY":"Péntek",
     "SATURDAY":"Szombat",
     "SUNDAY":"Vasárnap"
+  },
+  "validator": {
+    "type":"The given type is not correct int the following field: {{field}}",
+    "numberRange": "The given number range is incorrect: {{field}}"
   }
 
 }
