@@ -77,6 +77,74 @@
     }
 
 }
+
+.main-container .notification-container{
+    width: auto;
+    min-width:40px;
+    height: auto;
+    text-align: center;
+}
+.main-container .notification-container .header-icon{
+    width: 100%;
+    font-size: 30px;
+    color: var(--DarkBlue);
+    transition: .3s ease-in-out;
+}
+.main-container .notification-container .header-icon.red{
+    color: red;
+}
+.main-container .notification-container .header-icon:hover{
+    color: var(--ButtonBlue);
+    cursor: pointer;
+}
+.main-container .notification-menu{
+    position: absolute;
+    top: 90px;
+    left: 60%;
+    width: 400px;
+    height: 400px;
+    background: white;
+    box-shadow: 5px 5px 10px #888888;
+    border: 1px solid var(--DarkBlue);
+    border-radius: 5px;
+    overflow-y:auto;
+    animation:  fadeIn .5s;
+}
+.main-container .notification-menu .notification-child{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    border-bottom:1px dotted var(--PrimaryColor);
+    cursor: pointer;
+}
+.main-container .notification-menu .notification-child:hover{
+    background: rgba(148, 225, 232, 0.22);
+}
+.main-container .notification-menu .notification-child .notification-child-icon-container{
+    padding: 5px;
+}
+.main-container .notification-menu .notification-child .notification-child-icon-container .notification-child-icon{
+    text-align: center;
+    width: 30px;
+    height: 100%;
+}
+.main-container .notification-menu .notification-child .notification-child-icon-container .notification-child-icon.yellow{
+   color: #f6a205;
+}
+.main-container .notification-menu .notification-child p{
+    padding: 10px;
+    font-size: 15px;
+    margin: 10px;
+}
+.main-container .notification-menu .notification-menu-loader-container{
+    width:auto;
+    height: 100px;
+    text-align: center;
+    padding: 20px;
+}
+.main-container .notification-menu .loader.notification{
+    border-top: 4px solid var(--DarkBlue);
+}
 @media only screen and (max-width: 700px) {
     .main-container.flex .lng-select button {
         width: 40px !important;
@@ -85,6 +153,18 @@
     }
     .main-container.flex .lng-select ul{
         overflow: hidden;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .main-container .notification-menu{
+        left: 25% !important;
+    };
+}
+@media only screen and (max-width: 550px) {
+    .main-container .notification-menu {
+        margin: 10px;
+        width: auto !important;
+        left: 0 !important;
     }
 }
 @media only screen and (min-width: 1200px) {
