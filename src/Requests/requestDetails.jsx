@@ -7,6 +7,7 @@ import {IoMdClose} from "react-icons/io";
 import ServiceClient from "../ServiceClient";
 import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
 import {UserContext} from "../Context/UserContext";
+import Notification from "../CommonComponents/Notifications/notification";
 
 const RequestDetails = () => {
     /*Translation*/
@@ -17,11 +18,13 @@ const RequestDetails = () => {
     const requestId=useParams();
     const {roles}=useContext(UserContext);
     const [isTeacher, setIsTeacher]=useState();
+    const [message, setMessage]=useState();
 
     /*Event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
+    const [active, setActive]=useState(false);
     /*Loader */
     const [acceptLoader, setAcceptLoader]=useState(false);
     const [rejectLoader, setRejectLoader]=useState(false);
@@ -51,12 +54,13 @@ const RequestDetails = () => {
         if(name==='reject'){
             reject();
         }
+        setAreYouSureTransitionProp(false);
     }
     const accept=()=>{
         setAcceptLoader(true)
         setBtnDisabled(true)
 
-        ServiceClient.acceptCourseRequest(requestId).then((success)=>{
+        ServiceClient.acceptCourseRequest(requestId,message).then((success)=>{
             setSuccess(true);
             setTimeout(()=>{
                 setSuccess(false);
@@ -65,13 +69,14 @@ const RequestDetails = () => {
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);
+            setAcceptLoader(false);
         })
     }
     const reject=()=>{
         setRejectLoader(true)
         setBtnDisabled(true)
 
-        ServiceClient.rejectCourseRequest(requestId).then((success)=>{
+        ServiceClient.rejectCourseRequest(requestId,message).then((success)=>{
             setSuccess(true);
             setTimeout(()=>{
                 setSuccess(false);
@@ -99,59 +104,55 @@ const RequestDetails = () => {
                 answer={(name) => functionControl(name)}
                 transitionProp={areYouSureTransitionProp}
             />
+            <Notification
+                active={active}
+            />
         <div>
+            <button onClick={(e)=>{setActive(!active)}}>noti</button>
             <form className="FlexForm">
                 <div className="form-title distance"><h2>{t('form.titles.main')}</h2><h2>{requestDetails.status}</h2></div>
                 <div className="form-items">
                     {requestDetails.parent_info ?
                         <>
+                            <div className="form-title"><h2>{t('form.titles.parentInfo')}</h2></div>
                             {requestDetails.parent_info.length ? requestDetails.parent_info.map(i =>
-                                    <>
-                                        <div className="form-title"><h2>{t('form.titles.parentInfo')}</h2></div>
+                                    <div class="form-collapse">
                                         <div className="form-children">
-                                            <label>{t('form.fname')}</label>
-                                            <input type="text" readOnly value={i.first_name}/>
-                                        </div>
-                                        <div className="form-children">
-                                            <label>{t('form.lname')}</label>
-                                            <input type="text" readOnly value={i.last_name}/>
+                                            <label>{t('form.name')}</label>
+                                            <input type="text" readOnly value={i.first_name.concat(" ", i.last_name)}/>
                                         </div>
                                         <div className="form-children">
                                             <label>{t('form.email')}</label>
                                             <input type="email" readOnly value={i.email}/>
                                         </div>
-                                    </>
+                                    </div>
                                 ) :
                                 <>
                                     <div className="form-title"><h2>{t('form.titles.parentInfo')}</h2></div>
-                                    <div className="form-children">
-                                        <label>{t('form.fname')}</label>
-                                        <input type="text" readOnly value={requestDetails.parent_info.first_name}/>
-                                    </div>
-                                    <div className="form-children">
-                                        <label>{t('form.lname')}</label>
-                                        <input type="text" readOnly value={requestDetails.parent_info.last_name}/>
-                                    </div>
-                                    <div className="form-children">
-                                        <label>{t('form.email')}</label>
-                                        <input type="email" readOnly value={requestDetails.parent_info.email}/>
+                                    <div className="form-collapse">
+                                        <div className="form-children">
+                                            <label>{t('form.name')}</label>
+                                            <input type="text" readOnly value={requestDetails.parent_info.first_name.concat(" ", requestDetails.parent_info.last_name)}/>
+                                        </div>
+                                        <div className="form-children">
+                                            <label>{t('form.email')}</label>
+                                            <input type="email" readOnly value={requestDetails.parent_info.email}/>
+                                        </div>
                                     </div>
                                 </>
                             }</>
                         : null}
 
                     <div className="form-title"><h2>{t('form.titles.childInfo')}</h2></div>
-                    <div className="form-children">
-                        <label>{t('form.fname')}</label>
-                        <input type="text" readOnly value={requestDetails.child_info.first_name}/>
-                    </div>
-                    <div className="form-children">
-                        <label>{t('form.lname')}</label>
-                        <input type="text" readOnly value={requestDetails.child_info.last_name}/>
-                    </div>
-                    <div className="form-children">
-                        <label>{t('form.birthday')}</label>
-                        <input type="date" readOnly value={requestDetails.child_info.birthday}/>
+                    <div className="form-collapse">
+                        <div className="form-children">
+                            <label>{t('form.name')}</label>
+                            <input type="text" readOnly value={requestDetails.child_info.first_name.concat(" ", requestDetails.child_info.last_name)}/>
+                        </div>
+                        <div className="form-children">
+                            <label>{t('form.birthday')}</label>
+                            <input type="date" readOnly value={requestDetails.child_info.birthday}/>
+                        </div>
                     </div>
                     <div className="form-title"><h2>{t('form.titles.requestInfo')}</h2></div>
                     <div className="form-children">
@@ -167,34 +168,41 @@ const RequestDetails = () => {
                         <textarea readOnly value={requestDetails.notice}/>
                     </div>
                     {isTeacher ?
-                        <div className="form-button-container">
-                            {!acceptLoader ?
-                                <button
-                                    type='button'
-                                    disabled={btndisabled}
-                                    onClick={(e) => [
-                                        setAreYouSureName('reject'),
-                                        setAreYouSureTransitionProp(true)
-                                    ]}
-                                    className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                                    {t('form.buttons.reject')} <IoMdClose className='btn-icon'/>
-                                </button> :
-                                <span className='loader schoolDetails'></span>
-                            }
-                            {!rejectLoader ?
-                                <button
-                                    type='button'
-                                    disabled={btndisabled}
-                                    onClick={(e) => [
-                                        setAreYouSureName('accept'),
-                                        setAreYouSureTransitionProp(true)
-                                    ]}
-                                    className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                                    {t('form.buttons.accept')} <FaCheck className='btn-icon'/>
-                                </button> :
-                                <span className='loader schoolDetails'></span>
-                            }
-                        </div>
+                        <>
+                            <div className="form-title"><h2>{t('form.titles.answer')}</h2></div>
+                            <div className="form-children">
+                                <label>{t('form.justification')}</label>
+                                <textarea required onChange={(e)=>{setMessage(e.target.value)} }/>
+                            </div>
+                            <div className="form-button-container">
+                                {!rejectLoader ?
+                                    <button
+                                        type='button'
+                                        disabled={btndisabled}
+                                        onClick={(e) => [
+                                            setAreYouSureName('reject'),
+                                            setAreYouSureTransitionProp(true)
+                                        ]}
+                                        className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                        {t('form.buttons.reject')} <IoMdClose className='btn-icon'/>
+                                    </button> :
+                                    <span className='loader schoolDetails'></span>
+                                }
+                                {!acceptLoader ?
+                                    <button
+                                        type='button'
+                                        disabled={btndisabled}
+                                        onClick={(e) => [
+                                            setAreYouSureName('accept'),
+                                            setAreYouSureTransitionProp(true)
+                                        ]}
+                                        className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                        {t('form.buttons.accept')} <FaCheck className='btn-icon'/>
+                                    </button> :
+                                    <span className='loader schoolDetails'></span>
+                                }
+                            </div>
+                        </>
                         : null}
                 </div>
             </form>
