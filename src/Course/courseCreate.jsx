@@ -13,7 +13,6 @@ import {useTranslation} from "react-i18next";
 import Select from "react-select";
 import ReactFlagsSelect from "react-flags-select";
 import {IoClose} from "react-icons/io5";
-
 const CourseCreate = () => {
     /*Translation*/
     const {t}=useTranslation("translation", {keyPrefix:'schools.school.year.courses'});
@@ -82,7 +81,6 @@ const CourseCreate = () => {
                 setLoader(false),
                 setBtnDisabled(false)
             ];
-
         }
         ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location, paymentPeriod, null, currency).then((success)=>{
             setLoader(false);
