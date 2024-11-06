@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from 'react';
 import './newheaderCSS.css';
 import { FaListUl } from "react-icons/fa";
 import { useContext } from 'react';
-import { UserContext } from '../Context/UserContext';
+import {NotificationsContext, UserContext} from '../Context/UserContext';
 import ServiceClient from '../ServiceClient';
 import Success from '../SuccessPopup/success';
 import {useLocation, useNavigate} from 'react-router-dom';
@@ -13,6 +13,8 @@ import i18next from "i18next";
 import ReactFlagsSelect from "react-flags-select";
 import {CSSTransition} from "react-transition-group";
 import "../transitions.css";
+import {IoIosNotifications} from "react-icons/io";
+import {RiGraduationCapFill} from "react-icons/ri";
         
 const Header = () => {
     /*Translation*/
@@ -32,17 +34,18 @@ const Header = () => {
     /*General vaiables */
     const [showMobileMenu, setMobileMenu]=useState(false);
     const [name, setName]=useState('');
-
+    const [notificationMenu, setNotificationMenu]=useState(false);
     /*EventHandlers */
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
     const [errors, setErrors]=useState([]);
-    
+    const [getNotifications, setNotifications]=useState([]);
     /*redirect */
     const navigate = useNavigate();
 
     /*useContext*/
-    let {username, setUsername}=useContext(UserContext); 
+    let {username, setUsername}=useContext(UserContext);
+    const haveUnreadNotifications=useContext(NotificationsContext);
 
     /*methods:*/
     const logout=()=>{
@@ -63,6 +66,23 @@ const Header = () => {
             setServerError(error);
             
         })
+    }
+
+    const NotificationQuery=(e)=>{
+        e.preventDefault();
+        setNotificationMenu(!notificationMenu)
+
+        ServiceClient.getNotifications().then((success)=>{
+            setNotifications(success);
+        }).catch(error=>{
+            console.log(error);
+        })
+    }
+
+    const readNotification=(id)=>{
+        ServiceClient.readNotification(id).then((success)=>{
+            return success
+        });
     }
 
     /*useEffects: */
@@ -98,6 +118,27 @@ const Header = () => {
                 <button className='headerBtn btn'>{username ? username : null}</button>
                 <button className='headerBtn btn' onClick={logout}>Logout</button>
             </div> : null}
+            {name ?
+                <div className="notification-container">
+                    <IoIosNotifications className={haveUnreadNotifications ? "header-icon red" : "header-icon"} onClick={(e)=>NotificationQuery(e)}/>
+                </div>
+            :null}
+            {notificationMenu && name ?
+            <div className="notification-menu">
+                <>
+                {getNotifications ? getNotifications.map(e=>
+                        <div key={e.id} className="notification-child" onScroll={(e)=>console.log(e)} onClick={()=> {
+                            navigate(`${e.url}`); setNotificationMenu(!notificationMenu); readNotification(e.id)
+                        }}>
+                            <div className="notification-child-icon-container">
+                                <RiGraduationCapFill className={ e.read === false ? "notification-child-icon yellow":"notification-child-icon"}/>
+                            </div>
+                            <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{e.message}</p>
+                        </div>
+                ):<div className="notification-menu-loader-container"><span className="loader notification"/><p>{t('header.notifications.loader')}</p></div>}
+                </>
+            </div>:null}
+
             <div className="lng-select">
                 <ReactFlagsSelect
                     countries={["HU", "GB"]}
@@ -109,25 +150,25 @@ const Header = () => {
                 />
             </div>
             {name ?
-               <div className="mobile-menu">
-                <FaListUl className='dropdown-btn' onClick={() => {
-                    setMobileMenu(!showMobileMenu)
-                }}/>
+                <div className="mobile-menu">
+                    <FaListUl className='dropdown-btn' onClick={() => {
+                        setMobileMenu(!showMobileMenu)
+                    }}/>
 
-                  <CSSTransition
-                      nodeRef={nodeRef}
-                      in={showMobileMenu}
-                      classNames="slide-right"
-                      timeout={500}
-                      mountOnEnter
-                      unmountOnExit
-                  >
-                    <div className="menu-container" ref={nodeRef}>
-                        <button className='headerBtn btn'>{name}</button>
-                        <button className='headerBtn btn'>Logout</button>
-                    </div>
-                  </CSSTransition>
-            </div> : null}
+                    <CSSTransition
+                        nodeRef={nodeRef}
+                        in={showMobileMenu}
+                        classNames="slide-right"
+                        timeout={500}
+                        mountOnEnter
+                        unmountOnExit
+                    >
+                        <div className="menu-container" ref={nodeRef}>
+                            <button className='headerBtn btn'>{name}</button>
+                            <button className='headerBtn btn'>Logout</button>
+                        </div>
+                    </CSSTransition>
+                </div> : null}
         </div>
 
 
