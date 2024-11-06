@@ -86,13 +86,13 @@ class ServiceClient {
             return response.data
         })
     }
-    static acceptCourseRequest(requestId){
-        return this.post("http://127.0.0.1:8000/api/acceptCourseRequest", {requestId:requestId}).then((response)=>{
+    static acceptCourseRequest(requestId, message){
+        return this.post("http://127.0.0.1:8000/api/acceptCourseRequest", {requestId:requestId, message:message}).then((response)=>{
             return response.data
         })
     }
-    static rejectCourseRequest(requestId){
-        return this.post("http://127.0.0.1:8000/api/rejectCourseRequest", {requestId:requestId}).then((response)=>{
+    static rejectCourseRequest(requestId,message){
+        return this.post("http://127.0.0.1:8000/api/rejectCourseRequest", {requestId:requestId, message:message}).then((response)=>{
             return response.data
         })
     }
@@ -218,6 +218,17 @@ class ServiceClient {
     }
     static removeCourse(courseId){
         return this.post("http://127.0.0.1:8000/api/removeCourse",{id:courseId}).then((response)=>{
+            return response.data
+        });
+    }
+    static getNotifications(){
+        return ServiceClient.get(`http://127.0.0.1:8000/api/getNotifications`).then((response)=>{
+            return response.data
+        });
+    }
+
+    static readNotification(notificationId){
+        return ServiceClient.get(`http://127.0.0.1:8000/api/readNotification/${notificationId}`).then((response)=>{
             return response.data
         });
     }

@@ -166,3 +166,10 @@ export const getCourseProfile=(params)=>{
         return response.data
     })
 }
+export const haveUnreadNotifications=()=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/haveUnreadNotifications`).then((response)=>{
+        return response.data
+    }).catch(error=>{
+        console.log(error)
+    });
+}
