@@ -37,7 +37,8 @@
     "location": "Location",
     "child": "Child",
     "search": "Search",
-    "requests": "Requests"
+    "requests": "Requests",
+    "messages": "Messages"
   },
   "TabMenu": {
     "info": "Info",
@@ -57,7 +58,8 @@
     "list": "List",
     "connect": "Connect",
     "search": "Search",
-    "apply": "Apply for course"
+    "apply": "Apply for course",
+    "newMessage": "Write a new message"
   },
   "componentTitles": {
     "users": "Users",
@@ -68,7 +70,8 @@
     "location": "Location",
     "child": "Child",
     "search": "Search",
-    "requests": "Requests"
+    "requests": "Requests",
+    "messages": "Messages"
   },
   "empty-table": "Not found.",
   "header": {
@@ -276,6 +279,7 @@
         "answer": "Answer"
       },
       "justification": "Write a justification",
+      "justification-placeholder": "Here will be show the teacher justification.",
       "name": "Name",
       "fname": "Firstname",
       "lname": "Lastname",

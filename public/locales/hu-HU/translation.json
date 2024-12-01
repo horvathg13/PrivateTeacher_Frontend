@@ -37,7 +37,8 @@
     "location": "Helyszín",
     "child": "Gyerek",
     "search": "Keresés",
-    "requests": "Kérelmek"
+    "requests": "Kérelmek",
+    "messages": "Üzenetek"
   },
   "empty-table": "Nincs találat.",
   "header": {
@@ -63,7 +64,8 @@
     "list": "Lista",
     "connect": "Kapcssolódás",
     "search": "Keresés",
-    "apply": "Jelentkezés"
+    "apply": "Jelentkezés",
+    "newMessage": "Új üzenet küldése"
   },
   "componentTitles": {
     "users": "Felhasználók",
@@ -74,7 +76,8 @@
     "location": "Helyszín",
     "child": "Gyerek",
     "search": "Keresés",
-    "requests": "Kérelmek"
+    "requests": "Kérelmek",
+    "messages": "Üzenetek"
   },
   "home":{
     "greeting": "Üdvözlöm",
@@ -275,6 +278,7 @@
         "answer": "Válasz"
       },
       "justification": "Írjon indoklást",
+      "justification-placeholder": "Itt látható lesz a tanár indoklása.",
       "name": "Név",
       "fname": "Keresztnév",
       "lname": "Vezetéknév",
