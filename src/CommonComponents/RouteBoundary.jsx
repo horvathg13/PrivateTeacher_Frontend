@@ -17,7 +17,7 @@ const RouteBoundary = () => {
                   <img src="/error-boundary-img.jpg"/>
               </div>
               <div className="error-message-container">
-                  <h3>{error.response.data.message}</h3>
+                  <h3>{error.response?.data.message}</h3>
               </div>
           </div>
       </>
