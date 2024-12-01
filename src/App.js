@@ -36,7 +36,7 @@ import {
   getRequestDetails,
   getChildCourses,
   getCourseProfile,
-  haveUnreadNotifications
+  haveUnreadNotifications, getMessages, getMessageInfo
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
@@ -76,6 +76,9 @@ import TeacherRight from "./TeacherRight";
 import ServiceClient from "./ServiceClient";
 import {useContext, useEffect, useState} from "react";
 import success from "./SuccessPopup/success";
+import Message from "./Messages/message";
+import Messages from "./Messages/messages";
+import MessageDetails from "./Messages/messageDetails";
 
 function App() {
 
@@ -309,6 +312,30 @@ const router = createBrowserRouter([
           },
         ]
 
+      },
+      {
+        path:"messages",
+        element:<Message/>,
+        errorElement:<RouteBoundary/>,
+        children:[
+          {
+            path:"",
+            element: <Messages/>,
+            loader:()=>{return getMessages()}
+          }
+        ]
+      },
+      {
+        path:"message/:id",
+        element:<Message/>,
+        errorElement:<RouteBoundary/>,
+        children:[
+          {
+            path:"",
+            element: <MessageDetails/>,
+            loader:({params})=>{return getMessageInfo(params)}
+          }
+        ]
       }
     ],
   },
