@@ -108,9 +108,9 @@ const RequestDetails = () => {
                 active={active}
             />
         <div>
-            <button onClick={(e)=>{setActive(!active)}}>noti</button>
             <form className="FlexForm">
                 <div className="form-title distance"><h2>{t('form.titles.main')}</h2><h2>{requestDetails.status}</h2></div>
+                <textarea className="justification-container" readOnly value={requestDetails.teacher_justification} placeholder={t('form.justification-placeholder')}/>
                 <div className="form-items">
                     {requestDetails.parent_info ?
                         <>
