@@ -232,6 +232,21 @@ class ServiceClient {
             return response.data
         });
     }
+    static getMessages=()=>{
+        return ServiceClient.get(`http://127.0.0.1:8000/api/getMessages`).then((response)=>{
+            return response.data
+        })
+    }
+    static sendMessage=(Id,message, childId, teacherId)=>{
+        return ServiceClient.post(`http://127.0.0.1:8000/api/sendMessage`, {Id:Id, message:message, childId:childId, teacherId:teacherId}).then((response)=>{
+            return response.data
+        })
+    }
+    static getMessageInfo=(Id)=>{
+        return ServiceClient.get(`http://127.0.0.1:8000/api/getMessageInfo/${Id}`).then((response)=>{
+            return response.data
+        })
+    }
 
 }
 
