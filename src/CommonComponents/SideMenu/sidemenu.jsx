@@ -7,13 +7,14 @@ import {RxUpdate} from 'react-icons/rx';
 import menu from './menu.json'        
 import homeMenu from '../../Home/homeMenu.json';
 import { CSSTransition } from 'react-transition-group';
-import { useRef, useState } from 'react';
+import {useContext, useRef, useState} from 'react';
 import '../../transitions.css'
 import { NavLink } from 'react-router-dom';
 import {IoMenu} from "react-icons/io5";
 import {AiOutlineMenuFold, AiOutlineMenuUnfold} from "react-icons/ai";
 import {MdMenu, MdMenuOpen, MdNotificationsActive} from "react-icons/md";
 import {PiNewspaperBold} from "react-icons/pi";
+import {UserContext} from "../../Context/UserContext";
 
 const SideMenu = ({active}) => {
     const getIcon=(iconName)=>{
@@ -36,8 +37,8 @@ const SideMenu = ({active}) => {
     }
     const [selectedMenu,setSelectedMenu]=useState(1);
     const [showMobileMenu, setShowMobileMenu]=useState(false);
-        
 
+    const {roles} = useContext(UserContext);
     const nodeRef = useRef(null);
     return (
         <>
@@ -57,12 +58,13 @@ const SideMenu = ({active}) => {
                 <div className="mobile-side-main-conainer" ref={nodeRef}>
                 {
                     homeMenu.map((e, i) =>
+                        e.role.some(j=>roles.includes(j)) ?
                         <div className="element-container" key={i}>
                             <NavLink to={e.url}>
                                 <div className="icon-container">{getIcon(e.icon)}</div>
                             </NavLink>
                             {false && <div className="name-container"><h4>{e.name}</h4></div>}
-                        </div>
+                        </div>:null
                     )
                 }
                 </div>
@@ -71,12 +73,13 @@ const SideMenu = ({active}) => {
             <div className="side-main-conainer">
                 {
                     homeMenu.map((e, i) =>
+                        e.role.some(j=>roles.includes(j)) ?
                         <div className="element-container flex" key={i}>
                             <NavLink to={e.url}>
                                 <div className="icon-container">{getIcon(e.icon)}</div>
                             </NavLink>
                             {false && <div className="name-container"><h4>{e.name}</h4></div>}
-                        </div>
+                        </div>:null
                     )
                 }
             </div>
