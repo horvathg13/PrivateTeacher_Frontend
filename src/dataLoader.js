@@ -173,3 +173,15 @@ export const haveUnreadNotifications=()=>{
         console.log(error)
     });
 }
+
+export const getMessages=()=>{
+    return ServiceClient.get('http://127.0.0.1:8000/api/getMessages?perPage=10&page=1').then((response)=>{
+        return response.data
+    })
+}
+
+export const getMessageInfo=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getMessageInfo/${params.id}`).then((response)=>{
+        return response.data
+    })
+}
