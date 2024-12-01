@@ -203,7 +203,7 @@ const router = createBrowserRouter([
       },
       {
         path:"course/:courseId",
-        element:<Protected><TeacherRight><AdminRight><Course/></AdminRight></TeacherRight></Protected>,
+        element:<Protected><TeacherRight><Course/></TeacherRight></Protected>,
         errorElement:<RouteBoundary/>,
         children:[
           {
