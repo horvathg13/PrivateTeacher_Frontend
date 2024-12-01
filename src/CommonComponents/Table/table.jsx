@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { FaCirclePlus } from 'react-icons/fa6';
 
 
-const Table = ({datas, loader, page, perPage, selectedRow, selectableRow}) => {
+const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPaginator}) => {
     /* data: */
 
     const [sort, setSort]=useState(true);
@@ -72,7 +72,7 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow}) => {
 
                 </tbody>
             </table>
-
+            {setPaginator ?
             <div className="pagination-continer flex">
                 <div className="show-container flex">
                     Show/page<input type='number' onKeyDown={(e) => { if (e.key === 'Enter') { return perPage(e.target.value); } } } />
@@ -83,7 +83,7 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow}) => {
                     <GrFormPrevious className='paginate-icon' onClick={() => page('prev')} /> 
                     {datas?.pagination?.currentPageNumber} / {datas?.pagination?.lastPageNumber}{datas?.pagination?.hasMorePages ? <><MdNavigateNext className='paginate-icon' onClick={() => page('next')} /><MdLastPage className='paginate-icon' onClick={() => page('last')} /></> : null}
                 </div>
-            </div>
+            </div>:null}
 
 
         </div>: 
