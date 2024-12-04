@@ -12,9 +12,11 @@ import {useContext, useEffect, useState} from 'react';
 import { UserContext } from '../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import {useTranslation} from "react-i18next";
+import ServiceClient from "../ServiceClient";
+import * as Promis from "axios";
         
 const Home = () => {
-    const {username,roles} =useContext(UserContext);
+    const {username,roles, setUsername, setRoles} =useContext(UserContext);
     const navigate = useNavigate();
     const {t}=useTranslation();
     const getIcon=(iconName)=>{
@@ -40,7 +42,12 @@ const Home = () => {
         return setNewMenu(menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r))));
     }
     useEffect(() => {
-        hasAccess(menu,roles)
+        if(!roles.length){
+            return ServiceClient.post("http://127.0.0.1:8000/api/getUserData").then((response)=>{
+                hasAccess(menu,response.data.roles);
+            });
+        }
+        hasAccess(menu,roles);
     }, []);
     return (
         <>
