@@ -107,7 +107,7 @@ const Header = () => {
                         setErrors([])
                     }
                 }}/>
-            <div className='logo-container'>
+            <div className='logo-container' onClick={(e)=>navigate('/home')}>
                 <i className='graduatehat'></i>
                 <div className="app-title">
                     <h1>PrivateTeacher</h1>
