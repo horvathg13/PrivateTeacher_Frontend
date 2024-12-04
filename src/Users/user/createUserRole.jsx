@@ -75,7 +75,7 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOption
 
                         <div className="form-children">
                             <label>Role</label>
-                            <div className="selectContainer">
+                            <div className="selectContainer createUserRoleSelect">
                                 <Select
                                     options={roleOptions}
                                     onChange={(selected)=>{setRoles(selected.value)}}

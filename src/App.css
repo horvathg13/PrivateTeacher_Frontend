@@ -73,7 +73,10 @@ input:read-only{
   text-align: left !important;
   max-width: 350px;
 }
-
+.selectContainer.createUserRoleSelect{
+  height: auto !important;
+  margin-top: 0 !important;
+}
 /*Table*/
 table tbody tr.addNewTableRow {
   background: none !important;
@@ -669,6 +672,10 @@ form .roles-container.flex label {
   color: var(--ButtonBlue);
   cursor: pointer;
 }
+.closeModalWhite{
+  width: 100%;
+  height: 40px;
+}
 .closeModalWhite .closeModalIcon{
   float: right;
   font-size: 2.1rem;
@@ -677,7 +684,7 @@ form .roles-container.flex label {
   transition: .3s ease-in-out;
 }
 .closeModalWhite .closeModalIcon:hover{
-  color: var(--RedColor);
+  color: #e81919;
   cursor: pointer;
 }
 .formTitle {
@@ -973,13 +980,14 @@ form .roles-container.flex label {
   width: 75%;
   height: fit-content;
   /*background-color: rgb(44,96,128);*/
-  background: linear-gradient(145deg, rgb(147, 178, 193), #32729f, #422863);
+  /*background: linear-gradient(145deg, rgb(147, 178, 193), #32729f, #422863);*/
+  background: #074b6c;
   color: white;
   border-radius: 10px;
   padding: 50px;
   margin: 35px auto;
   box-shadow: 1px 1px 6px #4eadbc;
-  border: 1px solid var(--DarkBlue);
+  border: 1px solid var(--LightBlue);
   vertical-align: center ;
   transform: translateY(25%);
 }
@@ -992,11 +1000,12 @@ form .roles-container.flex label {
   }
 }
 .createUserRole-main .FlexForm .form-children{
-  border-bottom: 1px dotted var(--DarkBlue);
+  border-bottom: 3px dotted var(--LightBlue);
 }
 .createUserRole-main .title h2{
   color: white;
   text-align: center;
+  margin-top: 0;
 }
 
 /*React Select*/
