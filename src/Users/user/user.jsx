@@ -27,11 +27,6 @@ const User = () => {
                 "id":"2",
                 "name":t('TabMenu.roles'),
                 "url":`/users/${userId}/roles`
-            },
-            {
-                "id":"3",
-                "name":t('TabMenu.logs'),
-                "url":`/users/${userId}/logs`
             }
         ]);
         setBreadcrumbs([

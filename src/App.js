@@ -147,10 +147,6 @@ const router = createBrowserRouter([
           {
             path:"create-role",
             element:<CreateUserRole />,
-          },
-          {
-            path:"logs",
-            element:<UserLog />
           }
         ]
       },
