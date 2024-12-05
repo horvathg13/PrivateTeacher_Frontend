@@ -325,6 +325,14 @@
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
     "numberRange": "The given number range is incorrect: {{field}}"
+  },
+  "labels": {
+    "not-exist": "A keresett címke nem található, de létrehozhatja.",
+    "title": "Adjon hozzá címkét",
+    "placeholder": "Kezdjen el gépelni...",
+    "search": "Keresés",
+    "selected": "Kiválasztva",
+    "select": "Jóváhagyás"
   }
 
 }

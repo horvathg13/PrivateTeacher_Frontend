@@ -325,5 +325,13 @@
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
     "numberRange": "The given number range is incorrect: {{field}}"
+  },
+  "labels": {
+    "not-exist": "Label does not exist, but you can create this one.",
+    "title": "Add labels",
+    "placeholder": "Type to search...",
+    "search": "Search",
+    "selected": "Selected",
+    "select": "Select"
   }
 }
