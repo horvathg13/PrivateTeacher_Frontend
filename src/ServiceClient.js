@@ -248,6 +248,18 @@ class ServiceClient {
         })
     }
 
+    static searchLabel=(keyword)=>{
+        return ServiceClient.post("http://127.0.0.1:8000/api/searchLabel", {keyword:keyword}).then((response)=>{
+            return response.data
+        });
+    }
+
+    static createLabel=(keyword)=>{
+        return ServiceClient.post("http://127.0.0.1:8000/api/createLabel", {keyword:keyword}).then((response)=>{
+            return response.data
+        });
+    }
+
 }
 
 export default ServiceClient

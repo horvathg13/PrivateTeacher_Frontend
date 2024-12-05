@@ -185,3 +185,9 @@ export const getMessageInfo=(params)=>{
         return response.data
     })
 }
+
+export const getLanguages=()=>{
+    return ServiceClient.get("http://127.0.0.1:8000/api/getLanguages").then((response)=>{
+        return response.data
+    })
+}
