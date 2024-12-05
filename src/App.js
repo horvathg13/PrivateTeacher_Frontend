@@ -36,7 +36,7 @@ import {
   getRequestDetails,
   getChildCourses,
   getCourseProfile,
-  haveUnreadNotifications, getMessages, getMessageInfo
+  haveUnreadNotifications, getMessages, getMessageInfo, getLanguages
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
@@ -111,7 +111,8 @@ const router = createBrowserRouter([
       },
       {
         path:"home",
-        element:<Protected><Home /></Protected>
+        element:<Protected><Home /></Protected>,
+        errorElement:<RouteBoundary/>,
       },
       {
         path:"users",
@@ -170,7 +171,7 @@ const router = createBrowserRouter([
           {
             path:"create",
             element:<CourseCreate/>,
-            loader:({params})=>{return Promise.all([getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO()])}
+            loader:({params})=>{return Promise.all([getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO(), getLanguages()])}
           },
           {
             path:"locations",
