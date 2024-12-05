@@ -19,7 +19,7 @@ const CourseCreate = () => {
     const { t: translateWithoutPrefix } = useTranslation("translation");
 
     /*Loader */
-    const [schoolLocations, paymentPeriods, currencies] = useLoaderData();
+    const [schoolLocations, paymentPeriods, currencies, languages] = useLoaderData();
     paymentPeriods.map(period=>({value:period, label:period.label=translateWithoutPrefix(`enums.${period.value}`)}));
 
     /*Data*/
@@ -61,7 +61,6 @@ const CourseCreate = () => {
             values[i].lang = e;
         }
         setCourseName(values);
-        console.log(courseName)
     };
     const handleAddRow = () => {
         setCourseName([...courseName, { lang: '', name: '' }]);
@@ -117,14 +116,24 @@ const CourseCreate = () => {
                     {courseName.map((e, i) => (
                         <div className="form-children flexColumnItems" key={i}>
                             <div className="course-lng-name">
-                                <ReactFlagsSelect
+                                <Select
+                                    placeholder={t('select')}
+                                    options={languages || null }
+                                    onChange={(selected) => {
+                                        handleInputChange(selected, i)
+                                    }}
+                                    isDisabled={readOnly}
+                                    isSearchable={true}
+                                    className="select-component50"
+                                />
+                                {/*<ReactFlagsSelect
                                     placeholder={t('select')}
                                     selected={e.lang}
                                     onSelect={(code) => handleInputChange(code, i)}
                                     searchable
                                     disabled={readOnly}
                                     className="select-component50"
-                                />
+                                />*/}
                                 <input type="text"
                                        required
                                        value={e.name}
@@ -180,6 +189,7 @@ const CourseCreate = () => {
                                 isDisabled={readOnly}
                                 isSearchable={true}
                                 className="select-componentFull"
+                                maxMenuHeight={150}
                             />
                         </div>
                         <div className="form-children flexColumnItems">
