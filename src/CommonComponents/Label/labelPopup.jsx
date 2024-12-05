@@ -5,8 +5,12 @@ import ServiceClient from "../../ServiceClient";
 import {CSSTransition} from 'react-transition-group';
 import '../../transitions.css'
 import EventHandler from "../../EventHandler/eventhandler";
+import {useTranslation} from "react-i18next";
        
 const LabelPopup = ({labelTransition, closeModal, selection, selected, title, initialValues}) => {
+
+    /*Translation*/
+    const {t}=useTranslation();
 
     /*Fields */
     const [keyword, setKeyword]=useState();
@@ -33,11 +37,8 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
         if(keyword !== undefined && keyword !== ""){
 
             setLabels([]);
-            let dataPost={};
-            dataPost.keyword = keyword;
-            
-            let url='http://127.0.0.1:8000/api/searchLabel';
-            ServiceClient.post(url,dataPost).then((response)=>{
+
+            ServiceClient.searchLabel(keyword).then((response)=>{
                 if(response.status===200){
                     setLabels(response.data);
                     setLoader(false);
@@ -54,7 +55,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
             }).catch((error)=>{
                 setLabels([]);
                 //setServerError(error);
-                setErrors(error.response.message ? error.response.message :['Label does not exists']);
+                setErrors(error.response.message ? error.response.message :[t('labels.not-exist')]);
                 setLoader(false);
                 setBtnDisabled(false);
             })
@@ -89,11 +90,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
 
         if(keyword){
 
-            let dataPost={};
-            dataPost.keyword = keyword;
-            
-            let url='http://127.0.0.1:8000/api/createLabel';
-            ServiceClient.post(url,dataPost).then((response)=>{
+            ServiceClient.createLabel(keyword).then((response)=>{
                 if(response.status===200){
                     setSuccess(true);
                     setLoader(false);
@@ -112,7 +109,6 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
         }else{
             setBtnDisabled(false);
             setLoader(false);
-            console.log(errors,);
         }
     }
 
@@ -134,10 +130,10 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                         <IoMdCloseCircle className="closeModalIcon" onClick={() => closeModal(true)}/>
                     </div>
                     <div className="label-header">
-                        <h2>{title ? title : null}</h2>
+                        <h2>{t('labels.title')}</h2>
                     </div>
                     <div className="label-search flex">
-                        <input placeholder="Type to search..."
+                        <input placeholder={t('labels.placeholder')}
                                onChange={(e) => setKeyword(e.target.value)}
                                value={keyword}
                                disabled={btndisabled}
@@ -149,7 +145,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                                 disabled={btndisabled}
                                 onClick={() => Search()}
                             ><FaSearch className="btn-icon"/>
-                                Search
+                                {t('labels.search')}
                             </button>
                         </div>
                         <div className="mobileBtn">
@@ -176,7 +172,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
 
                         {errors.length ?
                             <div className="label-result label-missing flex" onClick={createLabel}>
-                                <h4>Label does not exist, but you can create this one.</h4>
+                                <h4>{t('labels.not-exist')}</h4>
                                 <div className="label-action"><FaPlus className="label-action-icon label-success"/>
                                 </div>
                             </div>
@@ -184,9 +180,9 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                         }
                     </div>
                     <div className="label-action-buttons flex">
-                        <div className="label-header"><h4>Selected: {selectedLabels.length}</h4></div>
+                        <div className="label-header"><h4>{t('labels.selected')}: {selectedLabels.length}</h4></div>
                         <button className="btn label-select-button"
-                                onClick={() => [selection(selectedLabels), closeModal(true)]}>Select<FaArrowRight
+                                onClick={() => [selection(selectedLabels), closeModal(true)]}>{t('labels.select')}<FaArrowRight
                             className="btn-icon"/></button>
                     </div>
                 </div>
