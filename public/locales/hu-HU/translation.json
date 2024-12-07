@@ -115,6 +115,14 @@
         "button": {
           "update": "Frissítés"
         }
+      },
+      "createUserRole": {
+        "title": "Jogosultság kezelés",
+        "role": "Szerepkör",
+        "create": "Létrehozás",
+        "validation": {
+          "required": "A szerepkör megadása kötelező"
+        }
       }
     }
   },
@@ -333,6 +341,22 @@
     "search": "Keresés",
     "selected": "Kiválasztva",
     "select": "Jóváhagyás"
+  },
+  "search": {
+    "search": "Keresés",
+    "result": "Keresési találatok",
+    "title": "Keressen kurzust",
+    "teacher_email": "Tanár email",
+    "country": "Ország",
+    "zip": "Irányítószám",
+    "city": "Város",
+    "street": "Utca",
+    "number": "Házszám",
+    "courseName": "Kurzus Neve",
+    "keywords": "Címkék",
+    "min/lesson": "Tanóra hossza (percben)",
+    "min_t_days": "Minimális tanítási alkalom",
+    "course_p/lesson": "Kurzus díja (tanóránként)"
   }
 
 }

@@ -115,6 +115,14 @@
         "button": {
           "update": "Update"
         }
+      },
+      "createUserRole": {
+        "title": "Permission Control",
+        "role": "Role",
+        "create": "Create",
+        "validation": {
+          "required": "The role field is required"
+        }
       }
     }
   },
@@ -333,5 +341,21 @@
     "search": "Search",
     "selected": "Selected",
     "select": "Select"
+  },
+  "search": {
+    "search": "Search",
+    "result": "Search Result",
+    "title": "Search Course",
+    "teacher_email": "Teacher Email",
+    "country": "Country",
+    "zip": "Zip Code",
+    "city": "City",
+    "street": "Street",
+    "number": "Number",
+    "courseName": "Course name",
+    "keywords": "Keywords",
+    "min/lesson": "Minutes/lesson",
+    "min_t_days": "Minimum Teaching Days",
+    "course_p/lesson": "Course Price / lesson"
   }
 }
