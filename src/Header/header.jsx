@@ -15,7 +15,7 @@ import {CSSTransition} from "react-transition-group";
 import "../transitions.css";
 import {IoIosNotifications} from "react-icons/io";
 import {RiGraduationCapFill} from "react-icons/ri";
-        
+import {MdLogout} from "react-icons/md";
 const Header = () => {
     /*Translation*/
     const [language, setLanguage] = useState("HU");
@@ -23,7 +23,6 @@ const Header = () => {
     const location=useLocation();
     const nodeRef=useRef(null);
     useEffect(() => {
-        console.log(language);
         i18next.changeLanguage(languageTransform(language)).then(()=>{
             /*document.title=t('document.title');
             console.log(location);*/
@@ -115,41 +114,54 @@ const Header = () => {
             </div>
 
             {name ? <div className="user-container">
-                <button className='headerBtn btn'>{username ? username : null}</button>
-                <button className='headerBtn btn' onClick={logout}>Logout</button>
+               <h4>{username || null}</h4>
             </div> : null}
-            {name ?
-                <div className="notification-container">
-                    <IoIosNotifications className={haveUnreadNotifications ? "header-icon red" : "header-icon"} onClick={(e)=>NotificationQuery(e)}/>
-                </div>
-            :null}
-            {notificationMenu && name ?
-            <div className="notification-menu">
-                <>
-                {getNotifications ? getNotifications.map(e=>
-                        <div key={e.id} className="notification-child" onScroll={(e)=>console.log(e)} onClick={()=> {
-                            navigate(`${e.url}`); setNotificationMenu(!notificationMenu); readNotification(e.id)
-                        }}>
-                            <div className="notification-child-icon-container">
-                                <RiGraduationCapFill className={ e.read === false ? "notification-child-icon yellow":"notification-child-icon"}/>
-                            </div>
-                            <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{e.message}</p>
-                        </div>
-                ):<div className="notification-menu-loader-container"><span className="loader notification"/><p>{t('header.notifications.loader')}</p></div>}
-                </>
-            </div>:null}
 
-            <div className="lng-select">
-                <ReactFlagsSelect
-                    countries={["HU", "GB"]}
-                    customLabels={{HU: "magyar", GB: "english"}}
-                    placeholder="Select Language"
-                    selected={language}
-                    onSelect={(code) => setLanguage(code)}
-                    className="menu-flags"
-                />
+            <div className="header-action-container">
+                {name? <MdLogout className="logout-icon" onClick={logout}/>:null}
+
+                {name ?
+                    <div className="notification-container">
+                        <IoIosNotifications className={haveUnreadNotifications ? "header-icon red" : "header-icon"}
+                                            onClick={(e) => NotificationQuery(e)}/>
+                    </div>
+                    : null}
+                {notificationMenu && name ?
+                    <div className="notification-menu">
+                        <>
+                            {getNotifications ? getNotifications.map(e =>
+                                <div key={e.id} className="notification-child" onScroll={(e) => console.log(e)}
+                                     onClick={() => {
+                                         navigate(`${e.url}`);
+                                         setNotificationMenu(!notificationMenu);
+                                         readNotification(e.id)
+                                     }}>
+                                    <div className="notification-child-icon-container">
+                                        <RiGraduationCapFill
+                                            className={e.read === false ? "notification-child-icon yellow" : "notification-child-icon"}/>
+                                    </div>
+                                    <div className="notification-messages">
+                                        <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{e.message}</p>
+                                        <p className="date">{new Date(e.created_at).getUTCFullYear()}-{new Date(e.created_at).getUTCMonth()}-{new Date(e.created_at).getUTCDate()} {new Date(e.created_at).getUTCHours()}:{new Date(e.created_at).getUTCMinutes()}</p>
+                                    </div>
+                                </div>
+                            ) : <div className="notification-menu-loader-container"><span
+                                className="loader notification"/><p>{t('header.notifications.loader')}</p></div>}
+                        </>
+                    </div> : null}
+
+                <div className="lng-select">
+                    <ReactFlagsSelect
+                        countries={["HU", "GB"]}
+                        customLabels={{HU: "magyar", GB: "english"}}
+                        placeholder="Select Language"
+                        selected={language}
+                        onSelect={(code) => setLanguage(code)}
+                        className="menu-flags"
+                    />
+                </div>
             </div>
-            {name ?
+            {false &&name ?
                 <div className="mobile-menu">
                     <FaListUl className='dropdown-btn' onClick={() => {
                         setMobileMenu(!showMobileMenu)
