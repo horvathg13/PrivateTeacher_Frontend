@@ -303,7 +303,6 @@ const router = createBrowserRouter([
             loader:({params})=>{return getRequestDetails(params)}
           },
         ]
-
       },
       {
         path:"messages",
@@ -314,6 +313,11 @@ const router = createBrowserRouter([
             path:"",
             element: <Messages/>,
             loader:()=>{return getMessages()}
+          },
+          {
+            path:"new",
+            element: <NewMessage/>,
+            loader:()=>{return getConnectedChildren()}
           }
         ]
       },
