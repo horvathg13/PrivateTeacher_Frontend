@@ -79,6 +79,7 @@ import success from "./SuccessPopup/success";
 import Message from "./Messages/message";
 import Messages from "./Messages/messages";
 import MessageDetails from "./Messages/messageDetails";
+import NewMessage from "./Messages/newMessage";
 
 function App() {
 
@@ -206,7 +207,7 @@ const router = createBrowserRouter([
           {
             path:"",
             element:<CourseInfo/>,
-            loader:({params})=>{return  Promise.all ([getCourseInfo(params), getCourseStatuses(),getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO()])}
+            loader:({params})=>{return  Promise.all ([getCourseInfo(params), getCourseStatuses(),getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO(),getLanguages()])}
           },
 
         ]
@@ -280,15 +281,9 @@ const router = createBrowserRouter([
             element:<SearchCourse/>
           },
           {
-            path:"teacher",
-            element:<SearchTeacher/>,
-
-          },
-          {
             path:"results",
             element:<SearchResult/>
           },
-
         ]
       },
       {
