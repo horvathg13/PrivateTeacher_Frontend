@@ -9,9 +9,13 @@ import {CSSTransition} from "react-transition-group";
 import '../../transitions.css';
 import Select from "react-select"
 import {userDataLoader} from "../../dataLoader";
+import {useTranslation} from "react-i18next";
 
         
 const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOptions}) => {
+
+    /*Translation*/
+    const {t}=useTranslation("translation", {keyPrefix:"users"});
 
     /*Form fields */
     const [ref_schools, setRefSchool]=useState();
@@ -35,26 +39,32 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOption
 
     const createRole=(e)=>{
         e.preventDefault();
-        setBtnDisabled(true);
-        setLoader(true);
-        setReadOnly(true);
+        setErrors([]);
+        if(roles){
+            setBtnDisabled(true);
+            setLoader(true);
+            setReadOnly(true);
 
-       ServiceClient.createUserRole(roles, userId).then((success)=>{
-            setSuccess(true);
-            setLoader(false);
-            setBtnDisabled(false);
-            setReadOnly(false);
-            setTimeout(()=>{
-                setSuccess(false);
-            },2000)
-            updateUserRoles(true);
-            closeModal(false);
-        }).catch((error)=>{
-            setServerError(error);
-            setLoader(false);
-            setBtnDisabled(false);
-            setReadOnly(false);
-        });
+            ServiceClient.createUserRole(roles, userId).then((success)=>{
+                setSuccess(true);
+                setLoader(false);
+                setBtnDisabled(false);
+                setReadOnly(false);
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
+                updateUserRoles(true);
+                closeModal(false);
+            }).catch((error)=>{
+                setServerError(error);
+                setLoader(false);
+                setBtnDisabled(false);
+                setReadOnly(false);
+            });
+        }else{
+            setErrors([t('user.createUserRole.validation.required')])
+        }
+
     }
     const nodeRef=useRef(null);
     return (
@@ -68,13 +78,13 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOption
         <div className="popup">
             <div className="createUserRole-main">
                 <div className="closeModalWhite"> <IoCloseCircle className="closeModalIcon" onClick={()=>closeModal(false)}/></div>
-                <div className="title"><h2>Permission Control</h2></div>
+                <div className="title"><h2>{t('user.createUserRole.title')}</h2></div>
                 <form onSubmit={(e)=>createRole(e)} className="FlexForm">
 
                     <div className="form-items flex">
 
                         <div className="form-children">
-                            <label>Role</label>
+                            <label>{t('user.createUserRole.role')}</label>
                             <div className="selectContainer createUserRoleSelect">
                                 <Select
                                     options={roleOptions}
@@ -91,7 +101,7 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOption
                         type='submit'
                         disabled={btndisabled}
                         className={btndisabled ? 'btn disabled':'btn formButton'}>
-                            Create <FaArrowCircleRight className='btn-icon'/>
+                            {t('user.createUserRole.create')} <FaArrowCircleRight className='btn-icon'/>
                         </button>:
                         <span className='loader schoolCreate'></span>
                     }
