@@ -260,6 +260,26 @@ class ServiceClient {
         });
     }
 
+    static searchCourse=(teacher_email, courseName, keywords, min_lesson, min_t_days, course_price, country, zip, city, street, number, sortData)=>{
+        return ServiceClient.post("http://127.0.0.1:8000/api/searchCourse", {teacher_email:teacher_email,
+            courseName:courseName, keywords:keywords, min_lesson:min_lesson, min_t_days:min_t_days, course_price:course_price,
+            country:country, zip:zip, city:city, street:street, number:number, sortData:sortData}).then((response)=>{
+            return response.data
+        });
+    }
+
+    static getChildRequests=(childId)=>{
+        return ServiceClient.get(`http://127.0.0.1:8000/api/getChildRequests/${childId}`).then((response)=>{
+            return response.data
+        })
+    }
+
+    static getMessageControl=(childId, requestId)=>{
+        return ServiceClient.get(`http://127.0.0.1:8000/api/getMessageControl/${childId}/${requestId}`).then((response)=> {
+            return response.data
+        })
+    }
+
 }
 
 export default ServiceClient
