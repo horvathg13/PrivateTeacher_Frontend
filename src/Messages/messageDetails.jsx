@@ -46,11 +46,10 @@ const MessageDetails = () => {
         ]).then(()=>{
             setSuccess(true);
             setTimeout(()=>{setSuccess(false)},1200)
-            setMessage("");
         }).catch(error=>{
             setErrors(error)
         });
-
+        setMessage('');
 
     }
     return (
@@ -80,7 +79,9 @@ const MessageDetails = () => {
                 )}
             </div>
             <div className="message-input">
-                <input value={message} onChange={(e)=>setMessage(e.target.value)}/>
+                <input value={message} onKeyDown={(e)=>{if(e.key==='Enter'){
+                    sendMessage(e);setMessage('')
+                }}} onChange={(e)=>setMessage(e.target.value)}/>
                 <div className="message-icon-container">
                     <FaLocationArrow  className="message-icon" onClick={(e)=>sendMessage(e)}/>
                 </div>
