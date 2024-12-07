@@ -18,7 +18,7 @@ import course from "./course";
 const CourseInfo = () => {
 
     /*Loader */
-    const [courseInfo, courseStatuses, schoolLocations, paymentPeriods, currencies] = useLoaderData();
+    const [courseInfo, courseStatuses, schoolLocations, paymentPeriods, currencies,languages] = useLoaderData();
 
     /*Data */
     const [courseName, setCourseName]=useState(courseInfo.name);
@@ -29,7 +29,6 @@ const CourseInfo = () => {
     const [labels, setLabels]=useState();
     const [location, setLocation]=useState({value:courseInfo.location.id, label:courseInfo.location.name});
     const [paymentPeriod, setPaymentPeriod]=useState(courseInfo.paymentPeriod.value);
-    console.log(courseInfo.paymentPeriod.label);
     const [currency, setCurrency]=useState(courseInfo.currency)
     const [courseStatus, setCourseStatus]=useState();
     
@@ -192,12 +191,15 @@ const CourseInfo = () => {
                         {courseName.map((e, i) => (
                             <div className="form-children flexColumnItems" key={i}>
                                 <div className="course-lng-name">
-                                    <ReactFlagsSelect
+                                    <Select
                                         placeholder={t('select')}
-                                        selected={e.lang}
-                                        onSelect={(code) => handleInputChange(code, i)}
-                                        searchable
-                                        disabled={readOnly}
+                                        options={languages || null }
+                                        value={{"value":e.lang, "label":e.lang}}
+                                        onChange={(selected) => {
+                                            handleInputChange(selected, i)
+                                        }}
+                                        isDisabled={readOnly}
+                                        isSearchable={true}
                                         className="select-component50"
                                     />
                                     <input type="text"
