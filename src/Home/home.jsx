@@ -43,9 +43,9 @@ const Home = () => {
     }
     useEffect(() => {
         if(!roles.length){
-            return ServiceClient.post("http://127.0.0.1:8000/api/getUserData").then((response)=>{
+             ServiceClient.post("http://127.0.0.1:8000/api/getUserData").then((response)=>{
                 hasAccess(menu,response.data.roles);
-            });
+             });
         }else{
             hasAccess(menu,roles);
         }
