@@ -58,7 +58,7 @@ const CourseCreate = () => {
         if (e.target?.name === 'name') {
             values[i].name = e.target.value;
         } else {
-            values[i].lang = e;
+            values[i].lang = e.value;
         }
         setCourseName(values);
     };
@@ -87,8 +87,7 @@ const CourseCreate = () => {
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
-            setBtnDisabled(false);
-
+            navigation("/course/list");
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -126,14 +125,6 @@ const CourseCreate = () => {
                                     isSearchable={true}
                                     className="select-component50"
                                 />
-                                {/*<ReactFlagsSelect
-                                    placeholder={t('select')}
-                                    selected={e.lang}
-                                    onSelect={(code) => handleInputChange(code, i)}
-                                    searchable
-                                    disabled={readOnly}
-                                    className="select-component50"
-                                />*/}
                                 <input type="text"
                                        required
                                        value={e.name}
