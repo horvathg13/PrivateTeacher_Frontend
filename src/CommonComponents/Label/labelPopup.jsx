@@ -34,24 +34,23 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
         if(errors.length){
             setErrors([]);
         }
-        if(keyword !== undefined && keyword !== ""){
+        if(keyword){
 
             setLabels([]);
 
-            ServiceClient.searchLabel(keyword).then((response)=>{
-                if(response.status===200){
-                    setLabels(response.data);
-                    setLoader(false);
-                    setBtnDisabled(false);
-                    setErrors([]);
-                    const selectedIndex = selectedLabels.findIndex(label => label.id === response.data.id);
+            ServiceClient.searchLabel(keyword).then((success)=>{
+                setLabels(success);
+                setLoader(false);
+                setBtnDisabled(false);
+                setErrors([]);
+                const selectedIndex = selectedLabels.findIndex(label => label.id === success.id);
 
-                    if(selectedIndex !== -1) {
-                        setCheck(true);
-                    }else{
-                        setCheck(false);
-                    }
+                if(selectedIndex !== -1) {
+                    setCheck(true);
+                }else{
+                    setCheck(false);
                 }
+
             }).catch((error)=>{
                 setLabels([]);
                 //setServerError(error);
@@ -122,9 +121,14 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
 
     const nodeRef = useRef(null);
     return (
-
         <CSSTransition nodeRef={nodeRef} in={labelTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
             <div className="popup" ref={nodeRef}>
+                <EventHandler
+                    success={success}
+                    errors={errors}
+                    serverError={serverError}
+                    closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
+                />
                 <div className="label-main">
                     <div className="label-close-button-container closeModal">
                         <IoMdCloseCircle className="closeModalIcon" onClick={() => closeModal(true)}/>
