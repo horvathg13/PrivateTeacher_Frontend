@@ -4,7 +4,7 @@ import SideMenu from "../CommonComponents/SideMenu/sidemenu";
 import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
 import TabMenu from "../CommonComponents/TabMenu/tabMenu";
 import {Outlet} from "react-router-dom";
-import {ComponentTitleContext, TabMenuContext} from "../Context/UserContext";
+import {ComponentTitleContext, TabMenuContext, UserContext} from "../Context/UserContext";
 
 const Message = () => {
     /*Translation*/
@@ -12,20 +12,32 @@ const Message = () => {
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
+    const {roles}=useContext(UserContext);
+
     useEffect(()=>{
-        setMenuItems([
-            {
-                "id":"1",
-                "name":t('TabMenu.list'),
-                "url":"/messages",
-                "end":true,
-            },
-            {
-                "id":"2",
-                "name":t('TabMenu.newMessage'),
-                "url":"/messages/new"
-            },
-        ]);
+        roles.some(e=>e !== 'Teacher')?
+            setMenuItems([
+                {
+                    "id":"1",
+                    "name":t('TabMenu.list'),
+                    "url":"/messages",
+                    "end":true,
+                },
+                {
+                    "id": "2",
+                    "name": t('TabMenu.newMessage'),
+                    "url": "/messages/new"
+                }
+
+            ]):
+            setMenuItems([
+                {
+                    "id":"1",
+                    "name":t('TabMenu.list'),
+                    "url":"/messages",
+                    "end":true,
+                },
+            ]);
         setBreadcrumbs([
             {
                 "id":"1",
