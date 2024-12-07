@@ -11,10 +11,15 @@ import { TabMenuContext, schoolYearDetailsContext } from "../Context/UserContext
 import Select from "../CommonComponents/Select/select";
 import LabelSelector from "../CommonComponents/Label/labelSelect";
 import SearchResult from "./searchResult";
+import {useTranslation} from "react-i18next";
         
 const SearchCourse = () => {
+
+    /*Translation*/
+    const {t}=useTranslation();
     
     /*Data */
+    const [teacherEmail, setTeacherEmail]=useState();
     const [courseName, setCourseName]=useState();
     const [courseSubject, setCourseSubject]=useState();
     const [minutesLesson, setMinutesLesson]=useState();
@@ -59,8 +64,8 @@ const SearchCourse = () => {
         setLoader(true);
         setBtnDisabled(true);
 
-        console.log(keywords, "key")
         let dataPost={};
+        dataPost.teacher_email=teacherEmail
         dataPost.courseName=courseName;
         dataPost.keywords=keywords;
         dataPost.min_lesson=minutesLesson;
@@ -73,17 +78,16 @@ const SearchCourse = () => {
         dataPost.number = schoolNumber;
         dataPost.sortData=sortData;
 
-        let url="http://127.0.0.1:8000/api/searchCourse";
+        ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
+            minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
+            schoolCity, schoolStreet,schoolNumber,sortData).then((success)=>{
 
-        ServiceClient.post(url, dataPost).then((response)=>{
-            if(response.status===200){
-                setLoader(false);
-                setBtnDisabled(false);
-                setResult(response.data);
-                setTitle('Search Result');
-                setTransitionProp(true);
+            setLoader(false);
+            setBtnDisabled(false);
+            setResult(success);
+            setTitle(t('search.result'));
+            setTransitionProp(true);
 
-            }
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -107,11 +111,18 @@ const SearchCourse = () => {
         />
         <div>
             
-            <div className="title"><h2>Search Cours</h2></div>
+            <div className="title"><h2>{t('search.title')}</h2></div>
                 <form onSubmit={(e)=>searchCourse(e)} className="FlexForm">
                     <div className="form-items">
                         <div className="form-children">
-                            <label>Country</label>
+                            <label>{t('search.teacher_email')}</label>
+                            <input type="email"
+                            onChange={(e)=>{setTeacherEmail(e.target.value)}}
+                            value={teacherEmail}/>
+                        </div>
+
+                        <div className="form-children">
+                            <label>{t('search.country')}</label>
                             <input type="text"
                             onChange={(e)=>{setSchoolCountry(e.target.value)}}
                             value={schoolCountry}/>
@@ -119,14 +130,14 @@ const SearchCourse = () => {
 
 
                         <div className="form-children">
-                            <label>Zip Code</label>
+                            <label>{t('search.zip')}</label>
                             <input type="number"
                             onChange={(e)=>{setSchoolZip(e.target.value)}}
                             value={schoolZip}/>
                         </div>
 
                         <div className="form-children">
-                            <label>City</label>
+                            <label>{t('search.city')}</label>
                             <input
                             type="text"
                             onChange={(e)=>{setSchoolCity(e.target.value)}}
@@ -134,7 +145,7 @@ const SearchCourse = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Street</label>
+                            <label>{t('search.street')}</label>
                             <input
                             type="text"
                             onChange={(e)=>{setSchoolStreet(e.target.value)}}
@@ -142,7 +153,7 @@ const SearchCourse = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Number</label>
+                            <label>{t('search.number')}</label>
                             <input
                             type="number"
                             onChange={(e)=>{setSchoolNumber(e.target.value)}}
@@ -150,14 +161,14 @@ const SearchCourse = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Course Name</label>
+                            <label>{t('search.courseName')}</label>
                             <input type="text"
                             onChange={(e)=>{setCourseName(e.target.value)}}
                             value={courseName}
                             readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
-                            <label>Keywords</label>
+                            <label>{t('search.keywords')}</label>
                             <LabelSelector
                             labelEmit={(data)=>setKeywords(data)}
                             disabled={readOnly}
@@ -165,7 +176,7 @@ const SearchCourse = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Minutes/lesson</label>
+                            <label>{t('search.min/lesson')}</label>
                             <input
                             type="number"
                             onChange={(e)=>{setMinutesLesson(e.target.value)}}
@@ -174,7 +185,7 @@ const SearchCourse = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Minimum Teaching Days</label>
+                            <label>{t('search.min_t_days')}</label>
                             <input
                             type="number"
                             onChange={(e)=>{setMinTeachingDay(e.target.value)}}
@@ -183,7 +194,7 @@ const SearchCourse = () => {
                         </div>
 
                         <div className="form-children">
-                            <label>Course Price / Lesson</label>
+                            <label>{t('search.course_p/lesson')}</label>
                             <input
                             type="number"
                             onChange={(e)=>{setCouresPricePerLesson(e.target.value)}}
@@ -197,7 +208,7 @@ const SearchCourse = () => {
                             type='submit'
                             disabled={btndisabled}
                             className={readOnly ? 'formBtnDisabled':'btn formButton' }>
-                            Search <FaArrowCircleRight  className='btn-icon'/>
+                                {t('search.search')} <FaArrowCircleRight  className='btn-icon'/>
                             </button>:
                             <span className='loader schoolDetails'></span>
                         }

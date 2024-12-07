@@ -16,15 +16,10 @@ const Search = () => {
         setMenuItems([
             {
                 "id":"1",
-                "name":"Course",
+                "name":t('componentTitles.search'),
                 "url":"",
                 "end":true,
-            },
-            {
-                "id":"2",
-                "name":"Teacher",
-                "url":"/search/teacher",
-            },
+            }
         ]);
         setBreadcrumbs([
             {
