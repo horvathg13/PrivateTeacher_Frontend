@@ -1,5 +1,6 @@
 :root{
-    --BackgroundColor: #f0f3ff;
+    /*--BackgroundColor: #f0f3ff;*/
+    --BackgroundColor:#f4f6f6;
     --PrimaryColor: #063e7a;
     --GreenColor: #4fba6a;
     --PurpleColor:#8882f2;
@@ -7,6 +8,7 @@
     --GreyColor:#7b98bc;
     --GreyTransparent:rgba(123, 152, 188, 0.11);
     --LightBlue:#49719f;
+    --NewLightBlue:#63b0f4;
     --NavBgLightBlue:#e4edf9;
     --LightBlueTransparent: rgba(41, 117, 200, 0.45);
     --DarkBlue:rgb(6, 59, 117);

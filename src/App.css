@@ -170,11 +170,13 @@ button{
   font-weight: 500;
 }
 .headerBtn:hover{
-  border-bottom: 3px solid var(--GreenColor);
+  border-bottom: 3px solid var(--NewLightBlue);
   border-radius: 0;
   transition: .4s ease-in-out;
 }
-
+.headerBtn .logout-icon{
+  font-size: 20px;
+}
 .btn{
   font-family: 'Poppins';
 }
@@ -842,6 +844,7 @@ form .roles-container.flex label {
 .label-main{
   max-width: 800px;
   height:calc(100% - 100px);
+  min-height: 700px;
   margin: 0 auto;
   background: var(--whiteColorDeam);
   border-radius: 10px;
@@ -1308,4 +1311,12 @@ form .roles-container.flex label {
   color: var(--ButtonBlue);
   transform: scale(1.2);
   cursor: pointer;
+}
+.addressee-selector-container{
+  width: 50%;
+  height: 200px;
+  margin: 0 auto;
+}
+.addressee-selector-container .addressee-child{
+  margin: 15px 0;
 }

@@ -19,7 +19,7 @@
     background-image: url("../assets/graduationhat.png");
     background-size: contain;
     transform: scaleX(-1);
-    background-color: var(--GreenColor);
+    background-color: var(--NewLightBlue);
     border-radius: 30%;
     margin: 5px;
 }
@@ -29,17 +29,36 @@
 }
 .main-container.flex .logo-container .app-title h1 {
     font-weight: 400;
-    color: var(--GreenColor);
+    color: var(--DarkBlue);
     letter-spacing: 1px;
 }
+.main-container.flex .logo-container:hover::after{
+    content: "";
+    width: 333px;
+    height: 4px;
+    display: block;
+    position: absolute;
+    top: 91px;
+    transform: translateX(0px) skewX(-45deg);
+    animation: 0.5s ease-in-out slideIn;
+    background: var(--ButtonBlue);
+}
 .main-container.flex .lng-select{
-    margin: 0 5px;
+    width: fit-content;
+    height: fit-content;
+    margin: 10px;
     padding: 0 10px;
 }
-
+.main-container.flex .user-container h4{
+    font-weight: normal;
+    letter-spacing: 1px;
+}
 @media only screen and (max-width: 1200px) {
     .main-container.flex .navbar, .main-container.flex .user-container {
         display: none;
+    }
+    .main-container.flex .logo-container:hover::after{
+        content: none;
     }
     .main-container.flex .mobile-menu .dropdown-btn {
         padding: 7px;
@@ -77,12 +96,27 @@
     }
 
 }
-
+.main-container .header-action-container{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.main-container .header-action-container .logout-icon{
+    font-size: 30px;
+    transition: .3s ease-in-out;
+    margin: 10px;
+}
+.main-container .header-action-container .logout-icon:hover{
+    color: var(--ButtonBlue);
+    cursor: pointer;
+}
 .main-container .notification-container{
     width: auto;
     min-width:40px;
-    height: auto;
+    height: fit-content;
     text-align: center;
+    margin: 10px;
 }
 .main-container .notification-container .header-icon{
     width: 100%;
@@ -131,10 +165,20 @@
 .main-container .notification-menu .notification-child .notification-child-icon-container .notification-child-icon.yellow{
    color: #f6a205;
 }
+.main-container .notification-menu .notification-child .notification-messages{
+    width: 100%;
+}
+.main-container .notification-menu .notification-child .notification-messages .date{
+    font-size: 10px;
+    margin-top: 0;
+    text-align: right;
+    padding: 5px;
+}
 .main-container .notification-menu .notification-child p{
     padding: 10px;
     font-size: 15px;
     margin: 10px;
+    margin-bottom: 0;
 }
 .main-container .notification-menu .notification-menu-loader-container{
     width:auto;
