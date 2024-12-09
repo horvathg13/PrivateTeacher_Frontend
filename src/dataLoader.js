@@ -38,7 +38,7 @@ export const getSchoolBreaks=(params)=>{
 }
 
 export const getCourses=()=>{
-    return ServiceClient.get(`http://127.0.0.1:8000/api/getCourses`).then((response)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getCourses/${null}`).then((response)=>{
         if(response.status===200){
             return response.data
         }
@@ -189,5 +189,13 @@ export const getMessageInfo=(params)=>{
 export const getLanguages=()=>{
     return ServiceClient.get("http://127.0.0.1:8000/api/getLanguages").then((response)=>{
         return response.data
+    })
+}
+
+export const getLocationCourses=(params)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getCourses/${params.locationId}`).then((response)=> {
+        if (response.status === 200) {
+            return response.data
+        }
     })
 }
