@@ -36,7 +36,7 @@ import {
   getRequestDetails,
   getChildCourses,
   getCourseProfile,
-  haveUnreadNotifications, getMessages, getMessageInfo, getLanguages
+  haveUnreadNotifications, getMessages, getMessageInfo, getLanguages, getLocationCourses
 } from './dataLoader';
 import User from './Users/user/user';
 import Users from './Users/users';
@@ -196,7 +196,12 @@ const router = createBrowserRouter([
             element: <Location/>,
             loader:({params})=>{return getCourseLocation(params)},
           },
-            //TODO: /course : a helyszínhez tartozó egyéb kurzusokat kellene kilistázni.
+          {
+            path:"courses",
+            element: <CoursesList/>,
+            loader:({params})=>{return getLocationCourses(params)},
+          },
+
         ]
       },
       {
