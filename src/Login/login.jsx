@@ -1,4 +1,4 @@
-import {useContext, useRef, useState,} from 'react';
+import {useContext, useEffect, useRef, useState,} from 'react';
 import './login.css';
 import { useNavigate } from "react-router-dom";
 import ServiceClient from '../ServiceClient'
@@ -40,6 +40,9 @@ const Login = () => {
         setLoader(true);
         setBtnDisable(true);
 
+        setServerError([]);
+        setErrors([]);
+
         if(email.length>0 && password.length>0){
             ServiceClient.login(email,password).then((success)=>{
                 setSuccess(true);
@@ -57,7 +60,6 @@ const Login = () => {
         }
     }
 
-    
     return (
         <>
            <div className="login-container flex">
