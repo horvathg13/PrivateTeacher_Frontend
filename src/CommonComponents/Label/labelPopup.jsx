@@ -123,12 +123,6 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
     return (
         <CSSTransition nodeRef={nodeRef} in={labelTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
             <div className="popup" ref={nodeRef}>
-                <EventHandler
-                    success={success}
-                    errors={errors}
-                    serverError={serverError}
-                    closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
-                />
                 <div className="label-main">
                     <div className="label-close-button-container closeModal">
                         <IoMdCloseCircle className="closeModalIcon" onClick={() => closeModal(true)}/>
