@@ -25,6 +25,11 @@ const ErrorHandle = ({error}) => {
             setErrorPopup(false);
         }
     }
+    useEffect(() => {
+        if(!Object.keys(error).length){
+            setErrorPopup(false);
+        }
+    }, [error]);
     return (
         <div className="errorComponent">
             { errorPopup ? <ErrorMessage message={message} messageArray={validator} closeModal={close}></ErrorMessage>:null}
