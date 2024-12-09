@@ -123,6 +123,9 @@
         "validation": {
           "required": "The role field is required"
         }
+      },
+      "validator": {
+        "samePsw": "Passwords does not match."
       }
     }
   },
@@ -261,6 +264,9 @@
     },
     "button": {
       "update": "Update"
+    },
+    "validator": {
+      "samePsw": "A megadott jelszavak nem egyeznek."
     }
   },
   "courseApply": {
@@ -332,7 +338,8 @@
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
-    "numberRange": "The given number range is incorrect: {{field}}"
+    "numberRange": "The given number range is incorrect: {{field}}",
+    "samePsw": "Passwords are not match."
   },
   "labels": {
     "not-exist": "Label does not exist, but you can create this one.",
