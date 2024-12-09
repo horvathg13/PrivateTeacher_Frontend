@@ -15,31 +15,20 @@ const LocationOutlet = () => {
     /*Translation*/
     const {t}=useTranslation();
     useEffect(()=>{
-        /*setMenuItems([
+        setMenuItems([
             {
                 "id":"1",
                 "name":t('TabMenu.info'),
-                "url":`/school/${schoolId}`,
+                "url":`/location/${locationId}`,
                 "end":true,
             },
             {
                 "id":"2",
-                "name":t('TabMenu.years'),
-                "url":`/school/${schoolId}/school-year-list`
-            },
-            {
-                "id":"3",
-                "name":t('TabMenu.locations'),
-                "url":`/school/${schoolId}/locations`
-            },
-            {
-                "id":"4",
-                "name":t('TabMenu.teachers'),
-                "url":`/school/${schoolId}/teachers`
+                "name":t('TabMenu.courses'),
+                "url":`/location/${locationId}/courses`
             }
-            /*TODO: Global student search*/
 
-        /*]);*/
+        ]);
         setBreadcrumbs([
             {
                 "id":"1",
@@ -51,7 +40,7 @@ const LocationOutlet = () => {
             {
                 "id":"2",
                 "name":t('breadcrumbs.location'),
-                "url":"/schools",
+                "url":"/course/locations",
                 "icon":"IoIosArrowForward",
                 "end":true,
             },
