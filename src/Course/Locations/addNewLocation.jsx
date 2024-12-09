@@ -41,10 +41,11 @@ const AddNewLocation = () => {
     /*Methods */
 
     const createLocation=(e)=>{
-
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
+        setErrors([]);
+        setServerError([]);
 
         ServiceClient.createLocation(name, country, city, zip, street, number, floor, door, null, selectedCourseId || null).then((success) => {
             setLoader(false);

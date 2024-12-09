@@ -70,10 +70,12 @@ const CourseCreate = () => {
        setCourseName(find);
     }
     const Create=(e)=>{
-        
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
+        setErrors([]);
+        setServerError([]);
+
         if(courseName.lang=== '' || courseName.name=== ''){
             return [
                 setErrors([t('validate.lng-required')]),

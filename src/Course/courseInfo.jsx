@@ -97,11 +97,13 @@ const CourseInfo = () => {
     }
 
     const updateCourseInfos=(e)=>{
-
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
         setReadOnly(true);
+        setErrors([]);
+        setServerError([]);
+
         ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency).then((success)=>{
             setLoader(false);
             setSuccess(true);
@@ -121,6 +123,8 @@ const CourseInfo = () => {
     const remove=()=>{
         setDeleteLoader(true);
         setBtnDisabled(true);
+        setErrors([]);
+        setServerError([]);
 
         ServiceClient.removeCourse(courseId).then((success)=>{
             setDeleteLoader(false);

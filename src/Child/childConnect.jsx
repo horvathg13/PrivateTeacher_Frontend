@@ -31,7 +31,8 @@ const ChildConnect = () => {
         setLoader(true);
         setBtnDisable(true);
         setReadOnly(true);
-
+        setErrors([]);
+        setServerError([]);
         if(username.length>0 && password.length>0){
             let url='http://127.0.0.1:8000/api/connectToChild';
             let dataPost={};

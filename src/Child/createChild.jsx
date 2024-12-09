@@ -37,11 +37,10 @@ const CreateChild = () => {
         setBtnDisabled(true);
         setLoader(true);
 
-        if(errors.length || serverError.length){
-            setErrors([]);
-            setServerError([]);
-        }
-        if(password != cpassword){
+        setErrors([]);
+        setServerError([]);
+
+        if(password !== cpassword){
             setCPasswordError(true);
             setPasswordError(true);
             setErrors(['Passwords does not match']);

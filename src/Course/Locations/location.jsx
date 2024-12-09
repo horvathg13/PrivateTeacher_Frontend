@@ -83,6 +83,8 @@ const Location = () => {
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
+        setErrors([]);
+        setServerError([]);
 
         ServiceClient.createLocation(name,country,city,zip,street,number,floor,door,locationId).then((success)=>{
             setLoader(false);
@@ -101,8 +103,8 @@ const Location = () => {
 
     const removeLocation=()=>{
         setDeleteLoader(true);
-        let dataPost={};
-        dataPost.locationId=locationId;
+        setErrors([]);
+        setServerError([]);
 
         ServiceClient.removeSchoolLocation(locationId).then((success)=>{
             setDeleteLoader(false);

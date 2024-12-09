@@ -60,6 +60,9 @@ const RequestDetails = () => {
         setAcceptLoader(true)
         setBtnDisabled(true)
 
+        setErrors([]);
+        setServerError([]);
+
         ServiceClient.acceptCourseRequest(requestId,message).then((success)=>{
             setSuccess(true);
             setTimeout(()=>{
@@ -75,6 +78,9 @@ const RequestDetails = () => {
     const reject=()=>{
         setRejectLoader(true)
         setBtnDisabled(true)
+
+        setErrors([]);
+        setServerError([]);
 
         ServiceClient.rejectCourseRequest(requestId,message).then((success)=>{
             setSuccess(true);

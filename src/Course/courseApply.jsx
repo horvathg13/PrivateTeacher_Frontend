@@ -41,6 +41,8 @@ const CourseApply = () => {
         e.preventDefault();
         setReadOnly(true);
         setBtnDisabled(true);
+        setErrors([]);
+        setServerError([]);
 
         if(selectedChild.value){
             ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice).then((success)=>{

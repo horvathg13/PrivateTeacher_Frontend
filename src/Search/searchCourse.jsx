@@ -63,20 +63,8 @@ const SearchCourse = () => {
         e.preventDefault();
         setLoader(true);
         setBtnDisabled(true);
-
-        let dataPost={};
-        dataPost.teacher_email=teacherEmail
-        dataPost.courseName=courseName;
-        dataPost.keywords=keywords;
-        dataPost.min_lesson=minutesLesson;
-        dataPost.min_t_days=minTeachingDay;
-        dataPost.course_price=couresPricePerLesson;
-        dataPost.country = schoolCountry;
-        dataPost.zip = schoolZip;
-        dataPost.city = schoolCity;
-        dataPost.street = schoolStreet;
-        dataPost.number = schoolNumber;
-        dataPost.sortData=sortData;
+        setErrors([]);
+        setServerError([]);
 
         ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
             minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,

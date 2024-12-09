@@ -58,7 +58,8 @@ const ChildInfo = () => {
 
         setBtnDisabled(true);
         setLoader(true);
-
+        setErrors([]);
+        setServerError([]);
         if(password && password !== cpassword){
             setCPasswordError(true);
             setPasswordError(true);

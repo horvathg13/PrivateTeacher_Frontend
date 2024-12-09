@@ -40,6 +40,7 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOption
     const createRole=(e)=>{
         e.preventDefault();
         setErrors([]);
+        setServerError([]);
         if(roles){
             setBtnDisabled(true);
             setLoader(true);

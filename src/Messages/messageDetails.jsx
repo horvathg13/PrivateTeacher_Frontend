@@ -37,16 +37,14 @@ const MessageDetails = () => {
     }, [messageLoader]);
     const sendMessage=(e)=>{
         e.preventDefault();
-
+        setErrors([]);
+        setServerError([]);
         Promise.all([
-            ServiceClient.sendMessage(id,message, childId[0], teacherId[0]),
+            ServiceClient.sendMessage(id,message, childId[0], teacherId[0]).catch(error=>setServerError(error)),
             ServiceClient.getMessageInfo(id).then((success)=>{
                 setMessageData(success)
-            })
-        ]).then(()=>{
-            setSuccess(true);
-            setTimeout(()=>{setSuccess(false)},1200)
-        }).catch(error=>{
+            }).catch(error=>setServerError(error))
+        ]).catch(error=>{
             setErrors(error)
         });
         setMessage('');

@@ -4,9 +4,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import ServiceClient from '../ServiceClient';
+import {useTranslation} from "react-i18next";
 
         
 const UserCreate = () => {
+
+    /*Translation*/
+    const {t}=useTranslation();
     /*Form fields*/
     const [fname, setFname]=useState('');
     const [lname, setLname]=useState('');
@@ -36,14 +40,13 @@ const UserCreate = () => {
         setBtnDisabled(true);
         setLoader(true);
 
-        if(errors.length || serverError.length){
-            setErrors([]);
-            setServerError([]);
-        }
-        if(password != cpassword){
+        setErrors([]);
+        setServerError([]);
+
+        if(password !== cpassword){
             setCPasswordError(true);
             setPasswordError(true);
-            setErrors(['Passwords does not match']);
+            setErrors([t('validator.samePsw')]);
             setBtnDisabled(false);
             setLoader(false);
             return
@@ -68,15 +71,13 @@ const UserCreate = () => {
     }
     return (
         <>
-       <EventHandler 
-        success={success} 
-        errors={errors} 
-        serverError={serverError} 
-        closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-                  
+       <EventHandler
+        success={success}
+        errors={errors}
+        serverError={serverError}
+        closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
+       />
         <div>
-            
-           
             {!generatedLink ? 
             <form className="FlexForm" onSubmit={(e)=>createUser(e)}>
                 <div className="title"><h2>User Creation</h2></div>
@@ -116,8 +117,6 @@ const UserCreate = () => {
             </div>}
         </div>
         </>
-    
-        
     );
 };
 export default UserCreate;

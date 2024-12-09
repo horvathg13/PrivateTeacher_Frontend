@@ -43,19 +43,18 @@ const Register = () => {
         setBtnDisabled(true);
         setLoader(true);
 
-        if(errors.length || serverError.length){
-            setErrors([]);
-            setServerError([]);
-        }
-        if(password != cpassword){
+        setErrors([]);
+        setServerError([]);
+
+        if(password !== cpassword){
             setCPasswordError(true);
             setPasswordError(true);
-            setErrors(['Passwords does not match']);
+            setErrors([t('validator.samePsw')]);
             setBtnDisabled(false);
             setLoader(false);
             return
         }
-        if(passwordError==true & cpasswordError==true){
+        if(passwordError===true && cpasswordError===true){
             setCPasswordError(false);
             setPasswordError(false);
         }

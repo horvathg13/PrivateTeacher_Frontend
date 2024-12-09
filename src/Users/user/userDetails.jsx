@@ -85,25 +85,17 @@ const UserDetails = () => {
         
     ]
     /*methods: */
-    /*const functionControl=(name)=>{
-        if(name === 'ban'){
-            updateUser();
-            setTransitionsProp(false);
-        }else{
-            setShowAreYouSure(false);
-            setTransitionsProp(false);
-        }
-    }*/
     const updateUser =(e)=>{
         e.preventDefault()
 
         setBtnDisabled(true);
         setLoader(true);
-
-        if(password != cpassword){
+        setErrors([]);
+        setServerError([]);
+        if(password !== cpassword){
             setCPasswordError(true);
             setPasswordError(true);
-            setErrors(['Passwords does not match']);
+            setErrors([t("validator.samePsw")]);
             setBtnDisabled(false);
             setLoader(false);
             return
