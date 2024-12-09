@@ -43,25 +43,16 @@ const CreateChild = () => {
         if(password !== cpassword){
             setCPasswordError(true);
             setPasswordError(true);
-            setErrors(['Passwords does not match']);
+            setErrors([t('validator.samePsw')]);
             setBtnDisabled(false);
             setLoader(false);
             return
         }
-        if(passwordError==true & cpasswordError==true){
+        if(passwordError===true && cpasswordError===true){
             setCPasswordError(false);
             setPasswordError(false);
         }
-
-        let url='http://127.0.0.1:8000/api/createChild';
-        let dataPost={};
-        dataPost.fname=fname;
-        dataPost.lname=lname;
-        dataPost.username=username;
-        dataPost.birthday=birthday;
-        dataPost.psw=password;
-
-        ServiceClient.post(url,dataPost).then((response)=>{
+        ServiceClient.createChild(fname, lname, username, birthday, password).then((response)=>{
             if(response.status===200){
                 setSuccess(true);
                 setLoader(false);
