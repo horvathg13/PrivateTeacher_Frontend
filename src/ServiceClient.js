@@ -61,8 +61,8 @@ class ServiceClient {
             return response.data
         })
     }
-    static resetPassword(userId, password){
-        return this.post("http://127.0.0.1:8000/api/resetPassword",{userId:userId, psw:password}).then((response)=>{
+    static resetPassword(password, token){
+        return this.post("http://127.0.0.1:8000/api/resetPassword",{psw:password, token:token}).then((response)=>{
             return response.data
         })
     }
@@ -262,7 +262,7 @@ class ServiceClient {
 
     static searchCourse=(teacher_email, courseName, keywords, min_lesson, min_t_days, course_price, country, zip, city, street, number, sortData)=>{
         return ServiceClient.post("http://127.0.0.1:8000/api/searchCourse", {teacher_email:teacher_email,
-            courseName:courseName, keywords:keywords, min_lesson:min_lesson, min_t_days:min_t_days, course_price:course_price,
+            name:courseName, keywords:keywords, min_lesson:min_lesson, min_t_days:min_t_days, course_price:course_price,
             country:country, zip:zip, city:city, street:street, number:number, sortData:sortData}).then((response)=>{
             return response.data
         });
@@ -279,7 +279,11 @@ class ServiceClient {
             return response.data
         })
     }
-
+    static createChild=(fname, lname, username,birthday,password)=>{
+        return ServiceClient.post(`http://127.0.0.1:8000/api/createChild`, {fname:fname, lname:lname, username:username, birthday:birthday, psw:password}).then((response)=> {
+            return response.data
+        })
+    }
 }
 
 export default ServiceClient
