@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import EventHandler from "../EventHandler/eventhandler";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {useLoaderData, useNavigate, useParams} from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
 import ServiceClient from "../ServiceClient";
 import { UserContext } from "../Context/UserContext";
@@ -12,7 +12,10 @@ const GeneratedUser = () => {
 
     /*Translation*/
     const {t}=useTranslation();
-    
+
+    /*Data*/
+    const {token}=useParams();
+
     /*Form fields*/
     const [password, setPassword]=useState('');
     const [passwordError, setPasswordError]=useState(false);
@@ -41,14 +44,13 @@ const GeneratedUser = () => {
         setLoader(true);
         setBtnDisabled(true);
 
-        if(errors.length || serverError.length){
-            setErrors([]);
-            setServerError([]);
-        }
-        if(password != cpassword){
+        setErrors([]);
+        setServerError([]);
+
+        if(password !== cpassword){
             setCPasswordError(true);
             setPasswordError(true);
-            setErrors(['Passwords does not match']);
+            setErrors([t('validator.samePsw')]);
             setBtnDisabled(false);
             setLoader(false);
             return
@@ -57,7 +59,7 @@ const GeneratedUser = () => {
             setCPasswordError(false);
             setPasswordError(false);
         }
-        ServiceClient.resetPassword(userData.id, password).then(()=>{
+        ServiceClient.resetPassword(password, token).then(()=>{
             setSuccess(true);
             ServiceClient.login(userData.email, password).then((success)=>{
                 setSuccess(true);
