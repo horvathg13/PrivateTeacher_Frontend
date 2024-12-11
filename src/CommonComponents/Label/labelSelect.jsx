@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import LabelPopup from "./labelPopup";
-import { FaPlus } from "react-icons/fa";
+import {FaMinusSquare, FaPlus} from "react-icons/fa";
 
         
 const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, initial}) => {
     
     const [labels, setLabels]=useState();
     const [labelTransition, setLabelTransition]=useState();
+    const [removeItem, setRemoveItem]=useState();
 
     useEffect(()=>{
         if(transition){
@@ -26,6 +27,24 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, 
             setLabels(initial);
         }
     },[initial])
+
+    /*Methods*/
+
+    const renderLabels=(labels)=>{
+        if(labels){
+            return labels.map(e=>(
+                <span>
+                    {e.label} <FaMinusSquare className="label-icon red" onClick={()=> {
+                    labelFilter(e)
+                }}/> {", "}
+                </span>
+            ))
+        }
+    }
+    const labelFilter=(e)=>{
+        const newLabels=labels.filter(l=>l.id !== e.id)
+        setLabels(newLabels);
+    }
     return (
 
         <div className="selector-main">
@@ -37,8 +56,9 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, 
             selection={(data)=>setLabels(data)}
             selected={labels}
             initialValues={initial}
-            title={popUpTitle}/> : <input className="selector-input" type="text" value={labels?.map(e=>e.label)}readOnly
-            />}
+            remove={removeItem}
+            title={popUpTitle}/> : <div className="selector-input">{renderLabels(labels)}</div>
+            }
             <FaPlus className="selector-icon" onClick={()=> {
                 if(disabled === false){setLabelTransition(true)}
             }}/>
