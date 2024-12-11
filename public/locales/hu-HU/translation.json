@@ -343,6 +343,7 @@
   },
   "labels": {
     "not-exist": "A keresett címke nem található, de létrehozhatja.",
+    "not-exist-for-parents": "A keresett címke nem található.",
     "title": "Adjon hozzá címkét",
     "placeholder": "Kezdjen el gépelni...",
     "search": "Keresés",
@@ -364,6 +365,11 @@
     "min/lesson": "Tanóra hossza (percben)",
     "min_t_days": "Minimális tanítási alkalom",
     "course_p/lesson": "Kurzus díja (tanóránként)"
+  },
+  "areYouSure": {
+    "yes": "Igen",
+    "no": "Nem",
+    "title": "Biztosan végrehajtja a műveletet?"
   }
 
 }

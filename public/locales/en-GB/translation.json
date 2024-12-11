@@ -343,6 +343,7 @@
   },
   "labels": {
     "not-exist": "Label does not exist, but you can create this one.",
+    "not-exist-for-parents": "Label does not exist.",
     "title": "Add labels",
     "placeholder": "Type to search...",
     "search": "Search",
@@ -364,5 +365,10 @@
     "min/lesson": "Minutes/lesson",
     "min_t_days": "Minimum Teaching Days",
     "course_p/lesson": "Course Price / lesson"
+  },
+  "areYouSure": {
+    "yes": "Yes",
+    "no": "No",
+    "title": "Are you sure?"
   }
 }
