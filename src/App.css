@@ -833,6 +833,10 @@ form .roles-container.flex label {
 /*Label Component*/
 .selector-input{
   height: 25px !important;
+  background: white;
+  padding: 5px;
+  overflow: auto;
+  border-radius: 5px;
 }
 .label-close-button-container{
   width: auto;
@@ -944,9 +948,11 @@ form .roles-container.flex label {
 }
 .label-missing{
   border: 2px solid var(--RedColor);
+  cursor: pointer;
 }
 .label-missing:hover{
   border: 2px solid var(--GreenColor);
+  cursor: pointer;
 }
 
 .attach:hover{
@@ -960,8 +966,8 @@ form .roles-container.flex label {
   /*width: 66%;*/
   height: fit-content;
   width: 100%;
+  display: flex;
 }
-
 .selector-main .selector-input{
   width:95% !important;
   border: 1px solid grey;
@@ -970,6 +976,14 @@ form .roles-container.flex label {
   margin: 0 10px;
   font-size: 23px;
   color: var(--GreenColor);
+  cursor: pointer;
+}
+.label-icon{
+  font-size: 15px;
+  transition: .3s ease-in-out;
+}
+.label-icon:hover{
+  transform: scale(1.2);
   cursor: pointer;
 }
 /*Search*/

@@ -96,6 +96,11 @@
     }
 
 }
+@media screen and (max-width: 470px) {
+    .logo-container .app-title{
+        display: none !important;
+    }
+}
 .main-container .header-action-container{
     width: 300px;
     display: flex;
@@ -134,7 +139,7 @@
 .main-container .notification-menu{
     position: absolute;
     top: 90px;
-    left: 60%;
+    right: 5%;
     width: 400px;
     height: 400px;
     background: white;
@@ -199,15 +204,9 @@
         overflow: hidden;
     }
 }
-@media only screen and (max-width: 1200px) {
-    .main-container .notification-menu{
-        left: 25% !important;
-    };
-}
 @media only screen and (max-width: 550px) {
     .main-container .notification-menu {
-        margin: 10px;
-        left: 0 !important;
+        width: 250px;
     }
 }
 @media only screen and (min-width: 1200px) {
