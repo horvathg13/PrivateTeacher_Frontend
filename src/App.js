@@ -101,6 +101,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement:<RouteBoundary/>,
     children: [
       {
         path: "",
@@ -258,7 +259,7 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path:"/child/:childId",
+        path:"child/:childId",
         element:<ChildDetails/>,
         loader:({params})=>{return getChildInfo(params)},
         errorElement:<RouteBoundary/>,
@@ -279,6 +280,7 @@ const router = createBrowserRouter([
       {
         path:"search",
         element:<Search/>,
+        errorElement:<RouteBoundary/>,
         children:
         [
           {
