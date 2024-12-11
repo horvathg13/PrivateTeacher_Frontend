@@ -7,21 +7,51 @@ const RouteBoundary = () => {
     const error = useRouteError();
     const navigate=useNavigate();
 
-    return(
-      <>
-          <div className="boundary-back-container">
-              <FaRegArrowAltCircleLeft className='icon' onClick={()=>navigate(-1)}/>
-          </div>
-          <div className="boundary-main-container">
-              <div className="error-boundary-img-container">
-                  <img src="/error-boundary-img.jpg"/>
-              </div>
-              <div className="error-message-container">
-                  <h3>{error.response?.data.message ||error?.response?.data}</h3>
-              </div>
-          </div>
-      </>
-    );
+    if (isRouteErrorResponse(error)) {
+        return (
+        <>
+            <div className="boundary-back-container">
+                <FaRegArrowAltCircleLeft className='icon' onClick={() => navigate(-1)}/>
+            </div>
+            <div className="boundary-main-container">
+                <div className="error-boundary-img-container">
+                    <img src="/error-boundary-img.jpg"/>
+                </div>
+                <div className="error-message-container">
+                    <h1>Oops!</h1>
+                    <h2>{error.status}</h2>
+                    <p>{error.statusText}</p>
+                    {error.data?.message && <p>{error.data.message}</p>}
+                </div>
+            </div>
+        </>
+        );
+    } else {
+
+
+        return (
+            <>
+                <div className="boundary-back-container">
+                <FaRegArrowAltCircleLeft className='icon' onClick={() => navigate(-1)}/>
+                </div>
+                <div className="boundary-main-container">
+                    <div className="error-boundary-img-container">
+                        <img src="/error-boundary-img.jpg"/>
+                    </div>
+                    <div className="error-message-container">
+                        {error.response?.data.validatorResponse ?
+                            error.response?.data.validatorResponse.map(e =>
+                                <h3>{e}</h3>
+                            )
+                            :
+                            <h3>{error.response?.data?.message || error?.response?.data}</h3>
+                        }
+                </div>
+
+            </div>
+    </>
+        );
+    }
 };
 
 export default RouteBoundary;
