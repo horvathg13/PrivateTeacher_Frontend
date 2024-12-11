@@ -90,16 +90,12 @@ export const getSchoolYearStatuses=()=>{
         if(response.status===200){
            return response.data;
         }
-    }).catch((error)=>{
-        console.log(error);
-    })
+    });
 }
 export const getCourseLocations=()=>{
     return ServiceClient.post("http://127.0.0.1:8000/api/getLocations",).then((response)=>{
         return response.data
-    }).catch((error)=>{
-        console.log(error);
-    })
+    });
 }
 export const getPaymentPeriods=()=>{
     return ServiceClient.post("http://127.0.0.1:8000/api/getPaymentPeriods").then((response)=>{
@@ -119,9 +115,7 @@ export const getSchoolTeachers=(params)=>{
 export const getCourseLocation=(params)=>{
     return ServiceClient.get(`http://127.0.0.1:8000/api/getLocationInfo/${params.locationId}`,).then((response)=>{
         return response.data
-    }).catch((error)=>{
-        console.log(error);
-    })
+    });
 }
 export const getTeachingDayNames=()=>{
     return ServiceClient.post("http://127.0.0.1:8000/api/getTeachingDayNames").then((response)=>{
@@ -181,7 +175,7 @@ export const getMessages=()=>{
 }
 
 export const getMessageInfo=(params)=>{
-    return ServiceClient.get(`http://127.0.0.1:8000/api/getMessageInfo/${params.id}`).then((response)=>{
+    return ServiceClient.get(`http://127.0.0.1:8000/api/getMessageInfo/${params.id}/${null}`).then((response)=>{
         return response.data
     })
 }
