@@ -243,13 +243,13 @@ class ServiceClient {
         })
     }
     static getMessageInfo=(Id)=>{
-        return ServiceClient.get(`http://127.0.0.1:8000/api/getMessageInfo/${Id}`).then((response)=>{
+        return ServiceClient.get(`http://127.0.0.1:8000/api/getMessageInfo/${Id}/${null}`).then((response)=>{
             return response.data
         })
     }
 
     static searchLabel=(keyword)=>{
-        return ServiceClient.post("http://127.0.0.1:8000/api/searchLabel", {keyword:keyword}).then((response)=>{
+        return ServiceClient.post("http://127.0.0.1:8000/api/searchLabel", {keyword:keyword || null}).then((response)=>{
             return response.data
         });
     }
@@ -281,6 +281,22 @@ class ServiceClient {
     }
     static createChild=(fname, lname, username,birthday,password)=>{
         return ServiceClient.post(`http://127.0.0.1:8000/api/createChild`, {fname:fname, lname:lname, username:username, birthday:birthday, psw:password}).then((response)=> {
+            return response.data
+        })
+    }
+    static connectToChild=(username, password)=>{
+        return ServiceClient.post('http://127.0.0.1:8000/api/connectToChild', {username:username, psw:password}).then(response=>{
+            return response.data
+        })
+    }
+    static removeUserRole=(userId, roleId)=>{
+        return ServiceClient.post(`http://127.0.0.1:8000/api/removeUserRole/${userId}/${roleId}`).then((response)=>{
+            return response.data
+        })
+    }
+
+    static getUserRoles=(userId)=>{
+        return ServiceClient.post(`http://127.0.0.1:8000/api/getUserRoles/${userId}`).then((response)=>{
             return response.data
         })
     }

@@ -52,20 +52,23 @@ const CreateChild = () => {
             setCPasswordError(false);
             setPasswordError(false);
         }
-        ServiceClient.createChild(fname, lname, username, birthday, password).then((response)=>{
-            if(response.status===200){
-                setSuccess(true);
+        Promise.all([
+            ServiceClient.createChild(fname, lname, username, birthday, password).catch((error)=>{
+                setServerError(error);
+                setBtnDisabled(false);
                 setLoader(false);
-                setTimeout(()=>{
-                    setSuccess(false);
-                    setBtnDisabled(false);
-                },2000)
-                formClear();
-            }
-        }).catch((error)=>{
-            setServerError(error);
-            setBtnDisabled(false);
+            }),
+            ServiceClient.connectToChild(username,password).catch((error)=>{
+                setServerError(error);
+                setLoader(false);
+            })
+        ]).then(()=>{
+            formClear();
+            setSuccess(true);
             setLoader(false);
+            setTimeout(()=>{
+                navigate('/child');
+            },1000)
         })
     }
 

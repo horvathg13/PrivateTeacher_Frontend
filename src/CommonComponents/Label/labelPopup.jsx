@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import { FaArrowRight, FaCheck, FaMinusCircle, FaPlus, FaPlusCircle, FaSearch } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import ServiceClient from "../../ServiceClient";
@@ -6,8 +6,9 @@ import {CSSTransition} from 'react-transition-group';
 import '../../transitions.css'
 import EventHandler from "../../EventHandler/eventhandler";
 import {useTranslation} from "react-i18next";
+import {UserContext} from "../../Context/UserContext";
        
-const LabelPopup = ({labelTransition, closeModal, selection, selected, title, initialValues}) => {
+const LabelPopup = ({labelTransition, closeModal, selection, selected, title, initialValues, remove}) => {
 
     /*Translation*/
     const {t}=useTranslation();
@@ -27,6 +28,10 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
     const [success, setSuccess]=useState(false);
     const [serverError, setServerError]=useState([]);
 
+    /*Context*/
+    const {roles}=useContext(UserContext);
+    const isTeacher = roles.some(r=>r === 'Teacher');
+
     /*Methods: */
     const Search=()=>{
         setBtnDisabled(true);
@@ -34,34 +39,29 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
         if(errors.length){
             setErrors([]);
         }
-        if(keyword){
+        setLabels([]);
 
-            setLabels([]);
-
-            ServiceClient.searchLabel(keyword).then((success)=>{
-                setLabels(success);
-                setLoader(false);
-                setBtnDisabled(false);
-                setErrors([]);
-                const selectedIndex = selectedLabels.findIndex(label => label.id === success.id);
-
-                if(selectedIndex !== -1) {
-                    setCheck(true);
-                }else{
-                    setCheck(false);
-                }
-
-            }).catch((error)=>{
-                setLabels([]);
-                //setServerError(error);
-                setErrors(error.response.message ? error.response.message :[t('labels.not-exist')]);
-                setLoader(false);
-                setBtnDisabled(false);
-            })
-        }else{
-            setBtnDisabled(false);
+        ServiceClient.searchLabel(keyword).then((success)=>{
+            setLabels(success);
             setLoader(false);
-        }
+            setBtnDisabled(false);
+            setErrors([]);
+            const selectedIndex = selectedLabels.findIndex(label => label.id === success.id);
+
+            if(selectedIndex !== -1) {
+                setCheck(true);
+            }else{
+                setCheck(false);
+            }
+
+        }).catch((error)=>{
+            setLabels([]);
+            //setServerError(error);
+            setErrors(error.response.message ? error.response.message :[t('labels.not-exist')]);
+            setLoader(false);
+            setBtnDisabled(false);
+        })
+
     }
     const Select=(e)=>{
        
@@ -88,18 +88,14 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
         setLoader(true);
 
         if(keyword){
-
             ServiceClient.createLabel(keyword).then((response)=>{
-                if(response.status===200){
-                    setSuccess(true);
-                    setLoader(false);
-                    setBtnDisabled(false);
-                    Search();
-                    setTimeout(()=>{
-                        setSuccess(false);
-                    },2000)
-                    
-                }
+                setSuccess(true);
+                setLoader(false);
+                setBtnDisabled(false);
+                Search();
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
             }).catch((error)=>{
                 setServerError(error);
                 setLoader(false);
@@ -168,15 +164,21 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                             <span className='loader add-label'></span>
                         }
 
-                        {errors.length ?
-                            <div className="label-result label-missing flex" onClick={createLabel}>
-                                <h4>{t('labels.not-exist')}</h4>
-                                <div className="label-action"><FaPlus className="label-action-icon label-success"/>
-                                </div>
+                    {errors.length && isTeacher ?
+                        <div className="label-result label-missing flex" onClick={createLabel}>
+                            <h4>{t('labels.not-exist')}</h4>
+                            <div className="label-action"><FaPlus className="label-action-icon label-success"/>
                             </div>
-                            : null
-                        }
-                    </div>
+                        </div>
+                        : null
+                    }
+                    {errors.length && !isTeacher ?
+                        <div className="label-result flex">
+                            <h4>{t('labels.not-exist-for-parents')}</h4>
+                        </div>
+                        : null
+                    }
+                </div>
                     <div className="label-action-buttons flex">
                         <div className="label-header"><h4>{t('labels.selected')}: {selectedLabels.length}</h4></div>
                         <button className="btn label-select-button"

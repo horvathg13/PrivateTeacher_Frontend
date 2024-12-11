@@ -69,12 +69,9 @@ const UserRoles = () => {
         console.log(selectedRowId);
         let url=`http://127.0.0.1:8000/api/removeUserRole/${userId}/${selectedRowId.roleId}`
         
-        ServiceClient.post(url).then((response)=>{
-            if(response.status===200){
-                console.log(response);
-                getUserRoles();
-                setLoader(false);
-            }
+        ServiceClient.removeUserRole(userId,selectedRowId.roleId).then((success)=>{
+            getUserRoles();
+            setLoader(false);
         }).catch((error)=>{
             setErrors(error);
             setLoader(false);
@@ -82,12 +79,10 @@ const UserRoles = () => {
     }
     const getUserRoles=()=>{
         setLoader(true);
-        ServiceClient.post(`http://127.0.0.1:8000/api/getUserRoles/${userId}`).then((response)=>{
-            if(response.status===200){
-                setHeader(response.data.header);
-                setUserRoles(response.data.userRoles);
-                setLoader(false);
-            }
+        ServiceClient.getUserRoles(userId).then((success)=>{
+            setHeader(success.header);
+            setUserRoles(success.userRoles);
+            setLoader(false);
         }).catch((error)=>{
             setErrors(error);
             setLoader(false);

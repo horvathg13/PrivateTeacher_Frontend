@@ -34,20 +34,13 @@ const ChildConnect = () => {
         setErrors([]);
         setServerError([]);
         if(username.length>0 && password.length>0){
-            let url='http://127.0.0.1:8000/api/connectToChild';
-            let dataPost={};
-            dataPost.username=username;
-            dataPost.psw=password;
-           
-            ServiceClient.post(url,dataPost).then((response)=>{
-                if(response.status===200){
-                    setSuccess(true);
-                    setLoader(false);
-                    setReadOnly(false);
-                    setTimeout(()=>{
-                        navigate('/child');
-                    },1000)
-                }
+            ServiceClient.connectToChild(username,password).then((success)=>{
+                setSuccess(true);
+                setLoader(false);
+                setReadOnly(false);
+                setTimeout(()=>{
+                    navigate('/child');
+                },1000)
             }).catch((error)=>{
                 setServerError(error);
                 setLoader(false);
