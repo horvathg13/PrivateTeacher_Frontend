@@ -59,7 +59,9 @@
     "connect": "Connect",
     "search": "Search",
     "apply": "Apply for course",
-    "newMessage": "Write a new message"
+    "newMessage": "Write a new message",
+    "accepted": "Accepted",
+    "rejected": "Rejected"
   },
   "componentTitles": {
     "users": "Users",
@@ -370,5 +372,9 @@
     "yes": "Yes",
     "no": "No",
     "title": "Are you sure?"
+  },
+  "message": {
+    "child": "Choose your child",
+    "request":"Choose your request"
   }
 }

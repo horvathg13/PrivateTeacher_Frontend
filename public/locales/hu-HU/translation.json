@@ -65,7 +65,9 @@
     "connect": "Kapcssolódás",
     "search": "Keresés",
     "apply": "Jelentkezés",
-    "newMessage": "Új üzenet küldése"
+    "newMessage": "Új üzenet küldése",
+    "accepted": "Elfogadott",
+    "rejected": "Elutasított"
   },
   "componentTitles": {
     "users": "Felhasználók",
@@ -370,6 +372,10 @@
     "yes": "Igen",
     "no": "Nem",
     "title": "Biztosan végrehajtja a műveletet?"
+  },
+  "message": {
+    "child": "Válassza ki a gyerekét",
+    "request":"Válassza ki a kérvényét"
   }
 
 }
