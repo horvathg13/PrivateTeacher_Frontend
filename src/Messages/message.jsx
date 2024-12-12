@@ -15,29 +15,21 @@ const Message = () => {
     const {roles}=useContext(UserContext);
 
     useEffect(()=>{
-        roles.some(e=>e !== 'Teacher')?
-            setMenuItems([
-                {
-                    "id":"1",
-                    "name":t('TabMenu.list'),
-                    "url":"/messages",
-                    "end":true,
-                },
-                {
-                    "id": "2",
-                    "name": t('TabMenu.newMessage'),
-                    "url": "/messages/new"
-                }
 
-            ]):
-            setMenuItems([
-                {
-                    "id":"1",
-                    "name":t('TabMenu.list'),
-                    "url":"/messages",
-                    "end":true,
-                },
-            ]);
+        setMenuItems([
+            {
+                "id":"1",
+                "name":t('TabMenu.list'),
+                "url":"/messages",
+                "end":true,
+            },
+            {
+                "id": "2",
+                "name": t('TabMenu.newMessage'),
+                "url": "/messages/new"
+            }
+
+        ])
         setBreadcrumbs([
             {
                 "id":"1",
