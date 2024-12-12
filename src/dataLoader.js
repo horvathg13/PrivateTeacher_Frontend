@@ -144,8 +144,8 @@ export const getChildCourses=(params)=>{
         return response.data
     })
 }
-export const getRequests=()=>{
-    return ServiceClient.get(`http://127.0.0.1:8000/api/getRequests`).then((response)=>{
+export const getRequests=(status)=>{
+    return ServiceClient.post(`http://127.0.0.1:8000/api/getRequests`,{status:status || null}).then((response)=>{
         return response.data
     })
 }
