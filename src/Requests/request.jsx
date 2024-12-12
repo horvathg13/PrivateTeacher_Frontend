@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import {useTranslation} from "react-i18next";
-import {ComponentTitleContext, TabMenuContext} from "../Context/UserContext";
+import {ComponentTitleContext, TabMenuContext, UserContext} from "../Context/UserContext";
 import SideMenu from "../CommonComponents/SideMenu/sidemenu";
 import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
 import TabMenu from "../CommonComponents/TabMenu/tabMenu";
@@ -11,16 +11,43 @@ const Request = () => {
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
+    const {roles}=useContext(UserContext);
     useEffect(()=>{
-        setMenuItems([
-            {
-                "id":"1",
-                "name":t('TabMenu.list'),
-                "url":`/requests`,
-                "end":true,
-            },
+        {
+            roles.some(r => r === 'Teacher') ?
+                setMenuItems([
+                    {
+                        "id": "1",
+                        "name": t('TabMenu.list'),
+                        "url": `/requests`,
+                        "end": true,
+                    },
+                    {
+                        "id": "2",
+                        "name": t('TabMenu.accepted'),
+                        "url": `/requests/accepted`,
 
-        ]);
+                    },
+                    {
+                        "id": "3",
+                        "name": t('TabMenu.rejected'),
+                        "url": `/requests/rejected`,
+
+                    },
+
+                ])
+                :
+                setMenuItems([
+                    {
+                        "id": "1",
+                        "name": t('TabMenu.list'),
+                        "url": `/requests`,
+                        "end": true,
+                    },
+                ])
+        }
+
+
         setBreadcrumbs([
             {
                 "id":"1",
@@ -39,7 +66,7 @@ const Request = () => {
 
         ]);
         setTitle(t('componentTitles.requests'));
-    },[])
+    },[roles])
 
     return (
 
