@@ -305,6 +305,18 @@ const router = createBrowserRouter([
 
           },
           {
+            path:"accepted",
+            element:<RequestList/>,
+            loader:()=>{return getRequests("ACCEPTED")}
+
+          },
+          {
+            path:"rejected",
+            element:<RequestList/>,
+            loader:()=>{return getRequests("REJECTED")}
+
+          },
+          {
             path:":requestId",
             element:<RequestDetails/>,
             loader:({params})=>{return getRequestDetails(params)}
