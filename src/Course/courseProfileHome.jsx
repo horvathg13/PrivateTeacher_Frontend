@@ -47,7 +47,7 @@ const CourseProfileHome = () => {
             },
         ]);
         setTitle(t('componentTitles.course'));
-    },[t])
+    },[t,roles])
 
 
 
