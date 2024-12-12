@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {FaLocationArrow} from "react-icons/fa";
 import {useLoaderData, useNavigate, useParams} from "react-router-dom";
 import EventHandler from "../EventHandler/eventhandler";
@@ -46,11 +46,18 @@ const NewMessage = () => {
         if(childId !== null && requestId !== null){
             ServiceClient.getMessageControl(childId, requestId).then((success)=>{
                 setMessageData(success);
-                setTeacherId(success?.course_info?.teacherId || success.teacher_id)
+                setTeacherId(success.data?[0].course_info.teacher_id : success.teacher_id);
             })
         }
     }, [requestId]);
 
+    const messageEndRef=useRef(null);
+    const scrollToBottom=()=>{
+        messageEndRef.current?.scrollIntoView({behavior:"smooth"});
+    }
+    useEffect(()=>{
+        scrollToBottom();
+    },[messageData])
     const sendMessage=(e)=>{
         e.preventDefault();
 
@@ -60,7 +67,7 @@ const NewMessage = () => {
         Promise.all([
             ServiceClient.sendMessage(requestId,message, childId, teacherId).catch(error=>setServerError(error)),
 
-            !serverError.length && errors.length ?
+            !serverError.length && !errors.length ?
             ServiceClient.getMessageInfo(requestId).then((success)=>{
                 setMessageData(success)
             }).catch(error=>setServerError(error)):null
@@ -85,7 +92,7 @@ const NewMessage = () => {
             />
             <div className="addressee-selector-container">
                 <div className="adressee-child">
-                    <label>Válassza ki a gyereket</label>
+                    <label>{t('message.child')}</label>
                     <Select
                         placeholder={t('select')}
                         options={childLoader.select || null}
@@ -98,7 +105,7 @@ const NewMessage = () => {
                 </div>
                 {childId ?
                     <div className="addressee-child">
-                        <label>Válassza ki a kérvényét</label>
+                        <label>{t('message.request')}</label>
                         <Select
                             placeholder={t('select')}
                             options={requests || null}
@@ -119,12 +126,14 @@ const NewMessage = () => {
                     </div>
                 </div>
                 <div className="message-body">
-                    {messageData?.data?.map(e=>
-                        <div className={e.sender_info.id === null ? "message-content-container reverse" : "message-content-container"}>
-                            <div className="avatar"><h4>{e.sender_info.first_name.slice(0,1)}</h4></div>
+                    {messageData?.data?.map(e =>
+                        <div
+                            className={e.sender_info.id === null ? "message-content-container reverse" : "message-content-container"}>
+                            <div className="avatar"><h4>{e.sender_info.first_name.slice(0, 1)}</h4></div>
                             <div className="content">{e.message}</div>
                         </div>
                     )}
+                    <div ref={messageEndRef}></div>
                 </div>
                 <div className="message-input">
                     <input value={message} onKeyDown={(e)=>{if(e.key==='Enter'){

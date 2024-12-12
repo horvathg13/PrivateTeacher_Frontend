@@ -1,11 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {FaLocationArrow} from "react-icons/fa";
 import {useLoaderData, useNavigate, useParams} from "react-router-dom";
 import EventHandler from "../EventHandler/eventhandler";
 import {useTranslation} from "react-i18next";
 import ServiceClient from "../ServiceClient";
-import {isInt} from "@fullcalendar/core/internal";
-import {UserContext} from "../Context/UserContext";
 
 const MessageDetails = () => {
     /*Loader*/
@@ -48,8 +46,14 @@ const MessageDetails = () => {
             setErrors(error)
         });
         setMessage('');
-
     }
+    const messageEndRef=useRef(null);
+    const scrollToBottom=()=>{
+        messageEndRef.current?.scrollIntoView({behavior:"smooth"});
+    }
+    useEffect(()=>{
+        scrollToBottom();
+    },[messageData])
     return (
         <>
         <EventHandler
@@ -75,6 +79,7 @@ const MessageDetails = () => {
                         <div className="content">{e.message}</div>
                     </div>
                 )}
+                <div ref={messageEndRef}></div>
             </div>
             <div className="message-input">
                 <input value={message} onKeyDown={(e)=>{if(e.key==='Enter'){
