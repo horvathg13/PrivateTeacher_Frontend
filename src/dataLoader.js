@@ -193,3 +193,8 @@ export const getLocationCourses=(params)=>{
         }
     })
 }
+export const getUserData=()=>{
+    return ServiceClient.post('http://127.0.0.1:8000/api/getUserData').then((response)=>{
+        return response.data
+    })
+}
