@@ -56,7 +56,7 @@ const CourseProfile = () => {
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><FaLocationDot/> {t('form.address')}</label>
-                                <div>
+                                <div className="address-container">
                                     <h4>{courseProfile.location.country}</h4>
                                     <h4>{courseProfile.location.city}</h4>
                                     <h4>{courseProfile.location.street} {courseProfile.location.number}</h4>
