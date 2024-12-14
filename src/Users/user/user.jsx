@@ -9,8 +9,6 @@ import {useTranslation} from "react-i18next";
 const User = () => {
     /*Translation*/
     const {t}=useTranslation();
-    let { userId }=useParams();
-    const userData = useLoaderData();
 
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
@@ -19,14 +17,9 @@ const User = () => {
         setMenuItems([
             {
                 "id":"1",
-                "name":t('TabMenu.info'),
-                "url":`/users/${userId}`,
+                "name":t('TabMenu.profile'),
+                "url":`/user/profile`,
                 "end":true,
-            },
-            {
-                "id":"2",
-                "name":t('TabMenu.roles'),
-                "url":`/users/${userId}/roles`
             }
         ]);
         setBreadcrumbs([
@@ -36,19 +29,7 @@ const User = () => {
                 "url":"/home",
                 "icon":"IoIosArrowForward",
 
-            },
-            {
-                "id":"2",
-                "name":t('breadcrumbs.users'),
-                "url":"/users",
-                "icon":"IoIosArrowForward",
-                "end":true,
-            },
-            {
-                "id":"3",
-                "name":`${userData.firstname}`,
-                "url":`/users/${userData.id}`,
-            },
+            }
         ]);
         setTitle(t('componentTitles.user'));
     },[t])
@@ -58,7 +39,7 @@ const User = () => {
     
     return (
 
-        <userInfoContext.Provider value={userData}>
+        <>
         <SideMenu/>    
         <div className="content-main-container">
             <ComponentTitle />
@@ -69,7 +50,7 @@ const User = () => {
                 <Outlet/>
             </div>
         </div>
-        </userInfoContext.Provider>
+        </>
     );
 };
 export default User;
