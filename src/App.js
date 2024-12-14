@@ -38,7 +38,7 @@ import {
   getCourseProfile,
   haveUnreadNotifications, getMessages, getMessageInfo, getLanguages, getLocationCourses, getUserData
 } from './dataLoader';
-import User from './Users/user/user';
+import UserProfileBase from './Users/user/userProfileBase';
 import Users from './Users/users';
 import UserCreate from './Users/createUser';
 import GeneratedUser from './Users/generatedUser';
@@ -81,6 +81,7 @@ import Messages from "./Messages/messages";
 import MessageDetails from "./Messages/messageDetails";
 import NewMessage from "./Messages/newMessage";
 import UserProfile from "./Users/user/userProfile";
+import User from "./Users/user/user";
 
 function App() {
 
@@ -156,7 +157,7 @@ const router = createBrowserRouter([
       },
       {
         path:"user/profile",
-        element:<User/>,
+        element:<UserProfileBase/>,
         errorElement:<RouteBoundary/>,
         children:[
           {
