@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import './newheaderCSS.css';
-import { FaListUl } from "react-icons/fa";
+import {FaListUl, FaUserCog} from "react-icons/fa";
 import { useContext } from 'react';
 import {NotificationsContext, UserContext} from '../Context/UserContext';
 import ServiceClient from '../ServiceClient';
@@ -118,6 +118,7 @@ const Header = () => {
             </div> : null}
 
             <div className="header-action-container">
+                {name?<FaUserCog className="logout-icon" onClick={()=>{navigate(`/user/profile`)}}/>:null}
                 {name? <MdLogout className="logout-icon" onClick={logout}/>:null}
 
                 {name ?
