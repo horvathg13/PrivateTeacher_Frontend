@@ -46,7 +46,7 @@ const NewMessage = () => {
         if(childId !== null && requestId !== null){
             ServiceClient.getMessageControl(childId, requestId).then((success)=>{
                 setMessageData(success);
-                setTeacherId(success.data?[0].course_info.teacher_id : success.teacher_id);
+                setTeacherId(success.data? success.data[0].course_info.teacher_id : success.teacher_id);
             })
         }
     }, [requestId]);
