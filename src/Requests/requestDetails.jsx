@@ -121,7 +121,7 @@ const RequestDetails = () => {
                 <div className="form-items">
                     {requestDetails.parent_info ?
                         <>
-                            <div className="form-title"><h2>{t('form.titles.parentInfo')}</h2></div>
+                            <div className="form-title"><h3>{t('form.titles.parentInfo')}</h3></div>
                             {requestDetails.parent_info.length ? requestDetails.parent_info.map(i =>
                                     <div class="form-collapse">
                                         <div className="form-children">
@@ -135,7 +135,7 @@ const RequestDetails = () => {
                                     </div>
                                 ) :
                                 <>
-                                    <div className="form-title"><h2>{t('form.titles.parentInfo')}</h2></div>
+                                    <div className="form-title"><h3>{t('form.titles.parentInfo')}</h3></div>
                                     <div className="form-collapse">
                                         <div className="form-children">
                                             <label>{t('form.name')}</label>
@@ -150,7 +150,7 @@ const RequestDetails = () => {
                             }</>
                         : null}
 
-                    <div className="form-title"><h2>{t('form.titles.childInfo')}</h2></div>
+                    <div className="form-title"><h3>{t('form.titles.childInfo')}</h3></div>
                     <div className="form-collapse">
                         <div className="form-children">
                             <label>{t('form.name')}</label>
@@ -161,7 +161,7 @@ const RequestDetails = () => {
                             <input type="date" readOnly value={requestDetails.child_info.birthday}/>
                         </div>
                     </div>
-                    <div className="form-title"><h2>{t('form.titles.requestInfo')}</h2></div>
+                    <div className="form-title"><h3>{t('form.titles.requestInfo')}</h3></div>
                     <div className="form-children">
                         <label>{t('form.courseName')}</label>
                         <input type="text" readOnly value={requestDetails.course_names_and_langs[0].name}/>

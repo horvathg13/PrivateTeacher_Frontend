@@ -346,7 +346,7 @@ form .form-title {
   width: 100%;
   border-bottom: 1px dotted var(--GreenColor);
 }
-form .form-title h2 {
+form .form-title h2, form .form-title h3{
   margin-bottom: 0;
 }
 form .form-title.distance{
