@@ -8,20 +8,20 @@
     },
     {
         "name":"course",
-        "role":["Admin", "Teacher"],
+        "role":["Teacher"],
         "icon":"FaUserGraduate",
         "url":"/course"
         
     },
     {
         "name":"messages",
-        "role":["Admin","Teacher","Parent"],
+        "role":["Teacher","Parent"],
         "icon":"BiSolidMessageDetail",
         "url":"/messages"
     },
     {
         "name":"search",
-        "role":["Admin", "Teacher", "Parent"],
+        "role":["Teacher", "Parent"],
         "icon":"FaSearch",
         "url":"/search"
     },
@@ -33,7 +33,7 @@
     },
     {
         "name":"requests",
-        "role":["Admin","Teacher", "Parent"],
+        "role":["Teacher", "Parent"],
         "icon":"PiNewspaperBold",
         "url":"/requests"
     }

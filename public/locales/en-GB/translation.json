@@ -61,7 +61,8 @@
     "apply": "Apply for course",
     "newMessage": "Write a new message",
     "accepted": "Accepted",
-    "rejected": "Rejected"
+    "rejected": "Rejected",
+    "profile": "Profile"
   },
   "componentTitles": {
     "users": "Users",
@@ -104,7 +105,8 @@
       "info": {
         "titles": {
           "main": "Info",
-          "changePassword": "New Password"
+          "changePassword": "New Password",
+          "profile": "User Profile"
         },
         "form": {
           "fname": "Firstname",
@@ -112,7 +114,8 @@
           "email": "E-mail",
           "password": "Password",
           "cpassword": "Confirm Password",
-          "status": "Status"
+          "status": "Status",
+          "new-psw": "New password"
         },
         "button": {
           "update": "Update"

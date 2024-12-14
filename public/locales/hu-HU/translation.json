@@ -67,7 +67,8 @@
     "apply": "Jelentkezés",
     "newMessage": "Új üzenet küldése",
     "accepted": "Elfogadott",
-    "rejected": "Elutasított"
+    "rejected": "Elutasított",
+    "profile": "Profil"
   },
   "componentTitles": {
     "users": "Felhasználók",
@@ -104,7 +105,8 @@
       "info": {
         "titles": {
           "main": "Információ",
-          "changePassword": "Új jelszó"
+          "changePassword": "Új jelszó",
+          "profile": "Profil adatok"
         },
         "form": {
           "fname": "Keresztnév",
@@ -112,7 +114,8 @@
           "email": "E-mail",
           "password": "Jelszó",
           "cpassword": "Jelszó megerősítése",
-          "status": "Státusz"
+          "status": "Státusz",
+          "new-psw": "Új jelszó"
         },
         "button": {
           "update": "Frissítés"
