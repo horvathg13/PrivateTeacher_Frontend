@@ -53,7 +53,7 @@ const SearchSchool = () => {
         dataPost.number = schoolNumber;
         dataPost.sortData=sortData;
 
-        let url='http://127.0.0.1:8000/api/searchSchool';
+        let url='/api/searchSchool';
         ServiceClient.post(url,dataPost).then((response)=>{
             if(response.status===200){
                 setSuccess(true);

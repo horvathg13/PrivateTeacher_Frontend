@@ -42,7 +42,7 @@ const SearchTeacher = () => {
         let dataPost={};
         dataPost.email = email;
 
-        let url=`http://127.0.0.1:8000/api/searchTeacher`;
+        let url=`/api/searchTeacher`;
         ServiceClient.post(url,dataPost).then((response)=>{
             if(response.status===200){
                 setSuccess(true);

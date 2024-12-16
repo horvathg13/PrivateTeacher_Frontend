@@ -15,7 +15,7 @@ const UserList = () => {
     const [loader, setLoader]=useState(false);
     const [counter, setCounter]=useState(1);
     const [lastPage, setLastPage]=useState();
-    const [perPage, setPerPage]=useState(5);
+    const [perPage, setPerPage]=useState(10);
     const [selectedRow, setSelectedRow]=useState();
     const navigate = useNavigate();
     /*event handle*/
@@ -36,7 +36,7 @@ const UserList = () => {
 
     useLayoutEffect(()=>{
         setLoader(true);
-        let url=`http://127.0.0.1:8000/api/getUsers?perPage=${perPage}&page=${counter}`;
+        let url=`/api/getUsers?perPage=${perPage}&page=${counter}`;
         ServiceClient.post(url).then((response)=>{
             if(response.status===200){
                 setLoader(false);
