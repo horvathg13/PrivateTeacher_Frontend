@@ -106,7 +106,8 @@
         "titles": {
           "main": "Info",
           "changePassword": "New Password",
-          "profile": "User Profile"
+          "profile": "User Profile",
+          "creation": "User Creation"
         },
         "form": {
           "fname": "Firstname",
@@ -127,7 +128,8 @@
         "create": "Create",
         "validation": {
           "required": "The role field is required"
-        }
+        },
+        "placeholder": "Select..."
       },
       "validator": {
         "samePsw": "Passwords does not match."
@@ -268,6 +270,7 @@
       "not-match": "Passwords does not match."
     },
     "button": {
+      "create": "Create",
       "update": "Update"
     },
     "validator": {
@@ -339,7 +342,15 @@
     "THURSDAY":"Thursday",
     "FRIDAY":"Friday",
     "SATURDAY":"Saturday",
-    "SUNDAY":"Sunday"
+    "SUNDAY":"Sunday",
+    "Admin":"Admin",
+    "Teacher":"Teacher",
+    "Parent":"Parent",
+    "ACCEPTED":"Accepted",
+    "REJECTED":"Rejected",
+    "UNDER_REVIEW":"Under Review",
+    "UNREAD": "Unread",
+    "READ": "Read"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -379,5 +390,29 @@
   "message": {
     "child": "Choose your child",
     "request":"Choose your request"
+  },
+  "tableHeaders": {
+    "id":"ID",
+    "firstname":"Firstname",
+    "lastname":"Lastname",
+    "birthdate":"Birthdate",
+    "email":"Email",
+    "status":"Status",
+    "role":"Role",
+    "name":"Name",
+    "language":"Language",
+    "country":"Country",
+    "city":"City",
+    "zip":"Zip",
+    "floor":"Floor",
+    "door":"Door",
+    "street":"Street",
+    "number":"Number",
+    "request_id":"Request_id",
+    "request_date":"Request_date",
+    "child_id":"Child_id",
+    "course_name":"Course",
+    "teacher_name":"Teacher",
+    "course_price_per_lesson":"Price/Lesson"
   }
 }

@@ -106,7 +106,8 @@
         "titles": {
           "main": "Információ",
           "changePassword": "Új jelszó",
-          "profile": "Profil adatok"
+          "profile": "Profil adatok",
+          "creation": "Felhasználó létrehozása"
         },
         "form": {
           "fname": "Keresztnév",
@@ -127,7 +128,8 @@
         "create": "Létrehozás",
         "validation": {
           "required": "A szerepkör megadása kötelező"
-        }
+        },
+        "placeholder": "Válasszon egy szerepkört..."
       },
       "validator": {
         "samePsw": "A megadott jelszavak nem egyeznek."
@@ -267,6 +269,7 @@
       "not-match": "A jelszavak nem egyeznek"
     },
     "button": {
+      "create": "Létrehozás",
       "update": "Frissítés"
     },
     "validator": {
@@ -339,7 +342,15 @@
     "THURSDAY":"Csütörtök",
     "FRIDAY":"Péntek",
     "SATURDAY":"Szombat",
-    "SUNDAY":"Vasárnap"
+    "SUNDAY":"Vasárnap",
+    "Admin":"Admin",
+    "Teacher":"Tanár",
+    "Parent":"Szülő",
+    "ACCEPTED":"Elfogadva",
+    "REJECTED":"Elutasítva",
+    "UNDER_REVIEW":"Feldolgozás alatt",
+    "UNREAD": "Olvasatlan",
+    "READ": "Olvasott"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -379,6 +390,30 @@
   "message": {
     "child": "Válassza ki a gyerekét",
     "request":"Válassza ki a kérvényét"
+  },
+  "tableHeaders": {
+    "id":"ID",
+    "firstname":"Keresztnév",
+    "lastname":"Vezetéknév",
+    "birthdate":"Születési dátum",
+    "email":"Email",
+    "status":"Státusz",
+    "role":"Szerepkör",
+    "name":"Név",
+    "language":"Nyelv",
+    "country":"Ország",
+    "city":"Város",
+    "zip":"Irányítószám",
+    "floor":"Emelet",
+    "door":"Ajtó",
+    "street":"Utca",
+    "number":"Házszám",
+    "request_id":"Kérvény_id",
+    "request_date":"Kérvény_dátuma",
+    "child_id":"Gyerek_id",
+    "course_name":"Kurzus",
+    "teacher_name":"Tanár",
+    "course_price_per_lesson":"Ár/Tanóra"
   }
 
 }
