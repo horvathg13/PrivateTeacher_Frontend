@@ -1,16 +1,45 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
-import {useLoaderData} from "react-router-dom";
+import {useLoaderData, useParams} from "react-router-dom";
 import {IoLanguageSharp} from "react-icons/io5";
 import {IoMdTime} from "react-icons/io";
 import {FaCalendarDays, FaLocationDot, FaUserGraduate} from "react-icons/fa6";
 import {FaDollarSign} from "react-icons/fa";
 import {LuCalendarClock} from "react-icons/lu";
 import {useTranslation} from "react-i18next";
+import {TabMenuContext} from "../Context/UserContext";
 
 const CourseProfile = () => {
     const courseProfile=useLoaderData();
     const {t}=useTranslation("translation",{keyPrefix:"courseProfile"});
+    const {t:a}=useTranslation();
+    const {courseId}=useParams();
+    const {setMenuItems}=useContext(TabMenuContext);
+
+    useEffect(()=>{
+        courseProfile?.alreadyApply ?
+            setMenuItems([
+                {
+                    "id":"1",
+                    "name":a('TabMenu.info'),
+                    "url":`/course/profile/${courseId}`,
+                    "end":true,
+                }
+            ]):
+            setMenuItems([
+                {
+                    "id":"1",
+                    "name":a('TabMenu.info'),
+                    "url":`/course/profile/${courseId}`,
+                    "end":true,
+                },
+                {
+                    "id":"2",
+                    "name":a('TabMenu.apply'),
+                    "url":`/course/profile/${courseId}/course-apply`
+                },
+            ])
+    },[courseProfile])
     return (
         <div>
             <div className="course-profile-main">
