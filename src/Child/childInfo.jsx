@@ -58,6 +58,7 @@ const ChildInfo = () => {
 
         setBtnDisabled(true);
         setLoader(true);
+        setReadOnlyInfo(true)
         setErrors([]);
         setServerError([]);
         if(password && password !== cpassword){
@@ -85,17 +86,20 @@ const ChildInfo = () => {
             },2000)
             setBtnDisabled(false);
             getChildData();
+            setReadOnlyInfo(true)
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);
             setLoader(false);
+            setReadOnlyInfo(false)
+
         });
     }
     const getChildData=()=>{
         setReadOnlyInfo(!readOnlyInfo);
         setReadOnlyPsw(!readOnlyPsw);
 
-        ServiceClient.get(`http://127.0.0.1:8000/api/getChildInfo/${childId}`).then((response)=>{
+        ServiceClient.get(`/api/getChildInfo/${childId}`).then((response)=>{
              setFname(response.data.firstname);
              setLname(response.data.lastname);
              setBirthday(response.data.birthday);
@@ -157,14 +161,14 @@ const ChildInfo = () => {
                         </div>
                     </div>
                     <div className="user-container passwords">
-                        <div className="form-title"><h2>{t('title.changePassword')}<MdEdit className='icon' onClick={()=>setReadOnlyPsw(!readOnlyPsw)}/></h2></div>
+                        <div className="form-title"><h2>{t('title.changePassword')}</h2></div>
                         <div className="fields flex">
                             <div className="psw field">
                                 <label>{t('form.password')}</label>
                                 <input
                                     className={passwordError ? 'InputError' : 'passwordInput'}
                                     type="password"
-                                    readOnly={readOnlyPsw}
+                                    readOnly={readOnlyInfo}
                                     required
                                     value={password}
                                     onChange={(e) => { setPassword(e.target.value); } } />
@@ -175,7 +179,7 @@ const ChildInfo = () => {
                                 <input
                                     className={cpasswordError ? 'InputError' : 'passwordInput'}
                                     type="password"
-                                    readOnly={readOnlyPsw}
+                                    readOnly={readOnlyInfo}
                                     required
                                     value={cpassword}
                                     onChange={(e) => { setCPassword(e.target.value); } } />

@@ -66,7 +66,7 @@ const Request = () => {
 
         ]);
         setTitle(t('componentTitles.requests'));
-    },[roles])
+    },[roles,t])
 
     return (
 

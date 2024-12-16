@@ -46,7 +46,7 @@ const ChildDetails = () => {
             },
         ]);
         setTitle(t('componentTitles.child'));
-    },[])
+    },[t])
 
     return (
         <>

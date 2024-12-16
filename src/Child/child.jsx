@@ -50,8 +50,8 @@ const Child = () => {
                 "end":true,
             },
         ]);
-        setTitle("Child");
-    },[])
+        setTitle(t('componentTitles.child'));
+    },[t])
     
     
 

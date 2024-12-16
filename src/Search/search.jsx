@@ -39,7 +39,7 @@ const Search = () => {
 
         ]);
         setTitle(t('componentTitles.search'));
-    },[])
+    },[t])
     
     
 

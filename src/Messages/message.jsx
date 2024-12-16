@@ -12,7 +12,7 @@ const Message = () => {
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
-    const {roles}=useContext(UserContext);
+
 
     useEffect(()=>{
 
@@ -47,7 +47,7 @@ const Message = () => {
             },
         ]);
         setTitle(t('componentTitles.messages'));
-    },[])
+    },[t])
 
 
 
