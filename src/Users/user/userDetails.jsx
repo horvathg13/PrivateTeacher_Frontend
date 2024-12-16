@@ -108,20 +108,29 @@ const UserDetails = () => {
             "email":email,
             "status":status,
         }
-        ServiceClient.updateUser(userId, userInfo,password,cpassword).then((success)=>{
-            setSuccess(true);
-            setLoader(false);
-            setCPassword(null);
-            setPassword(null);
-            setTimeout(()=>{
-                setSuccess(false);
-            },2000)
-            setBtnDisabled(false);
-        }).catch((error)=>{
+        Promise.all([
+            ServiceClient.updateUser(userId, userInfo,password,cpassword).then((success)=>{
+                setSuccess(true);
+                setLoader(false);
+                setCPassword(null);
+                setPassword(null);
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
+                setBtnDisabled(false);
+            }),
+            ServiceClient.selectedUserData(userId).then((success)=>{
+                setFname(success.firstname);
+                setLname(success.lastname);
+                setEmail(success.email);
+                setStatus(success.status);
+            })
+        ]).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);
             setLoader(false);
-        });
+        })
+
     }
     useEffect(()=>{
         ServiceClient.getUserStatuses().then((success)=>{
