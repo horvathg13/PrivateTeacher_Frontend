@@ -44,7 +44,7 @@ const LocationList = () => {
 
     useEffect(()=>{
         /*setLoader(true);
-        let url=`http://127.0.0.1:8000/api/getLocations?perPage=${perPage}&page=${counter}`;
+        let url=`/api/getLocations?perPage=${perPage}&page=${counter}`;
         ServiceClient.post(url).then((response)=>{
             if(response.status===200){
                 setLoader(false);
@@ -85,7 +85,7 @@ const LocationList = () => {
                         <tr>
                             {schoolLocations.header ? schoolLocations.header.map((e, i) => (
 
-                                <th key={i}>{e}</th>
+                                <th key={i}>{t(`tableHeaders.${e}`)}</th>
 
 
                             )) : null}

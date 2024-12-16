@@ -93,38 +93,38 @@ const CreateChild = () => {
             <div className="form-items">
                 <div className="form-collapse">
                     <div className="form-children flexColumnItems">
-                            <label>First Name</label>
+                            <label>{t('form.first-name')}</label>
                             <input type="text" required onChange={(e)=>{setFname(e.target.value)}} value={fname}/>
                     </div>
                     <div className="form-children flexColumnItems">
-                            <label>Last Name</label>
+                            <label>{t('form.last-name')}</label>
                             <input type="text" required onChange={(e)=>{setLname(e.target.value)}} value={lname}/>
                     </div>
                 </div>
                 <div className="form-collapse">
                     <div className="form-children flexColumnItems">
-                            <label>Birthday</label>
+                            <label>{t('form.birthday')}</label>
                             <input type="date" required onChange={(e)=>{setBirthday(e.target.value)}} value={birthday}/>
                     </div>
                     <div className="form-children flexColumnItems">
-                            <label>Username</label>
+                            <label>{t('form.username')}</label>
                             <input type="text" required onChange={(e)=>{setUsername(e.target.value)}} value={username}/>
                     </div>
                 </div>
                 <div className="form-collapse">
                     <div className="form-children flexColumnItems">
-                            <label>Password</label>
+                            <label>{t('form.password')}</label>
                             <input className={passwordError ? 'InputError':'passwordInput'} type="password" required onChange={(e)=>{setPassword(e.target.value)}} value={password}/>
                     </div>
                     <div className="form-children flexColumnItems">
-                            <label>Confirm Password</label>
+                            <label>{t('form.c-password')}</label>
                             <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}} value={cpassword}/>
                     </div>
                 </div>
             </div>
             <div className="form-button-container">
                 {!loader ?
-                    <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn formButton disabled':'btn formButton'}>Generate <FaArrowCircleRight className='btn-icon'/></button> :
+                    <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn formButton disabled':'btn formButton'}>{t('button.create')} <FaArrowCircleRight className='btn-icon'/></button> :
                     <span className='loader createUser'></span>
                 }
             </div>

@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 const UserCreate = () => {
 
     /*Translation*/
-    const {t}=useTranslation();
+    const {t}=useTranslation("translation", {keyPrefix:"users.user"});
     /*Form fields*/
     const [fname, setFname]=useState('');
     const [lname, setLname]=useState('');
@@ -80,26 +80,26 @@ const UserCreate = () => {
         <div>
             {!generatedLink ? 
             <form className="FlexForm" onSubmit={(e)=>createUser(e)}>
-                <div className="title"><h2>User Creation</h2></div>
+                <div className="title"><h2>{t('info.titles.creation')}</h2></div>
                 <div className="name-fields flex">
                     <div className="first-name">
-                        <label>First Name</label>
+                        <label>{t('info.form.fname')}</label>
                         <input type="text" required onChange={(e)=>{setFname(e.target.value)}}/>
                     </div>
                     <div className="last-name">
-                        <label>Last Name</label>
+                        <label>{t('info.form.lname')}</label>
                         <input type="text" required onChange={(e)=>{setLname(e.target.value)}}/>
                     </div>
                 </div>
 
                 <div className="emailPassword-fields grid">
-                    <label>Email</label>
+                    <label>{t('info.form.email')}</label>
                     <input className={emailError ? 'InputError':'emailInput'} type="email" required onChange={(e)=>{setEmail(e.target.value)}}/>
                     
-                    <label>Password</label>
+                    <label>{t('info.form.password')}</label>
                     <input className={passwordError ? 'InputError':'passwordInput'} type="password" required onChange={(e)=>{setPassword(e.target.value)}}/>
                     
-                    <label>Confirm Password</label>
+                    <label>{t('info.form.cpassword')}</label>
                     <input className={cpasswordError ? 'InputError':'passwordInput'}type="password" required onChange={(e)=>{setCPassword(e.target.value)}}/>
                 </div>
 

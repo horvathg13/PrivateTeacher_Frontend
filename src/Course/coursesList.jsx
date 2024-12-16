@@ -10,14 +10,11 @@ const CoursesList = () => {
     const dataLoader=useLoaderData();
     useEffect(()=>{
         if(dataLoader){
-            console.log(dataLoader, "Hopp");
             setHeader(dataLoader.header);
             setSchoolCourses(dataLoader.courses);
             setLoader(false);
         }else{
-            console.log(dataLoader, "Hopp");
             setHeader("");
-            setSchoolCourses("Something went wrong!");
             setLoader(false);
         }
     },[]);
@@ -78,7 +75,7 @@ const CoursesList = () => {
                                 <tr>
                                     {header ? header.map((e, i) => (
 
-                                        <th key={i}>{e}</th>
+                                        <th key={i}>{t(`tableHeaders.${e}`)}</th>
                                         
 
                                     )) : null}
@@ -91,7 +88,7 @@ const CoursesList = () => {
                                         <td>{e.id}</td>
                                         <td>{e.name}</td>
                                         <td>{e.lang.join(', ')}</td>
-                                        <td>{e.status}</td>
+                                        <td>{t(`enums.${e.status}`)}</td>
                                     </tr>
 
                                 )) :

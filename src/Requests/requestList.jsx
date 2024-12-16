@@ -52,7 +52,7 @@ const RequestList = () => {
                         <tr>
                             {loaderData.header ? loaderData.header.map((e, i) => (
 
-                                <th key={i}>{e}</th>
+                                <th key={i}>{t(`tableHeaders.${e}`)}</th>
 
 
                             )) : null}
@@ -66,7 +66,7 @@ const RequestList = () => {
                                 <td>{`${e.child_info.first_name} ${e.child_info.last_name}`}</td>
                                 <td>{e.course_names_and_langs[0].name}</td>
                                 <td>{e.created_at.substring(0, 10)}</td>
-                                <td>{e.status}</td>
+                                <td>{t(`enums.${e.status}`)}</td>
                             </tr>
                         ))}
                         {loaderData.data.length === 0 ?

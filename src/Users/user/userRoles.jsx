@@ -67,7 +67,7 @@ const UserRoles = () => {
     const removeUserRole=()=>{
         setLoader(true);
         console.log(selectedRowId);
-        let url=`http://127.0.0.1:8000/api/removeUserRole/${userId}/${selectedRowId.roleId}`
+        let url=`/api/removeUserRole/${userId}/${selectedRowId.roleId}`
         
         ServiceClient.removeUserRole(userId,selectedRowId.roleId).then((success)=>{
             getUserRoles();
@@ -122,7 +122,7 @@ const UserRoles = () => {
                            
                             {header ? header.map((e, i) => (
                                 <> 
-                                <th key={i}>{e}</th>
+                                <th key={i}>{t(`tableHeaders.${e}`)}</th>
                                 </>
                             )) : null}
                              <th></th>

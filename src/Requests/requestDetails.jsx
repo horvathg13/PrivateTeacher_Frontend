@@ -12,6 +12,7 @@ import Notification from "../CommonComponents/Notifications/notification";
 const RequestDetails = () => {
     /*Translation*/
     const {t}=useTranslation("translation",{keyPrefix:"requestDetails"});
+    const {t: a}=useTranslation();
 
     /*Data*/
     const requestDetails=useLoaderData();
@@ -115,7 +116,7 @@ const RequestDetails = () => {
             />
         <div>
             <form className="FlexForm">
-                <div className="form-title distance"><h2>{t('form.titles.main')}</h2><h2>{requestDetails.status}</h2></div>
+                <div className="form-title distance"><h2>{t('form.titles.main')}</h2><h2>{a(`enums.${requestDetails.status}`)}</h2></div>
                 { requestDetails.teacher_justification ? <textarea className="justification-container" readOnly value={requestDetails.teacher_justification}
                            placeholder={t('form.justification-placeholder')}/>:null}
                 <div className="form-items">

@@ -22,6 +22,7 @@ import {useTranslation} from "react-i18next";
 const UserDetails = () => {
     /*Translation*/
     const {t}=useTranslation('translation', { keyPrefix: 'users.user'});
+    const {t:a}=useTranslation();
 
     /*Context*/
     const userData = useContext(userInfoContext);
@@ -128,7 +129,7 @@ const UserDetails = () => {
         }).catch((error)=>{
             setServerError(error);
         });
-    },[]);
+    },[t]);
 
     return (
         <>
@@ -177,7 +178,7 @@ const UserDetails = () => {
                             <div className="status field">
                                 <label>{t('info.form.status')}</label>
                                 <Select
-                                    defaultValue={{value: userData.status, label:userData.status}}
+                                    defaultValue={{value: userData.status, label:a(`enums.${userData.status}`)}}
                                     options={statuses}
                                     onChange={(selected)=>{setStatus(selected.value)}}
                                     isDisabled={readOnlyInfo}

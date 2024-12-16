@@ -54,7 +54,7 @@ const ChildList = () => {
                         <tr>
                             {dataLoader.header ? dataLoader.header.map((e, i) => (
 
-                                <th key={i}>{e}</th>
+                                <th key={i}>{t(`tableHeaders.${e}`)}</th>
                                 
 
                             )) : null}

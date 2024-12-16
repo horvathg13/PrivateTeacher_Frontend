@@ -16,6 +16,7 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOption
 
     /*Translation*/
     const {t}=useTranslation("translation", {keyPrefix:"users"});
+    const {t:a}=useTranslation();
 
     /*Form fields */
     const [ref_schools, setRefSchool]=useState();
@@ -88,7 +89,8 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOption
                             <label>{t('user.createUserRole.role')}</label>
                             <div className="selectContainer createUserRoleSelect">
                                 <Select
-                                    options={roleOptions}
+                                    placeholder={t('user.createUserRole.placeholder')}
+                                    options={roleOptions.map(option=>({value:option, label:a(`enums.${option.label}`)}))}
                                     onChange={(selected)=>{setRoles(selected.value)}}
                                     isDisabled={readOnly}
                                     isSearchable={false}

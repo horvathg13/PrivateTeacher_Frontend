@@ -47,7 +47,7 @@ const ChildCourses = () => {
                         <tr>
                             {loaderData.header ? loaderData.header.map((e, i) => (
 
-                                <th key={i}>{e}</th>
+                                <th key={i}>{t(`tableHeaders.${e}`)}</th>
 
 
                             )) : null}
@@ -60,7 +60,7 @@ const ChildCourses = () => {
                                 <td>{e.id}</td>
                                 <td>{e.name}</td>
                                 <td>{e.teacher}</td>
-                                <td>{e.status}</td>
+                                <td>{t(`enums.${e.status}`)}</td>
                             </tr>
                         ))}
                         {loaderData.data.length === 0 ?
