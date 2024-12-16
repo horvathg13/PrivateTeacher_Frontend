@@ -38,10 +38,10 @@ const MessageDetails = () => {
         setErrors([]);
         setServerError([]);
         Promise.all([
-            ServiceClient.sendMessage(id,message, childId[0], teacherId[0]).catch(error=>setServerError(error)),
+            ServiceClient.sendMessage(id,message, childId[0], teacherId[0]),
             ServiceClient.getMessageInfo(id).then((success)=>{
                 setMessageData(success)
-            }).catch(error=>setServerError(error))
+            })
         ]).catch(error=>{
             setErrors(error)
         });
