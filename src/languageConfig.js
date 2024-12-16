@@ -6,7 +6,7 @@ import {initReactI18next} from "react-i18next";
 export const languageConfig=()=>{
     return new Promise((resolve,reject)=>{
         let language= localStorage.getItem('i18nextLng');
-        ServiceClient.get(`http://127.0.0.1:8000/lang/${language}`)
+        ServiceClient.get(`/lang/${language}`)
             .then((response)=>{
                 if(response.status===200) {
                      i18n
@@ -34,7 +34,7 @@ export const languageConfig=()=>{
 }
 
 export const ChangeLanguage=(selected, prev)=>{
-    ServiceClient.get(`http://127.0.0.1:8000/lang/${selected}`)
+    ServiceClient.get(`/lang/${selected}`)
         .then((response)=>{
             if(response.status===200) {
                 i18n.init({
