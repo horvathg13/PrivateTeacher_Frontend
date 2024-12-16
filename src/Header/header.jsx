@@ -118,9 +118,19 @@ const Header = () => {
             </div> : null}
 
             <div className="header-action-container">
-                {name?<FaUserCog className="logout-icon" onClick={()=>{navigate(`/user/profile`)}}/>:null}
-                {name? <MdLogout className="logout-icon" onClick={logout}/>:null}
-
+                <div className="lng-select">
+                    <ReactFlagsSelect
+                        countries={["HU", "GB"]}
+                        customLabels={{HU: "magyar", GB: "english"}}
+                        placeholder="Select Language"
+                        selected={language}
+                        onSelect={(code) => setLanguage(code)}
+                        className="menu-flags"
+                    />
+                </div>
+                {name ? <FaUserCog className="logout-icon" onClick={() => {
+                    navigate(`/user/profile`)
+                }}/> : null}
                 {name ?
                     <div className="notification-container">
                         <IoIosNotifications className={haveUnreadNotifications ? "header-icon red" : "header-icon"}
@@ -150,19 +160,10 @@ const Header = () => {
                                 className="loader notification"/><p>{t('header.notifications.loader')}</p></div>}
                         </>
                     </div> : null}
+                {name ? <MdLogout className="logout-icon" onClick={logout}/> : null}
 
-                <div className="lng-select">
-                    <ReactFlagsSelect
-                        countries={["HU", "GB"]}
-                        customLabels={{HU: "magyar", GB: "english"}}
-                        placeholder="Select Language"
-                        selected={language}
-                        onSelect={(code) => setLanguage(code)}
-                        className="menu-flags"
-                    />
-                </div>
             </div>
-            {false &&name ?
+            {false && name ?
                 <div className="mobile-menu">
                     <FaListUl className='dropdown-btn' onClick={() => {
                         setMobileMenu(!showMobileMenu)
