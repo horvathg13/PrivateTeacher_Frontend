@@ -252,7 +252,7 @@ const router = createBrowserRouter([
       },
       {
         path:"child",
-        element:<Child/>,
+        element:<Protected><Child/></Protected>,
         errorElement:<RouteBoundary/>,
         children:
         [
@@ -274,7 +274,7 @@ const router = createBrowserRouter([
       },
       {
         path:"child/:childId",
-        element:<ChildDetails/>,
+        element:<Protected><ChildDetails/></Protected>,
         loader:({params})=>{return getChildInfo(params)},
         errorElement:<RouteBoundary/>,
         children:
@@ -293,7 +293,7 @@ const router = createBrowserRouter([
       },
       {
         path:"search",
-        element:<Search/>,
+        element:<Protected><Search/></Protected>,
         errorElement:<RouteBoundary/>,
         children:
         [
@@ -309,7 +309,7 @@ const router = createBrowserRouter([
       },
       {
         path:"requests",
-        element:<Request/>,
+        element:<Protected><Request/></Protected>,
         errorElement:<RouteBoundary/>,
         children:[
           {
@@ -339,7 +339,7 @@ const router = createBrowserRouter([
       },
       {
         path:"messages",
-        element:<Message/>,
+        element:<Protected><Message/></Protected>,
         errorElement:<RouteBoundary/>,
         children:[
           {
@@ -356,7 +356,7 @@ const router = createBrowserRouter([
       },
       {
         path:"message/:id",
-        element:<Message/>,
+        element:<Protected><Message/></Protected>,
         errorElement:<RouteBoundary/>,
         children:[
           {
