@@ -49,7 +49,7 @@ const Header = () => {
     /*methods:*/
     const logout=()=>{
         
-        let url='http://127.0.0.1:8000/api/logout';
+        let url='/api/logout';
 
         ServiceClient.post(url).then((response)=>{
             if(response.status===200){
