@@ -5,11 +5,14 @@ import { MdLastPage, MdFirstPage, MdNavigateNext, MdDelete, } from "react-icons/
 import { GrFormPrevious } from "react-icons/gr";
 import { useEffect, useState } from 'react';
 import { FaCirclePlus } from 'react-icons/fa6';
+import {useTranslation} from "react-i18next";
 
 
 const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPaginator}) => {
-    /* data: */
 
+    /*Translate*/
+    const {t}=useTranslation()
+    /* data: */
     const [sort, setSort]=useState(true);
     const [column, setColumn]=useState();
     const [activeRow, setActiveRow]=useState();
@@ -32,10 +35,10 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
         return classes.join(' ');
     }
     
-    useEffect(()=>{console.log(column)},[column])
+
     return (
         <>
-        {!loader ?
+        {!loader && datas !== null?
         
         <div className="table-main-container">
             <div className="table-action-menu flex">
@@ -50,7 +53,7 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                     <tr>
                         {datas.header ? Object.keys(datas.header).map((e, i) => (
 
-                            <th key={i}>{e} {datas.header[e] === true ? 
+                            <th key={i}>{t(`tableHeaders.${e}`)} {datas.header[e] === true ?
                                 <button onClick={()=>handleSort(e)} className='table-icon' > {column === e && sort  ? <FaSortAmountUp /> : <FaSortAmountDown />}</button>
                                 : null}
                             </th>
@@ -64,9 +67,11 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                 <tbody>
                     { datas.data?.map((e) => (
                         <tr key={e.id} onClick={() => {if(selectableRow!=="false"){selectedRow(e);setActiveRow(e)}}} className={rowClasses(e)}>
-                           { Object.values(e).map((j=>
-                            <td>{j}</td>
-                           ))}
+                            {
+                                Object.entries(e).map(([key,value]) => (
+                                    key === 'status' ? <td>{t(`enums.${value}`)}</td> : <td>{value}</td>
+                                ))
+                            }
                         </tr>
                     ))}
 
@@ -87,9 +92,12 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
 
 
         </div>: 
-        <span className='loader table'></span>}
+        null}
+            {datas === null ?
+               <h3>{t('empty-table')}</h3>
+            : null}
         </>
-           
+
     );
 };
 export default Table;
