@@ -4,33 +4,22 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Table from "../CommonComponents/Table/table";
         
-const SearchResult = ({data, title,transitionProp, closeModal}) => {
+const SearchResult = ({data, title,transitionProp, closeModal, perPage, counter}) => {
    
     const nodeRef = useRef(null);
     const [loader, setLoader]=useState(false);
-    const [counter, setCounter]=useState(1);
-    const [lastPage, setLastPage]=useState();
-    const [perPage, setPerPage]=useState(5);
     const [selectedRow, setSelectedRow]=useState();
     const navigate = useNavigate();
 
    /* Methods:*/ 
    
-    const pageCounter=(data)=>{
-        switch (data){
-            case 'next': return setCounter(counter+1);
-            case 'prev': if(counter >1){return setCounter(counter-1)}else{return null};
-            case 'last': return setCounter(lastPage);
-            case 'first':return setCounter(1);
-            default: return counter;
-        }
-    }
+
 
    useEffect(()=>{
        if(selectedRow){
            window.open(`/course/profile/${selectedRow.id}`, '_blank' );
        }
-   },[selectedRow])
+   },[selectedRow]);
 
     return (
         <CSSTransition 
@@ -46,9 +35,10 @@ const SearchResult = ({data, title,transitionProp, closeModal}) => {
                 <Table
                 datas={data ? data :null}
                 loader={loader}
-                page={(data)=>pageCounter(data)}
-                perPage={(data)=>setPerPage(data)}
+                page={(data)=>counter(data)}
+                perPage={(data)=>perPage(data)}
                 selectedRow={(e)=>[setSelectedRow(e)]}
+                setPaginator={true}
                 />
             </div>
 

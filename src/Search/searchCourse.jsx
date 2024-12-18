@@ -34,7 +34,9 @@ const SearchCourse = () => {
     const [keywords, setKeywords]=useState();
     const [result, setResult]=useState();
     const[sortData, setSortData]=useState();
-
+    const [counterSet, setCounter]=useState(1);
+    const [lastPage, setLastPage]=useState();
+    const [pageSet, setPerPage]=useState(10);
     /*event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
@@ -74,6 +76,8 @@ const SearchCourse = () => {
             setBtnDisabled(false);
             setResult(success);
             setTitle(t('search.result'));
+            setLastPage(success.pagination.lastPageNumber)
+            setCounter(success.pagination.currentPageNumber)
             setTransitionProp(true);
 
         }).catch((error)=>{
@@ -82,7 +86,34 @@ const SearchCourse = () => {
             setBtnDisabled(false);
         })
     }
-   
+    const pageCounter=(data)=>{
+        switch (data){
+            case 'next': return setCounter(counterSet+1);
+            case 'prev': if(counterSet >1){return setCounter(counterSet-1)}else{return null};
+            case 'last': return setCounter(lastPage);
+            case 'first':return setCounter(1);
+            default: return counterSet;
+        }
+    }
+    useEffect(() => {
+        ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
+            minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
+            schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet).then((success)=>{
+
+            setLoader(false);
+            setBtnDisabled(false);
+            setResult(success);
+            setTitle(t('search.result'));
+            setLastPage(success.pagination.lastPageNumber)
+            setCounter(success.pagination.currentPageNumber)
+            setTransitionProp(true);
+
+        }).catch((error)=>{
+            setServerError(error);
+            setLoader(false);
+            setBtnDisabled(false);
+        })
+    }, [pageSet, counterSet]);
     return (
         <>
         <EventHandler
@@ -96,6 +127,8 @@ const SearchCourse = () => {
         closeModal={(data)=>{if(data===true){setTransitionProp(!transitionProp)}}}
         data={result}
         title={title}
+        perPage={(data)=>{setPerPage(data)}}
+        counter={(data)=>{pageCounter(data)}}
         />
         <div>
             
