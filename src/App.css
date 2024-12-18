@@ -51,7 +51,9 @@ input:read-only{
 .red{
   color: #ec2929 !important;
 }
-
+.grey{
+  color: grey;
+}
 /*containers*/
 .school-breaks-container {
   height: auto !important;
@@ -986,7 +988,7 @@ form .roles-container.flex label {
   font-size: 15px;
   transition: .3s ease-in-out;
 }
-.label-icon:hover{
+.label-icon.red:hover{
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -1165,6 +1167,11 @@ form .roles-container.flex label {
 .boundary-main-container .error-message-container{
   width: 50%;
   text-align: left;
+  padding: 20px;
+}
+.boundary-main-container .error-message-container h3{
+  width: 90%;
+  margin: 0 auto;
 }
 .boundary-main-container .error-boundary-img-container{
   width: 50%;
@@ -1195,6 +1202,7 @@ form .roles-container.flex label {
   .boundary-main-container .error-message-container{
     text-align: center !important;
     width: auto !important;
+    padding: 10px;
   }
 }
 

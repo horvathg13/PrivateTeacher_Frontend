@@ -44,10 +44,17 @@
     background: var(--ButtonBlue);
 }
 .main-container.flex .lng-select{
-    width: fit-content;
-    height: fit-content;
+    width: 35px;
+    height: 30px;
     margin: 10px;
-    padding: 0 10px;
+}
+.main-container.flex .lng-select button {
+    width: 35px;
+    overflow:hidden;
+    padding: 0 !important;
+}
+.main-container.flex .lng-select ul{
+    overflow: hidden;
 }
 .main-container.flex .user-container h4{
     font-weight: normal;
@@ -117,9 +124,8 @@
     cursor: pointer;
 }
 .main-container .notification-container{
-    width: auto;
-    min-width:40px;
-    height: fit-content;
+    width:30px;
+    height: 30px;
     text-align: center;
     margin: 10px;
 }
@@ -195,16 +201,6 @@
 .main-container .notification-menu .loader.notification{
     border-top: 4px solid var(--DarkBlue);
 }
-@media only screen and (max-width: 700px) {
-    .main-container.flex .lng-select button {
-        width: 40px !important;
-        overflow:hidden;
-        padding: 0 !important;
-    }
-    .main-container.flex .lng-select ul{
-        overflow: hidden;
-    }
-}
 @media only screen and (max-width: 550px) {
     .main-container .notification-menu {
         width: 250px;
@@ -213,11 +209,6 @@
 @media only screen and (min-width: 1200px) {
     .main-container.flex .mobile-menu {
         display: none;
-    }
-}
-@media screen and (max-width: 450px){
-    .mobile-menu{
-
     }
 }
 /*# sourceMappingURL=header.css.map */
