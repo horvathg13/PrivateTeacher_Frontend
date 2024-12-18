@@ -7,6 +7,8 @@ import ServiceClient from "../ServiceClient";
 import {RxUpdate} from "react-icons/rx";
 import {ChildInfoContext} from "../Context/UserContext";
 import {getChildInfo} from "../dataLoader";
+import {VscDebugDisconnect} from "react-icons/vsc";
+import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
 
 const ChildInfo = () => {
     /*Translation*/
@@ -19,9 +21,6 @@ const ChildInfo = () => {
     const [lname, setLname]=useState(childInfo.lastname);
     const [username, setUsername]=useState(childInfo.username);
     const [birthday, setBirthday]=useState(childInfo.birthday);
-
-
-    const[showPasswordFields, setShowPasswordField]=useState(false);
     const [password, setPassword]=useState('');
     const [passwordError, setPasswordError]=useState(false);
     const [cpassword, setCPassword]=useState('');
@@ -41,17 +40,24 @@ const ChildInfo = () => {
     /*btn handle*/
     const [btndisabled, setBtnDisabled]=useState(false);
     const [loader, setLoader]=useState(false);
-
-    /*PopUp Control*/
-    const [showAreYouSure, setShowAreYouSure]=useState(false);
-    const [AreYouSureName, setAreYouSureName]=useState('');
-    const [transitionProp, setTransitionsProp]=useState(false);
+    const [disconnectLoader, setDisconnectLoader]=useState(false);
 
     /*DataSave*/
     const [dataSave, setDataSave]=useState();
     let { childId }=useParams();
 
-    /*methods: */
+    /*AreYouSure*/
+    const [areYouSureTransitionProp, setAreYouSureTransitionProp]=useState();
+    const [areYouSureName, setAreYouSureName]=useState('');
+
+    /*Methods: */
+
+    const functionControl=(name)=>{
+        if(name==='detach'){
+            detach();
+        }
+        setAreYouSureTransitionProp(false);
+    }
 
     const updateChild =(e)=>{
         e.preventDefault()
@@ -67,6 +73,7 @@ const ChildInfo = () => {
             setErrors([t('form.not-match')]);
             setBtnDisabled(false);
             setLoader(false);
+            setReadOnlyInfo(false);
             return
         }
 
@@ -92,7 +99,6 @@ const ChildInfo = () => {
             setBtnDisabled(false);
             setLoader(false);
             setReadOnlyInfo(false)
-
         });
     }
     const getChildData=()=>{
@@ -106,6 +112,23 @@ const ChildInfo = () => {
              setUsername(response.data.username);
         })
     }
+
+    const detach=()=>{
+        ServiceClient.detachChild(childId).then(success=>{
+            setSuccess(true);
+            setLoader(false);
+            setTimeout(()=>{
+                setSuccess(false);
+            },2000)
+            setBtnDisabled(false);
+            navigate("/child");
+        }).catch((error)=>{
+            setServerError(error);
+            setBtnDisabled(false);
+            setLoader(false);
+            setReadOnlyInfo(false)
+        });
+    }
     return (
         <>
             <EventHandler
@@ -113,6 +136,11 @@ const ChildInfo = () => {
                 errors={errors}
                 serverError={serverError}
                 closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
+            />
+            <AreYouSure
+                name={areYouSureName}
+                answer={(name) => functionControl(name)}
+                transitionProp={areYouSureTransitionProp}
             />
             <div>
 
@@ -186,12 +214,17 @@ const ChildInfo = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="userDetails btn-container">
+
+                    <div className="form-button-container ">
                         {!loader ?
 
-                            <button type='submit' onClick={(e)=>updateChild(e)} disabled={btndisabled} className={btndisabled ? 'btn disabled' : 'btn action formButton flex'}><RxUpdate className='user-submit-icon'/>{t('button.update')} </button>
-                            :<span className='loader userDetailsLoader'></span>
+                            <button type='submit' onClick={(e)=>updateChild(e)} disabled={btndisabled} className={btndisabled ? 'btn formBtnDisabled' : 'btn action formButton flex'}><RxUpdate className='user-submit-icon'/>{t('button.update')} </button>
+                            :<span className='loader'></span>
+                        }
+                        {!disconnectLoader ?
 
+                            <button type="button" onClick={()=>[setAreYouSureName("detach"), setAreYouSureTransitionProp(true)]} disabled={btndisabled} className={btndisabled ? 'btn formBtnDisabled' : 'btn action formButton flex'}><VscDebugDisconnect  className='user-submit-icon'/>{t('button.disconnect')} </button>
+                            :<span className='loader'></span>
                         }
                     </div>
                 </form>
