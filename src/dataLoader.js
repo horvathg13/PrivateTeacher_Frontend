@@ -198,3 +198,8 @@ export const getUserData=()=>{
         return response.data
     })
 }
+export const accessToMessages=(id)=>{
+    return ServiceClient.post("/api/accessToMessages",{Id:id}).then(response=>{
+        return response.data
+    })
+}
