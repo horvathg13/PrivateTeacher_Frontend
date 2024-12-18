@@ -208,7 +208,6 @@ const Location = () => {
                             <label>{t('form.floor')}</label>
                             <input
                                 type="text"
-                                required
                                 onChange={(e) => {
                                     setFloor(e.target.value)
                                 }}
@@ -219,7 +218,6 @@ const Location = () => {
                             <label>{t('form.door')}</label>
                             <input
                                 type="text"
-                                required
                                 onChange={(e) => {
                                     setDoor(e.target.value)
                                 }}
