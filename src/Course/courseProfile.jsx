@@ -75,7 +75,7 @@ const CourseProfile = () => {
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><LuCalendarClock/> {t('form.payment_period')}</label>
-                                <h4>{courseProfile.payment_period}</h4>
+                                <h4>{a(`enums.${courseProfile.payment_period}`)}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><FaLocationDot/> {t('form.location')}</label>
