@@ -192,7 +192,7 @@
           "info": {
             "title": "Kurzus Információk"
           },
-          "not-possible": "Kurzus létrehozása nem lehetséges: nincsenek helyszíenk és/vagy tanárok regisztrálva.",
+          "not-possible": "Kurzus létrehozása nem lehetséges: nincs helyszíen regisztrálva.",
           "form": {
             "name": "Kurzus neve",
             "student-limit": "Tanulói létszám limit",
@@ -270,7 +270,8 @@
     },
     "button": {
       "create": "Létrehozás",
-      "update": "Frissítés"
+      "update": "Frissítés",
+      "disconnect": "Leválasztás"
     },
     "validator": {
       "samePsw": "A megadott jelszavak nem egyeznek."

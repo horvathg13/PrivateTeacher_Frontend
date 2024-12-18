@@ -192,7 +192,7 @@
           "info": {
             "title": "Course Infos"
           },
-          "not-possible": "It is not possible to create a course: we do not have locations and/or teachers registered.",
+          "not-possible": "It is not possible to create a course: you do not have location registered.",
           "form": {
             "name": "Name",
             "subject": "Subject",
@@ -271,7 +271,8 @@
     },
     "button": {
       "create": "Create",
-      "update": "Update"
+      "update": "Update",
+      "disconnect": "Disconnect"
     },
     "validator": {
       "samePsw": "A megadott jelszavak nem egyeznek."
