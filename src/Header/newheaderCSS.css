@@ -148,6 +148,7 @@
     border-radius: 5px;
     overflow-y:auto;
     animation:  fadeIn .5s;
+    z-index: 9999;
 }
 .main-container .notification-menu .notification-child{
     display: flex;

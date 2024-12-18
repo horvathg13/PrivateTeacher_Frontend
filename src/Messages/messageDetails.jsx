@@ -35,17 +35,19 @@ const MessageDetails = () => {
     }, [messageLoader]);
     const sendMessage=(e)=>{
         e.preventDefault();
-        setErrors([]);
-        setServerError([]);
-        Promise.all([
-            ServiceClient.sendMessage(id,message, childId[0], teacherId[0]),
-            ServiceClient.getMessageInfo(id).then((success)=>{
-                setMessageData(success)
-            })
-        ]).catch(error=>{
-            setErrors(error)
-        });
-        setMessage('');
+        if(message){
+            setErrors([]);
+            setServerError([]);
+            Promise.all([
+                ServiceClient.sendMessage(id,message, childId[0], teacherId[0]),
+                ServiceClient.getMessageInfo(id).then((success)=>{
+                    setMessageData(success)
+                })
+            ]).catch(error=>{
+                setErrors(error)
+            });
+            setMessage('');
+        }
     }
     const messageEndRef=useRef(null);
     const scrollToBottom=()=>{
@@ -86,7 +88,7 @@ const MessageDetails = () => {
                     sendMessage(e);setMessage('')
                 }}} onChange={(e)=>setMessage(e.target.value)}/>
                 <div className="message-icon-container">
-                    <FaLocationArrow  className="message-icon" onClick={(e)=>sendMessage(e)}/>
+                    <FaLocationArrow  className={!message ? "message-icon-disabled":"message-icon"} onClick={(e)=>sendMessage(e)}/>
                 </div>
             </div>
 

@@ -61,19 +61,20 @@ const NewMessage = () => {
     const sendMessage=(e)=>{
         e.preventDefault();
 
-        setErrors([]);
-        setServerError([]);
+        if(message){
+            setErrors([]);
+            setServerError([]);
 
-        Promise.all([
-            ServiceClient.sendMessage(requestId,message, childId, teacherId),
-            ServiceClient.getMessageInfo(requestId).then((success)=>{
-                setMessageData(success)
-            })
-        ]).catch(error=>{
-            setServerError(error)
-        });
-        setMessage('');
-
+            Promise.all([
+                ServiceClient.sendMessage(requestId,message, childId, teacherId),
+                ServiceClient.getMessageInfo(requestId).then((success)=>{
+                    setMessageData(success)
+                })
+            ]).catch(error=>{
+                setServerError(error)
+            });
+            setMessage('');
+        }
     }
     return (
         <>
@@ -137,7 +138,7 @@ const NewMessage = () => {
                        sendMessage(e); setMessage('')
                     }}} onChange={(e)=>setMessage(e.target.value)}/>
                     <div className="message-icon-container">
-                        <FaLocationArrow  className="message-icon" onClick={(e)=>sendMessage(e)}/>
+                        <FaLocationArrow  className={!message ? "message-icon-disabled":"message-icon"} onClick={(e)=>{sendMessage(e)}}/>
                     </div>
                 </div>
             </div>
