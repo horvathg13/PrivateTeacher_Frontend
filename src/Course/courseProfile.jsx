@@ -39,7 +39,7 @@ const CourseProfile = () => {
                     "url":`/course/profile/${courseId}/course-apply`
                 },
             ])
-    },[courseProfile])
+    },[courseProfile,t])
     return (
         <div>
             <div className="course-profile-main">
@@ -50,11 +50,9 @@ const CourseProfile = () => {
                             <h3>{courseProfile.teacher.first_name} {courseProfile.teacher.last_name}</h3>
                         </div>
                         <div className="course-name">
-                            {courseProfile.course_names_and_langs.map((i, j) => (
                                 <>
-                                    <h3> {j !== 0 ? "/" : null} {i.name} </h3>
+                                    <h3> {courseProfile.course_names_and_langs[0].name} </h3>
                                 </>
-                            ))}
                         </div>
                     </div>
                     <form className="FlexForm">
