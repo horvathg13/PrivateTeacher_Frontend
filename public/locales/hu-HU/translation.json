@@ -415,6 +415,20 @@
     "course_name":"Kurzus",
     "teacher_name":"Tanár",
     "course_price_per_lesson":"Ár/Tanóra"
+  },
+  "messages": {
+    "success": "A művelet sikeres volt.",
+    "error": "A művelet sikertelen volt.",
+    "denied": {
+      "role": "Megtagadva: Ehhez a művelethez nincs szerepköre.",
+      "user": {
+        "active": "Művelet megtagadva: a felahasználó nem aktív"
+      },
+      "teacher": "A megadott tanár nem tartozik az iskolához.",
+      "permission": "Megtagadva: Ehhez a művelethez nincs jogosultsága."
+    },
+    "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította. Próbálja később."
   }
+
 
 }

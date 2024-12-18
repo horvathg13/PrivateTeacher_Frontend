@@ -415,5 +415,18 @@
     "course_name":"Course",
     "teacher_name":"Teacher",
     "course_price_per_lesson":"Price/Lesson"
+  },
+  "messages": {
+    "success" : "Operation was Successful.",
+    "error" : "Operation was Unsuccessful.",
+    "denied":{
+      "role":"Denied: You have no role to this operation",
+      "user":{
+        "active":"Operation denied: user is not active."
+      },
+      "teacher":"The requested teacher is not attached to this school.",
+      "permission":"Denied: You have no permission to this operation."
+    },
+    "hack_attempt":"The server detected suspicious activity and declined your request. Please try again later."
   }
 }
