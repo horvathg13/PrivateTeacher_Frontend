@@ -91,7 +91,7 @@ const CreateUserRole = ({closeModal, transitionProp, updateUserRoles, roleOption
                                 <Select
                                     placeholder={t('user.createUserRole.placeholder')}
                                     options={roleOptions.map(option=>({value:option, label:a(`enums.${option.label}`)}))}
-                                    onChange={(selected)=>{setRoles(selected.value)}}
+                                    onChange={(selected)=>{setRoles(selected.value.value)}}
                                     isDisabled={readOnly}
                                     isSearchable={false}
                                 />
