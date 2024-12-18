@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import {isRouteErrorResponse, useNavigate, useRouteError} from "react-router-dom";
 import {FaTriangleExclamation} from "react-icons/fa6";
 import {FaRegArrowAltCircleLeft} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
 
 const RouteBoundary = () => {
     const error = useRouteError();
     const navigate=useNavigate();
+    const {t}=useTranslation();
 
     if (isRouteErrorResponse(error)) {
         return (
@@ -44,11 +46,12 @@ const RouteBoundary = () => {
                                 <h3>{e}</h3>
                             )
                             :
-                            <h3>{error.response?.data?.message || error?.response?.data}</h3>
+                            error.response?.data?.message ?
+                                <h3>{t(`${error.response.data.message}`)}</h3>
+                                : <h3>{t(`${error.response.data}`)}</h3>
                         }
+                    </div>
                 </div>
-
-            </div>
     </>
         );
     }
