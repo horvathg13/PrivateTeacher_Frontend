@@ -84,11 +84,11 @@ const CourseProfile = () => {
                             <div className="form-children courseProfile-form-children">
                                 <label><FaLocationDot/> {t('form.address')}</label>
                                 <div className="address-container">
-                                    <h4>{courseProfile.location.country}</h4>
-                                    <h4>{courseProfile.location.city}</h4>
-                                    <h4>{courseProfile.location.street} {courseProfile.location.number}</h4>
-                                    <h4>{courseProfile.location.floor} / {courseProfile.location.door}</h4>
-                                    <h4>{courseProfile.location.zip}</h4>
+                                    <span>{courseProfile.location.country}</span>
+                                    <span>{courseProfile.location.city}</span>
+                                    <span>{courseProfile.location.street} {courseProfile.location.number}</span>
+                                    <span>{courseProfile.location.floor} / {courseProfile.location.door}</span>
+                                    <span>{courseProfile.location.zip}</span>
                                 </div>
                             </div>
 
