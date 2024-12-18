@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import ServiceClient from "../ServiceClient";
 import * as Promis from "axios";
+import EventHandler from "../EventHandler/eventhandler";
         
 const Home = () => {
     const {username,roles, setUsername, setRoles} =useContext(UserContext);
@@ -22,14 +23,9 @@ const Home = () => {
     const getIcon=(iconName)=>{
         switch (iconName) {
             case 'FaUsers':return <FaUsers />;
-            //case 'HiDocumentDownload': return <HiDocumentDownload />;
-            //case 'IoMdSchool': return <IoMdSchool />;
             case 'FaChild': return <FaChild/>;
             case 'FaSearch': return <FaSearch/>;
             case 'BiSolidMessageDetail': return <BiSolidMessageDetail/>;
-            //case 'PiStudentBold': return <PiStudentBold/>;
-            //case 'MdPayment': return <MdPayment/>;
-            //case 'BsCalendar3': return <BsCalendar3/>;
             case 'FaSchool':return <FaSchool  />;
             case 'FaUserGraduate':return <FaUserGraduate/>;
             case 'PiNewspaperBold':return <PiNewspaperBold/>;
@@ -45,25 +41,30 @@ const Home = () => {
         if(!roles.length){
              ServiceClient.post("/api/getUserData").then((response)=>{
                 hasAccess(menu,response.data.roles);
+             }).catch(error=>{
+                 navigate('/');
              });
         }else{
-            hasAccess(menu,roles);
+            if(localStorage.getItem("token")){
+                hasAccess(menu,roles)
+            }
         }
     }, []);
     return (
         <>
-        <div className="home-text">
-            <h1>{t('home.greeting')} {username}</h1>
-            <p>{t('home.subtitle')}</p>
-        </div>
-        <div className="homeMenu-main-container flex">
-            {newMenu?.map((e, i) => (
-                <div className="circle-menu-container" key={i}>
-                    <div className="icon grid" onClick={()=>navigate(`${e.url}`)}>{getIcon(e.icon)}</div>
-                    <div className="menu-name">{t(`home.menu.${e.name}`)}</div>
-                </div>
-            ))}
-        </div>
+            <div className="home-text">
+                <h1>{t('home.greeting')} {username}</h1>
+                <p>{t('home.subtitle')}</p>
+            </div>
+           <div className="homeMenu-main-container flex">
+               {newMenu?.map((e, i) => (
+                   <div className="circle-menu-container" key={i}>
+                        <div className="icon grid" onClick={() => navigate(`${e.url}`)}>{getIcon(e.icon)}</div>
+                        <div className="menu-name">{t(`home.menu.${e.name}`)}</div>
+                   </div>
+                    )
+               )}
+           </div>
         </>
     );
 };
