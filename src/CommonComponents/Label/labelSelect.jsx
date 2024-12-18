@@ -34,8 +34,10 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, 
         if(labels){
             return labels.map((e,i)=>(
                 <span>
-                    {e.label} <FaMinusSquare className="label-icon red" onClick={()=> {
-                        labelFilter(e)
+                    {e.label} <FaMinusSquare className={disabled ? "label-icon grey":"label-icon red"} onClick={()=> {
+                        if(disabled === false){
+                            labelFilter(e)
+                        }
                     }}/> {i < labels.length-1 ? ", " :null}
                 </span>
             ))
