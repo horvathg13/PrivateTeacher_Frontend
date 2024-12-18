@@ -87,8 +87,8 @@ const UserProfile = () => {
         ServiceClient.updateUser( userId, userInfo,password,cpassword).then((success)=>{
             setSuccess(true);
             setLoader(false);
-            setCPassword(null);
-            setPassword(null);
+            setCPassword("");
+            setPassword("");
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
@@ -154,6 +154,7 @@ const UserProfile = () => {
                                     className={passwordError ? 'InputError' : 'passwordInput'}
                                     type="password"
                                     readOnly={readOnlyInfo}
+                                    value={password}
                                     onChange={(e) => {
                                         setPassword(e.target.value);
                                     }}/>
@@ -165,6 +166,7 @@ const UserProfile = () => {
                                     className={cpasswordError ? 'InputError' : 'passwordInput'}
                                     type="password"
                                     readOnly={readOnlyInfo}
+                                    value={cpassword}
                                     onChange={(e) => {
                                         setCPassword(e.target.value);
                                     }}/>
