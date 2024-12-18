@@ -104,7 +104,7 @@ const CourseInfo = () => {
         setErrors([]);
         setServerError([]);
 
-        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency).then((success)=>{
+        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency.value || currency, courseStatus || courseInfo.status.value).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
@@ -180,7 +180,7 @@ const CourseInfo = () => {
                             <label>{t('form.status')}</label>
                             <Select
                                 options={courseStatuses}
-                                value={courseInfo.status}
+                                defaultValue={courseInfo.status}
                                 onChange={(selected) => {
                                     setCourseStatus(selected.value)
                                 }}
@@ -233,7 +233,7 @@ const CourseInfo = () => {
                             <label>{t('form.location')}</label>
                             <Select
                                 options={schoolLocations?.select}
-                                value={[{"value":courseInfo.location.id, "label":courseInfo.location.name}]}
+                                defaultValue={[{"value":courseInfo.location.id, "label":courseInfo.location.name}]}
                                 onChange={(selected) => {
                                     setLocation(selected.value)
                                 }}
@@ -258,7 +258,7 @@ const CourseInfo = () => {
                                 <label>{t('form.currency')}</label>
                                 <Select
                                     options={currencies}
-                                    value={courseInfo.currency}
+                                    defaultValue={courseInfo.currency}
                                     onChange={(selected) => {
                                         setCurrency(selected.value)
                                     }}
@@ -271,7 +271,7 @@ const CourseInfo = () => {
                                 <label>{t('form.payment-period')}</label>
                                 <Select
                                     options={paymentPeriods}
-                                    value={courseInfo.paymentPeriod}
+                                    defaultValue={courseInfo.paymentPeriod}
                                     onChange={(selected) => {
                                         setPaymentPeriod(selected.value)
                                     }}
