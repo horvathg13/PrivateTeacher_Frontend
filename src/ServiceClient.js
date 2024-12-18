@@ -210,9 +210,9 @@ class ServiceClient {
             return response.data
         });
     }
-    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, locationId, paymentPeriod, courseId, currency){
+    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, locationId, paymentPeriod, courseId, currency,courseStatus){
         return this.post("/api/createCourse",{
-            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, labels:labels, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency}).then((response)=>{
+            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, labels:labels, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency, status:courseStatus}).then((response)=>{
                 return response.data
         });
     }
@@ -303,6 +303,11 @@ class ServiceClient {
         return ServiceClient.get(`/api/selectedUserData/${userId}`).then((response)=>{
             return response.data;
         });
+    }
+    static detachChild=(childId)=>{
+        return ServiceClient.get(`/api/detachChild/${childId}`).then(response=>{
+            return response.data
+        })
     }
 }
 
