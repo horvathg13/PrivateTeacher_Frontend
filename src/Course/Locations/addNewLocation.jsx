@@ -77,18 +77,6 @@ const AddNewLocation = () => {
                 <form onSubmit={(e)=>createLocation(e)} className="FlexForm">
                     <div className="form-items flex">
                         <div className="form-children">
-                            <label>{t('info.form.course')}</label>
-                            <Select
-                                options={getCourses?.select}
-                                onChange={(selected) => {
-                                    setSelectedCourse(selected.value)
-                                }}
-                                isDisabled={readOnly}
-                                isSearchable={true}
-                                className="select-componentFull"
-                            />
-                        </div>
-                        <div className="form-children">
                             <label>{t('info.form.locationName')}</label>
                             <input type="text"
                                    required
@@ -159,7 +147,6 @@ const AddNewLocation = () => {
                             <label>{t('info.form.floor')}</label>
                             <input
                                 type="text"
-                                required
                                 onChange={(e) => {
                                     setFloor(e.target.value)
                                 }}
@@ -170,7 +157,6 @@ const AddNewLocation = () => {
                             <label>{t('info.form.door')}</label>
                             <input
                                 type="text"
-                                required
                                 onChange={(e) => {
                                     setDoor(e.target.value)
                                 }}
