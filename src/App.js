@@ -36,7 +36,7 @@ import {
   getRequestDetails,
   getChildCourses,
   getCourseProfile,
-  haveUnreadNotifications, getMessages, getMessageInfo, getLanguages, getLocationCourses, getUserData
+  haveUnreadNotifications, getMessages, getMessageInfo, getLanguages, getLocationCourses, getUserData, accessToMessages
 } from './dataLoader';
 import UserProfileBase from './Users/user/userProfileBase';
 import Users from './Users/users';
@@ -358,6 +358,7 @@ const router = createBrowserRouter([
         path:"message/:id",
         element:<Protected><Message/></Protected>,
         errorElement:<RouteBoundary/>,
+        loader:({params})=>{return accessToMessages(params)},
         children:[
           {
             path:"",
