@@ -96,7 +96,13 @@ const CourseCreate = () => {
             setBtnDisabled(false);
         })
     }
-   
+    useEffect(()=>{
+        if(!schoolLocations.data.length){
+            setReadOnly(true);
+            setBtnDisabled(true);
+            setErrors([t('not-possible')]);
+        }
+    },[schoolLocations])
     return (
         <>
         <EventHandler
