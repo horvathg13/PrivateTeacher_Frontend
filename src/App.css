@@ -829,6 +829,10 @@ form .roles-container.flex label {
   margin: 15px auto !important;
   float:none !important;
 }
+.loader.connectButtonLoader{
+  margin: 15px 50% !important;
+  border-top: 4px solid var(--DarkBlue) !important;
+}
 
 /*Label Component*/
 .selector-input{
@@ -848,7 +852,7 @@ form .roles-container.flex label {
 .label-main{
   max-width: 800px;
   height:calc(100% - 100px);
-  min-height: 700px;
+  min-height: 600px;
   margin: 0 auto;
   background: var(--whiteColorDeam);
   border-radius: 10px;
@@ -1204,9 +1208,12 @@ form .roles-container.flex label {
 }
 .content-main-container .course-titles .course-name{
   width: 100%;
-  display: inline-flex;
+  display: flex;
   text-align: center;
   justify-content:center;
+}
+.content-main-container .course-titles .course-name h3{
+  width:100%;
 }
 .content-main-container .course-profile-main{
   width: 100%;
@@ -1258,9 +1265,10 @@ form .roles-container.flex label {
   }
   .content-main-container .course-profile-main .profile-data .FlexForm .form-items .form-children.courseProfile-form-children label{
     width: auto;
+    padding: 10px;
     margin: 10px 0 !important;
   }
-  .content-main-container .course-profile-main .profile-data .FlexForm .form-items .form-children.courseProfile-form-children .address-container{
+  .content-main-container .course-profile-main .profile-data .FlexForm .form-items .form-children.courseProfile-form-children .address-container span{
     width: 100%;
     flex-direction: column;
     margin: 12px;
@@ -1278,7 +1286,11 @@ form .roles-container.flex label {
   text-overflow: ellipsis;
 }
 .content-main-container .course-profile-main .profile-data .FlexForm .form-items .form-children.courseProfile-form-children .address-container{
-  display: flex;
+  margin:12px;
+}
+.content-main-container .course-profile-main .profile-data .FlexForm .form-items .form-children.courseProfile-form-children .address-container span{
+  padding-right: 10px;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 1250px) {
@@ -1374,6 +1386,10 @@ form .roles-container.flex label {
   color: var(--ButtonBlue);
   transform: scale(1.2);
   cursor: pointer;
+}
+.messageDetails-main-container .message-input .message-icon-disabled{
+  color: grey;
+  font-size: 20px;
 }
 .addressee-selector-container{
   width: 50%;

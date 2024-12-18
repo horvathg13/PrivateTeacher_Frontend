@@ -84,7 +84,7 @@ const ChildConnect = () => {
                     </div>
 
                     {!loader ? <button type='submit' disabled={btndisable} className={!btndisable ? 'btn formButton connectButton' : 'btn formButton connectButton disabled'}>{t('title.connect')} <FaArrowCircleRight className='btn-icon' /></button> :
-                        <span className='loader createUser'></span>}
+                        <span className='loader connectButtonLoader'></span>}
                 </form>
             </div>
         </div>
