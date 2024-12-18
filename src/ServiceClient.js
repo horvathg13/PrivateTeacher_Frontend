@@ -260,10 +260,10 @@ class ServiceClient {
         });
     }
 
-    static searchCourse=(teacher_email, courseName, keywords, min_lesson, min_t_days, course_price, country, zip, city, street, number, sortData)=>{
-        return ServiceClient.post("/api/searchCourse", {teacher_email:teacher_email,
+    static searchCourse=(teacher_email, courseName, keywords, min_lesson, min_t_days, course_price, country, zip, city, street, number, sortData, perPage, counter)=>{
+        return ServiceClient.post(`/api/searchCourse?perPage=${perPage}&page=${counter}`, {teacher_email:teacher_email,
             name:courseName, keywords:keywords, min_lesson:min_lesson, min_t_days:min_t_days, course_price:course_price,
-            country:country, zip:zip, city:city, street:street, number:number, sortData:sortData}).then((response)=>{
+            country:country, zip:zip, city:city, street:street, number:number, sortData:sortData, perPage:perPage, counter:counter}).then((response)=>{
             return response.data
         });
     }
@@ -309,6 +309,7 @@ class ServiceClient {
             return response.data
         })
     }
+
 }
 
 export default ServiceClient
