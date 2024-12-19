@@ -34,9 +34,10 @@ const SearchCourse = () => {
     const [keywords, setKeywords]=useState();
     const [result, setResult]=useState();
     const[sortData, setSortData]=useState();
-    const [counterSet, setCounter]=useState(1);
+    const [counterSet, setCounter]=useState();
     const [lastPage, setLastPage]=useState();
-    const [pageSet, setPerPage]=useState(10);
+    const [pageSet, setPerPage]=useState();
+
     /*event handle*/
     const [errors, setErrors]=useState([]);
     const [success, setSuccess]=useState(false);
@@ -96,23 +97,25 @@ const SearchCourse = () => {
         }
     }
     useEffect(() => {
-        ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
-            minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
-            schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet).then((success)=>{
+        if(pageSet || counterSet>0){
+            ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
+                minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
+                schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet).then((success)=>{
 
-            setLoader(false);
-            setBtnDisabled(false);
-            setResult(success);
-            setTitle(t('search.result'));
-            setLastPage(success.pagination.lastPageNumber)
-            setCounter(success.pagination.currentPageNumber)
-            setTransitionProp(true);
+                setLoader(false);
+                setBtnDisabled(false);
+                setResult(success);
+                setTitle(t('search.result'));
+                setLastPage(success.pagination.lastPageNumber)
+                setCounter(success.pagination.currentPageNumber)
+                setTransitionProp(true);
 
-        }).catch((error)=>{
-            setServerError(error);
-            setLoader(false);
-            setBtnDisabled(false);
-        })
+            }).catch((error)=>{
+                setServerError(error);
+                setLoader(false);
+                setBtnDisabled(false);
+            })
+        }
     }, [pageSet, counterSet]);
     return (
         <>
