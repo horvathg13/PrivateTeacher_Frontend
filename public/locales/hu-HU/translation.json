@@ -410,7 +410,7 @@
     "street":"Utca",
     "number":"Házszám",
     "request_id":"Kérvény_id",
-    "request_date":"Kérvény_dátuma",
+    "request_date":"Kérvény dátuma",
     "child_id":"Gyerek_id",
     "course_name":"Kurzus",
     "teacher_name":"Tanár",
@@ -425,7 +425,8 @@
         "active": "Művelet megtagadva: a felahasználó nem aktív"
       },
       "teacher": "A megadott tanár nem tartozik az iskolához.",
-      "permission": "Megtagadva: Ehhez a művelethez nincs jogosultsága."
+      "permission": "Megtagadva: Ehhez a művelethez nincs jogosultsága.",
+      "locationInUse":"Megtagadva: A helyszín használatban van."
     },
     "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította. Próbálja később."
   }

@@ -410,7 +410,7 @@
     "street":"Street",
     "number":"Number",
     "request_id":"Request_id",
-    "request_date":"Request_date",
+    "request_date":"Request date",
     "child_id":"Child_id",
     "course_name":"Course",
     "teacher_name":"Teacher",
@@ -425,7 +425,8 @@
         "active":"Operation denied: user is not active."
       },
       "teacher":"The requested teacher is not attached to this school.",
-      "permission":"Denied: You have no permission to this operation."
+      "permission":"Denied: You have no permission to this operation.",
+      "locationInUse":"Denied: A course use this location."
     },
     "hack_attempt":"The server detected suspicious activity and declined your request. Please try again later."
   }
