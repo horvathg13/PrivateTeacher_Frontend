@@ -176,12 +176,12 @@ class ServiceClient {
         })
     }
     static getCourseLocation=(locationId)=>{
-        return ServiceClient.get(`/api/getLocationInfo/${locationId}`,).then((response)=>{
+        return this.get(`/api/getLocationInfo/${locationId}`,).then((response)=>{
             return response.data
         })
     }
-    static removeSchoolLocation(schoolId, locationId){
-        return this.post("/api/removeSchoolLocation",{schoolId:schoolId, locationId:locationId}).then((response)=>{
+    static removeLocation(locationId){
+        return this.post("/api/removeCourseLocation",{locationId:locationId}).then((response)=>{
             return response.data
         });
     }
@@ -222,46 +222,46 @@ class ServiceClient {
         });
     }
     static getNotifications(){
-        return ServiceClient.get(`/api/getNotifications`).then((response)=>{
+        return this.get(`/api/getNotifications`).then((response)=>{
             return response.data
         });
     }
 
     static readNotification(notificationId){
-        return ServiceClient.get(`/api/readNotification/${notificationId}`).then((response)=>{
+        return this.get(`/api/readNotification/${notificationId}`).then((response)=>{
             return response.data
         });
     }
     static getMessages=()=>{
-        return ServiceClient.get(`/api/getMessages`).then((response)=>{
+        return this.get(`/api/getMessages`).then((response)=>{
             return response.data
         })
     }
     static sendMessage=(Id,message, childId, teacherId)=>{
-        return ServiceClient.post(`/api/sendMessage`, {Id:Id, message:message, childId:childId, teacherId:teacherId}).then((response)=>{
+        return this.post(`/api/sendMessage`, {Id:Id, message:message, childId:childId, teacherId:teacherId}).then((response)=>{
             return response.data
         })
     }
     static getMessageInfo=(Id)=>{
-        return ServiceClient.get(`/api/getMessageInfo/${Id}/${null}`).then((response)=>{
+        return this.get(`/api/getMessageInfo/${Id}/${null}`).then((response)=>{
             return response.data
         })
     }
 
     static searchLabel=(keyword)=>{
-        return ServiceClient.post("/api/searchLabel", {keyword:keyword || null}).then((response)=>{
+        return this.post("/api/searchLabel", {keyword:keyword || null}).then((response)=>{
             return response.data
         });
     }
 
     static createLabel=(keyword)=>{
-        return ServiceClient.post("/api/createLabel", {keyword:keyword}).then((response)=>{
+        return this.post("/api/createLabel", {keyword:keyword}).then((response)=>{
             return response.data
         });
     }
 
     static searchCourse=(teacher_email, courseName, keywords, min_lesson, min_t_days, course_price, country, zip, city, street, number, sortData, perPage, counter)=>{
-        return ServiceClient.post(`/api/searchCourse?perPage=${perPage}&page=${counter}`, {teacher_email:teacher_email,
+        return this.post(`/api/searchCourse?perPage=${perPage||10}&page=${counter||1}`, {teacher_email:teacher_email,
             name:courseName, keywords:keywords, min_lesson:min_lesson, min_t_days:min_t_days, course_price:course_price,
             country:country, zip:zip, city:city, street:street, number:number, sortData:sortData, perPage:perPage, counter:counter}).then((response)=>{
             return response.data
@@ -269,43 +269,43 @@ class ServiceClient {
     }
 
     static getChildRequests=(childId)=>{
-        return ServiceClient.get(`/api/getChildRequests/${childId}`).then((response)=>{
+        return this.get(`/api/getChildRequests/${childId}`).then((response)=>{
             return response.data
         })
     }
 
     static getMessageControl=(childId, requestId)=>{
-        return ServiceClient.get(`/api/getMessageControl/${childId}/${requestId}`).then((response)=> {
+        return this.get(`/api/getMessageControl/${childId}/${requestId}`).then((response)=> {
             return response.data
         })
     }
     static createChild=(fname, lname, username,birthday,password)=>{
-        return ServiceClient.post(`/api/createChild`, {fname:fname, lname:lname, username:username, birthday:birthday, psw:password}).then((response)=> {
+        return this.post(`/api/createChild`, {fname:fname, lname:lname, username:username, birthday:birthday, psw:password}).then((response)=> {
             return response.data
         })
     }
     static connectToChild=(username, password)=>{
-        return ServiceClient.post('/api/connectToChild', {username:username, psw:password}).then(response=>{
+        return this.post('/api/connectToChild', {username:username, psw:password}).then(response=>{
             return response.data
         })
     }
     static removeUserRole=(userId, roleId)=>{
-        return ServiceClient.post(`/api/removeUserRole/${userId}/${roleId}`).then((response)=>{
+        return this.post(`/api/removeUserRole/${userId}/${roleId}`).then((response)=>{
             return response.data
         })
     }
     static getUserRoles=(userId)=>{
-        return ServiceClient.post(`/api/getUserRoles/${userId}`).then((response)=>{
+        return this.post(`/api/getUserRoles/${userId}`).then((response)=>{
             return response.data
         })
     }
     static selectedUserData=(userId)=>{
-        return ServiceClient.get(`/api/selectedUserData/${userId}`).then((response)=>{
+        return this.get(`/api/selectedUserData/${userId}`).then((response)=>{
             return response.data;
         });
     }
     static detachChild=(childId)=>{
-        return ServiceClient.get(`/api/detachChild/${childId}`).then(response=>{
+        return this.get(`/api/detachChild/${childId}`).then(response=>{
             return response.data
         })
     }
