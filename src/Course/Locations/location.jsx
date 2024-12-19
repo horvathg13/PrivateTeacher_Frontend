@@ -106,12 +106,13 @@ const Location = () => {
         setErrors([]);
         setServerError([]);
 
-        ServiceClient.removeSchoolLocation(locationId).then((success)=>{
+        ServiceClient.removeLocation(locationId).then((success)=>{
             setDeleteLoader(false);
             setSuccess(true);
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
+            navigation("/course/locations");
         }).catch((error)=>{
             setServerError(error);
             setDeleteLoader(false);
@@ -211,7 +212,7 @@ const Location = () => {
                                 onChange={(e) => {
                                     setFloor(e.target.value)
                                 }}
-                                value={street}
+                                value={floor}
                                 readOnly={readOnly}/>
                         </div>
                         <div className="form-children">
