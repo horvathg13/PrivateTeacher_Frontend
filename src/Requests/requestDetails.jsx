@@ -175,7 +175,7 @@ const RequestDetails = () => {
                         <label>{t('form.notice')}</label>
                         <textarea readOnly value={requestDetails.notice}/>
                     </div>
-                    {isTeacher ?
+                    {isTeacher && requestDetails.status === 'UNDER_REVIEW' ?
                         <>
                             <div className="form-title"><h2>{t('form.titles.answer')}</h2></div>
                             <div className="form-children">
