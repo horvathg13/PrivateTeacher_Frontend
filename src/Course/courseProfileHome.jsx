@@ -14,36 +14,12 @@ const CourseProfileHome = () => {
     /*Translation*/
     const {t}=useTranslation();
     useEffect(()=>{
-        roles.some(e=>e !== 'Teacher') ?
-            setMenuItems([
-                {
-                    "id":"1",
-                    "name":t('TabMenu.info'),
-                    "url":`/course/profile/${courseId}`,
-                    "end":true,
-                },
-                {
-                    "id":"2",
-                    "name":t('TabMenu.apply'),
-                    "url":`/course/profile/${courseId}/course-apply`
-                },
-            ])
-        :
-            setMenuItems([
-                {
-                    "id":"1",
-                    "name":t('TabMenu.info'),
-                    "url":`/course/profile/${courseId}`,
-                    "end":true,
-                },
-            ])
         setBreadcrumbs([
             {
                 "id":"1",
                 "name":t('breadcrumbs.home'),
                 "url":"/home",
                 "icon":"IoIosArrowForward",
-
             },
         ]);
         setTitle(t('componentTitles.course'));
