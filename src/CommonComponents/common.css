@@ -314,6 +314,12 @@
         cursor: pointer;
     }
 }
+@media screen and (max-width: 480px) {
+    .mobile-sidemenu-container{
+        display: none;
+    }
+}
+
 @media screen and (min-width: 1200px){
     .mobile-sidemenu-container{
        display: none;
