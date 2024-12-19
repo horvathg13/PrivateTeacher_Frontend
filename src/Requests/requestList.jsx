@@ -60,15 +60,16 @@ const RequestList = () => {
 
                         </thead>
                         <tbody>
-                        {loaderData.data?.flat().map((e) => (
-                            <tr key={e.id} onClick={() => navigate(`/requests/${e.id}`)}>
-                                <td>{e.id}</td>
-                                <td>{`${e.child_info.first_name} ${e.child_info.last_name}`}</td>
-                                <td>{e.course_names_and_langs[0].name}</td>
-                                <td>{e.created_at.substring(0, 10)}</td>
-                                <td>{t(`enums.${e.status}`)}</td>
+                        {loaderData.data ? Object.keys(loaderData.data).map((e) => (
+                            <tr key={loaderData.data[e].id} onClick={() => navigate(`/requests/${loaderData.data[e].id}`)}>
+                                <td>{loaderData.data[e].id}</td>
+                                <td>{`${loaderData.data[e].child_info.first_name} ${loaderData.data[e].child_info.last_name}`}</td>
+                                <td>{loaderData.data[e].course_names_and_langs[0].name}</td>
+                                <td>{loaderData.data[e].created_at.substring(0, 10)}</td>
+                                <td>{t(`enums.${loaderData.data[e].status}`)}</td>
                             </tr>
-                        ))}
+
+                        )) : null}
                         {loaderData.data.length === 0 ?
                             <tr>
                                 <td colSpan={5} className="no-school">{t('empty-table')}</td>
