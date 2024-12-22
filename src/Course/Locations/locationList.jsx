@@ -96,7 +96,10 @@ const LocationList = () => {
                         {schoolLocations.data?.length > 0 ? schoolLocations.data.map((e, i) => (
                                 <tr key={i}>
                                     {Object.values(e).map(j =>
-                                        <td onClick={()=>navigate(`/location/${e.id}`)}>{j}</td>
+                                        <td onClick={()=> {
+                                            navigate(`/location/${e.id}`);
+                                            setLoader(true)
+                                        }}>{j}</td>
                                     )}
                                 </tr>
                             )) :

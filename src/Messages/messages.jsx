@@ -50,7 +50,7 @@ const Messages = () => {
             <Table
                 datas={messageLoader || null}
                 loader={loader}
-                selectedRow={(e)=>[setSelectedRow(e)]}
+                selectedRow={(e)=>[setSelectedRow(e), setLoader(true)]}
                 setPaginator={false}
             />
 

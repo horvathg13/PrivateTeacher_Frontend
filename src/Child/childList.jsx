@@ -63,7 +63,7 @@ const ChildList = () => {
                     </thead>
                     <tbody>
                         { dataLoader.data?.map((e) => (
-                            <tr key={e.id} onClick={() => {console.log(e.id); navigate(`/child/${e.id}`)}}>
+                            <tr key={e.id} onClick={() => {navigate(`/child/${e.id}`); setLoader(true)}}>
                                 <td>{e.firstname}</td>
                                 <td>{e.lastname}</td>
                                 <td>{e.birthday}</td>

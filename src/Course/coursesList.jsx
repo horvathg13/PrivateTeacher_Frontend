@@ -84,7 +84,9 @@ const CoursesList = () => {
                             </thead>
                             <tbody>
                                 { schoolCourses?.length>0  ? schoolCourses.map((e) => (
-                                    <tr key={e.id} onClick={() => navigationHandler(e)}>
+                                    <tr key={e.id} onClick={() => {
+                                        navigationHandler(e); setLoader(true)
+                                    }}>
                                         <td>{e.id}</td>
                                         <td>{e.name}</td>
                                         <td>{e.lang.join(', ')}</td>

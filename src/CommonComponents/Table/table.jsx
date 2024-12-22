@@ -38,63 +38,76 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
 
     return (
         <>
-        {!loader && datas !== null?
-        
-        <div className="table-main-container">
-            <div className="table-action-menu flex">
-                {/*<div className="table-action"><MdDelete className='table-action-icon'/></div>
+            {!loader ?
+
+                <div className="table-main-container">
+                    <div className="table-action-menu flex">
+                        {/*<div className="table-action"><MdDelete className='table-action-icon'/></div>
                 <div className="table-action"><FaCirclePlus className='table-action-icon'/></div>*/}
 
-            </div>
-            <table>
-                <thead>
+                    </div>
+                    <table>
+                        <thead>
 
 
-                    <tr>
-                        {datas.header ? Object.keys(datas.header).map((e, i) => (
+                        <tr>
+                            {datas.header ? Object.keys(datas.header).map((e, i) => (
 
-                            <th key={i}>{t(`tableHeaders.${e}`)} {datas.header[e] === true ?
-                                <button onClick={()=>handleSort(e)} className='table-icon' > {column === e && sort  ? <FaSortAmountUp /> : <FaSortAmountDown />}</button>
-                                : null}
-                            </th>
+                                <th key={i}>{t(`tableHeaders.${e}`)} {datas.header[e] === true ?
+                                    <button onClick={() => handleSort(e)}
+                                            className='table-icon'> {column === e && sort ? <FaSortAmountUp/> :
+                                        <FaSortAmountDown/>}</button>
+                                    : null}
+                                </th>
 
-                        )) : null}
+                            )) : null}
 
-                    </tr>
-
-
-                </thead>
-                <tbody>
-                    { datas.data?.map((e) => (
-                        <tr key={e.id} onClick={() => {if(selectableRow!=="false"){selectedRow(e);setActiveRow(e)}}} className={rowClasses(e)}>
-                            {
-                                Object.entries(e).map(([key,value]) => (
-                                    key === 'status' ? <td>{t(`enums.${value}`)}</td> : <td>{value}</td>
-                                ))
-                            }
                         </tr>
-                    ))}
-
-                </tbody>
-            </table>
-            {setPaginator ?
-            <div className="pagination-continer flex">
-                <div className="show-container flex">
-                    Show/page<input type='number' onKeyDown={(e) => { if (e.key === 'Enter') { return perPage(e.target.value); } } } />
-
-                </div>
-                <div className="pagination flex">
-                    <MdFirstPage className='paginate-icon' onClick={() => page('first')} />
-                    <GrFormPrevious className='paginate-icon' onClick={() => page('prev')} /> 
-                    {datas?.pagination?.currentPageNumber} / {datas?.pagination?.lastPageNumber}{datas?.pagination?.hasMorePages ? <><MdNavigateNext className='paginate-icon' onClick={() => page('next')} /><MdLastPage className='paginate-icon' onClick={() => page('last')} /></> : null}
-                </div>
-            </div>:null}
 
 
-        </div>: 
-        null}
+                        </thead>
+                        <tbody>
+                        {datas.data?.map((e) => (
+                            <tr key={e.id} onClick={() => {
+                                if (selectableRow !== "false") {
+                                    selectedRow(e);
+                                    setActiveRow(e)
+                                }
+                            }} className={rowClasses(e)}>
+                                {
+                                    Object.entries(e).map(([key, value]) => (
+                                        key === 'status' ? <td>{t(`enums.${value}`)}</td> : <td>{value}</td>
+                                    ))
+                                }
+                            </tr>
+                        ))}
+
+                        </tbody>
+                    </table>
+                    {setPaginator ?
+                        <div className="pagination-continer flex">
+                            <div className="show-container flex">
+                                Show/page<input type='number' onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    return perPage(e.target.value);
+                                }
+                            }}/>
+
+                            </div>
+                            <div className="pagination flex">
+                                <MdFirstPage className='paginate-icon' onClick={() => page('first')}/>
+                                <GrFormPrevious className='paginate-icon' onClick={() => page('prev')}/>
+                                {datas?.pagination?.currentPageNumber} / {datas?.pagination?.lastPageNumber}{datas?.pagination?.hasMorePages ? <>
+                                <MdNavigateNext className='paginate-icon' onClick={() => page('next')}/><MdLastPage
+                                className='paginate-icon' onClick={() => page('last')}/></> : null}
+                            </div>
+                        </div> : null}
+
+
+                </div> :
+                <span className='loader table'></span>}
             {datas === null ?
-               <h3>{t('empty-table')}</h3>
+                <h3>{t('empty-table')}</h3>
             : null}
         </>
 

@@ -61,7 +61,10 @@ const RequestList = () => {
                         </thead>
                         <tbody>
                         {loaderData.data ? Object.keys(loaderData.data).map((e) => (
-                            <tr key={loaderData.data[e].id} onClick={() => navigate(`/requests/${loaderData.data[e].id}`)}>
+                            <tr key={loaderData.data[e].id} onClick={() => {
+                                navigate(`/requests/${loaderData.data[e].id}`);
+                                setLoader(true)
+                            }}>
                                 <td>{loaderData.data[e].id}</td>
                                 <td>{`${loaderData.data[e].child_info.first_name} ${loaderData.data[e].child_info.last_name}`}</td>
                                 <td>{loaderData.data[e].course_names_and_langs[0].name}</td>

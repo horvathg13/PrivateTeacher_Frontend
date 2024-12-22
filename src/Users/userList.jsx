@@ -71,7 +71,7 @@ const UserList = () => {
             loader={loader}
             page={pageCounter}
             perPage={setPerPage}
-            selectedRow={(e)=>[setSelectedRow(e)]}
+            selectedRow={(e)=>[setSelectedRow(e), setLoader(true)]}
             setPaginator={true}/>
 
             
