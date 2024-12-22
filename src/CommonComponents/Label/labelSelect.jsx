@@ -34,11 +34,11 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, 
         if(labels){
             return labels.map((e,i)=>(
                 <span>
-                    {e.label} <FaMinusSquare className={disabled ? "label-icon grey":"label-icon red"} onClick={()=> {
+                    {e.label} {!disabled && <FaMinusSquare className={disabled ? "label-icon grey" : "label-icon red"} onClick={()=> {
                         if(disabled === false){
                             labelFilter(e)
                         }
-                    }}/> {i < labels.length-1 ? ", " :null}
+                    }}/>} {i < labels.length-1 ? ", " :null}
                 </span>
             ))
         }
@@ -61,9 +61,9 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, 
             remove={removeItem}
             title={popUpTitle}/> : <div className="selector-input">{renderLabels(labels)}</div>
             }
-            <FaPlus className="selector-icon" onClick={()=> {
+            {!disabled && < FaPlus className="selector-icon" onClick={()=> {
                 if(disabled === false){setLabelTransition(true)}
-            }}/>
+            }}/>}
 
         </div>
     );

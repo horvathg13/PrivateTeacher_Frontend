@@ -215,8 +215,8 @@ const CourseInfo = () => {
                                                handleInputChange(e, i)
                                            }}
                                            readOnly={readOnly}/>
-                                    <FaPlus onClick={handleAddRow} className="selector-icon"/>
-                                    {i > 0 &&
+                                    {!readOnly && <FaPlus onClick={handleAddRow} className="selector-icon"/>}
+                                    {(i > 0 && !readOnly) &&
                                         <FaMinus onClick={() => handleRemoveRow(e)} className="selector-icon red"/>}
                                 </div>
                             </div>
