@@ -37,6 +37,7 @@ input, select, select option{
 input:read-only{
   cursor: default;
   border: none;
+  background: #f2f2f2;
 }
 
 
