@@ -428,7 +428,7 @@
       "permission": "Megtagadva: Ehhez a művelethez nincs jogosultsága.",
       "locationInUse":"Megtagadva: A helyszín használatban van."
     },
-    "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította. Próbálja később."
+    "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította és fiókja felfüggesztésre került. Keresse meg a rendszer üzemeltetőjét további információkért."
   }
 
 
