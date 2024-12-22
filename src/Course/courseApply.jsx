@@ -97,7 +97,7 @@ const CourseApply = () => {
                     <div className="form-children">
                         <label>{t('form.child')}</label>
                         <Select
-                            value={selectedChild || null}
+                            defaultValue={selectedChild || null}
                             options={children}
                             onChange={(selected) => {
                                 setSelectedChild(selected);
