@@ -198,7 +198,7 @@ const CourseInfo = () => {
                                     <Select
                                         placeholder={t('select')}
                                         options={languages || null }
-                                        value={{"value":e.lang, "label":e.lang}}
+                                        defaultValue={{"value":e.lang, "label":e.lang}}
                                         onChange={(selected) => {
                                             handleInputChange(selected, i)
                                         }}
