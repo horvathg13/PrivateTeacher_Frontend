@@ -210,9 +210,9 @@ class ServiceClient {
             return response.data
         });
     }
-    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, locationId, paymentPeriod, courseId, currency,courseStatus){
+    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, locationId, paymentPeriod, courseId, currency,courseStatus, remove){
         return this.post("/api/createCourse",{
-            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, labels:labels, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency, status:courseStatus}).then((response)=>{
+            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, labels:labels, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency, status:courseStatus, remove:remove}).then((response)=>{
                 return response.data
         });
     }

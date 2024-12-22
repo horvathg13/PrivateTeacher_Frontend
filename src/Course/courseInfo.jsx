@@ -31,7 +31,7 @@ const CourseInfo = () => {
     const [paymentPeriod, setPaymentPeriod]=useState(courseInfo.paymentPeriod.value);
     const [currency, setCurrency]=useState(courseInfo.currency)
     const [courseStatus, setCourseStatus]=useState();
-    
+    const [removeLangs, setRemoveLangs]=useState([]);
     const [readOnly, setReadOnly]=useState(true);
     const [selectedRow, setSelectedRow]=useState();
     let {courseId }=useParams();
@@ -93,6 +93,8 @@ const CourseInfo = () => {
         if(readOnly === false){
             let find=courseName.filter((f)=>f !== e);
             setCourseName(find);
+            setRemoveLangs([...removeLangs, e])
+
         }
     }
 
@@ -103,8 +105,7 @@ const CourseInfo = () => {
         setReadOnly(true);
         setErrors([]);
         setServerError([]);
-
-        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency.value || currency, courseStatus || courseInfo.status.value).then((success)=>{
+        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency.value || currency, courseStatus || courseInfo.status.value, removeLangs).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
