@@ -163,6 +163,9 @@
     border-bottom:1px dotted var(--PrimaryColor);
     cursor: pointer;
 }
+.main-container .notification-menu .notification-child.empty{
+    cursor: auto !important;
+}
 .main-container .notification-menu .notification-child:hover{
     background: rgba(148, 225, 232, 0.22);
 }
