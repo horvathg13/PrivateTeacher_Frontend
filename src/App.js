@@ -86,15 +86,27 @@ import User from "./Users/user/user";
 function App() {
 
   const Root = ()=>{
+    const [notificationResult, setNotifications]=useState();
+    useEffect(() => {
+      const interval = setInterval(()=>{
+        haveUnreadNotifications().then(success=>{
+          setNotifications(success);
+        })
+      },15000);
+      return () => {
+        clearInterval(interval);
+      };
+    }, []);
     return(
       <>
       <div>
-        <Header />
+        <NotificationsContext.Provider value={notificationResult}>
+          <Header />
+        </NotificationsContext.Provider>
       </div>
       <div>
         <Outlet />
       </div>
-      
       </>
     )
   }
@@ -370,7 +382,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-  const [notificationResult, setNotifications]=useState();
+  /*const [notificationResult, setNotifications]=useState();
   useEffect(() => {
     const interval = setInterval(()=>{
       haveUnreadNotifications().then(success=>{
@@ -380,7 +392,7 @@ const router = createBrowserRouter([
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, []);*/
 
   return (
     <>
@@ -388,9 +400,10 @@ const router = createBrowserRouter([
     <UserContextProvider>
       <ComponentTitleProvider>
         <TabMenuContextProvider>
-          <NotificationsContext.Provider value={notificationResult}>
+          <RouterProvider router={router}/>
+          {/*<NotificationsContext.Provider value={notificationResult}>
             <RouterProvider router={router}/>
-          </NotificationsContext.Provider>
+          </NotificationsContext.Provider>*/}
         </TabMenuContextProvider>
       </ComponentTitleProvider>
     </UserContextProvider>
