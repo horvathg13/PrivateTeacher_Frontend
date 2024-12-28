@@ -170,7 +170,7 @@ const CourseCreate = () => {
                         <div className="form-children flexColumnItems">
                             <label>{t('form.course-price-per-lesson')}</label>
                             <input
-                                type="text"
+                                type="number"
                                 required
                                 onChange={(e) => {
                                     setcoursePricePerLesson(e.target.value)
