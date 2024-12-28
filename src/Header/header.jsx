@@ -140,24 +140,38 @@ const Header = () => {
                 {notificationMenu && name ?
                     <div className="notification-menu">
                         <>
-                            {getNotifications ? getNotifications.map(e =>
-                                <div key={e.id} className="notification-child" onScroll={(e) => console.log(e)}
-                                     onClick={() => {
-                                         navigate(`${e.url}`);
-                                         setNotificationMenu(!notificationMenu);
-                                         readNotification(e.id)
-                                     }}>
-                                    <div className="notification-child-icon-container">
-                                        <RiGraduationCapFill
-                                            className={e.read === false ? "notification-child-icon yellow" : "notification-child-icon"}/>
+                            {getNotifications.length ? getNotifications.map(e =>
+                                e.empty ?
+                                    <div className="notification-child empty">
+                                        <div className="notification-child-icon-container">
+                                            <RiGraduationCapFill
+                                                className="notification-child-icon"/>
+                                        </div>
+                                        <div className="notification-messages">
+                                            <p>{t(`header.notifications.${e.message}`)}</p>
+                                            <p className="date">{new Date(e.created_at).getUTCFullYear()}-{new Date(e.created_at).getUTCMonth()}-{new Date(e.created_at).getUTCDate()} {new Date(e.created_at).getUTCHours()}:{new Date(e.created_at).getUTCMinutes()}</p>
+                                        </div>
+                                    </div>:
+                                    <div key={e.id} className="notification-child"
+                                         onClick={() => {
+                                             navigate(`${e.url}`);
+                                             setNotificationMenu(!notificationMenu);
+                                             readNotification(e.id)
+                                         }}>
+                                        <div className="notification-child-icon-container">
+                                            <RiGraduationCapFill
+                                                className={e.read === false ? "notification-child-icon yellow" : "notification-child-icon"}/>
+                                        </div>
+                                        <div className="notification-messages">
+                                            <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{e.message}</p>
+                                            <p className="date">{new Date(e.created_at).getUTCFullYear()}-{new Date(e.created_at).getUTCMonth()}-{new Date(e.created_at).getUTCDate()} {new Date(e.created_at).getUTCHours()}:{new Date(e.created_at).getUTCMinutes()}</p>
+                                        </div>
                                     </div>
-                                    <div className="notification-messages">
-                                        <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{e.message}</p>
-                                        <p className="date">{new Date(e.created_at).getUTCFullYear()}-{new Date(e.created_at).getUTCMonth()}-{new Date(e.created_at).getUTCDate()} {new Date(e.created_at).getUTCHours()}:{new Date(e.created_at).getUTCMinutes()}</p>
-                                    </div>
-                                </div>
-                            ) : <div className="notification-menu-loader-container"><span
-                                className="loader notification"/><p>{t('header.notifications.loader')}</p></div>}
+                            ) : <div className="notification-menu-loader-container">
+                                <span className="loader notification"/>
+                                <p>{t('header.notifications.loader')}</p>
+                            </div>
+                            }
                         </>
                     </div> : null}
                 {name ? <MdLogout className="logout-icon" onClick={logout}/> : null}
