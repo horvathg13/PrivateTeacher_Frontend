@@ -79,7 +79,8 @@
   "empty-table": "Not found.",
   "header": {
     "notifications": {
-      "loader": "Loading..."
+      "loader": "Loading...",
+      "empty-notification": "You have no notifications"
     }
   },
   "home": {
@@ -390,7 +391,8 @@
   },
   "message": {
     "child": "Choose your child",
-    "request":"Choose your request"
+    "request":"Choose your request",
+    "no-child": "Please, register your child first."
   },
   "tableHeaders": {
     "id":"ID",
@@ -429,5 +431,7 @@
       "locationInUse":"Denied: A course use this location."
     },
     "hack_attempt":"The server detected suspicious activity, so your request was denied, and your account has been suspended. Please contact the system administrator for further information."
-  }
+  },
+  "Token has expired": "Please, login again",
+  "Wrong number of segments": "Please, login again"
 }

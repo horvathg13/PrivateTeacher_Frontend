@@ -43,7 +43,8 @@
   "empty-table": "Nincs találat.",
   "header": {
     "notifications": {
-      "loader": "Az adatok töltődnek..."
+      "loader": "Az adatok töltődnek...",
+      "empty-notification": "Nincsenek értesítési"
     }
   },
   "TabMenu": {
@@ -390,7 +391,8 @@
   },
   "message": {
     "child": "Válassza ki a gyerekét",
-    "request":"Válassza ki a kérvényét"
+    "request":"Válassza ki a kérvényét",
+    "no-child": "Kérem, először regisztrálja gyermekét."
   },
   "tableHeaders": {
     "id":"ID",
@@ -429,7 +431,8 @@
       "locationInUse":"Megtagadva: A helyszín használatban van."
     },
     "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította és fiókja felfüggesztésre került. Keresse meg a rendszer üzemeltetőjét további információkért."
-  }
-
+  },
+  "Wrong number of segments": "Kérjük, jelentkezzen be újra",
+  "Token has expired": "Kérjük, jelentkezzen be újra"
 
 }
