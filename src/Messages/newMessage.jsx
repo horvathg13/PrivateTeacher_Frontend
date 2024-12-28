@@ -43,7 +43,7 @@ const NewMessage = () => {
     }, [childId]);
 
     useEffect(() => {
-        if(childId !== null && requestId !== null){
+        if(childId && requestId){
             ServiceClient.getMessageControl(childId, requestId).then((success)=>{
                 setMessageData(success);
                 setTeacherId(success.data? success.data[0].course_info.teacher_id : success.teacher_id);
@@ -76,6 +76,11 @@ const NewMessage = () => {
             setMessage('');
         }
     }
+    if(!childLoader.select.length){
+        return(
+            <h3>{t('message.no-child')}</h3>
+        )
+    }
     return (
         <>
             <EventHandler
@@ -89,19 +94,20 @@ const NewMessage = () => {
                 }}
             />
             <div className="addressee-selector-container">
-                <div className="adressee-child">
-                    <label>{t('message.child')}</label>
-                    <Select
-                        placeholder={t('select')}
-                        options={childLoader.select || null}
-                        onChange={(selected) => {
-                            setChildId(selected.value)
-                        }}
-                        isSearchable={true}
-                        className="select-componentFull"
-                    />
-                </div>
-                {childId ?
+                {childLoader.select ?
+                    <div className="adressee-child">
+                        <label>{t('message.child')}</label>
+                        <Select
+                            placeholder={t('select')}
+                            options={childLoader.select || null}
+                            onChange={(selected) => {
+                                setChildId(selected.value)
+                            }}
+                            isSearchable={true}
+                            className="select-componentFull"
+                        />
+                    </div>:null}
+                {childId && requests ?
                     <div className="addressee-child">
                         <label>{t('message.request')}</label>
                         <Select
@@ -113,9 +119,8 @@ const NewMessage = () => {
                             isSearchable={true}
                             className="select-componentFull"
                         />
-                    </div>
-                : null}
-
+                    </div>:null
+                }
             </div>
             <div className="messageDetails-main-container">
                 <div className="message-header-container">
