@@ -17,15 +17,6 @@ const CourseProfile = () => {
     const {setMenuItems}=useContext(TabMenuContext);
 
     useEffect(()=>{
-        courseProfile.alreadyApply ?
-            setMenuItems([
-                {
-                    "id":"1",
-                    "name":a('TabMenu.info'),
-                    "url":`/course/profile/${courseId}`,
-                    "end":true,
-                }
-            ]):
             setMenuItems([
                 {
                     "id":"1",
@@ -40,7 +31,7 @@ const CourseProfile = () => {
                 },
             ]);
 
-    },[courseProfile,t])
+    },[t])
     return (
         <div>
             <div className="course-profile-main">
