@@ -36,7 +36,14 @@ import {
   getRequestDetails,
   getChildCourses,
   getCourseProfile,
-  haveUnreadNotifications, getMessages, getMessageInfo, getLanguages, getLocationCourses, getUserData, accessToMessages
+  haveUnreadNotifications,
+  getMessages,
+  getMessageInfo,
+  getLanguages,
+  getLocationCourses,
+  getUserData,
+  accessToMessages,
+  getTeachingDays
 } from './dataLoader';
 import UserProfileBase from './Users/user/userProfileBase';
 import Users from './Users/users';
@@ -82,6 +89,7 @@ import MessageDetails from "./Messages/messageDetails";
 import NewMessage from "./Messages/newMessage";
 import UserProfile from "./Users/user/userProfile";
 import User from "./Users/user/user";
+import TeachingDayPopUp from "./CommonComponents/TeachingDay/teachingDayPopUp";
 
 function App() {
 
@@ -345,7 +353,7 @@ const router = createBrowserRouter([
           {
             path:":requestId",
             element:<RequestDetails/>,
-            loader:({params})=>{return getRequestDetails(params)}
+            loader:({params})=>{return Promise.all([getRequestDetails(params), getTeachingDays()])}
           },
         ]
       },
