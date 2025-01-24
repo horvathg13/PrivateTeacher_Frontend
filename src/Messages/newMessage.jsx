@@ -78,7 +78,9 @@ const NewMessage = () => {
     }
     if(!childLoader.select.length){
         return(
-            <h3>{t('message.no-child')}</h3>
+            <>
+                <h3>{t('message.no-child')}</h3>
+            </>
         )
     }
     return (
