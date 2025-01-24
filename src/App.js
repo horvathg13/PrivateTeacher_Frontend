@@ -390,17 +390,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-  /*const [notificationResult, setNotifications]=useState();
-  useEffect(() => {
-    const interval = setInterval(()=>{
-      haveUnreadNotifications().then(success=>{
-        setNotifications(success);
-      })
-    },15000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);*/
 
   return (
     <>
@@ -409,9 +398,6 @@ const router = createBrowserRouter([
       <ComponentTitleProvider>
         <TabMenuContextProvider>
           <RouterProvider router={router}/>
-          {/*<NotificationsContext.Provider value={notificationResult}>
-            <RouterProvider router={router}/>
-          </NotificationsContext.Provider>*/}
         </TabMenuContextProvider>
       </ComponentTitleProvider>
     </UserContextProvider>
