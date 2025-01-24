@@ -122,13 +122,6 @@ export const getTeachingDayNames=()=>{
         return response.data
     });
 }
-
-export const getTeachingDays=(params)=>{
-    return ServiceClient.post(`/api/getTeachingDays`, {schoolId:params.schoolId, yearId:params.schoolYearId, courseId:15, teacherId:10}).then((response)=>{
-        return response.data
-    })
-}
-
 export const getChildInfo=(params)=>{
     return ServiceClient.get(`/api/getChildInfo/${params.childId}`).then((response)=>{
         return response.data
@@ -200,6 +193,12 @@ export const getUserData=()=>{
 }
 export const accessToMessages=(id)=>{
     return ServiceClient.post("/api/accessToMessages",{Id:id}).then(response=>{
+        return response.data
+    })
+}
+
+export const getTeachingDays=()=>{
+    return ServiceClient.get('/api/getTeachingDayNames').then((response)=>{
         return response.data
     })
 }
