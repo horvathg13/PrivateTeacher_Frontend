@@ -81,13 +81,13 @@ class ServiceClient {
             return response.data
         })
     }
-    static sendCourseRequest(childId, courseId,numberOfLesson, notice){
-        return this.post("/api/sendCourseRequest", {childId:childId, courseId:courseId, notice:notice, numberOfLesson:numberOfLesson}).then((response)=>{
+    static sendCourseRequest(childId, courseId,numberOfLesson, notice, startDate){
+        return this.post("/api/sendCourseRequest", {childId:childId, courseId:courseId, notice:notice, numberOfLesson:numberOfLesson, start:startDate}).then((response)=>{
             return response.data
         })
     }
-    static acceptCourseRequest(requestId, message){
-        return this.post("/api/acceptCourseRequest", {requestId:requestId, message:message}).then((response)=>{
+    static acceptCourseRequest(requestId, message, start, teachingDayDetails){
+        return this.post("/api/acceptCourseRequest", {requestId:requestId, message:message, start:start, teaching_day_details:teachingDayDetails}).then((response)=>{
             return response.data
         })
     }
@@ -306,6 +306,11 @@ class ServiceClient {
     }
     static detachChild=(childId)=>{
         return this.get(`/api/detachChild/${childId}`).then(response=>{
+            return response.data
+        })
+    }
+    static removeStudentFromCourse=(requestId, childId, message)=>{
+        return this.post("/api/removeStudent",{requestId:requestId, childId:childId, message:message}).then(response=>{
             return response.data
         })
     }
