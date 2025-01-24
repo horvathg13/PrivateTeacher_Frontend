@@ -38,6 +38,7 @@ input:read-only{
   cursor: default;
   border: none;
   background: #f2f2f2;
+  color: black;
 }
 
 
@@ -1035,6 +1036,7 @@ form .roles-container.flex label {
 /*React Select*/
 .select-componentFull{
   width: 100%;
+  color: var(--DarkBlue);
 }
 .select-component{
   width: 80%;

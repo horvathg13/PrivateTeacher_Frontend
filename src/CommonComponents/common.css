@@ -604,3 +604,87 @@
         display: flex;
     }
 }
+
+/*TeachingDayPopup*/
+
+.t-day-main{
+    width: 55%;
+    height: auto;
+    margin:30px auto;
+    padding: 15px;
+    background: var(--LightBlue);
+    color: white;
+    border-radius: 20px;
+    border: 2px solid var(--DarkBlue);
+    box-shadow: 1px 1px 5px var(--DarkBlue);
+}
+
+.t-day-main .t-day-close-button-container{
+    width: 100%;
+    height:40px;
+    margin: 0;
+}
+.t-day-main .t-day-title{
+    width: 100%;
+    padding: 15px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 850px) {
+    .t-day-main .t-day-title{
+        padding: 5px;
+    }
+}
+.t-day-main .t-day-title h3{
+    margin: 0;
+    text-align: center;
+    color: white;
+}
+.t-day-main .t-day-btn-container{
+    width: 100%;
+    padding: 10px;
+}
+.t-day-main .t-day-btn-container button{
+    width: 100px;
+    height: 30px;
+    margin-left: 0;
+}
+.t-day-main .t-day-table-container{
+    width: 100%;
+}
+.t-day-main .t-day-table-container table{
+    width: 100%;
+}
+.t-day-main .t-day-table-container table thead th{
+    padding:5px;
+}
+.t-day-main .t-day-table-container table tbody tr td{
+    padding: 5px 5px;
+}
+@media screen and (max-width: 850px) {
+    .t-day-main .t-day-table-container{
+        display: none;
+    }
+    .t-day-main .mobile-container{
+        padding: 15px;
+        overflow-y: scroll;
+        max-height: 500px;
+    }
+    .t-day-main .mobile-container .form-items .form-children{
+        margin:0;
+        padding: 5px !important;
+    }
+    .t-day-main .mobile-container .form-items .form-children label{
+        min-width: 100px;
+    }
+    .t-day-main .mobile-container .form-items .form-children .t-day-mobile-action-btn-container{
+        display: inline-flex;
+        padding: 5px 0;
+        margin-bottom: 10px;
+    }
+}
+@media screen and (min-width: 850px) {
+    .t-day-main .mobile-container{
+        display: none;
+    }
+}
