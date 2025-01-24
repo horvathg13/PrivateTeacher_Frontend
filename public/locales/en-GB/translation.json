@@ -286,7 +286,8 @@
     "form": {
       "child": "Select your child",
       "notice": "Notice",
-      "number-of-lesson": "Number of lesson per week required"
+      "number-of-lesson": "Number of lesson per week required",
+      "start": "Start date"
     },
     "button": {
       "apply": "Send"
@@ -312,9 +313,15 @@
       "courseName": "Course Name",
       "numberOfLesson": "Number of lesson per week required",
       "notice": "Notice",
+      "start": "Start date",
+      "teaching_day": "Teaching day",
+      "from": "Start time",
+      "to": "End Time",
       "buttons": {
         "accept": "Accept",
-        "reject": "Reject"
+        "reject": "Reject",
+        "remove": "Remove",
+        "leave": "Leave"
       }
     }
   },
@@ -392,7 +399,7 @@
   "message": {
     "child": "Choose your child",
     "request":"Choose your request",
-    "no-child": "Please, register your child first."
+    "no-child": "This operation not available yet."
   },
   "tableHeaders": {
     "id":"ID",
@@ -433,5 +440,20 @@
     "hack_attempt":"The server detected suspicious activity, so your request was denied, and your account has been suspended. Please contact the system administrator for further information."
   },
   "Token has expired": "Please, login again",
-  "Wrong number of segments": "Please, login again"
+  "Wrong number of segments": "Please, login again",
+  "teachingDaySelect": {
+    "titles": {
+      "main": "Please, add teaching day and time"
+    },
+    "table": {
+      "headers": {
+        "day": "Day",
+        "from": "From",
+        "to": "To"
+      }
+    },
+    "buttons": {
+      "save": "Save"
+    }
+  }
 }

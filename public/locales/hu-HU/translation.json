@@ -285,7 +285,8 @@
     "form": {
       "child": "Válassza ki a gyerekét",
       "notice": "Megjegyzés",
-      "number-of-lesson": "Heti óraszám igény"
+      "number-of-lesson": "Heti óraszám igény",
+      "start": "Kezdő dátum"
     },
     "button": {
       "apply": "Küldés"
@@ -311,10 +312,15 @@
       "courseName": "Kurzus neve",
       "numberOfLesson": "Heti óraszám igény",
       "notice": "Megjegyzés",
-
+      "start": "Kezdő dátum",
+      "teaching_day": "Tanítási nap",
+      "from": "Kezdő időpont",
+      "to": "Záró időpont",
       "buttons": {
         "accept": "Elfogad",
-        "reject": "Elutasít"
+        "reject": "Elutasít",
+        "remove": "Eltávolítás",
+        "leave": "Kilépés"
       }
     }
   },
@@ -392,7 +398,7 @@
   "message": {
     "child": "Válassza ki a gyerekét",
     "request":"Válassza ki a kérvényét",
-    "no-child": "Kérem, először regisztrálja gyermekét."
+    "no-child": "Ez a művelet még nem elérhető."
   },
   "tableHeaders": {
     "id":"ID",
@@ -433,6 +439,20 @@
     "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította és fiókja felfüggesztésre került. Keresse meg a rendszer üzemeltetőjét további információkért."
   },
   "Wrong number of segments": "Kérjük, jelentkezzen be újra",
-  "Token has expired": "Kérjük, jelentkezzen be újra"
-
+  "Token has expired": "Kérjük, jelentkezzen be újra",
+  "teachingDaySelect": {
+    "titles": {
+      "main": "Kérem, adja meg a tanítási napot és időpontot"
+    },
+    "table": {
+      "headers": {
+        "day": "Nap",
+        "from": "Kezdő időpont",
+        "to": "Záró időpont"
+      }
+    },
+    "buttons": {
+      "save": "Mentés"
+    }
+  }
 }
