@@ -18,6 +18,7 @@ const CourseApply = () => {
     const [numberOfLesson, setNumberOfLesson]=useState();
     const [notice, setNotice]=useState();
     const {courseId}=useParams()
+    const [startDate, setStartDate]=useState();
 
     /*Loader */
     const [loader, setLoader]=useState(false);
@@ -45,7 +46,7 @@ const CourseApply = () => {
         setServerError([]);
 
         if(selectedChild.value){
-            ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice).then((success)=>{
+            ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice, startDate).then((success)=>{
                 setReadOnly(false);
                 setBtnDisabled(false);
 
@@ -57,6 +58,7 @@ const CourseApply = () => {
                 setSelectedChild('');
                 setNumberOfLesson('');
                 setNotice('');
+                setStartDate('')
 
             }).catch((error)=>{
                 setServerError(error);
@@ -67,6 +69,7 @@ const CourseApply = () => {
                 setSelectedChild('');
                 setNumberOfLesson('');
                 setNotice('');
+                setStartDate('')
             });
         }else {
             setBtnDisabled(false);
@@ -101,7 +104,6 @@ const CourseApply = () => {
                             options={children}
                             onChange={(selected) => {
                                 setSelectedChild(selected);
-                                console.log(selectedChild)
                             }}
                             isDisabled={readOnly}
                             isSearchable={true}
@@ -117,6 +119,16 @@ const CourseApply = () => {
                             onChange={(e)=>setNumberOfLesson(e.target.value)}
                         />
                     </div>
+                    <div className="form-children">
+                        <label>{t('form.start')}</label>
+                        <input
+                            type="date"
+                            value={startDate}
+                            required
+                            onChange={(e)=>setStartDate(e.target.value)}
+                        />
+                    </div>
+
                     <div className="form-children">
                         <label>{t('form.notice')}</label>
                         <textarea
