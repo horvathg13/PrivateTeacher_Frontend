@@ -90,6 +90,7 @@ import NewMessage from "./Messages/newMessage";
 import UserProfile from "./Users/user/userProfile";
 import User from "./Users/user/user";
 import TeachingDayPopUp from "./CommonComponents/TeachingDay/teachingDayPopUp";
+import ChildCourseProfile from "./Child/childCourseProfile";
 
 function App() {
 
@@ -307,7 +308,13 @@ const router = createBrowserRouter([
             path: "courses",
             element: <ChildCourses/>,
             loader:({params})=>{return getChildCourses(params)}
-          }
+          },
+          {
+            path: "course/:courseId",
+            element: <ChildCourseProfile/>,
+            loader:({params})=>{return Promise.all([getCourseProfile(params)])}
+          },
+
         ]
 
       },
