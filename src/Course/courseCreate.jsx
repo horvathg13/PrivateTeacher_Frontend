@@ -32,7 +32,8 @@ const CourseCreate = () => {
     const [location, setLocation]=useState();
     const [paymentPeriod, setPaymentPeriod]=useState();
     const [currency, setCurrency]=useState();
-
+    const [startDate, setStartDate]=useState();
+    const [endDate, setEndDate]=useState();
 
     /*event handle*/
     const [errors, setErrors]=useState([]);
@@ -83,7 +84,7 @@ const CourseCreate = () => {
                 setBtnDisabled(false)
             ];
         }
-        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location, paymentPeriod, null, currency).then((success)=>{
+        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location, paymentPeriod, null, currency, null,null,startDate, endDate).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
@@ -116,7 +117,18 @@ const CourseCreate = () => {
             {(schoolLocations?.message) && <div className="component-error-message"><FaExclamationTriangle className='icon'/><h2>{t('')}</h2></div>}
             <form onSubmit={(e)=>Create(e)} className="FlexForm">
 
+
                 <div className="form-items flex">
+                    <div className="form-collapse">
+                        <div className="form-children flexColumnItems">
+                            <label>{t('form.start')}</label>
+                            <input type="date" required onChange={(e)=>{setStartDate(e.target.value)}} value={startDate}/>
+                        </div>
+                        <div className="form-children flexColumnItems">
+                            <label>{t('form.end')}</label>
+                            <input type="date" required onChange={(e)=>{setEndDate(e.target.value)}} value={endDate}/>
+                        </div>
+                    </div>
                     <div className="form-children">
                         <label>{t('form.name')}</label>
                     </div>
@@ -125,7 +137,7 @@ const CourseCreate = () => {
                             <div className="course-lng-name">
                                 <Select
                                     placeholder={t('select')}
-                                    options={languages || null }
+                                    options={languages || null}
                                     onChange={(selected) => {
                                         handleInputChange(selected, i)
                                     }}
@@ -187,7 +199,7 @@ const CourseCreate = () => {
                                 }}
                                 isDisabled={readOnly}
                                 isSearchable={true}
-                                className="select-componentFull"
+                                className="select-component90"
                                 maxMenuHeight={150}
                             />
                         </div>
