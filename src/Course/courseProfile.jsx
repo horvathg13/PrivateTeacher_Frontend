@@ -8,6 +8,7 @@ import {FaDollarSign} from "react-icons/fa";
 import {LuCalendarClock} from "react-icons/lu";
 import {useTranslation} from "react-i18next";
 import {TabMenuContext} from "../Context/UserContext";
+import {TbBellSchool} from "react-icons/tb";
 
 const CourseProfile = () => {
     const courseProfile=useLoaderData();
@@ -49,6 +50,10 @@ const CourseProfile = () => {
                     </div>
                     <form className="FlexForm">
                         <div className="form-items">
+                            <div className="form-children courseProfile-form-children">
+                                <label><TbBellSchool /> {t('form.school-year')}</label>
+                                <h4>{courseProfile.start} - {courseProfile.end}</h4>
+                            </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><IoLanguageSharp/> {t('form.lang')}</label>
                                 <h4>{courseProfile.course_names_and_langs.map(i => i.lang).join(', ')}</h4>
