@@ -311,11 +311,6 @@ form{
   flex-wrap: wrap;
   width: 100%;
 }
-@media screen and (max-width: 950px){
-  .fields.flex {
-    justify-content: space-around !important;
-  }
-}
 .fields.flex label {
   padding: 10px 0px;
 }
@@ -356,6 +351,17 @@ form .form-title h2, form .form-title h3{
 form .form-title.distance{
   display: flex;
   justify-content: space-between;
+}
+@media screen and (max-width: 700px) {
+  form .form-title.distance{
+    width: 80%;
+  }
+}
+@media screen and (max-width: 450px) {
+  form .form-title.distance{
+    width: 80%;
+    display: grid;
+  }
 }
 
 form .fields.flex {
@@ -505,11 +511,12 @@ form .roles-container.flex label {
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  margin-right:15px;
+  /*margin-right:15px;*/
+  padding: 5px;
 }
 @media screen and (min-width: 700px) {
   .content-main-container .FlexForm .form-items .form-children{
-    padding: 15px !important;
+    /*padding: 15px !important;*/
   }
 }
 .content-main-container .FlexForm .form-items .form-children label{
@@ -520,13 +527,22 @@ form .roles-container.flex label {
   margin: 10px 0 !important;
 }
 .content-main-container .FlexForm .form-items .form-children input {
-  width: 100%;
+  width: 90%;
   height: 20px;
 }
 .content-main-container .FlexForm .form-items .form-children textarea{
   width: 100%;
   height: 150px;
   font-size: 16px;
+}
+@media screen and (max-width: 700px) {
+  .content-main-container .FlexForm .form-items .form-children textarea{
+    width:90% !important
+  }
+  .content-main-container .FlexForm .justification-container{
+    min-width: 0 !important;
+    width: 90% !important;
+  }
 }
 .content-main-container .FlexForm .form-button-container {
   width: 100%;
@@ -828,6 +844,12 @@ form .roles-container.flex label {
   width:65% !important;
   margin: auto;
 }
+@media screen and (max-width: 500px) {
+  .connectChild{
+    width:65% !important;
+    margin: 0 5px  !important;
+  }
+}
 
 .connectButton{
   margin: 15px auto !important;
@@ -976,6 +998,17 @@ form .roles-container.flex label {
   width: 100%;
   display: flex;
 }
+@media screen and (max-width: 700px) {
+  .selector-main{
+    display: grid;
+    width: 95%;
+  }
+
+  .selector-icon{
+    padding: 5px 0;
+  }
+
+}
 .selector-main .selector-input{
   width:95% !important;
   border: 1px solid grey;
@@ -1038,6 +1071,11 @@ form .roles-container.flex label {
   width: 100%;
   color: var(--DarkBlue);
 }
+.select-component90{
+  width: 90%;
+  color: var(--DarkBlue);
+}
+
 .select-component{
   width: 80%;
 }
@@ -1238,6 +1276,10 @@ form .roles-container.flex label {
   border:1px solid var(--DarkBlue);
   box-shadow:5px 8px 7px #888888
 }
+.content-main-container .course-profile-main.childCourseProfileMain{
+  background-color: #cef4d4;
+  margin-bottom: 25px;
+}
 .content-main-container .course-profile-main .profile-png{
   width: 35%;
   height: auto;
@@ -1248,6 +1290,9 @@ form .roles-container.flex label {
   background-position: center;
   border: 2px dotted var(--DarkBlue);
   border-radius:  10px 50% 50% 10px;
+}
+.content-main-container .course-profile-main .profile-png.childCourseProfilePNG{
+  background-color: var(--GreenColor);
 }
 @media screen and (max-width: 750px) {
   .content-main-container .course-profile-main .profile-png{
@@ -1311,6 +1356,18 @@ form .roles-container.flex label {
   .content-main-container .course-profile-main .profile-data{
     margin: 15px auto !important;
   }
+}
+.content-main-container .child-course-details{
+  width: 100%;
+  min-height: 150px;
+  max-height: 550px;
+  margin: auto;
+  overflow: scroll;
+  padding: 15px 0;
+  border-top: 2px dotted var(--DarkBlue);
+}
+.content-main-container .child-course-details .table-main-container table tbody tr:hover{
+  cursor: auto !important;
 }
 
 /*MessageDetails*/
