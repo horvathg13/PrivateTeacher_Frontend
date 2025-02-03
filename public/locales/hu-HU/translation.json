@@ -69,7 +69,8 @@
     "newMessage": "Új üzenet küldése",
     "accepted": "Elfogadott",
     "rejected": "Elutasított",
-    "profile": "Profil"
+    "profile": "Profil",
+    "termination-request": "Lemondás igénylés"
   },
   "componentTitles": {
     "users": "Felhasználók",
@@ -207,7 +208,9 @@
             "lang": "Nyelv",
             "teacher": "Tanár",
             "payment-period": "Fizetési periódus",
-            "currency": "Pénznem"
+            "currency": "Pénznem",
+            "start": "Kurzus kezdete",
+            "end": "Kurzus vége"
           },
           "select": "Válasszon nyelvet",
           "button":{
@@ -267,15 +270,34 @@
       "birthday": "Születési idő",
       "password": "Jelszó",
       "c-password": "Jelszó megerősítése",
-      "not-match": "A jelszavak nem egyeznek"
+      "not-match": "A jelszavak nem egyeznek",
+      "start-date": "Kezdő dátum",
+      "message": "Üzenet"
     },
     "button": {
       "create": "Létrehozás",
       "update": "Frissítés",
-      "disconnect": "Leválasztás"
+      "disconnect": "Leválasztás",
+      "confirm": "Jóváhagyás"
     },
     "validator": {
-      "samePsw": "A megadott jelszavak nem egyeznek."
+      "samePsw": "A megadott jelszavak nem egyeznek.",
+      "date": "A dátum mező megadása kötelező.",
+      "message": "Az üzenet mező megadása kötelező"
+    },
+    "course-profile": {
+      "titles": {
+        "profile": "Kurzus adatok",
+        "timetable": "Órarend",
+        "termination": "Lemondás igénylés"
+      },
+      "timetable": {
+        "header": {
+          "day": "Nap",
+          "from": "Kezdő időpont",
+          "to": "Záró időpont"
+        }
+      }
     }
   },
   "courseApply": {
@@ -316,6 +338,7 @@
       "teaching_day": "Tanítási nap",
       "from": "Kezdő időpont",
       "to": "Záró időpont",
+      "termination_start": "Lemondás dátuma",
       "buttons": {
         "accept": "Elfogad",
         "reject": "Elutasít",
@@ -332,7 +355,8 @@
       "course-price-per-lesson": "Kuzus díja alkalmanként",
       "payment_period": "Fizetési periódus",
       "location": "Helyszín",
-      "address": "Cím"
+      "address": "Cím",
+      "school-year": "Tanév"
     }
   },
   "enums": {
@@ -358,7 +382,9 @@
     "REJECTED":"Elutasítva",
     "UNDER_REVIEW":"Feldolgozás alatt",
     "UNREAD": "Olvasatlan",
-    "READ": "Olvasott"
+    "READ": "Olvasott",
+    "APPLY": "Jelentkezés",
+    "TERMINATION": "Lemondás"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -422,7 +448,8 @@
     "child_id":"Gyerek_id",
     "course_name":"Kurzus",
     "teacher_name":"Tanár",
-    "course_price_per_lesson":"Ár/Tanóra"
+    "course_price_per_lesson":"Ár/Tanóra",
+    "type": "Típus"
   },
   "messages": {
     "success": "A művelet sikeres volt.",

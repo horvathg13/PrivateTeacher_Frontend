@@ -62,7 +62,8 @@
     "newMessage": "Write a new message",
     "accepted": "Accepted",
     "rejected": "Rejected",
-    "profile": "Profile"
+    "profile": "Profile",
+    "termination-request": "Termination Request"
   },
   "componentTitles": {
     "users": "Users",
@@ -208,7 +209,9 @@
             "lang": "Language",
             "teacher": "Teacher",
             "payment-period": "Payment Period",
-            "currency": "Currency"
+            "currency": "Currency",
+            "start": "Start date",
+            "end": "End date"
           },
           "select": "Select your course language",
           "button":{
@@ -268,15 +271,34 @@
       "birthday": "Birthday",
       "password": "Password",
       "c-password": "Confirm Password",
-      "not-match": "Passwords does not match."
+      "not-match": "Passwords does not match.",
+      "start-date": "Start date",
+      "message": "Message"
     },
     "button": {
       "create": "Create",
       "update": "Update",
-      "disconnect": "Disconnect"
+      "disconnect": "Disconnect",
+      "confirm": "Confirm"
     },
     "validator": {
-      "samePsw": "A megadott jelszavak nem egyeznek."
+      "samePsw": "The given passwords does not match.",
+      "date": "The date input is required.",
+      "message": "The message field is required."
+    },
+    "course-profile": {
+      "titles": {
+        "profile": "Course Profile",
+        "timetable": "Timetable",
+        "termination": "Termination request"
+      },
+      "timetable": {
+        "header": {
+          "day": "Day",
+          "from": "Start time",
+          "to": "End time"
+        }
+      }
     }
   },
   "courseApply": {
@@ -317,6 +339,7 @@
       "teaching_day": "Teaching day",
       "from": "Start time",
       "to": "End Time",
+      "termination_start": "Termination start date",
       "buttons": {
         "accept": "Accept",
         "reject": "Reject",
@@ -333,7 +356,8 @@
       "course-price-per-lesson": "Course price per lesson",
       "payment_period": "Payment Period",
       "location": "Location",
-      "address": "Address"
+      "address": "Address",
+      "school-year": "School Year"
     }
   },
   "enums": {
@@ -359,7 +383,9 @@
     "REJECTED":"Rejected",
     "UNDER_REVIEW":"Under Review",
     "UNREAD": "Unread",
-    "READ": "Read"
+    "READ": "Read",
+    "APPLY": "Applicant",
+    "TERMINATION": "Termination"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -423,7 +449,8 @@
     "child_id":"Child_id",
     "course_name":"Course",
     "teacher_name":"Teacher",
-    "course_price_per_lesson":"Price/Lesson"
+    "course_price_per_lesson":"Price/Lesson",
+    "type": "Type"
   },
   "messages": {
     "success" : "Operation was Successful.",
