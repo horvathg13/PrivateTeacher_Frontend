@@ -91,8 +91,8 @@ class ServiceClient {
             return response.data
         })
     }
-    static rejectCourseRequest(requestId,message){
-        return this.post("/api/rejectCourseRequest", {requestId:requestId, message:message}).then((response)=>{
+    static rejectCourseRequest(requestId){
+        return this.post("/api/rejectCourseRequest", {requestId:requestId}).then((response)=>{
             return response.data
         })
     }
@@ -210,9 +210,9 @@ class ServiceClient {
             return response.data
         });
     }
-    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, locationId, paymentPeriod, courseId, currency,courseStatus, remove){
+    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, locationId, paymentPeriod, courseId, currency,courseStatus, remove, startDate, endDate){
         return this.post("/api/createCourse",{
-            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, labels:labels, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency, status:courseStatus, remove:remove}).then((response)=>{
+            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, labels:labels, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency, status:courseStatus, remove:remove, start:startDate, end:endDate}).then((response)=>{
                 return response.data
         });
     }
@@ -314,7 +314,11 @@ class ServiceClient {
             return response.data
         })
     }
-
+    static terminationCourseRequest=(studentCourseId, childId, message, from)=>{
+        return this.post('/api/terminationRequest',{student_course_id:studentCourseId, childId:childId, message:message, from:from}).then((response)=>{
+            return response.data
+        });
+    }
 }
 
 export default ServiceClient
