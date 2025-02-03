@@ -70,6 +70,7 @@ const RequestList = () => {
                                 <td>{loaderData.data[e].course_names_and_langs[0].name}</td>
                                 <td>{loaderData.data[e].created_at.substring(0, 10)}</td>
                                 <td>{t(`enums.${loaderData.data[e].status}`)}</td>
+                                <td>{t(`enums.${loaderData.data[e].type}`)}</td>
                             </tr>
 
                         )) : null}
