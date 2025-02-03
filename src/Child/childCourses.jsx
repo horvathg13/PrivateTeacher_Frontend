@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {useLoaderData, useNavigate} from "react-router-dom";
+import {useLoaderData, useNavigate, useParams} from "react-router-dom";
 import EventHandler from "../EventHandler/eventhandler";
 
 const ChildCourses = () => {
@@ -11,6 +11,7 @@ const ChildCourses = () => {
     const loaderData=useLoaderData();
     const [loader, setLoader]=useState(true);
     const [selectedRow, setSelectedRow]=useState();
+    const {childId}=useParams();
 
     /*Navigation*/
     const navigate = useNavigate();
@@ -56,7 +57,7 @@ const ChildCourses = () => {
                         </thead>
                         <tbody>
                         {loaderData.data?.map((e,i) => (
-                            <tr key={i} onClick={() => navigate(`/course/profile/${e.teacher_course_id}`)}>
+                            <tr key={i} onClick={() => navigate(`/child/${childId}/course/${e.teacher_course_id}`)}>
                                 <td>{e.id}</td>
                                 <td>{e.name}</td>
                                 <td>{e.teacher}</td>
