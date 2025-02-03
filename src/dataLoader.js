@@ -149,7 +149,7 @@ export const getRequestDetails=(params)=>{
 }
 
 export const getCourseProfile=(params)=>{
-    return ServiceClient.get(`/api/getCourseProfile/${params.courseId}`).then((response)=>{
+    return ServiceClient.get(`/api/getCourseProfile/${params.courseId}/${params.childId}`).then((response)=>{
         return response.data
     })
 }
