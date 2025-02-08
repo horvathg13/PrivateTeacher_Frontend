@@ -256,12 +256,12 @@ const router = createBrowserRouter([
       {
         path:"course/profile/:courseId",
         element:<Protected><CourseProfileHome /></Protected>,
+        loader:({params})=>{return getCourseProfile(params)},
         errorElement:<RouteBoundary/>,
         children:[
           {
             path: "",
             element: <CourseProfile />,
-            loader:({params})=>{return getCourseProfile(params)}
           },
           {
             path:"course-apply",
