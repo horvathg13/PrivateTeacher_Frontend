@@ -8,7 +8,7 @@ import ServiceClient from "../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
 import { FaArrowCircleRight, FaTrashAlt } from "react-icons/fa";
 import { TabMenuContext, schoolYearDetailsContext } from "../Context/UserContext";
-import Select from "../CommonComponents/Select/select";
+import Select from "react-select";
 import LabelSelector from "../CommonComponents/Label/labelSelect";
 import SearchResult from "./searchResult";
 import {useTranslation} from "react-i18next";
@@ -17,6 +17,9 @@ const SearchCourse = () => {
 
     /*Translation*/
     const {t}=useTranslation();
+
+    /*Loader*/
+    const languages=useLoaderData();
     
     /*Data */
     const [teacherEmail, setTeacherEmail]=useState();
@@ -37,6 +40,7 @@ const SearchCourse = () => {
     const [counterSet, setCounter]=useState();
     const [lastPage, setLastPage]=useState();
     const [pageSet, setPerPage]=useState();
+    const [lang, setLang]=useState();
 
     /*event handle*/
     const [errors, setErrors]=useState([]);
@@ -71,7 +75,7 @@ const SearchCourse = () => {
 
         ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
             minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
-            schoolCity, schoolStreet,schoolNumber,sortData).then((success)=>{
+            schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang).then((success)=>{
 
             setLoader(false);
             setBtnDisabled(false);
@@ -190,6 +194,16 @@ const SearchCourse = () => {
                             onChange={(e)=>{setCourseName(e.target.value)}}
                             value={courseName}
                             readOnly={readOnly}/>
+                        </div>
+                        <div className="form-children">
+                            <label>{t('search.courseLang')}</label>
+                            <Select
+                                options={languages}
+                                onChange={(selected)=>{setLang(selected.value)}}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-componentFull"
+                            />
                         </div>
                         <div className="form-children">
                             <label>{t('search.keywords')}</label>
