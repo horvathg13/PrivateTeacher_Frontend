@@ -1,6 +1,12 @@
 import React, {useContext, useEffect} from 'react';
 import {Outlet, useLoaderData, useParams} from "react-router-dom";
-import {ComponentTitleContext, TabMenuContext, UserContext, UserContextProvider} from "../Context/UserContext";
+import {
+    ComponentTitleContext,
+    CourseInfoContext,
+    TabMenuContext,
+    UserContext,
+    UserContextProvider
+} from "../Context/UserContext";
 import {useTranslation} from "react-i18next";
 import SideMenu from "../CommonComponents/SideMenu/sidemenu";
 import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
@@ -11,6 +17,7 @@ const CourseProfileHome = () => {
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle,setBreadcrumbs}=useContext(ComponentTitleContext);
     const {roles}=useContext(UserContext);
+    const courseProfile=useLoaderData();
     /*Translation*/
     const {t}=useTranslation();
     useEffect(()=>{
@@ -30,15 +37,17 @@ const CourseProfileHome = () => {
     return (
         <>
             <SideMenu/>
-            <div className="content-main-container">
-                <ComponentTitle/>
+            <CourseInfoContext.Provider value={courseProfile}>
+                <div className="content-main-container">
+                    <ComponentTitle/>
 
-                <div className="user-main">
+                    <div className="user-main">
 
-                    <TabMenu />
-                    <Outlet/>
+                        <TabMenu />
+                        <Outlet/>
+                    </div>
                 </div>
-            </div>
+            </CourseInfoContext.Provider>
         </>
 
     );
