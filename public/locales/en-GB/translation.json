@@ -309,7 +309,8 @@
       "child": "Select your child",
       "notice": "Notice",
       "number-of-lesson": "Number of lesson per week required",
-      "start": "Start date"
+      "start": "Start date",
+      "language": "Select the course language"
     },
     "button": {
       "apply": "Send"
@@ -321,6 +322,7 @@
         "parentInfo": "Parent Info",
         "childInfo": "Child Info",
         "requestInfo": "Request Details",
+        "terminationInfo": "A lemondás részletei",
         "main": "Request",
         "status": "Status",
         "answer": "Answer"

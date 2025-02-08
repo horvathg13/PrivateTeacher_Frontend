@@ -308,7 +308,8 @@
       "child": "Válassza ki a gyerekét",
       "notice": "Megjegyzés",
       "number-of-lesson": "Heti óraszám igény",
-      "start": "Kezdő dátum"
+      "start": "Kezdő dátum",
+      "language": "Válassza ki a kurzus nyelvét"
     },
     "button": {
       "apply": "Küldés"
@@ -320,6 +321,7 @@
         "parentInfo": "Szülő Információk",
         "childInfo": "Gyerek Információk",
         "requestInfo": "A jelentkezés részletei",
+        "terminationInfo": "A lemondás részletei",
         "main": "Kérelem",
         "status": "Státusz",
         "answer": "Válasz"
