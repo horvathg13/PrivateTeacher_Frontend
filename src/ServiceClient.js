@@ -81,8 +81,8 @@ class ServiceClient {
             return response.data
         })
     }
-    static sendCourseRequest(childId, courseId,numberOfLesson, notice, startDate){
-        return this.post("/api/sendCourseRequest", {childId:childId, courseId:courseId, notice:notice, numberOfLesson:numberOfLesson, start:startDate}).then((response)=>{
+    static sendCourseRequest(childId, courseId,numberOfLesson, notice, startDate, language){
+        return this.post("/api/sendCourseRequest", {childId:childId, courseId:courseId, notice:notice, numberOfLesson:numberOfLesson, start:startDate, language:language}).then((response)=>{
             return response.data
         })
     }
