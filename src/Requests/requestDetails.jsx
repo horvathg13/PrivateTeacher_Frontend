@@ -209,7 +209,7 @@ const RequestDetails = () => {
                         </>
                         :
                         <>
-                            <div className="form-title"><h3>{t('form.titles.requestInfo')}</h3></div>
+                            <div className="form-title"><h3>{t('form.titles.terminationInfo')}</h3></div>
                             <div className="form-children">
                                 <label>{t('form.courseName')}</label>
                                 <input type="text" readOnly value={requestDetails.course_names_and_langs[0].name}/>
@@ -224,7 +224,7 @@ const RequestDetails = () => {
                             </div>
                             <div className="form-children">
                                 <label>{t('form.notice')}</label>
-                                <textarea readOnly value={requestDetails.terminationDetails.message}/>
+                                <textarea readOnly value={requestDetails.terminationDetails.request.message}/>
                             </div>
                         </>
                     }
@@ -235,20 +235,24 @@ const RequestDetails = () => {
                                 <label>{t('form.start')}</label>
                                 <input type="date" onChange={(e) => setStartDate(e.target.value)}/>
                             </div>
-                            <div className="form-children">
-                                <label>{t('form.teaching_day')}</label>
-                                <TeachindDaySelect
-                                    disabled={false}
-                                    teachingDays={teachingDays}
-                                    teachingDaysEmit={(data) => setTeachingDayDetails(data)}
-                                />
-                            </div>
-                            <div className="form-children">
-                                <label>{t('form.justification')}</label>
-                                <textarea required onChange={(e) => {
-                                    setMessage(e.target.value)
-                                }}/>
-                            </div>
+                            {!requestDetails.terminationDetails &&
+                                <>
+                                <div className="form-children">
+                                    <label>{t('form.teaching_day')}</label>
+                                    <TeachindDaySelect
+                                        disabled={false}
+                                        teachingDays={teachingDays}
+                                        teachingDaysEmit={(data) => setTeachingDayDetails(data)}
+                                    />
+                                </div>
+                                <div className="form-children">
+                                    <label>{t('form.justification')}</label>
+                                    <textarea required onChange={(e) => {
+                                        setMessage(e.target.value)
+                                    }}/>
+                                </div>
+                                </>
+                            }
                             <div className="form-button-container">
                                 {!rejectLoader ?
                                     <button
