@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {useLoaderData, useNavigate, useParams} from "react-router-dom";
 import EventHandler from "../EventHandler/eventhandler";
+import i18next from "i18next";
 
 const ChildCourses = () => {
     /*Translation*/
@@ -59,7 +60,9 @@ const ChildCourses = () => {
                         {loaderData.data?.map((e,i) => (
                             <tr key={i} onClick={() => navigate(`/child/${childId}/course/${e.teacher_course_id}`)}>
                                 <td>{e.id}</td>
-                                <td>{e.name}</td>
+                                <td>{e.name.filter(e=>e.lang===i18next.language).length>0 ?
+                                    e.name.filter(e=>e.lang===i18next.language).map(j=>j.name)
+                                : e.name.map(j=>j.name)}</td>
                                 <td>{e.teacher}</td>
                                 <td>{t(`enums.${e.status}`)}</td>
                             </tr>

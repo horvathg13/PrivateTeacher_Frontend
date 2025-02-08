@@ -7,11 +7,12 @@ import {FaCalendarDays, FaLocationDot, FaUserGraduate} from "react-icons/fa6";
 import {FaDollarSign} from "react-icons/fa";
 import {LuCalendarClock} from "react-icons/lu";
 import {useTranslation} from "react-i18next";
-import {TabMenuContext} from "../Context/UserContext";
+import {CourseInfoContext, TabMenuContext} from "../Context/UserContext";
 import {TbBellSchool} from "react-icons/tb";
+import i18next from "i18next";
 
 const CourseProfile = () => {
-    const courseProfile=useLoaderData();
+    const courseProfile=useContext(CourseInfoContext);
     const {t}=useTranslation("translation",{keyPrefix:"courseProfile"});
     const {t:a}=useTranslation();
     const {courseId}=useParams();
@@ -44,7 +45,9 @@ const CourseProfile = () => {
                         </div>
                         <div className="course-name">
                                 <>
-                                    <h3> {courseProfile.course_names_and_langs[0].name} </h3>
+                                    <h3> {courseProfile.course_names_and_langs.filter(e=>e.lang === i18next.language).length>0 ?
+                                        courseProfile.course_names_and_langs.filter(e=>e.lang === i18next.language).map(e=>e.name)
+                                    : courseProfile.course_names_and_langs.map(e=>e.name)} </h3>
                                 </>
                         </div>
                     </div>

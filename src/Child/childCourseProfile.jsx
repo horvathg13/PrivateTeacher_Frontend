@@ -13,6 +13,7 @@ import Select from "react-select";
 import EventHandler from "../EventHandler/eventhandler";
 import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../ServiceClient";
+import i18next from "i18next";
 
 const ChildCourseProfile = () => {
     const [courseProfile]=useLoaderData();
@@ -54,7 +55,6 @@ const ChildCourseProfile = () => {
         if(!message){
             return setErrors([d('validator.message')])
         }
-        console.log(studentCourseId);
         ServiceClient.terminationCourseRequest(studentCourseId[0],childId,message,terminationDate).then(success=>{
             setSuccess(true);
             setTimeout(()=>{
@@ -88,9 +88,16 @@ const ChildCourseProfile = () => {
                             <h3>{courseProfile.teacher.first_name} {courseProfile.teacher.last_name}</h3>
                         </div>
                         <div className="course-name">
-                            <>
-                                <h3> {courseProfile.course_names_and_langs[0].name} </h3>
-                            </>
+                            {courseProfile.course_names_and_langs.length>1 ?
+                                <>
+                                    <h3> {courseProfile.course_names_and_langs.filter(e=>e.lang === i18next.language).map(j=>j.name)} </h3>
+                                </>
+                                :
+                                <>
+                                    <h3> {courseProfile.course_names_and_langs.map(j=>j.name)} </h3>
+                                </>
+                            }
+
                         </div>
                     </div>
                     <form className="FlexForm">
