@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import EventHandler from "../EventHandler/eventhandler";
 import {MdEdit} from "react-icons/md";
 import {useTranslation} from "react-i18next";
@@ -7,6 +7,7 @@ import {useLoaderData, useNavigate, useParams} from "react-router-dom";
 import {GrUpdate} from "react-icons/gr";
 import {FaArrowCircleRight} from "react-icons/fa";
 import ServiceClient from "../ServiceClient";
+import {CourseInfoContext} from "../Context/UserContext";
 
 const CourseApply = () => {
     /*Translate*/
@@ -14,11 +15,13 @@ const CourseApply = () => {
 
     /*Data*/
     const children=useLoaderData();
+    const courseProfile=useContext(CourseInfoContext);
     const [selectedChild, setSelectedChild]=useState("");
     const [numberOfLesson, setNumberOfLesson]=useState();
     const [notice, setNotice]=useState();
     const {courseId}=useParams()
     const [startDate, setStartDate]=useState();
+    const [language, setSelectedLanguage]=useState();
 
     /*Loader */
     const [loader, setLoader]=useState(false);
@@ -45,8 +48,8 @@ const CourseApply = () => {
         setErrors([]);
         setServerError([]);
 
-        if(selectedChild.value){
-            ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice, startDate).then((success)=>{
+        if(selectedChild.value && language){
+            ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice, startDate, language).then((success)=>{
                 setReadOnly(false);
                 setBtnDisabled(false);
 
@@ -111,12 +114,25 @@ const CourseApply = () => {
                         />
                     </div>
                     <div className="form-children">
+                        <label>{t('form.language')}</label>
+                        <Select
+                            defaultValue={null}
+                            options={courseProfile.languages?.map(e => ({value: e.value, label: e.label}))}
+                            onChange={(selected) => {
+                                setSelectedLanguage(selected.value);
+                            }}
+                            isDisabled={readOnly}
+                            isSearchable={true}
+                            className="select-componentFull"
+                        />
+                    </div>
+                    <div className="form-children">
                         <label>{t('form.number-of-lesson')}</label>
                         <input
                             type="number"
                             value={numberOfLesson}
                             required
-                            onChange={(e)=>setNumberOfLesson(e.target.value)}
+                            onChange={(e) => setNumberOfLesson(e.target.value)}
                         />
                     </div>
                     <div className="form-children">
@@ -125,7 +141,7 @@ const CourseApply = () => {
                             type="date"
                             value={startDate}
                             required
-                            onChange={(e)=>setStartDate(e.target.value)}
+                            onChange={(e) => setStartDate(e.target.value)}
                         />
                     </div>
 
@@ -133,7 +149,7 @@ const CourseApply = () => {
                         <label>{t('form.notice')}</label>
                         <textarea
                             value={notice}
-                            onChange={(e)=>setNotice(e.target.value)}
+                            onChange={(e) => setNotice(e.target.value)}
                         />
                     </div>
                 </div>
@@ -142,9 +158,9 @@ const CourseApply = () => {
                         <button
                             type='submit'
                             disabled={btndisabled}
-                            onClick={(e)=>sendApply(e)}
+                            onClick={(e) => sendApply(e)}
                             className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                            {t('button.apply')} <FaArrowCircleRight  className='btn-icon'/>
+                            {t('button.apply')} <FaArrowCircleRight className='btn-icon'/>
                         </button> :
                         <span className='loader schoolDetails'></span>
                     }
