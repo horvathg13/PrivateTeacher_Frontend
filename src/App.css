@@ -408,6 +408,7 @@ form .name-fields .last-name{
 form label {
  /* margin: 15px 0;
   margin-bottom: 5px;*/
+  max-width: 150px;
 }
 form .loader.createUser {
   border-top: 4px solid var(--DarkBlue) !important;
