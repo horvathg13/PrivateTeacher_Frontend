@@ -4,6 +4,7 @@ import {useLoaderData, useNavigate, useParams} from "react-router-dom";
 import EventHandler from "../EventHandler/eventhandler";
 import {useTranslation} from "react-i18next";
 import ServiceClient from "../ServiceClient";
+import i18next from "i18next";
 
 const MessageDetails = () => {
     /*Loader*/
@@ -71,7 +72,14 @@ const MessageDetails = () => {
         <div className="messageDetails-main-container">
             <div className="message-header-container">
                 <div className="message-title">
-                    <h2>{messageData?.courseName}</h2>
+                    {messageData?.courseName?.length>0 ?
+                        messageData.courseName.filter(e=>e.lang === i18next.language).map(j =>
+                            <h2>{j.name}</h2>
+                        )
+                        : messageData?.courseName?.map(e =>
+                            <h2>{e.name}</h2>
+                        )
+                    }
                 </div>
             </div>
             <div className="message-body">

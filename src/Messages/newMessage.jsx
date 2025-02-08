@@ -7,6 +7,8 @@ import ServiceClient from "../ServiceClient";
 import {isInt} from "@fullcalendar/core/internal";
 import {UserContext} from "../Context/UserContext";
 import Select from "react-select";
+import i18next from "i18next";
+import i18n from "i18next";
 
 const NewMessage = () => {
     /*Loader*/
@@ -127,7 +129,14 @@ const NewMessage = () => {
             <div className="messageDetails-main-container">
                 <div className="message-header-container">
                     <div className="message-title">
-                        <h2>{messageData.courseName}</h2>
+                        {messageData?.courseName?.length>0 ?
+                            messageData.courseName.filter(e=>e.lang === i18next.language).map(j=>
+                                <h2>{j.name}</h2>
+                            )
+                            :messageData.courseName?.map(e=>
+                                <h2>{e.name}</h2>
+                            )
+                        }
                     </div>
                 </div>
                 <div className="message-body">

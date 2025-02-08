@@ -6,6 +6,7 @@ import { GrFormPrevious } from "react-icons/gr";
 import { useEffect, useState } from 'react';
 import { FaCirclePlus } from 'react-icons/fa6';
 import {useTranslation} from "react-i18next";
+import i18next from "i18next";
 
 
 const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPaginator}) => {
@@ -76,7 +77,19 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                                 }} className={rowClasses(e)}>
                                     {
                                         Object.entries(e).map(([key, value]) => (
-                                            key === 'status' ? <td>{t(`enums.${value}`)}</td> : <td>{value}</td>
+                                            key === 'status' ? (
+                                                <td>{t(`enums.${value}`)}</td>
+                                            ) : key === 'name' ? (
+                                                (e.name.filter(n => n.lang === i18next.language).length > 0
+                                                    ?  <td>{e.name.filter(n => n.lang === i18next.language).map(j=>j.name)}</td>
+                                                    :  <td>{e.name.map(j=>j.name)}</td>
+                                            )) : key === 'course_name' ? (
+                                                (e.course_name.filter(n => n.lang === i18next.language).length > 0
+                                                    ?  <td>{e.course_name.filter(n => n.lang === i18next.language).map(j=>j.name)}</td>
+                                                    :  <td>{e.course_name.map(j=>j.name)}</td>
+                                            )) : (
+                                                <td>{value}</td>
+                                            )
                                         ))
                                     }
                                 </tr>
