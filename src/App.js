@@ -43,7 +43,7 @@ import {
   getLocationCourses,
   getUserData,
   accessToMessages,
-  getTeachingDays
+  getTeachingDays, getStudentCourseProfile, getChildRequests, getRequestByChildId, getStudentList, getStudentProfile
 } from './dataLoader';
 import UserProfileBase from './Users/user/userProfileBase';
 import Users from './Users/users';
@@ -91,6 +91,8 @@ import UserProfile from "./Users/user/userProfile";
 import User from "./Users/user/user";
 import TeachingDayPopUp from "./CommonComponents/TeachingDay/teachingDayPopUp";
 import ChildCourseProfile from "./Child/childCourseProfile";
+import StudentList from "./Course/studentList";
+import StudentProfile from "./Child/studentProfile";
 
 function App() {
 
@@ -250,7 +252,23 @@ const router = createBrowserRouter([
             element:<CourseInfo/>,
             loader:({params})=>{return  Promise.all ([getCourseInfo(params), getCourseStatuses(),getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO(),getLanguages()])}
           },
-
+          {
+            path:"students",
+            element: <StudentList/>,
+            loader:({params})=>{return getStudentList(params)}
+          }
+        ]
+      },
+      {
+        path:"course/:courseId/student/:studentId",
+        element:<Protected><TeacherRight><Course/></TeacherRight></Protected>,
+        errorElement:<RouteBoundary/>,
+        children:[
+          {
+            path: "",
+            element:<StudentProfile/>,
+            loader:({params})=>{return getStudentProfile(params)}
+          }
         ]
       },
       {
@@ -312,12 +330,18 @@ const router = createBrowserRouter([
           {
             path: "course/:courseId",
             element: <ChildCourseProfile/>,
-            loader:({params})=>{return Promise.all([getCourseProfile(params)])}
+            loader:({params})=>{return getStudentCourseProfile(params)}
           },
+          {
+            path:"requests",
+            element: <RequestList/>,
+            loader:({params})=>{return getRequestByChildId(params)}
+
+          }
 
         ]
-
       },
+
       {
         path:"search",
         element:<Protected><Search/></Protected>,
@@ -326,7 +350,8 @@ const router = createBrowserRouter([
         [
           {
             path:"",
-            element:<SearchCourse/>
+            element:<SearchCourse/>,
+            loader:()=>{return getLanguages()}
           },
           {
             path:"results",

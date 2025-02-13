@@ -149,7 +149,13 @@ export const getRequestDetails=(params)=>{
 }
 
 export const getCourseProfile=(params)=>{
-    return ServiceClient.get(`/api/getCourseProfile/${params.courseId}/${params.childId}`).then((response)=>{
+    return ServiceClient.get(`/api/getCourseProfile/${params.courseId}`).then((response)=>{
+        return response.data
+    })
+}
+export const getStudentCourseProfile=(params)=>{
+    return ServiceClient.get(`/api/getStudentCourseProfile/${params.childId}/${params.courseId}`).then((response)=>{
+        console.log(response.data);
         return response.data
     })
 }
@@ -199,6 +205,24 @@ export const accessToMessages=(id)=>{
 
 export const getTeachingDays=()=>{
     return ServiceClient.get('/api/getTeachingDayNames').then((response)=>{
+        return response.data
+    })
+}
+
+export const getRequestByChildId=(params)=>{
+    return ServiceClient.get(`/api/getRequestsByChildId/${params.childId}`).then((response)=>{
+        return response.data
+    })
+}
+
+export const getStudentList=(params)=>{
+    return ServiceClient.get(`/api/getStudentList/${params.courseId}`).then((response)=>{
+        return response.data
+    })
+}
+
+export const getStudentProfile=(params)=>{
+    return ServiceClient.get(`/api/getStudentProfile/${params.courseId}/${params.studentId}`).then((response)=>{
         return response.data
     })
 }
