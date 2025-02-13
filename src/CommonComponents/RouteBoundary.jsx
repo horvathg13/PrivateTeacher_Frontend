@@ -42,8 +42,8 @@ const RouteBoundary = () => {
                     </div>
                     <div className="error-message-container">
                         {error.response?.data.validatorResponse ?
-                            error.response?.data.validatorResponse.map(e =>
-                                <h3>{e}</h3>
+                            error.response?.data.validatorResponse.map((e,i) =>
+                                <h3 key={i}>{t(`${e}`)}</h3>
                             )
                             :
                             error.response?.data?.message ?
