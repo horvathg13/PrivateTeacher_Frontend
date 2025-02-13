@@ -122,11 +122,11 @@ const CourseCreate = () => {
                     <div className="form-collapse">
                         <div className="form-children flexColumnItems">
                             <label>{t('form.start')}</label>
-                            <input type="date" required onChange={(e)=>{setStartDate(e.target.value)}} value={startDate}/>
+                            <input type="date" required readOnly={readOnly} onChange={(e)=>{setStartDate(e.target.value)}} value={startDate}/>
                         </div>
                         <div className="form-children flexColumnItems">
                             <label>{t('form.end')}</label>
-                            <input type="date" required onChange={(e)=>{setEndDate(e.target.value)}} value={endDate}/>
+                            <input type="date" required readOnly={readOnly} onChange={(e)=>{setEndDate(e.target.value)}} value={endDate}/>
                         </div>
                     </div>
                     <div className="form-children">
