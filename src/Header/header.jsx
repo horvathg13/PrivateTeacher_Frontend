@@ -163,7 +163,7 @@ const Header = () => {
                                                 className={e.read === false ? "notification-child-icon yellow" : "notification-child-icon"}/>
                                         </div>
                                         <div className="notification-messages">
-                                            <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{e.message}</p>
+                                            <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{t(`${e.message}`)}</p>
                                             <p className="date">{new Date(e.created_at).getUTCFullYear()}-{new Date(e.created_at).getUTCMonth()}-{new Date(e.created_at).getUTCDate()} {new Date(e.created_at).getUTCHours()}:{new Date(e.created_at).getUTCMinutes()}</p>
                                         </div>
                                     </div>
