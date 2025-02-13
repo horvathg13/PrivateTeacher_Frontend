@@ -38,7 +38,8 @@
     "child": "Child",
     "search": "Search",
     "requests": "Requests",
-    "messages": "Messages"
+    "messages": "Messages",
+    "students": "Students"
   },
   "TabMenu": {
     "info": "Info",
@@ -63,7 +64,9 @@
     "accepted": "Accepted",
     "rejected": "Rejected",
     "profile": "Profile",
-    "termination-request": "Termination Request"
+    "termination-request": "Termination Request",
+    "requests": "Requests",
+    "students": "Students"
   },
   "componentTitles": {
     "users": "Users",
@@ -262,18 +265,22 @@
       "create": "Create",
       "connect": "Connect",
       "info": "Info",
-      "changePassword": "Change Password"
+      "changePassword": "Change Password",
+      "parentInfos": "Parent Infos",
+      "childInfos": "Child Infos"
     },
     "form": {
-      "first-name": "FirstName",
-      "last-name": "LastName",
+      "first-name": "Firstname",
+      "last-name": "Lastname",
       "username": "Username",
       "birthday": "Birthday",
       "password": "Password",
       "c-password": "Confirm Password",
       "not-match": "Passwords does not match.",
       "start-date": "Start date",
-      "message": "Message"
+      "message": "Message",
+      "name": "Name",
+      "email": "Email"
     },
     "button": {
       "create": "Create",
@@ -314,6 +321,9 @@
     },
     "button": {
       "apply": "Send"
+    },
+    "validator": {
+      "required": "All elements of the application form must be filled out."
     }
   },
   "requestDetails": {
@@ -417,7 +427,8 @@
     "keywords": "Keywords",
     "min/lesson": "Minutes/lesson",
     "min_t_days": "Minimum Teaching Days",
-    "course_p/lesson": "Course Price / lesson"
+    "course_p/lesson": "Course Price / lesson",
+    "courseLang": "Course Language"
   },
   "areYouSure": {
     "yes": "Yes",
@@ -426,7 +437,7 @@
   },
   "message": {
     "child": "Choose your child",
-    "request":"Choose your request",
+    "request":"Choose your student course",
     "no-child": "This operation not available yet."
   },
   "tableHeaders": {
@@ -466,6 +477,13 @@
       "permission":"Denied: You have no permission to this operation.",
       "locationInUse":"Denied: A course use this location."
     },
+    "notification":{
+      "rejected":"Your request has been rejected. Click here for the details.",
+      "accepted":"Your request has been accepted. Click here for the details.",
+      "terminationOfCourse":"Termination course request received.",
+      "terminationAccepted":"Termination request accepted.",
+      "terminationRejected":"Termination request rejected."
+    },
     "hack_attempt":"The server detected suspicious activity, so your request was denied, and your account has been suspended. Please contact the system administrator for further information."
   },
   "Token has expired": "Please, login again",
@@ -483,6 +501,25 @@
     },
     "buttons": {
       "save": "Save"
+    }
+  },
+  "validation": {
+    "custom": {
+      "courseId": {
+        "exists": "The given course ID is not exists in database.",
+        "required" : "Course ID is required.",
+        "numeric":"Course ID must be a numeric type."
+      },
+      "requestId":{
+        "required" : "The request ID is required.",
+        "exists" : "The provided request does not exist in the database.",
+        "numeric":"Request ID must be a numeric type."
+      },
+      "childId" : {
+        "required" : "Child ID is required.",
+        "exists" : "The provided child does not exist in the database.",
+        "numeric":"The child ID must be numeric type."
+      }
     }
   }
 }

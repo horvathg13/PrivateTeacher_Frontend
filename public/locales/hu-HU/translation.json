@@ -38,7 +38,8 @@
     "child": "Gyerek",
     "search": "Keresés",
     "requests": "Kérelmek",
-    "messages": "Üzenetek"
+    "messages": "Üzenetek",
+    "students": "Tanulók"
   },
   "empty-table": "Nincs találat.",
   "header": {
@@ -70,7 +71,9 @@
     "accepted": "Elfogadott",
     "rejected": "Elutasított",
     "profile": "Profil",
-    "termination-request": "Lemondás igénylés"
+    "termination-request": "Lemondás igénylés",
+    "requests": "Igénylések",
+    "students": "Tanulók"
   },
   "componentTitles": {
     "users": "Felhasználók",
@@ -261,18 +264,22 @@
       "create": "Létrehozás",
       "connect": "Kapcsolódás",
       "info": "Információ",
-      "changePassword": "Új jelszó"
+      "changePassword": "Új jelszó",
+      "parentInfos": "Szülő Információk",
+      "childInfos": "Gyerek Információk"
     },
     "form": {
-      "first-name": "Vezetéknév",
-      "last-name": "Keresztnév",
+      "first-name": "Keresztnév",
+      "last-name": "Vezetéknév",
       "username": "Felhasználónév",
       "birthday": "Születési idő",
       "password": "Jelszó",
       "c-password": "Jelszó megerősítése",
       "not-match": "A jelszavak nem egyeznek",
       "start-date": "Kezdő dátum",
-      "message": "Üzenet"
+      "message": "Üzenet",
+      "name": "Név",
+      "email": "Email"
     },
     "button": {
       "create": "Létrehozás",
@@ -313,6 +320,9 @@
     },
     "button": {
       "apply": "Küldés"
+    },
+    "validator": {
+      "required": "A jelentkezési lap minden elemét ki kell tölteni."
     }
   },
   "requestDetails": {
@@ -416,7 +426,8 @@
     "keywords": "Címkék",
     "min/lesson": "Tanóra hossza (percben)",
     "min_t_days": "Minimális tanítási alkalom",
-    "course_p/lesson": "Kurzus díja (tanóránként)"
+    "course_p/lesson": "Kurzus díja (tanóránként)",
+    "courseLang": "Kurzus nyelve"
   },
   "areYouSure": {
     "yes": "Igen",
@@ -425,7 +436,7 @@
   },
   "message": {
     "child": "Válassza ki a gyerekét",
-    "request":"Válassza ki a kérvényét",
+    "request":"Válassza ki a tanulói kurzusát",
     "no-child": "Ez a művelet még nem elérhető."
   },
   "tableHeaders": {
@@ -465,6 +476,13 @@
       "permission": "Megtagadva: Ehhez a művelethez nincs jogosultsága.",
       "locationInUse":"Megtagadva: A helyszín használatban van."
     },
+    "notification":{
+      "rejected":"A kérelme elutasításra került. Kattintson a részletekért.",
+      "accepted":"A kérelmét elfogadták. Kattintson a részletekért.",
+      "terminationOfCourse":"Kurzusmegszüntetési kérelme érkezett.",
+      "terminationAccepted":"Kurzusmegszüntetési kérelmét elfogadták",
+      "terminationRejected":"Kurzusmegszüntetési kérelmét elutasították."
+    },
     "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította és fiókja felfüggesztésre került. Keresse meg a rendszer üzemeltetőjét további információkért."
   },
   "Wrong number of segments": "Kérjük, jelentkezzen be újra",
@@ -482,6 +500,25 @@
     },
     "buttons": {
       "save": "Mentés"
+    }
+  },
+  "validation": {
+    "custom": {
+      "courseId": {
+        "exists": "A megadott kurzus azonosító nem található az adatbázisban.",
+        "required" : "A kurzus azonosító megadása kötelező.",
+        "numeric":"A kurzus azonosítónak számnak kell lennie."
+      },
+      "requestId":{
+        "required" : "A kérelem azonosítójának megadása kötelező.",
+        "exists" : "A kérelem nem található az adatbázisban.",
+        "numeric":"A kérelem azonosítónak számnak kell lennie."
+      },
+      "childId" : {
+        "required" : "A gyermek azonosító megadása kötelező.",
+        "exists" : "A megadott gyermek nem található az adatbázisban.",
+        "numeric":"A gyermek azonosítónak számnam kell lennie."
+      }
     }
   }
 }
