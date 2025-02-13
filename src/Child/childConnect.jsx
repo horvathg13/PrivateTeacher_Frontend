@@ -67,14 +67,14 @@ const ChildConnect = () => {
             <div className="form-container connectChild">
                 <form onSubmit={connect}>
                     <div className="emailPassword-fields grid">
-                        <label>Username</label>
+                        <label>{t('form.username')}</label>
                         <input 
                         type="text" 
                         required 
                         onChange={(e) => { setUsername(e.target.value); } } 
                         readOnly={readOnly}/>
 
-                        <label>Password</label>
+                        <label>{t('form.password')}</label>
                         <input 
                         type="password" 
                         required 
