@@ -27,7 +27,13 @@ const ChildDetails = () => {
                 "id":"2",
                 "name":t('TabMenu.courses'),
                 "url":`/child/${childId}/courses`
-            }
+            },
+            {
+                "id":"3",
+                "name":t('TabMenu.requests'),
+                "url":`/child/${childId}/requests`
+            },
+
         ]);
         setBreadcrumbs([
             {
