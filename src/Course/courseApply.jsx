@@ -48,7 +48,7 @@ const CourseApply = () => {
         setErrors([]);
         setServerError([]);
 
-        if(selectedChild.value && language){
+        if(selectedChild.value && language && numberOfLesson && notice && startDate){
             ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice, startDate, language).then((success)=>{
                 setReadOnly(false);
                 setBtnDisabled(false);
@@ -65,22 +65,13 @@ const CourseApply = () => {
 
             }).catch((error)=>{
                 setServerError(error);
-
                 setReadOnly(false);
                 setBtnDisabled(false);
-
-                setSelectedChild('');
-                setNumberOfLesson('');
-                setNotice('');
-                setStartDate('')
             });
         }else {
             setBtnDisabled(false);
             setReadOnly(false);
-
-            setSelectedChild('');
-            setNumberOfLesson('');
-            setNotice('');
+            setErrors([t('validator.required')])
         }
     }
     return (
