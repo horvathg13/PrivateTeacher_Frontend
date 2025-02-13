@@ -21,6 +21,11 @@ const Course = () => {
                 "url":`/course/${courseId}`,
                 "end":true,
             },
+            {
+                "id":"2",
+                "name":t('TabMenu.students'),
+                "url":`/course/${courseId}/students`
+            }
         ]);
 
         setBreadcrumbs([
