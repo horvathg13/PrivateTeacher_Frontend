@@ -16,7 +16,7 @@ import ServiceClient from "../ServiceClient";
 import i18next from "i18next";
 
 const ChildCourseProfile = () => {
-    const [courseProfile]=useLoaderData();
+    const courseProfile=useLoaderData();
 
     /*Translation*/
     const {t}=useTranslation("translation",{keyPrefix:"courseProfile"});
@@ -85,59 +85,58 @@ const ChildCourseProfile = () => {
                 <div className="profile-data">
                     <div className="course-titles">
                         <div className="teacher-name">
-                            <h3>{courseProfile.teacher.first_name} {courseProfile.teacher.last_name}</h3>
+                            <h3>{courseProfile.data.teacher.first_name} {courseProfile.data.teacher.last_name}</h3>
                         </div>
                         <div className="course-name">
-                            {courseProfile.course_names_and_langs.length>1 ?
+                            {courseProfile.data.course_names_and_langs.length>1 ?
                                 <>
-                                    <h3> {courseProfile.course_names_and_langs.filter(e=>e.lang === i18next.language).map(j=>j.name)} </h3>
+                                    <h3> {courseProfile.data.course_names_and_langs.filter(e=>e.lang === i18next.language).map(j=>j.name)} </h3>
                                 </>
                                 :
                                 <>
-                                    <h3> {courseProfile.course_names_and_langs.map(j=>j.name)} </h3>
+                                    <h3> {courseProfile.data.course_names_and_langs.map(j=>j.name)} </h3>
                                 </>
                             }
-
                         </div>
                     </div>
                     <form className="FlexForm">
                         <div className="form-items">
                             <div className="form-children courseProfile-form-children">
                                 <label><TbBellSchool/> {t('form.school-year')}</label>
-                                <h4>{courseProfile.start} - {courseProfile.end}</h4>
+                                <h4>{courseProfile.data.start} - {courseProfile.data.end}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><IoLanguageSharp/> {t('form.lang')}</label>
-                                <h4>{courseProfile.course_names_and_langs.map(i => i.lang).join(', ')}</h4>
+                                <h4>{courseProfile.data.course_names_and_langs.map(i => i.lang).join(', ')}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><IoMdTime/> {t('form.minutes-lesson')}</label>
-                                <h4>{courseProfile.minutes_lesson}</h4>
+                                <h4>{courseProfile.data.minutes_lesson}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><FaCalendarDays/> {t('form.minTeachingDay')}</label>
-                                <h4>{courseProfile.min_teaching_day}</h4>
+                                <h4>{courseProfile.data.min_teaching_day}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><FaDollarSign/> {t('form.course-price-per-lesson')}</label>
-                                <h4>{courseProfile.course_price_per_lesson} {courseProfile.currency}</h4>
+                                <h4>{courseProfile.data.course_price_per_lesson} {courseProfile.data.currency}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><LuCalendarClock/> {t('form.payment_period')}</label>
-                                <h4>{a(`enums.${courseProfile.payment_period}`)}</h4>
+                                <h4>{a(`enums.${courseProfile.data.payment_period}`)}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><FaLocationDot/> {t('form.location')}</label>
-                                <h4>{courseProfile.location.name}</h4>
+                                <h4>{courseProfile.data.location.name}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><FaLocationDot/> {t('form.address')}</label>
                                 <div className="address-container">
-                                    <span>{courseProfile.location.country}</span>
-                                    <span>{courseProfile.location.city}</span>
-                                    <span>{courseProfile.location.street} {courseProfile.location.number}</span>
-                                    <span>{courseProfile.location.floor} / {courseProfile.location.door}</span>
-                                    <span>{courseProfile.location.zip}</span>
+                                    <span>{courseProfile.data.location.country}</span>
+                                    <span>{courseProfile.data.location.city}</span>
+                                    <span>{courseProfile.data.location.street} {courseProfile.data.location.number}</span>
+                                    <span>{courseProfile.data.location.floor} / {courseProfile.data.location.door}</span>
+                                    <span>{courseProfile.data.location.zip}</span>
                                 </div>
                             </div>
 
