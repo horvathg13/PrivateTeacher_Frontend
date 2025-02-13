@@ -58,7 +58,7 @@ const ChildCourses = () => {
                         </thead>
                         <tbody>
                         {loaderData.data?.map((e,i) => (
-                            <tr key={i} onClick={() => navigate(`/child/${childId}/course/${e.teacher_course_id}`)}>
+                            <tr key={i} onClick={() => navigate(`/child/${childId}/course/${e.id}`)}>
                                 <td>{e.id}</td>
                                 <td>{e.name.filter(e=>e.lang===i18next.language).length>0 ?
                                     e.name.filter(e=>e.lang===i18next.language).map(j=>j.name)
