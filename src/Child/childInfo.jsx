@@ -185,7 +185,6 @@ const ChildInfo = () => {
                                     required
                                     onChange={(e)=>{setBirthday(e.target.value)}}/>
                             </div>
-
                         </div>
                     </div>
                     <div className="user-container passwords">
