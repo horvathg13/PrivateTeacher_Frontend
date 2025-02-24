@@ -12,11 +12,16 @@ class ServiceClient {
                 Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',
                 locale:i18next.language
             }
+        }).then((response)=>{
+            if (response.data.token) {
+                localStorage.setItem('token', response.data.token)
+            }
+            return response
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
                 localStorage.removeItem("token");
             }
-            throw error
+            return Promise.reject(error)
         })
     }
 
@@ -28,11 +33,16 @@ class ServiceClient {
                 Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',
                 locale:i18next.language
             }
+        }).then((response)=>{
+            if (response.data.token) {
+                localStorage.setItem('token', response.data.token)
+            }
+            return response;
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
                 localStorage.removeItem("token");
             }
-            throw error
+            return Promise.reject(error)
         })
     }
 
@@ -43,16 +53,21 @@ class ServiceClient {
                 ...config.headers,
                 Authorization: 'Bearer ' +  window.localStorage.getItem('token') || '',
             }
+        }).then((response)=>{
+            if (response.data?.token) {
+                localStorage.setItem('token', response.data.token)
+            }
+            return response
         }).catch(error=>{
             if(error?.response?.data?.message === "Token has expired"){
                 localStorage.removeItem("token");
             }
-            throw error
+            return error
         })
     }
     static login(email, password){
         return this.post("/api/login", {email:email, psw:password}).then((response)=>{
-            localStorage.setItem('token',response.data.data.token);
+            //localStorage.setItem('token',response.data.token);
             return response.data
         })
     }
@@ -210,9 +225,9 @@ class ServiceClient {
             return response.data
         });
     }
-    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, locationId, paymentPeriod, courseId, currency,courseStatus, remove, startDate, endDate){
+    static createCourse(courseName, studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, locationId, paymentPeriod, courseId, currency,courseStatus, remove, startDate, endDate){
         return this.post("/api/createCourse",{
-            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, labels:labels, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency, status:courseStatus, remove:remove, start:startDate, end:endDate}).then((response)=>{
+            courseId: courseId || null, name:courseName, studentLimit:studentLimit,minutesLesson:minutesLesson, minTeachingDay:minTeachingDay, coursePricePerLesson:coursePricePerLesson, paymentPeriod:paymentPeriod, locationId:locationId, currency:currency, status:courseStatus, remove:remove, start:startDate, end:endDate}).then((response)=>{
                 return response.data
         });
     }
@@ -248,22 +263,22 @@ class ServiceClient {
         })
     }
 
-    static searchLabel=(keyword)=>{
-        return this.post("/api/searchLabel", {keyword:keyword || null}).then((response)=>{
+    static searchLabel=(keyword,courseLanguage)=>{
+        return this.post("/api/searchLabel", {keyword:keyword || null, courseLanguage:courseLanguage}).then((response)=>{
             return response.data
         });
     }
 
-    static createLabel=(keyword)=>{
-        return this.post("/api/createLabel", {keyword:keyword}).then((response)=>{
+    static createLabel=(keyword, courseLanguage)=>{
+        return this.post("/api/createLabel", {keyword:keyword,courseLanguage:courseLanguage}).then((response)=>{
             return response.data
         });
     }
 
-    static searchCourse=(teacher_email, courseName, keywords, min_lesson, min_t_days, course_price, country, zip, city, street, number, sortData, perPage, counter)=>{
+    static searchCourse=(teacher_email, courseName, keywords, min_lesson, min_t_days, course_price, country, zip, city, street, number, sortData, perPage, counter, language)=>{
         return this.post(`/api/searchCourse?perPage=${perPage||10}&page=${counter||1}`, {teacher_email:teacher_email,
             name:courseName, keywords:keywords, min_lesson:min_lesson, min_t_days:min_t_days, course_price:course_price,
-            country:country, zip:zip, city:city, street:street, number:number, sortData:sortData, perPage:perPage, counter:counter}).then((response)=>{
+            country:country, zip:zip, city:city, street:street, number:number, sortData:sortData, perPage:perPage, counter:counter, lang:language}).then((response)=>{
             return response.data
         });
     }
