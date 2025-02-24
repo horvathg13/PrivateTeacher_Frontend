@@ -6,7 +6,7 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
-import {FaArrowCircleRight, FaExclamationTriangle, FaMinus, FaTrashAlt} from "react-icons/fa";
+import {FaArrowCircleRight, FaExclamationTriangle, FaMinus, FaPlusCircle, FaTrashAlt} from "react-icons/fa";
 import {TabMenuContext, schoolYearDetailsContext, UserContext} from "../Context/UserContext";
 import TabMenu from "../CommonComponents/TabMenu/tabMenu";
 import Select from "react-select";
@@ -65,6 +65,7 @@ const CourseInfo = () => {
     
     /*Translation*/
     const {t}=useTranslation("translation", {keyPrefix:'schools.school.year.courses'})
+    const {t:a}=useTranslation("translation", )
 
     /*Methods */
     const functionControl=(name)=>{
@@ -99,6 +100,12 @@ const CourseInfo = () => {
 
         }
     }
+    const handleLabelSelection =(data,i)=>{
+        const values=[...courseName];
+        if(data){
+            values[i].labels=data;
+        }
+    }
 
     const updateCourseInfos=(e)=>{
         e.preventDefault();
@@ -107,7 +114,7 @@ const CourseInfo = () => {
         setReadOnly(true);
         setErrors([]);
         setServerError([]);
-        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, labels, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency.value || currency, courseStatus || courseInfo.status.value, removeLangs, startDate, endDate).then((success)=>{
+        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency.value || currency, courseStatus || courseInfo.status.value, removeLangs, startDate, endDate).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
@@ -171,70 +178,110 @@ const CourseInfo = () => {
             <div className="courseCreate">
                 <div className="title">
                     <h2>{t('info.title')}
-
-                        <MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/>
-
+                        <MdEdit
+                            className='icon formIcon'
+                            onClick={() => [setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}
+                        />
                     </h2>
                 </div>
-                <form className="FlexForm">
-                    <div className="form-items">
-                        <div className="form-items flex">
-                            <div className="form-children flexColumnItems">
-                                <label>{t('form.status')}</label>
-                                <Select
-                                    options={courseStatuses}
-                                    defaultValue={courseInfo.status}
-                                    onChange={(selected) => {
-                                        setCourseStatus(selected.value)
-                                    }}
-                                    isDisabled={readOnly}
-                                    isSearchable={true}
-                                    className="select-componentFull"
-                                />
+                <form onSubmit={(e) => updateCourseInfos(e)} className="FlexForm">
+                    <div className="form-items flex">
+                        <div className="form-children form-collapse">
+                            <div className="flexColumnItems">
+                                <label>{t('form.start')}</label>
+                                <input type="date" required readOnly={readOnly} onChange={(e) => {
+                                    setStartDate(e.target.value)
+                                }} value={startDate}/>
                             </div>
-                            <div className="form-collapse">
-                                <div className="form-children flexColumnItems">
-                                    <label>{t('form.start')}</label>
-                                    <input
-                                        type="date"
-                                        required
-                                        onChange={(e) => {
-                                            setStartDate(e.target.value)
-                                        }}
-                                        value={startDate}
-                                        readOnly={readOnly}
-                                    />
-                                </div>
-                                <div className="form-children flexColumnItems">
-                                    <label>{t('form.end')}</label>
-                                    <input
-                                        type="date"
-                                        required
-                                        onChange={(e) => {
-                                            setEndDate(e.target.value)
-                                        }}
-                                        value={endDate}
-                                        readOnly={readOnly}
-                                    />
-                                </div>
+                            <div className="flexColumnItems">
+                                <label>{t('form.end')}</label>
+                                <input type="date" required readOnly={readOnly} onChange={(e) => {
+                                    setEndDate(e.target.value)
+                                }} value={endDate}/>
                             </div>
-                            <div className="form-children">
-                                <label>{t('form.name')}</label>
-                            </div>
+                        </div>
+                        <div className="form-children">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{t('form.lang')}</th>
+                                        <th>{t('form.name')}</th>
+                                        <th>{t('form.labels')}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {courseName.map((e, i) => (
+                                    <>
+                                        <tr>
+                                            <td>
+                                                <Select
+                                                    placeholder={t('select-lang')}
+                                                    defaultValue={({value: e.lang, label: a(`enums.${e.lang}`)})}
+                                                    options={languages.map(j=>({value:j.value, label:a(`enums.${j.label}`)})) || null}
+                                                    onChange={(selected) => {
+                                                        handleInputChange(selected, i)
+                                                    }}
+                                                    isDisabled={readOnly}
+                                                    isSearchable={true}
+                                                    className="select-componentFull"
+                                                />
+                                            </td>
+                                            <td>
+                                                <input type="text"
+                                                       required
+                                                       value={e.name}
+                                                       name="name"
+                                                       onChange={(e) => {
+                                                           handleInputChange(e, i)
+                                                       }}
+                                                       readOnly={readOnly}/>
+                                            </td>
+                                            <td>
+                                                <LabelSelector
+                                                    labelEmit={(data) => handleLabelSelection(data, i)}
+                                                    disabled={readOnly}
+                                                    lang={e.lang}
+                                                    popUpTitle={"Add labels"}
+                                                    initial={e.labels}
+                                                    read
+                                                />
+                                            </td>
+                                            {i > 0 && <td>
+                                                <FaMinus onClick={() => handleRemoveRow(e)}
+                                                         className="selector-icon red"/>
+                                            </td>}
+                                        </tr>
+                                        {!readOnly && Object.keys(courseName).length - 1 === i &&
+                                            <tr>
+                                                <td colSpan={4}>
+                                                    <FaPlus onClick={handleAddRow} className="selector-icon"/>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </>
+                                ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="form-children mobile-course-create-table">
                             {courseName.map((e, i) => (
-                                <div className="form-children flexColumnItems" key={i}>
-                                    <div className="course-lng-name">
+                                <div key={i}>
+                                    <div className="mobile-children">
+                                        <label>{t('form.lang')}</label>
                                         <Select
                                             placeholder={t('select')}
                                             options={languages || null}
-                                            defaultValue={{"value": e.lang, "label": e.lang}}
                                             onChange={(selected) => {
                                                 handleInputChange(selected, i)
                                             }}
                                             isDisabled={readOnly}
                                             isSearchable={true}
-                                            className="select-component50"
+                                            className="select-componentFull"
                                         />
+                                    </div>
+                                    <div className="mobile-children">
+                                        <label>{t('form.name')}</label>
                                         <input type="text"
                                                required
                                                value={e.name}
@@ -242,116 +289,121 @@ const CourseInfo = () => {
                                                onChange={(e) => {
                                                    handleInputChange(e, i)
                                                }}
-                                               readOnly={readOnly}/>
-                                        {!readOnly && <FaPlus onClick={handleAddRow} className="selector-icon"/>}
-                                        {(i > 0 && !readOnly) &&
-                                            <FaMinus onClick={() => handleRemoveRow(e)} className="selector-icon red"/>}
+                                               readOnly={readOnly}
+                                        />
                                     </div>
+                                    <div className="mobile-children">
+                                        <label>{t('form.labels')}</label>
+                                        <LabelSelector
+                                            labelEmit={(data) => console.log(data)}
+                                            disabled={e.lang === ""}
+                                            lang={e.lang}
+                                            popUpTitle={"Add labels"}
+                                        />
+                                    </div>
+                                    {!readOnly &&<div className="mobile-course-create-table-add-new-row">
+                                        <FaPlusCircle onClick={handleAddRow} className="selector-icon"/>
+                                        {i > 0 &&
+                                            <FaMinus onClick={() => handleRemoveRow(e)} className="selector-icon red"/>}
+                                    </div>}
                                 </div>
                             ))}
+                        </div>
+                        <div className="form-children flexColumnItems">
+                            <label>{t('form.location')}</label>
+                            <Select
+                                placeholder={t('select')}
+                                defaultValue={location}
+                                options={schoolLocations?.select}
+                                onChange={(selected) => {
+                                    setLocation(selected.value)
+                                }}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-componentFull"
+                            />
+                        </div>
+                        <div className="form-collapse">
                             <div className="form-children flexColumnItems">
-                                <label>{t('form.labels')}</label>
-                                <LabelSelector
-                                    labelEmit={(data) => setLabels(data)}
-                                    getLabels={courseInfo.labels}
-                                    disabled={readOnly}
-                                    popUpTitle={"Add labels"}/>
+                                <label>{t('form.course-price-per-lesson')}</label>
+                                <input
+                                    type="number"
+                                    required
+                                    onChange={(e) => {
+                                        setcoursePricePerLesson(e.target.value)
+                                    }}
+                                    value={coursePricePerLesson}
+                                    readOnly={readOnly}/>
                             </div>
-
                             <div className="form-children flexColumnItems">
-                                <label>{t('form.location')}</label>
+                                <label>{t('form.currency')}</label>
                                 <Select
-                                    options={schoolLocations?.select}
-                                    defaultValue={[{
-                                        "value": courseInfo.location.id,
-                                        "label": courseInfo.location.name
-                                    }]}
+                                    placeholder={t('select')}
+                                    defaultValue={courseInfo.currency}
+                                    options={currencies}
                                     onChange={(selected) => {
-                                        setLocation(selected.value)
+                                        setCurrency(selected.value)
+                                    }}
+                                    isDisabled={readOnly}
+                                    isSearchable={true}
+                                    className="select-component90"
+                                    maxMenuHeight={150}
+                                />
+                            </div>
+                            <div className="form-children flexColumnItems">
+                                <label>{t('form.payment-period')}</label>
+                                <Select
+                                    placeholder={t('select')}
+                                    defaultValue={courseInfo.paymentPeriod}
+                                    options={paymentPeriods}
+                                    onChange={(selected) => {
+                                        setPaymentPeriod(selected.value)
                                     }}
                                     isDisabled={readOnly}
                                     isSearchable={true}
                                     className="select-componentFull"
                                 />
                             </div>
-                            <div className="form-collapse">
-                                <div className="form-children flexColumnItems">
-                                    <label>{t('form.course-price-per-lesson')}</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        onChange={(e) => {
-                                            setcoursePricePerLesson(e.target.value)
-                                        }}
-                                        value={coursePricePerLesson}
-                                        readOnly={readOnly}/>
-                                </div>
-                                <div className="form-children flexColumnItems">
-                                    <label>{t('form.currency')}</label>
-                                    <Select
-                                        options={currencies}
-                                        defaultValue={courseInfo.currency}
-                                        onChange={(selected) => {
-                                            setCurrency(selected.value)
-                                        }}
-                                        isDisabled={readOnly}
-                                        isSearchable={true}
-                                        className="select-component90"
-                                    />
-                                </div>
-                                <div className="form-children flexColumnItems">
-                                    <label>{t('form.payment-period')}</label>
-                                    <Select
-                                        options={paymentPeriods}
-                                        defaultValue={courseInfo.paymentPeriod}
-                                        onChange={(selected) => {
-                                            setPaymentPeriod(selected.value)
-                                        }}
-                                        isDisabled={readOnly}
-                                        isSearchable={true}
-                                        className="select-componentFull"
-                                    />
-                                </div>
+                        </div>
+                        <div className="form-collapse">
+                            <div className="form-children flexColumnItems">
+                                <label>{t('form.student-limit')}</label>
+                                <input type="number"
+                                       min={1}
+                                       required
+                                       onChange={(e) => {
+                                           setStudentLimit(e.target.value)
+                                       }}
+                                       value={studentLimit}
+                                       readOnly={readOnly}/>
                             </div>
-                            <div className="form-collapse">
-                                <div className="form-children flexColumnItems">
-                                    <label>{t('form.student-limit')}</label>
-                                    <input type="number"
-                                           min={1}
-                                           required
-                                           onChange={(e) => {
-                                               setStudentLimit(e.target.value)
-                                           }}
-                                           value={studentLimit}
-                                           readOnly={readOnly}/>
-                                </div>
 
-                                <div className="form-children flexColumnItems">
-                                    <label>{t('form.minutes-lesson')}</label>
-                                    <input
-                                        type="number"
-                                        min={1}
-                                        required
-                                        onChange={(e) => {
-                                            setMinutesLesson(e.target.value)
-                                        }}
-                                        value={minutesLesson}
-                                        readOnly={readOnly}/>
-                                </div>
-                                <div className="form-children flexColumnItems">
-                                    <label>{t('form.minTeachingDay')}</label>
-                                    <input
-                                        type="number"
-                                        min={1}
-                                        required
-                                        onChange={(e) => {
-                                            setMinTeachingDay(e.target.value)
-                                        }}
-                                        value={minTeachingDay}
-                                        readOnly={readOnly}/>
-                                </div>
+                            <div className="form-children flexColumnItems">
+                                <label>{t('form.minutes-lesson')}</label>
+                                <input
+                                    type="number"
+                                    min={1}
+                                    required
+                                    onChange={(e) => {
+                                        setMinutesLesson(e.target.value)
+                                    }}
+                                    value={minutesLesson}
+                                    readOnly={readOnly}/>
+                            </div>
+                            <div className="form-children flexColumnItems">
+                                <label>{t('form.minTeachingDay')}</label>
+                                <input
+                                    type="number"
+                                    min={1}
+                                    required
+                                    onChange={(e) => {
+                                        setMinTeachingDay(e.target.value)
+                                    }}
+                                    value={minTeachingDay}
+                                    readOnly={readOnly}/>
                             </div>
                         </div>
+
                     </div>
                     <div className="form-button-container">
                         {!loader ?
