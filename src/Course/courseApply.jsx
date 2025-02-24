@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import EventHandler from "../EventHandler/eventhandler";
 import {MdEdit} from "react-icons/md";
 import {useTranslation} from "react-i18next";
@@ -21,7 +21,7 @@ const CourseApply = () => {
     const [notice, setNotice]=useState();
     const {courseId}=useParams()
     const [startDate, setStartDate]=useState();
-    const [language, setSelectedLanguage]=useState();
+    const [language, setSelectedLanguage]=useState("");
 
     /*Loader */
     const [loader, setLoader]=useState(false);
@@ -49,7 +49,7 @@ const CourseApply = () => {
         setServerError([]);
 
         if(selectedChild.value && language && numberOfLesson && notice && startDate){
-            ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice, startDate, language).then((success)=>{
+            ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice, startDate, language.value).then((success)=>{
                 setReadOnly(false);
                 setBtnDisabled(false);
 
@@ -58,7 +58,8 @@ const CourseApply = () => {
                     setSuccess(false);
                 },2000)
 
-                setSelectedChild('');
+                setSelectedChild(null);
+                setSelectedLanguage(null)
                 setNumberOfLesson('');
                 setNotice('');
                 setStartDate('')
@@ -94,8 +95,9 @@ const CourseApply = () => {
                     <div className="form-children">
                         <label>{t('form.child')}</label>
                         <Select
-                            defaultValue={selectedChild || null}
+                            isClearable={true}
                             options={children}
+                            value={selectedChild}
                             onChange={(selected) => {
                                 setSelectedChild(selected);
                             }}
@@ -107,10 +109,11 @@ const CourseApply = () => {
                     <div className="form-children">
                         <label>{t('form.language')}</label>
                         <Select
-                            defaultValue={null}
+                            isClearable={true}
+                            value={language}
                             options={courseProfile.languages?.map(e => ({value: e.value, label: e.label}))}
                             onChange={(selected) => {
-                                setSelectedLanguage(selected.value);
+                                setSelectedLanguage(selected);
                             }}
                             isDisabled={readOnly}
                             isSearchable={true}
