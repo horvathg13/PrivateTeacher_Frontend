@@ -54,7 +54,7 @@ const CreateChild = () => {
         }
         Promise.all([
             ServiceClient.createChild(fname, lname, username, birthday, password),
-            ServiceClient.connectToChild(username,password)
+
         ]).then(()=>{
             formClear();
             setSuccess(true);
