@@ -863,11 +863,14 @@ form .roles-container.flex label {
 
 /*Label Component*/
 .selector-input{
-  height: 25px !important;
+  height: 50px;
   background: white;
   padding: 5px;
   overflow: auto;
   border-radius: 5px;
+}
+.selector-icon{
+  padding: 10px;
 }
 .label-close-button-container{
   width: auto;
@@ -1001,12 +1004,15 @@ form .roles-container.flex label {
 }
 @media screen and (max-width: 700px) {
   .selector-main{
-    display: grid;
-    width: 95%;
+    display: flex;
+    width: 100%;
   }
 
   .selector-icon{
-    padding: 5px 0;
+    padding: 5px 5px;
+  }
+  .selector-main .selector-input{
+    height: 80px !important;
   }
 
 }
@@ -1015,7 +1021,7 @@ form .roles-container.flex label {
   border: 1px solid grey;
 }
 .selector-icon{
-  margin: 0 10px;
+  /*margin: 0 10px;*/
   font-size: 23px;
   color: var(--GreenColor);
   cursor: pointer;
@@ -1151,7 +1157,8 @@ form .roles-container.flex label {
   margin: 0 auto;
 }
 .courseCreate .form-children{
-  padding: 10px 0 !important;
+  padding: 20px 0 !important;
+  border-bottom: 1px dotted var(--DarkBlue);
 }
 .courseCreate .form-button-container{
   padding: 20px 0 !important;
@@ -1183,6 +1190,61 @@ form .roles-container.flex label {
   }
   .courseCreate .course-lng-name .selector-icon{
     margin: 10px !important;
+  }
+}
+
+.courseCreate .form-children table{
+  width: 100%;
+  height: auto;
+  border-spacing: 0;
+}
+.courseCreate .form-children table thead{
+  height:auto;
+  background: var(--LightBlueTransparent);
+}
+
+.courseCreate .form-children table thead tr th{
+  padding: 0 10px;
+}
+
+.courseCreate .form-children table tbody tr td{
+  width: 35%;
+  padding: 10px 5px;
+}
+.courseCreate .form-children table tr{
+  height: 50px;
+}
+.courseCreate .form-children table tbody tr input{
+  width: 100% !important
+}
+@media screen and (min-width: 721px){
+  .courseCreate .form-items .form-children.mobile-course-create-table{
+    display: none;
+  }
+}
+@media screen and (max-width: 721px){
+  .courseCreate .form-items .form-children table{
+    display: none;
+  }
+  .courseCreate .form-children.mobile-course-create-table{
+    height: auto;
+    padding: 10px !important;
+  }
+  .courseCreate .form-children.mobile-course-create-table label{
+
+  }
+  .courseCreate .mobile-course-create-table input{
+    width: 98% !important;
+  }
+  .courseCreate .form-children.mobile-course-create-table .mobile-course-create-table-add-new-row{
+    width: 100%;
+    margin: 10px 0;
+  }
+  .courseCreate .form-children.mobile-course-create-table .mobile-course-create-table-add-new-row .selector-icon{
+    margin-right: 10px;
+  }
+  .courseCreate .form-children.mobile-course-create-table .mobile-children{
+    margin: 20px 0;
   }
 }
 
