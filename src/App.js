@@ -341,7 +341,6 @@ const router = createBrowserRouter([
 
         ]
       },
-
       {
         path:"search",
         element:<Protected><Search/></Protected>,
