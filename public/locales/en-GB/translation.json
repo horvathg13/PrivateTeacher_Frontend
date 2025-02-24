@@ -216,7 +216,8 @@
             "start": "Start date",
             "end": "End date"
           },
-          "select": "Select your course language",
+          "select-lang": "Please, select a language",
+          "select": "Please, select...",
           "button":{
             "create": "Create",
             "update": "Update",
@@ -397,7 +398,11 @@
     "UNREAD": "Unread",
     "READ": "Read",
     "APPLY": "Applicant",
-    "TERMINATION": "Termination"
+    "TERMINATION": "Termination",
+    "en-GB": "English",
+    "hu-HU": "Hungarian",
+    "English": "English",
+    "Hungarian": "Hungarian"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -519,6 +524,23 @@
         "required" : "Child ID is required.",
         "exists" : "The provided child does not exist in the database.",
         "numeric":"The child ID must be numeric type."
+      },
+      "student_course":{
+        "id":{
+          "required":"The student course Id is required.",
+          "numeric":"The student course Id must be numeric type.",
+          "exists":"The student course Id is not exists in database."
+        }
+      },
+      "locationId": {
+        "required": "The location is required.",
+        "exists": "The provided location does not exist in the database.",
+        "numeric": "The location ID must be a numeric type."
+      },
+      "studentId": {
+        "required": "The student ID is required.",
+        "numeric": "The student ID must be a numeric type.",
+        "exists": "The student ID does not exist in the database."
       }
     }
   }

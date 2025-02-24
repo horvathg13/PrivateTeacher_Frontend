@@ -215,7 +215,8 @@
             "start": "Kurzus kezdete",
             "end": "Kurzus vége"
           },
-          "select": "Válasszon nyelvet",
+          "select-lang": "Válasszon nyelvet",
+          "select": "Kérjük válasszon...",
           "button":{
             "create": "Létrehozás",
             "update": "Frissítés",
@@ -396,7 +397,11 @@
     "UNREAD": "Olvasatlan",
     "READ": "Olvasott",
     "APPLY": "Jelentkezés",
-    "TERMINATION": "Lemondás"
+    "TERMINATION": "Lemondás",
+    "en-GB": "Angol",
+    "hu-HU": "Magyar",
+    "English": "Angol",
+    "Hungarian": "Magyar"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -518,6 +523,23 @@
         "required" : "A gyermek azonosító megadása kötelező.",
         "exists" : "A megadott gyermek nem található az adatbázisban.",
         "numeric":"A gyermek azonosítónak számnam kell lennie."
+      },
+      "student_course":{
+        "id":{
+          "required":"A tanulói kurzus azonosítóját kötelező megadni.",
+          "numeric":"A tanulói kurzus azonosítójának számnak kell lennie.",
+          "exists":"A tanulói kurzus nem található."
+        }
+      },
+      "locationId": {
+        "required": "A helyszín megadása kötelező.",
+        "exists": "A megadott helyszín nem létezik az adatbázisban.",
+        "numeric": "A helyszín azonosítójának számnak kell lennie."
+      },
+      "studentId": {
+        "required": "A tanuló azonosító megadása kötelező.",
+        "numeric": "A tanuló azonosítójának számnak kell lennie.",
+        "exists": "A megadott tanuló azonosító nem létezik az adatbázisban."
       }
     }
   }
