@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import LabelPopup from "./labelPopup";
-import {FaMinusSquare, FaPlus} from "react-icons/fa";
+import {FaEdit, FaMinusSquare, FaPlus} from "react-icons/fa";
 
         
-const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, initial}) => {
+const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, initial, lang}) => {
     
     const [labels, setLabels]=useState();
     const [labelTransition, setLabelTransition]=useState();
@@ -59,9 +59,10 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, 
             selected={labels}
             initialValues={initial}
             remove={removeItem}
-            title={popUpTitle}/> : <div className="selector-input">{renderLabels(labels)}</div>
+            title={popUpTitle}
+            courseLanguage={lang}/> : <div className="selector-input">{renderLabels(labels)}</div>
             }
-            {!disabled && < FaPlus className="selector-icon" onClick={()=> {
+            {!disabled && < FaEdit  className="selector-icon" onClick={()=> {
                 if(disabled === false){setLabelTransition(true)}
             }}/>}
 
