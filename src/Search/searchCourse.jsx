@@ -104,7 +104,7 @@ const SearchCourse = () => {
         if(pageSet || counterSet>0){
             ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
                 minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
-                schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet).then((success)=>{
+                schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang).then((success)=>{
 
                 setLoader(false);
                 setBtnDisabled(false);
