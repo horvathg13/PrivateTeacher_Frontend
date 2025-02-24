@@ -8,7 +8,7 @@ import EventHandler from "../../EventHandler/eventhandler";
 import {useTranslation} from "react-i18next";
 import {UserContext} from "../../Context/UserContext";
        
-const LabelPopup = ({labelTransition, closeModal, selection, selected, title, initialValues, remove}) => {
+const LabelPopup = ({labelTransition, closeModal, selection, selected, title, initialValues, remove, courseLanguage}) => {
 
     /*Translation*/
     const {t}=useTranslation();
@@ -41,7 +41,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
         }
         setLabels([]);
 
-        ServiceClient.searchLabel(keyword).then((success)=>{
+        ServiceClient.searchLabel(keyword, courseLanguage).then((success)=>{
             setLabels(success);
             setLoader(false);
             setBtnDisabled(false);
@@ -53,7 +53,6 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
             }else{
                 setCheck(false);
             }
-
         }).catch((error)=>{
             setLabels([]);
             //setServerError(error);
@@ -88,7 +87,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
         setLoader(true);
 
         if(keyword){
-            ServiceClient.createLabel(keyword).then((response)=>{
+            ServiceClient.createLabel(keyword, courseLanguage).then((response)=>{
                 setSuccess(true);
                 setLoader(false);
                 setBtnDisabled(false);
@@ -153,7 +152,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                 </div>
                 <div className="label-results">
                     {!loader ?
-                        labels.length !== 0 ? labels.map((e, i) => (
+                        labels !== undefined && labels.length !== 0 ? labels.map((e, i) => (
                             <div className="label-result flex" key={i} onClick={() => Select(e)}>
                                 <h4>{e.label}</h4>
                                     <div className="label-action">{shouldCheck(e) ?
@@ -164,7 +163,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                             <span className='loader add-label'></span>
                         }
 
-                    {errors.length && isTeacher ?
+                    {errors.length>0 && isTeacher ?
                         <div className="label-result label-missing flex" onClick={createLabel}>
                             <h4>{t('labels.not-exist')}</h4>
                             <div className="label-action"><FaPlus className="label-action-icon label-success"/>
@@ -172,7 +171,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                         </div>
                         : null
                     }
-                    {errors.length && !isTeacher ?
+                    {errors.length >0&& !isTeacher ?
                         <div className="label-result flex">
                             <h4>{t('labels.not-exist-for-parents')}</h4>
                         </div>
