@@ -155,7 +155,6 @@ export const getCourseProfile=(params)=>{
 }
 export const getStudentCourseProfile=(params)=>{
     return ServiceClient.get(`/api/getStudentCourseProfile/${params.childId}/${params.courseId}`).then((response)=>{
-        console.log(response.data);
         return response.data
     })
 }
@@ -170,6 +169,8 @@ export const haveUnreadNotifications=()=>{
 export const getMessages=()=>{
     return ServiceClient.get('/api/getMessages?perPage=10&page=1').then((response)=>{
         return response.data
+    }).catch(error=>{
+        console.log(error)
     })
 }
 
