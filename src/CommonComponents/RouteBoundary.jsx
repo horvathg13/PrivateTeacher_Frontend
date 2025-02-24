@@ -3,6 +3,7 @@ import {isRouteErrorResponse, useNavigate, useRouteError} from "react-router-dom
 import {FaTriangleExclamation} from "react-icons/fa6";
 import {FaRegArrowAltCircleLeft} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
+import Header from "../Header/header";
 
 const RouteBoundary = () => {
     const error = useRouteError();
@@ -12,6 +13,7 @@ const RouteBoundary = () => {
     if (isRouteErrorResponse(error)) {
         return (
         <>
+            <Header/>
             <div className="boundary-back-container">
                 <FaRegArrowAltCircleLeft className='icon' onClick={() => navigate(-1)}/>
             </div>
@@ -47,8 +49,8 @@ const RouteBoundary = () => {
                             )
                             :
                             error.response?.data?.message ?
-                                <h3>{t(`${error.response.data.message}`)}</h3>
-                                : <h3>{t(`${error.response.data}`)}</h3>
+                                <h3>{t(`${error?.response?.data?.message}`)}</h3>
+                                : <h3>{t(`${error?.response?.data}`)}</h3>
                         }
                     </div>
                 </div>
