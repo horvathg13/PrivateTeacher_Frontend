@@ -9,7 +9,7 @@ export const UserContextProvider = ({children})=>{
     const [username, setUsername]=useState('');
     const [roles, setRoles]=useState([]);
     const [status,setStatus]=useState('');
-    const value ={username, setUsername, setRoles, roles, status};
+    const value ={username, setUsername, setRoles, roles, status, setStatus};
 
     useEffect(()=>{
         ServiceClient.post("/api/getUserData").then((response)=>{
