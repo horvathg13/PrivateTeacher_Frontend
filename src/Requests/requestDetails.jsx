@@ -194,6 +194,11 @@ const RequestDetails = () => {
                                 <input type="text" readOnly value={requestDetails.course_names_and_langs[0].name}/>
                             </div>
                             <div className="form-children">
+                                <label>{t('form.language')}</label>
+                                <input type="text" readOnly value={requestDetails.course_names_and_langs[0].lang}/>
+                            </div>
+
+                            <div className="form-children">
                                 <label>{t('form.numberOfLesson')}</label>
                                 <input type="text" readOnly value={requestDetails.number_of_lessons}/>
                             </div>
@@ -217,6 +222,10 @@ const RequestDetails = () => {
                             <div className="form-children">
                                 <label>{t('form.start')}</label>
                                 <input type="date" readOnly value={requestDetails.start_date}/>
+                            </div>
+                            <div className="form-children">
+                                <label>{t('form.end')}</label>
+                                <input type="date" readOnly value={requestDetails.end_date}/>
                             </div>
                             <div className="form-children">
                                 <label>{t('form.termination_start')}</label>
