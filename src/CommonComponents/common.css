@@ -651,6 +651,8 @@
 }
 .t-day-main .t-day-table-container{
     width: 100%;
+    overflow: scroll;
+    min-height: 300px;
 }
 .t-day-main .t-day-table-container table{
     width: 100%;
