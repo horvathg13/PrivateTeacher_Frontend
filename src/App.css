@@ -408,7 +408,7 @@ form .name-fields .last-name{
 form label {
  /* margin: 15px 0;
   margin-bottom: 5px;*/
-  max-width: 150px;
+  /*max-width: 150px;*/
 }
 form .loader.createUser {
   border-top: 4px solid var(--DarkBlue) !important;
@@ -524,6 +524,10 @@ form .roles-container.flex label {
   margin: 0 5px;
   min-width: 15%;
 }
+.content-main-container .FlexForm .form-items.longLabel .form-children label{
+  min-width: 25%;
+}
+
 .content-main-container .FlexForm .form-items .form-children .flexColumnItems label {
   margin: 10px 0 !important;
 }
@@ -542,6 +546,10 @@ form .roles-container.flex label {
   }
   .content-main-container .FlexForm .justification-container{
     min-width: 0 !important;
+    width: 90% !important;
+  }
+  .content-main-container .FlexForm .form-items .form-children .form-baby{
+    padding: 10px 0!important;
     width: 90% !important;
   }
 }
@@ -569,6 +577,11 @@ form .roles-container.flex label {
 .content-main-container .FlexForm .form-button-container .loader.schoolCreate {
   margin: 0 5%;
   border-top: 4px solid var(--DarkBlue);
+}
+
+.content-main-container .FlexForm .form-items .form-children .form-baby{
+  width: 100%;
+  padding: 10px;
 }
 
 /*Title*/
@@ -881,8 +894,9 @@ form .roles-container.flex label {
 }
 .label-main{
   max-width: 800px;
-  height:calc(100% - 100px);
-  min-height: 600px;
+  /*height:calc(100% - 100px);*/
+  /*min-height: 600px;*/
+  max-height: 600px;
   margin: 0 auto;
   background: var(--whiteColorDeam);
   border-radius: 10px;
@@ -892,6 +906,7 @@ form .roles-container.flex label {
   top: 50px;
   left: 0;
   right: 0;
+  overflow: auto;
 }
 .label-header{
   padding: 3px;
@@ -917,6 +932,25 @@ form .roles-container.flex label {
     display: none;
   }
 }
+@media screen and (max-height: 300px){
+  .label-main{
+    height: 250px !important;
+    top: 0;
+  }
+}
+@media screen and (min-height: 300px){
+  .label-main{
+    height: 350px !important;
+
+  }
+}
+@media screen and (min-height: 500px){
+  .label-main{
+    height: 600px !important;
+  }
+}
+
+
 .label-search input{
   width: 70%;
   margin: 0 10px;
