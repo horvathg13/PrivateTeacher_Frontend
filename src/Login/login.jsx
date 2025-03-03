@@ -37,13 +37,13 @@ const Login = () => {
     /*methods:*/
     const login=(event)=>{
         event.preventDefault();
-        setLoader(true);
-        setBtnDisable(true);
-
         setServerError([]);
         setErrors([]);
 
         if(email.length>0 && password.length>0){
+            setLoader(true);
+            setBtnDisable(true);
+
             ServiceClient.login(email,password).then((success)=>{
                 setSuccess(true);
                 setUsername(success.data.first_name);
