@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import {NotificationsContext, UserContext} from '../Context/UserContext';
 import ServiceClient from '../ServiceClient';
 import Success from '../SuccessPopup/success';
-import {useLocation, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import EventHandler from '../EventHandler/eventhandler'
 import {useTranslation} from "react-i18next";
 import {languageTransform} from "../index";
@@ -30,7 +30,7 @@ const Header = () => {
 
     }, [language]);
 
-    /*General vaiables */
+    /*General variables */
     const [showMobileMenu, setMobileMenu]=useState(false);
     const [name, setName]=useState('');
     const [notificationMenu, setNotificationMenu]=useState(false);
@@ -106,12 +106,14 @@ const Header = () => {
                         setErrors([])
                     }
                 }}/>
-            <div className='logo-container' onClick={(e)=>navigate('/home')}>
-                <i className='graduatehat'></i>
-                <div className="app-title">
-                    <h1>PrivateTeacher</h1>
+            <Link to="/home">
+                <div className='logo-container'>
+                    <i className='graduatehat'></i>
+                    <div className="app-title">
+                        <h1>PrivateTeacher</h1>
+                    </div>
                 </div>
-            </div>
+            </Link>
 
             {name ? <div className="user-container">
                <h4>{username || null}</h4>
