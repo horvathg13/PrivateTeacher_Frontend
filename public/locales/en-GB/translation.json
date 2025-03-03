@@ -138,7 +138,11 @@
       },
       "validator": {
         "samePsw": "Passwords does not match."
-      }
+      },
+      "button": {
+        "generate": "Generate"
+      },
+      "link": "Generated Link"
     }
   },
   "schools": {
@@ -203,9 +207,9 @@
             "subject": "Subject",
             "student-limit": "Student limit",
             "minutes-lesson": "Minutes/lesson",
-            "minTeachingDay": "Minimum Teaching Day",
+            "minTeachingDay": "Minimum Teaching Day/week",
             "doubleTime": "Double Time",
-            "course-price-per-lesson": "Course Price / Lesson",
+            "course-price-per-lesson": "Course Price",
             "labels": "Labels",
             "status": "Status",
             "location": "Location",
@@ -287,7 +291,8 @@
       "create": "Create",
       "update": "Update",
       "disconnect": "Disconnect",
-      "confirm": "Confirm"
+      "confirm": "Confirm",
+      "termination": "Termination"
     },
     "validator": {
       "samePsw": "The given passwords does not match.",
@@ -298,7 +303,8 @@
       "titles": {
         "profile": "Course Profile",
         "timetable": "Timetable",
-        "termination": "Termination request"
+        "termination": "Termination request",
+        "terminationByTeacher": "Student course termination"
       },
       "timetable": {
         "header": {
@@ -306,6 +312,11 @@
           "from": "Start time",
           "to": "End time"
         }
+      },
+      "form": {
+        "start": "Course Start",
+        "end": "Course End",
+        "language": "Course Language"
       }
     }
   },
@@ -315,7 +326,7 @@
     },
     "form": {
       "child": "Select your child",
-      "notice": "Notice",
+      "notice": "Introduction",
       "number-of-lesson": "Number of lesson per week required",
       "start": "Start date",
       "language": "Select the course language"
@@ -325,7 +336,8 @@
     },
     "validator": {
       "required": "All elements of the application form must be filled out."
-    }
+    },
+    "placeholder": "Select..."
   },
   "requestDetails": {
     "form": {
@@ -348,7 +360,8 @@
       "courseName": "Course Name",
       "numberOfLesson": "Number of lesson per week required",
       "notice": "Notice",
-      "start": "Start date",
+      "start": "Course start",
+      "end": "Course end",
       "teaching_day": "Teaching day",
       "from": "Start time",
       "to": "End Time",
@@ -358,14 +371,15 @@
         "reject": "Reject",
         "remove": "Remove",
         "leave": "Leave"
-      }
+      },
+      "language": "Course Language"
     }
   },
   "courseProfile": {
     "form": {
       "lang": "Languages",
       "minutes-lesson": "Minutes/lesson",
-      "minTeachingDay": "Minimum Teaching Day",
+      "minTeachingDay": "Minimum Teaching Day/week",
       "course-price-per-lesson": "Course price per lesson",
       "payment_period": "Payment Period",
       "location": "Location",
@@ -432,8 +446,13 @@
     "keywords": "Keywords",
     "min/lesson": "Minutes/lesson",
     "min_t_days": "Minimum Teaching Days",
-    "course_p/lesson": "Course Price / lesson",
-    "courseLang": "Course Language"
+    "course_price": "Course Price",
+    "payment_period": "Payment Period",
+    "courseLang": "Course Language",
+    "select": "Select...",
+    "min": "Min",
+    "max": "Max",
+    "currency": "Currency"
   },
   "areYouSure": {
     "yes": "Yes",
@@ -443,7 +462,8 @@
   "message": {
     "child": "Choose your child",
     "request":"Choose your student course",
-    "no-child": "This operation not available yet."
+    "no-child": "This operation not available yet.",
+    "select": "Select..."
   },
   "tableHeaders": {
     "id":"ID",
@@ -467,7 +487,8 @@
     "child_id":"Child_id",
     "course_name":"Course",
     "teacher_name":"Teacher",
-    "course_price_per_lesson":"Price/Lesson",
+    "course_price":"Price",
+    "payment_period": "Payment Period",
     "type": "Type"
   },
   "messages": {
@@ -487,7 +508,8 @@
       "accepted":"Your request has been accepted. Click here for the details.",
       "terminationOfCourse":"Termination course request received.",
       "terminationAccepted":"Termination request accepted.",
-      "terminationRejected":"Termination request rejected."
+      "terminationRejected":"Termination request rejected.",
+      "studentCourseTerminated":"Student Course is terminated by the teacher."
     },
     "hack_attempt":"The server detected suspicious activity, so your request was denied, and your account has been suspended. Please contact the system administrator for further information."
   },
@@ -541,6 +563,14 @@
         "required": "The student ID is required.",
         "numeric": "The student ID must be a numeric type.",
         "exists": "The student ID does not exist in the database."
+      },
+      "courseRequest": {
+        "language":{
+          "required":"The course language selection is required.",
+          "string":"The course language must be string type.",
+          "exists":"The given course language does not exists in database.",
+          "notValid":"The given course language is not valid to this course"
+        }
       }
     }
   }

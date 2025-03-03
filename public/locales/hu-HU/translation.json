@@ -138,7 +138,12 @@
       },
       "validator": {
         "samePsw": "A megadott jelszavak nem egyeznek."
-      }
+      },
+      "button": {
+        "generate": "Generálás"
+      },
+      "link": "Generált Link"
+
     }
   },
   "schools": {
@@ -202,9 +207,9 @@
             "name": "Kurzus neve",
             "student-limit": "Tanulói létszám limit",
             "minutes-lesson": "Tanóra hossza (percben)",
-            "minTeachingDay": "Minimális tanítási alkalom",
+            "minTeachingDay": "Minimális tanítási alkalom/hét",
             "doubleTime": "Duplaóra",
-            "course-price-per-lesson": "Kuzus díja alkalmanként",
+            "course-price-per-lesson": "Kuzus díja",
             "labels": "Címkék",
             "status": "Státusz",
             "location": "Helyszín",
@@ -286,7 +291,8 @@
       "create": "Létrehozás",
       "update": "Frissítés",
       "disconnect": "Leválasztás",
-      "confirm": "Jóváhagyás"
+      "confirm": "Jóváhagyás",
+      "termination": "Megszüntetés"
     },
     "validator": {
       "samePsw": "A megadott jelszavak nem egyeznek.",
@@ -297,7 +303,8 @@
       "titles": {
         "profile": "Kurzus adatok",
         "timetable": "Órarend",
-        "termination": "Lemondás igénylés"
+        "termination": "Lemondás igénylés",
+        "terminationByTeacher": "Tanulói jogviszony megszüntetése"
       },
       "timetable": {
         "header": {
@@ -305,6 +312,11 @@
           "from": "Kezdő időpont",
           "to": "Záró időpont"
         }
+      },
+      "form": {
+        "start": "Kurzus kezdete",
+        "end": "Kurzus vége",
+        "language": "Kurzus nyelve"
       }
     }
   },
@@ -314,7 +326,7 @@
     },
     "form": {
       "child": "Válassza ki a gyerekét",
-      "notice": "Megjegyzés",
+      "notice": "Bemutatkozás",
       "number-of-lesson": "Heti óraszám igény",
       "start": "Kezdő dátum",
       "language": "Válassza ki a kurzus nyelvét"
@@ -323,8 +335,9 @@
       "apply": "Küldés"
     },
     "validator": {
-      "required": "A jelentkezési lap minden elemét ki kell tölteni."
-    }
+      "required": "A jelentkezés minden elemét ki kell tölteni."
+    },
+    "placeholder": "Válasszon..."
   },
   "requestDetails": {
     "form": {
@@ -347,7 +360,8 @@
       "courseName": "Kurzus neve",
       "numberOfLesson": "Heti óraszám igény",
       "notice": "Megjegyzés",
-      "start": "Kezdő dátum",
+      "start": "Kurzus kezdete",
+      "end": "Kurzus vége",
       "teaching_day": "Tanítási nap",
       "from": "Kezdő időpont",
       "to": "Záró időpont",
@@ -357,14 +371,15 @@
         "reject": "Elutasít",
         "remove": "Eltávolítás",
         "leave": "Kilépés"
-      }
+      },
+      "language": "Kurzus nyelve"
     }
   },
   "courseProfile": {
     "form": {
       "lang": "Nyelvek",
       "minutes-lesson": "Tanóra hossza (percben)",
-      "minTeachingDay": "Minimális tanítási alkalom",
+      "minTeachingDay": "Minimális tanítási alkalom/hét",
       "course-price-per-lesson": "Kuzus díja alkalmanként",
       "payment_period": "Fizetési periódus",
       "location": "Helyszín",
@@ -431,8 +446,13 @@
     "keywords": "Címkék",
     "min/lesson": "Tanóra hossza (percben)",
     "min_t_days": "Minimális tanítási alkalom",
-    "course_p/lesson": "Kurzus díja (tanóránként)",
-    "courseLang": "Kurzus nyelve"
+    "course_price": "Kurzus díja",
+    "payment_period": "Fizetési periódus",
+    "courseLang": "Kurzus nyelve",
+    "select": "Válasszon...",
+    "min": "Min",
+    "max": "Max",
+    "currency": "Árfolyam"
   },
   "areYouSure": {
     "yes": "Igen",
@@ -442,7 +462,8 @@
   "message": {
     "child": "Válassza ki a gyerekét",
     "request":"Válassza ki a tanulói kurzusát",
-    "no-child": "Ez a művelet még nem elérhető."
+    "no-child": "Ez a művelet még nem elérhető.",
+    "select": "Válasszon..."
   },
   "tableHeaders": {
     "id":"ID",
@@ -466,7 +487,8 @@
     "child_id":"Gyerek_id",
     "course_name":"Kurzus",
     "teacher_name":"Tanár",
-    "course_price_per_lesson":"Ár/Tanóra",
+    "course_price":"Ár",
+    "payment_period": "Fizetési Periódus",
     "type": "Típus"
   },
   "messages": {
@@ -486,7 +508,8 @@
       "accepted":"A kérelmét elfogadták. Kattintson a részletekért.",
       "terminationOfCourse":"Kurzusmegszüntetési kérelme érkezett.",
       "terminationAccepted":"Kurzusmegszüntetési kérelmét elfogadták",
-      "terminationRejected":"Kurzusmegszüntetési kérelmét elutasították."
+      "terminationRejected":"Kurzusmegszüntetési kérelmét elutasították.",
+      "studentCourseTerminated":"A tanulói kurzusuát megszüntették."
     },
     "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította és fiókja felfüggesztésre került. Keresse meg a rendszer üzemeltetőjét további információkért."
   },
@@ -540,6 +563,14 @@
         "required": "A tanuló azonosító megadása kötelező.",
         "numeric": "A tanuló azonosítójának számnak kell lennie.",
         "exists": "A megadott tanuló azonosító nem létezik az adatbázisban."
+      },
+      "courseRequest": {
+        "language":{
+          "required":"A kurzus nyelvének kiválasztása kötelező.",
+          "string":"A kurzus nyelve szövegtípusú kell legyen.",
+          "exists":"A megadott kurzusnyelv nem létezik az adatbázisban.",
+          "notValid":"A megadott kurzusnyelv nem érvényes ehhez a kurzushoz."
+        }
       }
     }
   }
