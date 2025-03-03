@@ -3,11 +3,12 @@ import {useTranslation} from "react-i18next";
 import {IoMdCloseCircle} from "react-icons/io";
 import Select from "react-select";
 import {useLoaderData} from "react-router-dom";
-import {FaPlus} from "react-icons/fa6";
-import {FaMinus} from "react-icons/fa";
+import {FaCirclePlus, FaPlus} from "react-icons/fa6";
+import {FaMinus, FaPlusCircle} from "react-icons/fa";
 import {CSSTransition} from "react-transition-group";
 import '../../transitions.css'
 import '../common.css';
+import {FiPlusCircle} from "react-icons/fi";
 
 const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, selected, days, getLabel}) => {
     const nodeRef = useRef(null);
@@ -76,6 +77,7 @@ const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, selected, da
                             </thead>
                             <tbody>
                             {tableRows.map((row, i) => (
+                                <>
                                 <tr key={i}>
                                     <td>
                                         <Select
@@ -102,10 +104,16 @@ const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, selected, da
                                         }}/>
                                     </td>
                                     <td>
-                                        <FaPlus onClick={handleAddRow} className="selector-icon"/>
                                     {i > 0 && <FaMinus onClick={() => handleRemoveRow(row)} className="selector-icon red"/>}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td colSpan={4}>
+                                        {tableRows.indexOf(tableRows[tableRows.length-1]) === i && <FaCirclePlus    onClick={handleAddRow} className="selector-icon"/>}
+                                    </td>
+                                </tr>
+                                </>
+
                             ))}
                             </tbody>
                         </table>
@@ -143,7 +151,8 @@ const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, selected, da
                                 </div>
                                 <div className="form-children">
                                     <div className="t-day-mobile-action-btn-container">
-                                        <FaPlus onClick={handleAddRow} className="selector-icon"/>
+                                        {tableRows.indexOf(tableRows[tableRows.length - 1]) === i &&
+                                            <FaPlus onClick={handleAddRow} className="selector-icon"/>}
                                         {i > 0 && <FaMinus onClick={() => handleRemoveRow(row)} className="selector-icon red"/>}
                                     </div>
                                 </div>
