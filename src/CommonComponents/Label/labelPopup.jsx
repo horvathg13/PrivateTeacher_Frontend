@@ -163,7 +163,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                             <span className='loader add-label'></span>
                         }
 
-                    {errors.length>0 && isTeacher ?
+                    {(errors.length>0 || (labels.length && keyword && labels.filter(e=>e.label === keyword).length===0)) && isTeacher ?
                         <div className="label-result label-missing flex" onClick={createLabel}>
                             <h4>{t('labels.not-exist')}</h4>
                             <div className="label-action"><FaPlus className="label-action-icon label-success"/>
