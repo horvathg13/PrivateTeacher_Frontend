@@ -152,7 +152,7 @@ const CourseCreate = () => {
                                     <td>
                                         <Select
                                             placeholder={t('select')}
-                                            options={languages || null}
+                                            options={languages ? languages.map(e=>({value:e.value, label:a(`enums.${e.label}`)})) : null}
                                             onChange={(selected) => {
                                                 handleInputChange(selected, i)
                                             }}
@@ -226,7 +226,7 @@ const CourseCreate = () => {
                             <div className="mobile-children">
                                 <label>{t('form.labels')}</label>
                                 <LabelSelector
-                                    labelEmit={(data) => console.log(data)}
+                                    labelEmit={(data) =>handleLabelSelection(data,i)}
                                     disabled={e.lang === ""}
                                     lang={e.lang}
                                     popUpTitle={"Add labels"}
