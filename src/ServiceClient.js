@@ -334,6 +334,12 @@ class ServiceClient {
             return response.data
         });
     }
+
+    static terminationCourseByTeacher=(studentCourseId, terminationDate)=>{
+        return this.post('/api/terminationRequestByTeacher',{studentCourseId:studentCourseId, termination_date:terminationDate}).then((response)=>{
+            return response.data
+        });
+    }
 }
 
 export default ServiceClient
