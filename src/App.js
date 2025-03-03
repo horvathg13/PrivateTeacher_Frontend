@@ -13,7 +13,7 @@ import {
   ComponentTitleProvider,
   TabMenuContextProvider,
   UserContextProvider,
-  NotificationsContext
+  NotificationsContext, UserContext
 } from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails';
 import { createBrowserRouter } from 'react-router-dom';
@@ -108,6 +108,7 @@ function App() {
         clearInterval(interval);
       };
     }, []);
+
     return(
       <>
       <div>
@@ -143,7 +144,7 @@ const router = createBrowserRouter([
       },
       {
         path:"users",
-        element:<Protected><AdminRight><Users /></AdminRight></Protected>,
+        element:<AdminRight><Users /></AdminRight>,
         errorElement:<RouteBoundary/>,
         children:[
           {
@@ -158,7 +159,7 @@ const router = createBrowserRouter([
       },
       {
         path:"users/:userId",
-        element:<Protected><AdminRight><User /></AdminRight></Protected>,
+        element:<AdminRight><User /></AdminRight>,
         loader:({params})=>{ return userDataLoader(params) },
         errorElement:<RouteBoundary/>,
         children:[
@@ -198,7 +199,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/course",
-        element:<Protected><TeacherRight><CourseHome/></TeacherRight></Protected>,
+        element:<TeacherRight><CourseHome/></TeacherRight>,
         errorElement:<RouteBoundary/>,
         children:
         [
@@ -244,7 +245,7 @@ const router = createBrowserRouter([
       },
       {
         path:"course/:courseId",
-        element:<Protected><TeacherRight><Course/></TeacherRight></Protected>,
+        element:<TeacherRight><Course/></TeacherRight>,
         errorElement:<RouteBoundary/>,
         children:[
           {
@@ -261,7 +262,7 @@ const router = createBrowserRouter([
       },
       {
         path:"course/:courseId/student/:studentId",
-        element:<Protected><TeacherRight><Course/></TeacherRight></Protected>,
+        element:<TeacherRight><Course/></TeacherRight>,
         errorElement:<RouteBoundary/>,
         children:[
           {
