@@ -175,7 +175,7 @@ export const getMessages=()=>{
 }
 
 export const getMessageInfo=(params)=>{
-    return ServiceClient.get(`/api/getMessageInfo/${params.id}/${null}`).then((response)=>{
+    return ServiceClient.post(`/api/getMessageInfo/${params.id}/${null}`).then((response)=>{
         return response.data
     })
 }
