@@ -89,7 +89,7 @@ const CoursesList = () => {
                                     }}>
                                         <td>{e.id}</td>
                                         <td>{e.name}</td>
-                                        <td>{e.lang.join(', ')}</td>
+                                        <td>{e.lang.length > 1 ? e.lang.map(l=>t(`enums.${l}`)).join(", ") : t(`enums.${e.lang.join(', ')}`)}</td>
                                         <td>{t(`enums.${e.status}`)}</td>
                                     </tr>
 
