@@ -59,7 +59,7 @@ const CourseProfile = () => {
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><IoLanguageSharp/> {t('form.lang')}</label>
-                                <h4>{courseProfile.course_names_and_langs.map(i => i.lang).join(', ')}</h4>
+                                <h4>{courseProfile.course_names_and_langs.map(i => a(`enums.${i.lang}`)).join(', ')}</h4>
                             </div>
                             <div className="form-children courseProfile-form-children">
                                 <label><IoMdTime/> {t('form.minutes-lesson')}</label>
