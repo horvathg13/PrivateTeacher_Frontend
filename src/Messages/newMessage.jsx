@@ -102,7 +102,7 @@ const NewMessage = () => {
                     <div className="adressee-child">
                         <label>{t('message.child')}</label>
                         <Select
-                            placeholder={t('select')}
+                            placeholder={t('message.select')}
                             options={childLoader.select || null}
                             onChange={(selected) => {
                                 setChildId(selected.value)
@@ -115,7 +115,7 @@ const NewMessage = () => {
                     <div className="addressee-child">
                         <label>{t('message.request')}</label>
                         <Select
-                            placeholder={t('select')}
+                            placeholder={t('message.select')}
                             options={requests || null}
                             onChange={(selected) => {
                                 setRequestId(selected.value)
@@ -129,14 +129,7 @@ const NewMessage = () => {
             <div className="messageDetails-main-container">
                 <div className="message-header-container">
                     <div className="message-title">
-                        {messageData?.courseName?.length>0 ?
-                            messageData.courseName.filter(e=>e.lang === i18next.language).map(j=>
-                                <h2>{j.name}</h2>
-                            )
-                            :messageData.courseName?.map(e=>
-                                <h2>{e.name}</h2>
-                            )
-                        }
+                        <h2>{messageData?.courseName}</h2>
                     </div>
                 </div>
                 <div className="message-body">
