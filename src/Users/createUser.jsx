@@ -105,14 +105,14 @@ const UserCreate = () => {
 
                 <div className="form-button-container">
                 {!loader ?
-                    <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn formButton'}>Generate <FaArrowCircleRight className='btn-icon'/></button> :
+                    <button type='submit' disabled={btndisabled} className={btndisabled ? 'btn disabled':'btn formButton'}>{t('button.generate')} <FaArrowCircleRight className='btn-icon'/></button> :
                     <span className='loader createUser'></span>
                 }
                 </div>
             </form>:
 
             <div className="generatedLink grid">
-                <label><h2>Generated Link</h2></label>
+                <label><h2>{t('link')}</h2></label>
                 <input type="text" readOnly value={generatedLink}/>
             </div>}
         </div>
