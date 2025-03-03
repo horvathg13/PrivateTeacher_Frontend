@@ -55,6 +55,7 @@ const ChildCourseProfile = () => {
         if(!message){
             return setErrors([d('validator.message')])
         }
+        setErrors([]);
         ServiceClient.terminationCourseRequest(studentCourseId[0],childId,message,terminationDate).then(success=>{
             setSuccess(true);
             setTimeout(()=>{
@@ -167,7 +168,7 @@ const ChildCourseProfile = () => {
                     </table>
                 </div>
             </div>
-            <div className="child-course-details">
+            {courseProfile.isActiveStudentCourse	&& <div className="child-course-details">
                 <div className="title"><h2>{d('course-profile.titles.termination')}</h2></div>
                 <form className="FlexForm">
                     <div className="form-items">
@@ -192,7 +193,7 @@ const ChildCourseProfile = () => {
                         }}>{d('button.confirm')}</button>
                     </div>
                 </form>
-            </div>
+            </div>}
         </div>
     );
 };
