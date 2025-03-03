@@ -12,6 +12,7 @@ import Select from "react-select";
 import LabelSelector from "../CommonComponents/Label/labelSelect";
 import SearchResult from "./searchResult";
 import {useTranslation} from "react-i18next";
+import course from "../Course/course";
         
 const SearchCourse = () => {
 
@@ -20,7 +21,7 @@ const SearchCourse = () => {
 
     /*Loader*/
     const languages=useLoaderData();
-    
+
     /*Data */
     const [teacherEmail, setTeacherEmail]=useState();
     const [courseName, setCourseName]=useState();
@@ -75,7 +76,7 @@ const SearchCourse = () => {
 
         ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
             minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
-            schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang).then((success)=>{
+            schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang?.value).then((success)=>{
 
             setLoader(false);
             setBtnDisabled(false);
@@ -104,7 +105,7 @@ const SearchCourse = () => {
         if(pageSet || counterSet>0){
             ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
                 minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
-                schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang).then((success)=>{
+                schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang?.value).then((success)=>{
 
                 setLoader(false);
                 setBtnDisabled(false);
@@ -138,123 +139,139 @@ const SearchCourse = () => {
         counter={(data)=>{pageCounter(data)}}
         />
         <div>
-            
             <div className="title"><h2>{t('search.title')}</h2></div>
                 <form onSubmit={(e)=>searchCourse(e)} className="FlexForm">
-                    <div className="form-items">
+                    <div className="form-items longLabel">
                         <div className="form-children">
                             <label>{t('search.teacher_email')}</label>
                             <input type="email"
-                            onChange={(e)=>{setTeacherEmail(e.target.value)}}
-                            value={teacherEmail}/>
+                                   onChange={(e) => {
+                                       setTeacherEmail(e.target.value)
+                                   }}
+                                   value={teacherEmail}
+                            />
                         </div>
-
                         <div className="form-children">
                             <label>{t('search.country')}</label>
                             <input type="text"
-                            onChange={(e)=>{setSchoolCountry(e.target.value)}}
-                            value={schoolCountry}/>
+                                   onChange={(e) => {
+                                       setSchoolCountry(e.target.value)
+                                   }}
+                                   value={schoolCountry}
+                            />
                         </div>
-
-
                         <div className="form-children">
                             <label>{t('search.zip')}</label>
-                            <input type="number"
-                            onChange={(e)=>{setSchoolZip(e.target.value)}}
-                            value={schoolZip}/>
+                            <input type="text"
+                                   onChange={(e) => {
+                                       setSchoolZip(e.target.value)
+                                   }}
+                                   value={schoolZip}
+                            />
                         </div>
 
                         <div className="form-children">
                             <label>{t('search.city')}</label>
                             <input
-                            type="text"
-                            onChange={(e)=>{setSchoolCity(e.target.value)}}
-                            value={schoolCity}/>
+                                type="text"
+                                onChange={(e) => {
+                                    setSchoolCity(e.target.value)
+                                }}
+                                value={schoolCity}
+                            />
                         </div>
 
                         <div className="form-children">
                             <label>{t('search.street')}</label>
                             <input
-                            type="text"
-                            onChange={(e)=>{setSchoolStreet(e.target.value)}}
-                            value={schoolStreet}/>
+                                type="text"
+                                onChange={(e) => {
+                                    setSchoolStreet(e.target.value)
+                                }}
+                                value={schoolStreet}
+                            />
                         </div>
 
                         <div className="form-children">
                             <label>{t('search.number')}</label>
                             <input
-                            type="number"
-                            onChange={(e)=>{setSchoolNumber(e.target.value)}}
-                            value={schoolNumber}/>
+                                type="text"
+                                onChange={(e) => {
+                                    setSchoolNumber(e.target.value)
+                                }}
+                                value={schoolNumber}/>
                         </div>
-
                         <div className="form-children">
                             <label>{t('search.courseName')}</label>
-                            <input type="text"
-                            onChange={(e)=>{setCourseName(e.target.value)}}
-                            value={courseName}
-                            readOnly={readOnly}/>
-                        </div>
-                        <div className="form-children">
-                            <label>{t('search.courseLang')}</label>
-                            <Select
-                                options={languages}
-                                onChange={(selected)=>{setLang(selected.value)}}
-                                isDisabled={readOnly}
-                                isSearchable={true}
-                                className="select-componentFull"
+                            <input
+                                type="text"
+                                onChange={(e) => {
+                                    setCourseName(e.target.value)
+                                }}
+                                value={courseName}
                             />
                         </div>
                         <div className="form-children">
-                            <label>{t('search.keywords')}</label>
-                            <LabelSelector
-                            labelEmit={(data)=>setKeywords(data)}
-                            disabled={readOnly}
-                            popUpTitle={"Add labels"}/>
+                            <label>{t('search.courseLang')} / {t('search.keywords')}</label>
+                            <div className="form-baby">
+                                <Select
+                                    placeholder={t('search.select')}
+                                    options={languages}
+                                    onChange={(selected) => {
+                                        setLang(selected.value)
+                                    }}
+                                    isDisabled={readOnly}
+                                    isSearchable={true}
+                                    className="select-componentFull"
+                                />
+                            </div>
+                            <div className="form-baby">
+                                <LabelSelector
+                                    labelEmit={(data) => setKeywords(data)}
+                                    disabled={!lang}
+                                    lang={lang}
+                                />
+                            </div>
                         </div>
-
                         <div className="form-children">
                             <label>{t('search.min/lesson')}</label>
                             <input
-                            type="number"
-                            onChange={(e)=>{setMinutesLesson(e.target.value)}}
-                            value={minutesLesson}
-                            readOnly={readOnly}/>
+                                type="number"
+                                onChange={(e) => {
+                                    setMinutesLesson(e.target.value)
+                                }}
+                                value={minutesLesson}
+                                readOnly={readOnly}
+                            />
                         </div>
 
                         <div className="form-children">
                             <label>{t('search.min_t_days')}</label>
                             <input
-                            type="number"
-                            onChange={(e)=>{setMinTeachingDay(e.target.value)}}
-                            value={minTeachingDay}
-                            readOnly={readOnly}/>
-                        </div>
-
-                        <div className="form-children">
-                            <label>{t('search.course_p/lesson')}</label>
-                            <input
-                            type="number"
-                            onChange={(e)=>{setCouresPricePerLesson(e.target.value)}}
-                            value={couresPricePerLesson}
-                            readOnly={readOnly}/>
+                                type="number"
+                                onChange={(e) => {
+                                    setMinTeachingDay(e.target.value)
+                                }}
+                                value={minTeachingDay}
+                                readOnly={readOnly}
+                            />
                         </div>
                     </div>
                     <div className="form-button-container">
                         {!loader ?
                             <button
-                            type='submit'
-                            disabled={btndisabled}
-                            className={readOnly ? 'formBtnDisabled':'btn formButton' }>
-                                {t('search.search')} <FaArrowCircleRight  className='btn-icon'/>
-                            </button>:
+                                type='submit'
+                                disabled={btndisabled}
+                                className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                {t('search.search')} <FaArrowCircleRight className='btn-icon'/>
+                            </button> :
                             <span className='loader schoolDetails'></span>
                         }
                     </div>
-                    
+
                 </form>
-                
-            </div>
+
+        </div>
         </>
     );
 };
