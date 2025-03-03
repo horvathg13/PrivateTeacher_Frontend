@@ -12,6 +12,7 @@ import {CourseInfoContext} from "../Context/UserContext";
 const CourseApply = () => {
     /*Translate*/
     const {t}=useTranslation("translation", {keyPrefix:"courseApply"})
+    const {t:a}=useTranslation("translation")
 
     /*Data*/
     const children=useLoaderData();
@@ -48,8 +49,8 @@ const CourseApply = () => {
         setErrors([]);
         setServerError([]);
 
-        if(selectedChild.value && language && numberOfLesson && notice && startDate){
-            ServiceClient.sendCourseRequest(selectedChild.value, courseId, numberOfLesson, notice, startDate, language.value).then((success)=>{
+        if(selectedChild?.value && language?.value && numberOfLesson && notice && startDate){
+            ServiceClient.sendCourseRequest(selectedChild?.value, courseId, numberOfLesson, notice, startDate, language?.value).then((success)=>{
                 setReadOnly(false);
                 setBtnDisabled(false);
 
@@ -91,10 +92,11 @@ const CourseApply = () => {
                 <h2>{t('title.main')}</h2>
             </div>
             <form className="FlexForm">
-                <div className="form-items">
+                <div className="form-items longLabel">
                     <div className="form-children">
                         <label>{t('form.child')}</label>
                         <Select
+                            placeholder={t('placeholder')}
                             isClearable={true}
                             options={children}
                             value={selectedChild}
@@ -109,9 +111,10 @@ const CourseApply = () => {
                     <div className="form-children">
                         <label>{t('form.language')}</label>
                         <Select
+                            placeholder={t('placeholder')}
                             isClearable={true}
                             value={language}
-                            options={courseProfile.languages?.map(e => ({value: e.value, label: e.label}))}
+                            options={courseProfile.languages?.map(e => ({value: e.value, label:a(`enums.${e.label}`)}))}
                             onChange={(selected) => {
                                 setSelectedLanguage(selected);
                             }}
