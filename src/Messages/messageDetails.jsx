@@ -72,14 +72,7 @@ const MessageDetails = () => {
         <div className="messageDetails-main-container">
             <div className="message-header-container">
                 <div className="message-title">
-                    {messageData?.courseName?.length>0 ?
-                        messageData.courseName.filter(e=>e.lang === i18next.language).map(j =>
-                            <h2>{j.name}</h2>
-                        )
-                        : messageData?.courseName?.map(e =>
-                            <h2>{e.name}</h2>
-                        )
-                    }
+                    <h2>{messageData?.courseName}</h2>
                 </div>
             </div>
             <div className="message-body">
