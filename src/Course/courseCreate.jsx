@@ -17,11 +17,10 @@ import course from "./course";
 const CourseCreate = () => {
     /*Translation*/
     const {t}=useTranslation("translation", {keyPrefix:'schools.school.year.courses'});
-    const { t: translateWithoutPrefix } = useTranslation("translation");
+    const { t:a } = useTranslation("translation");
 
     /*Loader */
     const [schoolLocations, paymentPeriods, currencies, languages] = useLoaderData();
-    paymentPeriods.map(period=>({value:period, label:period.label=translateWithoutPrefix(`enums.${period.value}`)}));
 
     /*Data*/
     const [courseName, setCourseName]=useState([{lang: '', name: '', labels:[]}]);
@@ -111,9 +110,7 @@ const CourseCreate = () => {
             setErrors([t('not-possible')]);
         }
     },[schoolLocations])
-    useEffect(() => {
-        console.log(courseName)
-    }, [courseName]);
+
     return (
         <>
         <EventHandler
