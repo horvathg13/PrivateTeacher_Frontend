@@ -63,7 +63,6 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
 
     }
     const Select=(e)=>{
-       
         const selectedIndex = selectedLabels.findIndex(label => label.id === e.id);
         if(selectedIndex !== -1) {
             const newLabels = [...selectedLabels];
@@ -87,11 +86,12 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
         setLoader(true);
 
         if(keyword){
-            ServiceClient.createLabel(keyword, courseLanguage).then((response)=>{
+            ServiceClient.createLabel(keyword, courseLanguage).then((success)=>{
                 setSuccess(true);
                 setLoader(false);
                 setBtnDisabled(false);
-                Search();
+                Search()
+                Select(success?.labelInfo)
                 setTimeout(()=>{
                     setSuccess(false);
                 },2000)
@@ -100,6 +100,7 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
                 setLoader(false);
                 setBtnDisabled(false);
             })
+
         }else{
             setBtnDisabled(false);
             setLoader(false);
