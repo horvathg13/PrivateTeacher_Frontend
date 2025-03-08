@@ -76,6 +76,16 @@ const CourseApply = () => {
             setErrors([t('validator.required')])
         }
     }
+
+    useEffect(() => {
+        if(children.length === 1){
+            setSelectedChild(children)
+        }
+        if(courseProfile.languages.length === 1){
+            setSelectedLanguage({value:courseProfile.languages[0].value, label:a(`enums.${courseProfile.languages[0].label}`)});
+
+        }
+    }, [children, courseProfile.languages]);
     return (
         <>
             <EventHandler
@@ -92,57 +102,58 @@ const CourseApply = () => {
                 <h2>{t('title.main')}</h2>
             </div>
             <form className="FlexForm">
-                <div className="form-items longLabel">
-                    <div className="form-children">
-                        <label>{t('form.child')}</label>
-                        <Select
-                            placeholder={t('placeholder')}
-                            isClearable={true}
-                            options={children}
-                            value={selectedChild}
-                            onChange={(selected) => {
-                                setSelectedChild(selected);
-                            }}
-                            isDisabled={readOnly}
-                            isSearchable={true}
-                            className="select-componentFull"
-                        />
+                <div className="form-items">
+                    <div className="inline-form-items">
+                        <div className="form-children flexColumnItems">
+                            <label>{t('form.child')}</label>
+                            <Select
+                                placeholder={t('placeholder')}
+                                isClearable={true}
+                                options={children}
+                                value={selectedChild}
+                                onChange={(selected) => {
+                                    setSelectedChild(selected);
+                                }}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-componentFull"
+                            />
+                        </div>
+                        <div className="form-children flexColumnItems">
+                            <label>{t('form.language')}</label>
+                            <Select
+                                placeholder={t('placeholder')}
+                                isClearable={true}
+                                value={language}
+                                options={courseProfile.languages?.map(e => ({value: e.value, label:a(`enums.${e.label}`)}))}
+                                onChange={(selected) => {
+                                    setSelectedLanguage(selected);
+                                }}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-componentFull"
+                            />
+                        </div>
+                        <div className="form-children flexColumnItems">
+                            <label>{t('form.number-of-lesson')}</label>
+                            <input
+                                type="number"
+                                value={numberOfLesson}
+                                required
+                                onChange={(e) => setNumberOfLesson(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-children flexColumnItems">
+                            <label>{t('form.start')}</label>
+                            <input
+                                type="date"
+                                value={startDate}
+                                required
+                                onChange={(e) => setStartDate(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    <div className="form-children">
-                        <label>{t('form.language')}</label>
-                        <Select
-                            placeholder={t('placeholder')}
-                            isClearable={true}
-                            value={language}
-                            options={courseProfile.languages?.map(e => ({value: e.value, label:a(`enums.${e.label}`)}))}
-                            onChange={(selected) => {
-                                setSelectedLanguage(selected);
-                            }}
-                            isDisabled={readOnly}
-                            isSearchable={true}
-                            className="select-componentFull"
-                        />
-                    </div>
-                    <div className="form-children">
-                        <label>{t('form.number-of-lesson')}</label>
-                        <input
-                            type="number"
-                            value={numberOfLesson}
-                            required
-                            onChange={(e) => setNumberOfLesson(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-children">
-                        <label>{t('form.start')}</label>
-                        <input
-                            type="date"
-                            value={startDate}
-                            required
-                            onChange={(e) => setStartDate(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="form-children">
+                    <div className="form-children flexColumnItems">
                         <label>{t('form.notice')}</label>
                         <textarea
                             value={notice}
