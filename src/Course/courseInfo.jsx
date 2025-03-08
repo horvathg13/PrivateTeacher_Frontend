@@ -30,7 +30,7 @@ const CourseInfo = () => {
     const [location, setLocation]=useState({value:courseInfo.location.id, label:courseInfo.location.name});
     const [paymentPeriod, setPaymentPeriod]=useState(courseInfo.paymentPeriod.value);
     const [currency, setCurrency]=useState(courseInfo.currency)
-    const [courseStatus, setCourseStatus]=useState();
+    const [courseStatus, setCourseStatus]=useState(courseInfo?.status);
     const [removeLangs, setRemoveLangs]=useState([]);
     const [readOnly, setReadOnly]=useState(true);
     const [selectedRow, setSelectedRow]=useState();
@@ -40,10 +40,6 @@ const CourseInfo = () => {
     const [endDate, setEndDate]=useState(courseInfo.end);
 
     /*Popup control */
-    const [title, setTitle]=useState();
-    const [updatePopup, setUpdatePopup]=useState();
-    const [transitionProp, setTransitionProp]=useState(false);
-    const [showAreYouSure, setShowAreYouSure]=useState(false);
     const [AreYouSureName, setAreYouSureName]=useState('');
     const [areYouSureTransitionProp, setAreYouSureTransitionProp]=useState(false);
 
@@ -54,7 +50,6 @@ const CourseInfo = () => {
 
     /*Loader */
     const [loader, setLoader]=useState(false);
-    const [formLoader, setFormLoader]=useState(false);
     const [deleteLoader, setDeleteLoader]=useState(false);
 
     /*Navigation */
@@ -114,7 +109,7 @@ const CourseInfo = () => {
         setReadOnly(true);
         setErrors([]);
         setServerError([]);
-        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency.value || currency, courseStatus || courseInfo.status.value, removeLangs, startDate, endDate).then((success)=>{
+        ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency.value || currency, courseStatus.value || courseInfo.status.value, removeLangs, startDate, endDate).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
@@ -186,6 +181,20 @@ const CourseInfo = () => {
                 </div>
                 <form onSubmit={(e) => updateCourseInfos(e)} className="FlexForm">
                     <div className="form-items flex">
+                        <div className="form-children">
+                            <label>{t('form.status')}</label>
+                            <Select
+                                placeholder={t('select')}
+                                defaultValue={courseStatus}
+                                options={courseStatuses}
+                                onChange={(selected) => {
+                                    handleInputChange(selected)
+                                }}
+                                isDisabled={readOnly}
+                                isSearchable={true}
+                                className="select-componentFull"
+                            />
+                        </div>
                         <div className="form-children form-collapse">
                             <div className="flexColumnItems">
                                 <label>{t('form.start')}</label>
