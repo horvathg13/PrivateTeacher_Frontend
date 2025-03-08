@@ -610,6 +610,8 @@
 .t-day-main{
     width: 55%;
     height: auto;
+    max-height: 550px;
+    overflow: auto;
     margin:30px auto;
     padding: 15px;
     background: var(--LightBlue);
@@ -651,11 +653,11 @@
 }
 .t-day-main .t-day-table-container{
     width: 100%;
-    overflow: scroll;
     min-height: 300px;
 }
 .t-day-main .t-day-table-container table{
-    width: 100%;
+    width: 95%;
+    margin: 0 auto;
 }
 .t-day-main .t-day-table-container table thead th{
     padding:5px;
@@ -669,8 +671,6 @@
     }
     .t-day-main .mobile-container{
         padding: 15px;
-        overflow-y: scroll;
-        max-height: 500px;
     }
     .t-day-main .mobile-container .form-items .form-children{
         margin:0;
