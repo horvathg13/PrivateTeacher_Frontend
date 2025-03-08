@@ -5,7 +5,7 @@ import ServiceClient from "./ServiceClient";
 import {useTranslation} from "react-i18next";
 
 const AdminRight=(props)=>{
-    const {roles, setUsername, setRoles, setStatus} = useContext(UserContext);
+    const {roles, setUsername, setRoles, setStatus, setUserId} = useContext(UserContext);
     const [loading, setLoading] = useState(true);
     const {t}=useTranslation();
 
@@ -16,6 +16,7 @@ const AdminRight=(props)=>{
                     setUsername(response.data.user.first_name);
                     setRoles(response.data.roles);
                     setStatus(response.data.user.user_status);
+                    setUserId(response.data.user.id);
                 }
             }).catch(error=>
                 console.log(error)
