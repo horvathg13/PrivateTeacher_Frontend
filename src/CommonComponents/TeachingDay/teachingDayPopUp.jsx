@@ -10,7 +10,7 @@ import '../../transitions.css'
 import '../common.css';
 import {FiPlusCircle} from "react-icons/fi";
 
-const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, selected, days, getLabel}) => {
+const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, days, getLabel}) => {
     const nodeRef = useRef(null);
 
     /*Loader*/
@@ -53,11 +53,6 @@ const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, selected, da
             closeModal(true);
         }
     }
-    useEffect(() => {
-        if(selected){
-            setTableRows(selected);
-        }
-    }, []);
     return (
         <CSSTransition nodeRef={nodeRef} in={TeachingDayTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
             <div className="popup" ref={nodeRef}>
@@ -78,51 +73,55 @@ const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, selected, da
                             <tbody>
                             {tableRows.map((row, i) => (
                                 <>
-                                <tr key={i}>
-                                    <td>
-                                        <Select
-                                            options={days.map(e=> ({
-                                                value:e.value, label:a(`${e.label}`)
-                                            }))}
-                                            onChange={(selected) => {
-                                                handleInputChange({teaching_day:selected.value},i)
-                                            }}
-                                            value={row.teaching_day ?{value: row.teaching_day, label: a(`enums.${row.teaching_day}`)}:null}
-                                            isSearchable={true}
-                                            isDisabled={false}
-                                            className="select-componentFull"
-                                        />
-                                    </td>
-                                    <td>
-                                        <input type="time" value={row.from} onChange={(e)=>{
-                                            handleInputChange({from:e.target.value},i)
-                                        }}/>
-                                    </td>
-                                    <td>
-                                        <input type="time" value={row.to} onChange={(e)=>{
-                                            handleInputChange({to:e.target.value},i)
-                                        }}/>
-                                    </td>
-                                    <td>
-                                    {i > 0 && <FaMinus onClick={() => handleRemoveRow(row)} className="selector-icon red"/>}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colSpan={4}>
-                                        {tableRows.indexOf(tableRows[tableRows.length-1]) === i && <FaCirclePlus    onClick={handleAddRow} className="selector-icon"/>}
-                                    </td>
-                                </tr>
+                                    <tr key={i}>
+                                        <td>
+                                            <Select
+                                                placeholder={t('select')}
+                                                options={days.map(e => ({
+                                                    value: e.value, label: a(`${e.label}`)
+                                                }))}
+                                                onChange={(selected) => {
+                                                    handleInputChange({teaching_day: selected.value}, i)
+                                                }}
+                                                value={row.teaching_day ? {
+                                                    value: row.teaching_day,
+                                                    label: a(`enums.${row.teaching_day}`)
+                                                } : null}
+                                                isSearchable={true}
+                                                isDisabled={false}
+                                                className="select-componentFull"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input type="time" value={row.from} onChange={(e) => {
+                                                handleInputChange({from: e.target.value}, i)
+                                            }}/>
+                                        </td>
+                                        <td>
+                                            <input type="time" value={row.to} onChange={(e) => {
+                                                handleInputChange({to: e.target.value}, i)
+                                            }}/>
+                                        </td>
+                                        <td>
+                                            {i > 0 && <FaMinus onClick={() => handleRemoveRow(row)}
+                                                               className="selector-icon red"/>}
+                                        </td>
+                                    </tr>
                                 </>
-
                             ))}
+                            <tr>
+                                <td colSpan={4}>
+                                        <FaCirclePlus onClick={handleAddRow} className="selector-icon"/>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                     <div className="mobile-container">
                         <div className="form-items">
-                            {tableRows.map((row,i)=>
+                            {tableRows.map((row, i) =>
                                 <>
-                                <div className="form-children">
+                                    <div className="form-children">
                                     <label>{t('table.headers.day')}</label>
                                     <Select
                                         options={days.map(e=> ({

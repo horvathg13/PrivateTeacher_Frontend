@@ -60,9 +60,8 @@ const TeachingDaySelect = ({transition, getLabels, teachingDays, disabled, initi
                     TeachingDayTransition={tDayTransition}
                     closeModal={(data)=>{if(data===true){setTDayTransition(false)}}}
                     save={(data)=>setLabels(data)}
-                    selected={labels}
                     days={teachingDays}
-                    getLabel={labels }
+                    getLabel={labels}
                 /> : <div className="selector-input">{renderLabels(labels)}</div>
             }
             {!disabled && < FaPlus className="selector-icon" onClick={()=> {
