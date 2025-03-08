@@ -485,7 +485,12 @@ form .roles-container.flex label {
     margin: 0 0 !important;
   }
   .content-main-container .FlexForm .form-items{
-    width: 80%;
+    width: 90% !important;
+  }
+  .content-main-container .FlexForm .form-items .inline-form-items{
+    display: inline-flex;
+    width: 90%;
+    flex-wrap: wrap;
   }
   .content-main-container .FlexForm .form-items.flex{
     width: 80%;
@@ -500,10 +505,18 @@ form .roles-container.flex label {
   }
   .content-main-container .FlexForm .form-items .form-children input{
     text-align: left !important;
+    width: 90%;
+  }
+  .content-main-container .FlexForm .form-items .form-children .select-componentFull{
+    width: 90% !important;
   }
 }
 .content-main-container .FlexForm .form-items {
   flex-direction: column;
+  width: 100%;
+}
+.content-main-container .FlexForm .form-items .inline-form-items{
+  display: inline-flex;
   width: 100%;
 }
 .content-main-container .FlexForm .form-items .form-children {
@@ -564,7 +577,7 @@ form .roles-container.flex label {
 }
 @media screen and (max-width: 700px){
   .content-main-container .FlexForm .form-button-container {
-    width: 60% !important;
+    width: 90% !important;
     min-height: 300px;
     margin: 20px 0;
     padding: 0 !important;
