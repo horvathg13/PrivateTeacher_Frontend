@@ -60,6 +60,10 @@ const CourseCreate = () => {
             values[i].name = e.target.value;
         } else {
             values[i].lang = e.value;
+            if(values[i].labels.length>0){
+                values[i].labels=[]
+            }
+            console.log(values[i].labels)
         }
         setCourseName(values);
     };
@@ -174,6 +178,7 @@ const CourseCreate = () => {
                                     <td>
                                         <LabelSelector
                                             labelEmit={(data) => handleLabelSelection(data,i)}
+                                            initial={e.labels}
                                             disabled={e.lang === ""}
                                             lang={e.lang}
                                             popUpTitle={"Add labels"}
@@ -186,7 +191,7 @@ const CourseCreate = () => {
                                 {Object.keys(courseName).length-1  === i &&
                                     <tr>
                                         <td colSpan={4}>
-                                            <FaPlus onClick={handleAddRow} className="selector-icon"/>
+                                            <FaPlus onClick={()=> readOnly === false ? handleAddRow() : null} className="selector-icon"/>
                                         </td>
                                     </tr>
                                 }
@@ -242,6 +247,7 @@ const CourseCreate = () => {
                     <div className="form-children flexColumnItems">
                         <label>{t('form.location')}</label>
                         <Select
+                            placeholder={t('select')}
                             options={schoolLocations?.select}
                             onChange={(selected) => {
                                 setLocation(selected.value)
@@ -266,6 +272,7 @@ const CourseCreate = () => {
                         <div className="form-children flexColumnItems">
                             <label>{t('form.currency')}</label>
                             <Select
+                                placeholder={t('select')}
                                 options={currencies}
                                 onChange={(selected) => {
                                     setCurrency(selected.value)
@@ -279,6 +286,7 @@ const CourseCreate = () => {
                         <div className="form-children flexColumnItems">
                             <label>{t('form.payment-period')}</label>
                             <Select
+                                placeholder={t('select')}
                                 options={paymentPeriods}
                                 onChange={(selected) => {
                                     setPaymentPeriod(selected.value)
