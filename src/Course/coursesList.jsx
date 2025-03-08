@@ -22,17 +22,6 @@ const CoursesList = () => {
     /*data */
     const [schoolCourses, setSchoolCourses]=useState();
     const [header, setHeader]=useState();
-    const [selectedRow, setSelectedRow]=useState();
-    let { schoolId, schoolYearId }=useParams();
-    const [alias, setAlias]=useState();
-   
-    /*Popup control */
-    const [title, setTitle]=useState();
-    const [updatePopup, setUpdatePopup]=useState();
-    const [transitionProp, setTransitionProp]=useState(false);
-    const [showAreYouSure, setShowAreYouSure]=useState(false);
-    const [AreYouSureName, setAreYouSureName]=useState('');
-    const [areYouSureTransitionProp, setAreYouSureTransitionProp]=useState(false);
 
     /*event handle*/
     const [errors, setErrors]=useState([]);
@@ -41,13 +30,9 @@ const CoursesList = () => {
 
     /*Loader */
     const [loader, setLoader]=useState(true);
-    const [formLoader, setFormLoader]=useState(false);
 
     /*Navigation */
     const navigation=useNavigate();
-
-    /*button control */
-    const [btndisabled, setBtnDisabled]=useState(false);
 
     /*Methods */
     const navigationHandler=(e)=>{
@@ -63,11 +48,8 @@ const CoursesList = () => {
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
         />
-        
         <div>
             <form>
-                <div className="school-breaks-container">
-
                     <div className="table-main-container">
                         {!loader ? 
                         <table>
@@ -76,11 +58,9 @@ const CoursesList = () => {
                                     {header ? header.map((e, i) => (
 
                                         <th key={i}>{t(`tableHeaders.${e}`)}</th>
-                                        
 
                                     )) : null}
                                 </tr>
-
                             </thead>
                             <tbody>
                                 { schoolCourses?.length>0  ? schoolCourses.map((e) => (
@@ -102,8 +82,6 @@ const CoursesList = () => {
                             </tbody>
                                 </table> : <span className='loader table'></span>}
                     </div>
-                </div>
-                
             </form>
         </div>
         </>
