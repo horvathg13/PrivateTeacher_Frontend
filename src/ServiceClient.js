@@ -340,6 +340,12 @@ class ServiceClient {
             return response.data
         });
     }
+
+    static cancelCourseRequest=(requestId)=>{
+        return this.post('/api/cancelCourseRequest', {requestId:requestId}).then((response)=>{
+            return response.data
+        });
+    }
 }
 
 export default ServiceClient
