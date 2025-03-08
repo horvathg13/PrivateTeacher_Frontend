@@ -39,10 +39,17 @@ const LocationOutlet = () => {
             },
             {
                 "id":"2",
-                "name":t('breadcrumbs.location'),
+                "name":t('breadcrumbs.course'),
                 "url":"/course/locations",
                 "icon":"IoIosArrowForward",
+            },
+            {
+                "id":"3",
+                "name":t('breadcrumbs.location'),
+                "url":`/location/${locationId}`,
+                "icon":"IoIosArrowForward",
                 "end":true,
+
             },
         ]);
         setTitle(t('componentTitles.location'));
