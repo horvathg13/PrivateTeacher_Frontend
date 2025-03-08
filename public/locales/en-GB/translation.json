@@ -359,10 +359,10 @@
       "birthday": "Birthday",
       "courseName": "Course Name",
       "numberOfLesson": "Number of lesson per week required",
-      "notice": "Notice",
+      "notice": "Introduction",
       "start": "Course start",
       "end": "Course end",
-      "teaching_day": "Teaching day",
+      "teaching_day": "Teaching occasions",
       "from": "Start time",
       "to": "End Time",
       "termination_start": "Termination start date",
@@ -370,7 +370,8 @@
         "accept": "Accept",
         "reject": "Reject",
         "remove": "Remove",
-        "leave": "Leave"
+        "leave": "Leave",
+        "cancel": "Cancel"
       },
       "language": "Course Language"
     }
@@ -416,7 +417,8 @@
     "en-GB": "English",
     "hu-HU": "Hungarian",
     "English": "English",
-    "Hungarian": "Hungarian"
+    "Hungarian": "Hungarian",
+    "CANCELLED": "Cancelled"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -528,7 +530,8 @@
     },
     "buttons": {
       "save": "Save"
-    }
+    },
+    "select": "Select..."
   },
   "validation": {
     "custom": {
@@ -572,6 +575,11 @@
           "notValid":"The given course language is not valid to this course"
         }
       }
+    }
+  },
+  "commonComponents": {
+    "table": {
+      "counter": "Show/page"
     }
   }
 }
