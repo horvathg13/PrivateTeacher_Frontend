@@ -8,9 +8,10 @@ import ServiceClient from "../ServiceClient";
 import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
 import {UserContext} from "../Context/UserContext";
 import Notification from "../CommonComponents/Notifications/notification";
-import {MdPersonRemove} from "react-icons/md";
+import {MdOutlineCancel, MdPersonRemove} from "react-icons/md";
 import {IoExit} from "react-icons/io5";
 import TeachindDaySelect from "../CommonComponents/TeachingDay/teachindDaySelect";
+import {TiCancel} from "react-icons/ti";
 
 const RequestDetails = () => {
     /*Translation*/
@@ -20,7 +21,7 @@ const RequestDetails = () => {
     /*Data*/
     const [requestDetails,teachingDays]=useLoaderData();
     const {requestId}=useParams();
-    const {roles}=useContext(UserContext);
+    const {roles, userId}=useContext(UserContext);
     const [isTeacher, setIsTeacher]=useState();
     const [message, setMessage]=useState();
     const [startDate, setStartDate]=useState();
@@ -34,6 +35,7 @@ const RequestDetails = () => {
     const [acceptLoader, setAcceptLoader]=useState(false);
     const [rejectLoader, setRejectLoader]=useState(false);
     const [removeLoader, setRemoveLoader]=useState(false);
+    const [cancelLoader, setCancelLoader]=useState(false)
 
     /*Navigation */
     const navigation=useNavigate();
@@ -63,14 +65,17 @@ const RequestDetails = () => {
         if(name==='remove'){
             removeStudent();
         }
+        if(name==='cancel'){
+            cancelRequest();
+        }
         setAreYouSureTransitionProp(false);
     }
     const accept=()=>{
         setAcceptLoader(true)
         setBtnDisabled(true)
 
-        setErrors([]);
-        setServerError([]);
+        setErrors("");
+        setServerError("");
 
         ServiceClient.acceptCourseRequest(requestId,message,startDate, teachingDayDetails).then((success)=>{
             setSuccess(true);
@@ -83,13 +88,14 @@ const RequestDetails = () => {
             setBtnDisabled(false);
             setAcceptLoader(false);
         })
+
     }
     const reject=()=>{
         setRejectLoader(true)
         setBtnDisabled(true)
 
-        setErrors([]);
-        setServerError([]);
+        setErrors("");
+        setServerError("");
 
         ServiceClient.rejectCourseRequest(requestId).then((success)=>{
             setSuccess(true);
@@ -103,6 +109,7 @@ const RequestDetails = () => {
             setBtnDisabled(false);
             setRejectLoader(false)
         })
+
     }
 
     const removeStudent=()=>{
@@ -115,6 +122,17 @@ const RequestDetails = () => {
             setServerError(error);
             setRemoveLoader(false);
         });
+    }
+
+    const cancelRequest=()=>{
+        setCancelLoader(true);
+
+        ServiceClient.cancelCourseRequest(requestId).then(success=>{
+            navigation('/requests')
+        }).catch(error=>{
+            setServerError(error);
+            setCancelLoader(false);
+        })
     }
 
     return (
@@ -195,7 +213,7 @@ const RequestDetails = () => {
                             </div>
                             <div className="form-children">
                                 <label>{t('form.language')}</label>
-                                <input type="text" readOnly value={requestDetails.course_names_and_langs[0].lang}/>
+                                <input type="text" readOnly value={a(`enums.${requestDetails.course_names_and_langs[0].lang}`)}/>
                             </div>
 
                             <div className="form-children">
@@ -237,7 +255,7 @@ const RequestDetails = () => {
                             </div>
                         </>
                     }
-                    {isTeacher && requestDetails.status === 'UNDER_REVIEW' ?
+                    {(isTeacher && requestDetails.status === 'UNDER_REVIEW') ?
                         <>
                             <div className="form-title"><h2>{t('form.titles.answer')}</h2></div>
                             <div className="form-children">
@@ -291,7 +309,26 @@ const RequestDetails = () => {
                                 }
                             </div>
                         </>
-                        :null
+                        :
+                        <>
+                        { (userId !== requestDetails.course_info.teacher_id) && requestDetails.status !== "CANCELLED" &&
+                            <div className="form-button-container">
+                                {!cancelLoader ?
+                                    <button
+                                        type='button'
+                                        disabled={btndisabled}
+                                        onClick={(e) => [
+                                            setAreYouSureName('cancel'),
+                                            setAreYouSureTransitionProp(true)
+                                        ]}
+                                        className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                        {t('form.buttons.cancel')} <TiCancel   className='btn-icon'/>
+                                    </button> :
+                                    <span className='loader schoolDetails'></span>
+                                }
+                            </div>
+                        }
+                        </>
                     }
                  </div>
             </form>
