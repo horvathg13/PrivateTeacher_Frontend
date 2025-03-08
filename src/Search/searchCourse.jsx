@@ -42,6 +42,8 @@ const SearchCourse = () => {
     const [lastPage, setLastPage]=useState();
     const [pageSet, setPerPage]=useState();
     const [lang, setLang]=useState();
+    const [minTime, setMinTime]=useState();
+    const [maxTime, setMaxTime]=useState();
 
     /*event handle*/
     const [errors, setErrors]=useState([]);
@@ -74,7 +76,7 @@ const SearchCourse = () => {
         setErrors([]);
         setServerError([]);
 
-        ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
+        ServiceClient.searchCourse(teacherEmail,courseName, keywords,minTime,maxTime,
             minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
             schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang?.value).then((success)=>{
 
@@ -103,7 +105,7 @@ const SearchCourse = () => {
     }
     useEffect(() => {
         if(pageSet || counterSet>0){
-            ServiceClient.searchCourse(teacherEmail,courseName, keywords,minutesLesson,
+            ServiceClient.searchCourse(teacherEmail,courseName, keywords,minTime,maxTime,
                 minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
                 schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang?.value).then((success)=>{
 
@@ -216,7 +218,7 @@ const SearchCourse = () => {
                             <div className="form-baby">
                                 <Select
                                     placeholder={t('search.select')}
-                                    options={languages}
+                                    options={languages ? languages.map(l=>({value: l.value, label:t(`enums.${l.label}`)})): null}
                                     onChange={(selected) => {
                                         setLang(selected.value)
                                     }}
@@ -235,14 +237,30 @@ const SearchCourse = () => {
                         </div>
                         <div className="form-children">
                             <label>{t('search.min/lesson')}</label>
-                            <input
-                                type="number"
-                                onChange={(e) => {
-                                    setMinutesLesson(e.target.value)
-                                }}
-                                value={minutesLesson}
-                                readOnly={readOnly}
-                            />
+                            <div className="form-baby">
+                                <label>{t('search.min')}</label>
+                                <input
+                                    type="number"
+                                    onChange={(e) => {
+                                        setMinTime(e.target.value)
+                                    }}
+                                    value={minTime}
+                                    readOnly={readOnly}
+                                />
+                            </div>
+                            <div className="form-baby">
+                                <label>{t('search.max')}</label>
+                                <input
+                                    type="number"
+                                    onChange={(e) => {
+                                        setMaxTime(e.target.value)
+                                    }}
+                                    value={maxTime}
+                                    readOnly={readOnly}
+                                />
+                            </div>
+
+
                         </div>
 
                         <div className="form-children">
