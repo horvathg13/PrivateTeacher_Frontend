@@ -9,7 +9,8 @@ export const UserContextProvider = ({children})=>{
     const [username, setUsername]=useState('');
     const [roles, setRoles]=useState([]);
     const [status,setStatus]=useState('');
-    const value ={username, setUsername, setRoles, roles, status, setStatus};
+    const [userId, setUserId]=useState();
+    const value ={username, setUsername, setRoles, roles, status, setStatus, userId, setUserId};
 
     useEffect(()=>{
         ServiceClient.post("/api/getUserData").then((response)=>{
@@ -17,6 +18,7 @@ export const UserContextProvider = ({children})=>{
                 setUsername(response.data.user.first_name);
                 setRoles(response.data.roles);
                 setStatus(response.data.user.user_status);
+                setUserId(response.data.user.id);
             }
         }).catch((error)=>{
             if(error?.response?.status===500){
