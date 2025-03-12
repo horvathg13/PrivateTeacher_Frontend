@@ -124,6 +124,9 @@ const SearchCourse = () => {
             })
         }
     }, [pageSet, counterSet]);
+    useEffect(() => {
+        setKeywords([])
+    }, [lang]);
     return (
         <>
         <EventHandler
@@ -232,6 +235,7 @@ const SearchCourse = () => {
                                     labelEmit={(data) => setKeywords(data)}
                                     disabled={!lang}
                                     lang={lang}
+                                    initial={keywords}
                                 />
                             </div>
                         </div>
