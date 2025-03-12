@@ -16,6 +16,7 @@ import ServiceClient from "../ServiceClient";
 import * as Promis from "axios";
 import EventHandler from "../EventHandler/eventhandler";
 import {parseJSON} from "date-fns";
+import menuButtonPermission from "../menuButtonPermission";
         
 const Home = () => {
     const {username,roles, setUsername, setRoles,  hasAccessMessages, setHasAccessMessages,hasAccessRequests,setHasAccessRequests} =useContext(UserContext);
@@ -36,21 +37,6 @@ const Home = () => {
     }
     const [newMenu, setNewMenu]=useState();
 
-    const hasAccess=(menuItems, userRole)=>{
-        if(userRole.some(r=>r === "Parent") || userRole.some(r=>r === "Teacher")){
-            let filterMenuItemsByRole=menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r)));
-            let accessToMessages=!hasAccessMessages ? filterMenuItemsByRole.filter(m=>m.name !== "messages") : filterMenuItemsByRole;
-            let accessToRequests=!hasAccessRequests ? filterMenuItemsByRole.filter(r=>r.name !== "requests") : filterMenuItemsByRole;
-
-            let final = [...accessToMessages, ...accessToRequests];
-            const mergedArray = final.map(item => item).filter((value, index, self) => self.indexOf(value) !== index)
-
-            //console.log(["hasRequests", hasAccessRequests, "hasMessages", hasAccessMessages, "filterMenuByRole",filterMenuItemsByRole, "accessToMessage", accessToMessages, "accessToRequests", accessToRequests, "merge",mergedArray  ])
-            return setNewMenu(mergedArray)
-        }
-
-        return setNewMenu(menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r))));
-    }
     useEffect(() => {
         if(!roles.length){
              ServiceClient.post("/api/getUserData").then((response)=>{
@@ -62,13 +48,13 @@ const Home = () => {
              });
         }else{
             if(localStorage.getItem("token")){
-                hasAccess(menu,roles)
+                setNewMenu(menuButtonPermission.hasAccess(menu,roles, hasAccessMessages, hasAccessRequests))
             }
         }
     }, []);
     useEffect(() => {
         if (roles.length) {
-            hasAccess(menu, roles);
+            setNewMenu(menuButtonPermission.hasAccess(menu,roles, hasAccessMessages, hasAccessRequests))
         }
     }, [hasAccessMessages, hasAccessRequests, roles]);
     return (

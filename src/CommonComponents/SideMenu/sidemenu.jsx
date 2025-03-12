@@ -15,6 +15,7 @@ import {AiOutlineMenuFold, AiOutlineMenuUnfold} from "react-icons/ai";
 import {MdMenu, MdMenuOpen, MdNotificationsActive} from "react-icons/md";
 import {PiNewspaperBold} from "react-icons/pi";
 import {UserContext} from "../../Context/UserContext";
+import menuButtonPermission from "../../menuButtonPermission";
 
 const SideMenu = ({active}) => {
     const getIcon=(iconName)=>{
@@ -41,22 +42,10 @@ const SideMenu = ({active}) => {
     const {roles,hasAccessMessages, hasAccessRequests} = useContext(UserContext);
     const nodeRef = useRef(null);
     const [newMenu, setNewMenu] = useState([]);
-    const hasAccess=(menuItems, userRole)=>{
-        if(userRole.some(r=>r === "Parent") || userRole.some(r=>r === "Teacher")){
-            let filterMenuItemsByRole=menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r)));
-            let accessToMessages=!hasAccessMessages ? filterMenuItemsByRole.filter(m=>m.name !== "messages") : filterMenuItemsByRole;
-            let accessToRequests=!hasAccessRequests ? filterMenuItemsByRole.filter(r=>r.name !== "requests") : filterMenuItemsByRole;
 
-            let final = [...accessToMessages, ...accessToRequests];
-            const mergedArray = final.map(item => item).filter((value, index, self) => self.indexOf(value) !== index)
-
-            //console.log(["hasRequests", hasAccessRequests, "hasMessages", hasAccessMessages, "filterMenuByRole",filterMenuItemsByRole, "accessToMessage", accessToMessages, "accessToRequests", accessToRequests, "merge",mergedArray  ])
-            return setNewMenu(mergedArray)
-        }
-        return setNewMenu(menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r))));    }
     useEffect(() => {
 
-        hasAccess(menu, roles);
+        setNewMenu(menuButtonPermission.hasAccess(menu, roles, hasAccessMessages, hasAccessRequests));
 
     }, [hasAccessMessages, hasAccessRequests, roles]);
     return (
