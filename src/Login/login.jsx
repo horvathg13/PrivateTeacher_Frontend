@@ -54,7 +54,11 @@ const Login = () => {
                 }
                 setLoader(false)
                 setTimeout(()=>{
-                    navigate('/home');
+                    if(success.hasChild){
+                        navigate('/home');
+                    }else{
+                        navigate('/child/create');
+                    }
                 },1000)
             }).catch((error)=>{
                 setServerError(error);
