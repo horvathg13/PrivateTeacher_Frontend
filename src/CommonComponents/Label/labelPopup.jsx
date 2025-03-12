@@ -3,7 +3,8 @@ import { FaArrowRight, FaCheck, FaMinusCircle, FaPlus, FaPlusCircle, FaSearch } 
 import { IoMdCloseCircle } from "react-icons/io";
 import ServiceClient from "../../ServiceClient";
 import {CSSTransition} from 'react-transition-group';
-import '../../transitions.css'
+import '../../transitions.css';
+import '../common.css';
 import EventHandler from "../../EventHandler/eventhandler";
 import {useTranslation} from "react-i18next";
 import {UserContext} from "../../Context/UserContext";
@@ -118,8 +119,8 @@ const LabelPopup = ({labelTransition, closeModal, selection, selected, title, in
     const nodeRef = useRef(null);
     return (
         <CSSTransition nodeRef={nodeRef} in={labelTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
-            <div className="popup" ref={nodeRef}>
-                <div className="label-main">
+            <div className="popup" onClick={() => closeModal(true)} ref={nodeRef}>
+                <div className="label-main" onClick={(e)=>e.stopPropagation()}>
                     <div className="label-close-button-container closeModal">
                         <IoMdCloseCircle className="closeModalIcon" onClick={() => closeModal(true)}/>
                     </div>

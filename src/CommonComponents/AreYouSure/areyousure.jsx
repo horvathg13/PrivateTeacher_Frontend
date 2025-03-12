@@ -9,8 +9,8 @@ const AreYouSure = ({label, name, answer, transitionProp}) => {
     const {t}=useTranslation();
     return (
         <CSSTransition nodeRef={nodeRef} in={transitionProp} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
-            <div className="are-you-sure-bcg" ref={nodeRef}>
-                <div className="are-yousure-main">
+            <div className="are-you-sure-bcg"  onClick={()=>{answer('cancel')}} ref={nodeRef}>
+                <div className="are-yousure-main" onClick={(e)=>e.stopPropagation()}>
                     <div className="title">
                         <h3>{label ? label : t('areYouSure.title')}</h3>
                     </div>

@@ -96,7 +96,7 @@ const Header = () => {
     },[])
     
     return (
-        <div className="main-container flex">
+        <div className="main-container flex" onClick={()=>setNotificationMenu(false)}>
             <EventHandler
                 success={success}
                 errors={errors}
@@ -136,11 +136,14 @@ const Header = () => {
                 {name ?
                     <div className="notification-container">
                         <IoIosNotifications className={haveUnreadNotifications ? "header-icon red" : "header-icon"}
-                                            onClick={(e) => NotificationQuery(e)}/>
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                NotificationQuery(e)
+                                            }}/>
                     </div>
                     : null}
                 {notificationMenu && name ?
-                    <div className="notification-menu">
+                    <div className="notification-menu" >
                         <>
                             {getNotifications.length ? getNotifications.map(e =>
                                 e.empty ?
@@ -177,28 +180,7 @@ const Header = () => {
                         </>
                     </div> : null}
                 {name ? <MdLogout className="logout-icon" onClick={logout}/> : null}
-
             </div>
-            {false && name ?
-                <div className="mobile-menu">
-                    <FaListUl className='dropdown-btn' onClick={() => {
-                        setMobileMenu(!showMobileMenu)
-                    }}/>
-
-                    <CSSTransition
-                        nodeRef={nodeRef}
-                        in={showMobileMenu}
-                        classNames="slide-right"
-                        timeout={500}
-                        mountOnEnter
-                        unmountOnExit
-                    >
-                        <div className="menu-container" ref={nodeRef}>
-                            <button className='headerBtn btn'>{name}</button>
-                            <button className='headerBtn btn'>Logout</button>
-                        </div>
-                    </CSSTransition>
-                </div> : null}
         </div>
 
 

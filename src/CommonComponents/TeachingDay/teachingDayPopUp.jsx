@@ -55,8 +55,8 @@ const TeachingDayPopUp = ({TeachingDayTransition, closeModal, save, days, getLab
     }
     return (
         <CSSTransition nodeRef={nodeRef} in={TeachingDayTransition} classNames="fade" timeout={500} mountOnEnter unmountOnExit>
-            <div className="popup" ref={nodeRef}>
-                <div className="t-day-main">
+            <div className="popup" onClick={() => closeModal(true)} ref={nodeRef}>
+                <div className="t-day-main" onClick={(e)=>e.stopPropagation()}>
                     <div className="t-day-close-button-container closeModalWhite">
                         <IoMdCloseCircle className="closeModalIcon" onClick={() => closeModal(true)}/>
                     </div>
