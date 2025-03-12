@@ -10,7 +10,22 @@ export const UserContextProvider = ({children})=>{
     const [roles, setRoles]=useState([]);
     const [status,setStatus]=useState('');
     const [userId, setUserId]=useState();
-    const value ={username, setUsername, setRoles, roles, status, setStatus, userId, setUserId};
+    const [hasAccessMessages, setHasAccessMessages]=useState();
+    const [hasAccessRequests, setHasAccessRequests]=useState();
+    const value ={
+        username,
+        setUsername,
+        setRoles,
+        roles,
+        status,
+        setStatus,
+        userId,
+        setUserId,
+        hasAccessMessages,
+        setHasAccessMessages,
+        hasAccessRequests,
+        setHasAccessRequests,
+    };
 
     useEffect(()=>{
         ServiceClient.post("/api/getUserData").then((response)=>{
@@ -19,6 +34,8 @@ export const UserContextProvider = ({children})=>{
                 setRoles(response.data.roles);
                 setStatus(response.data.user.user_status);
                 setUserId(response.data.user.id);
+                setHasAccessMessages(response.data.menuButtonsPermission[0].hasAccessMessages);
+                setHasAccessRequests(response.data.menuButtonsPermission[0].hasAccessRequests);
             }
         }).catch((error)=>{
             if(error?.response?.status===500){

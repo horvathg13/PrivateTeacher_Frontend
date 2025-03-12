@@ -10,14 +10,15 @@ import { BsCalendar3 } from "react-icons/bs";
 import {FaSchool, FaUserGraduate} from 'react-icons/fa6';
 import {useContext, useEffect, useState} from 'react';
 import { UserContext } from '../Context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import {json, useNavigate} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import ServiceClient from "../ServiceClient";
 import * as Promis from "axios";
 import EventHandler from "../EventHandler/eventhandler";
+import {parseJSON} from "date-fns";
         
 const Home = () => {
-    const {username,roles, setUsername, setRoles} =useContext(UserContext);
+    const {username,roles, setUsername, setRoles,  hasAccessMessages, setHasAccessMessages,hasAccessRequests,setHasAccessRequests} =useContext(UserContext);
     const navigate = useNavigate();
     const {t}=useTranslation();
     const getIcon=(iconName)=>{
@@ -34,13 +35,27 @@ const Home = () => {
         }
     }
     const [newMenu, setNewMenu]=useState();
+
     const hasAccess=(menuItems, userRole)=>{
+        if(userRole.some(r=>r === "Parent") || userRole.some(r=>r === "Teacher")){
+            let filterMenuItemsByRole=menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r)));
+            let accessToMessages=!hasAccessMessages ? filterMenuItemsByRole.filter(m=>m.name !== "messages") : filterMenuItemsByRole;
+            let accessToRequests=!hasAccessRequests ? filterMenuItemsByRole.filter(r=>r.name !== "requests") : filterMenuItemsByRole;
+
+            let final = [...accessToMessages, ...accessToRequests];
+            const mergedArray = final.map(item => item).filter((value, index, self) => self.indexOf(value) !== index)
+
+            //console.log(["hasRequests", hasAccessRequests, "hasMessages", hasAccessMessages, "filterMenuByRole",filterMenuItemsByRole, "accessToMessage", accessToMessages, "accessToRequests", accessToRequests, "merge",mergedArray  ])
+            return setNewMenu(mergedArray)
+        }
+
         return setNewMenu(menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r))));
     }
     useEffect(() => {
         if(!roles.length){
              ServiceClient.post("/api/getUserData").then((response)=>{
-                hasAccess(menu,response.data.roles);
+                setHasAccessMessages(response.data.menuButtonsPermission[0].hasAccessMessages);
+                setHasAccessRequests(response.data.menuButtonsPermission[0].hasAccessRequests);
              }).catch(error=>{
                  navigate('/');
              });
@@ -50,6 +65,11 @@ const Home = () => {
             }
         }
     }, []);
+    useEffect(() => {
+        if (roles.length) {
+            hasAccess(menu, roles);
+        }
+    }, [hasAccessMessages, hasAccessRequests, roles]);
     return (
         <>
             <div className="home-text">

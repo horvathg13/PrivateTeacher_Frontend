@@ -4,14 +4,12 @@
         "role":["Admin"],
         "icon":"FaUsers",
         "url":"/users"
-        
     },
     {
         "name":"course",
         "role":["Teacher"],
         "icon":"FaUserGraduate",
         "url":"/course"
-        
     },
     {
         "name":"messages",

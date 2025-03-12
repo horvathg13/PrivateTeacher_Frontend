@@ -4,10 +4,10 @@ import { BiSolidMessageDetail } from "react-icons/bi";
 import {RiLockPasswordFill} from 'react-icons/ri';
 import {FaScaleUnbalanced, FaSchool, FaTruckMedical, FaUserGraduate } from 'react-icons/fa6';
 import {RxUpdate} from 'react-icons/rx';
-import menu from './menu.json'        
+import menu from '../../Home/homeMenu.json';
 import homeMenu from '../../Home/homeMenu.json';
 import { CSSTransition } from 'react-transition-group';
-import {useContext, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import '../../transitions.css'
 import { NavLink } from 'react-router-dom';
 import {IoMenu} from "react-icons/io5";
@@ -38,8 +38,27 @@ const SideMenu = ({active}) => {
     const [selectedMenu,setSelectedMenu]=useState(1);
     const [showMobileMenu, setShowMobileMenu]=useState(false);
 
-    const {roles} = useContext(UserContext);
+    const {roles,hasAccessMessages, hasAccessRequests} = useContext(UserContext);
     const nodeRef = useRef(null);
+    const [newMenu, setNewMenu] = useState([]);
+    const hasAccess=(menuItems, userRole)=>{
+        if(userRole.some(r=>r === "Parent") || userRole.some(r=>r === "Teacher")){
+            let filterMenuItemsByRole=menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r)));
+            let accessToMessages=!hasAccessMessages ? filterMenuItemsByRole.filter(m=>m.name !== "messages") : filterMenuItemsByRole;
+            let accessToRequests=!hasAccessRequests ? filterMenuItemsByRole.filter(r=>r.name !== "requests") : filterMenuItemsByRole;
+
+            let final = [...accessToMessages, ...accessToRequests];
+            const mergedArray = final.map(item => item).filter((value, index, self) => self.indexOf(value) !== index)
+
+            //console.log(["hasRequests", hasAccessRequests, "hasMessages", hasAccessMessages, "filterMenuByRole",filterMenuItemsByRole, "accessToMessage", accessToMessages, "accessToRequests", accessToRequests, "merge",mergedArray  ])
+            return setNewMenu(mergedArray)
+        }
+        return setNewMenu(menuItems.filter(menuItem=>menuItem.role.some(r=>userRole.includes(r))));    }
+    useEffect(() => {
+
+        hasAccess(menu, roles);
+
+    }, [hasAccessMessages, hasAccessRequests, roles]);
     return (
         <>
             <div className="mobile-sidemenu-container">
@@ -56,30 +75,30 @@ const SideMenu = ({active}) => {
                     unmountOnExit
                 >
                 <div className="mobile-side-main-conainer" ref={nodeRef}>
-                {
-                    homeMenu.map((e, i) =>
-                        e.role.some(j=>roles.includes(j)) ?
-                        <div className="element-container" key={i}>
-                            <NavLink to={e.url}>
-                                <div className="icon-container">{getIcon(e.icon)}</div>
-                            </NavLink>
-                            {false && <div className="name-container"><h4>{e.name}</h4></div>}
-                        </div>:null
-                    )
-                }
+                    {
+                        newMenu.map((e, i) =>
+                            <>
+                                <div className="element-container flex" key={i}>
+                                    <NavLink to={e.url}>
+                                        <div className="icon-container">{getIcon(e.icon)}</div>
+                                    </NavLink>
+                                </div>
+                            </>
+                        )
+                    }
                 </div>
                 </CSSTransition>
             </div>
             <div className="side-main-conainer">
                 {
-                    homeMenu.map((e, i) =>
-                        e.role.some(j=>roles.includes(j)) ?
-                        <div className="element-container flex" key={i}>
-                            <NavLink to={e.url}>
-                                <div className="icon-container">{getIcon(e.icon)}</div>
-                            </NavLink>
-                            {false && <div className="name-container"><h4>{e.name}</h4></div>}
-                        </div>:null
+                    newMenu.map((e, i) =>
+                        <>
+                            <div className="element-container flex" key={i}>
+                                <NavLink to={e.url}>
+                                    <div className="icon-container">{getIcon(e.icon)}</div>
+                                </NavLink>
+                            </div>
+                        </>
                     )
                 }
             </div>

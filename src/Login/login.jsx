@@ -29,7 +29,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     /*context*/
-    const {setUsername, setRoles}=useContext(UserContext);
+    const {setUsername, setRoles, setHasAccessRequests, setHasAccessMessages, setHasChild, hasChild}=useContext(UserContext);
 
     const nodeRef=useRef(null);
     const [startAnimation, setAnimation]=useState(true)
@@ -48,6 +48,10 @@ const Login = () => {
                 setSuccess(true);
                 setUsername(success.data.first_name);
                 setRoles(success.data.roles);
+                if(success.data.menuButtonsPermission){
+                    setHasAccessRequests(success.data.menuButtonsPermission[0].hasAccessRequests)
+                    setHasAccessMessages(success.data.menuButtonsPermission[0].hasAccessMessages)
+                }
                 setLoader(false)
                 setTimeout(()=>{
                     navigate('/home');
@@ -59,7 +63,6 @@ const Login = () => {
             })
         }
     }
-
     return (
         <>
            <div className="login-container flex">
