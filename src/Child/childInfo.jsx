@@ -38,7 +38,7 @@ const ChildInfo = () => {
     const navigate = useNavigate();
 
     /*btn handle*/
-    const [btndisabled, setBtnDisabled]=useState(false);
+    const [btndisabled, setBtnDisabled]=useState(true);
     const [loader, setLoader]=useState(false);
     const [disconnectLoader, setDisconnectLoader]=useState(false);
 
@@ -91,9 +91,9 @@ const ChildInfo = () => {
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
-            setBtnDisabled(false);
             getChildData();
             setReadOnlyInfo(true)
+            setBtnDisabled(true)
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);
@@ -120,7 +120,7 @@ const ChildInfo = () => {
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
-            setBtnDisabled(false);
+            setBtnDisabled(true);
             navigate("/child");
         }).catch((error)=>{
             setServerError(error);
@@ -146,7 +146,10 @@ const ChildInfo = () => {
 
                 <form className='FlexForm' onSubmit={updateChild}>
                     <div className="user-container info">
-                        <div className="form-title"><h2>{t('title.info')} <MdEdit className='icon' onClick={()=>setReadOnlyInfo(!readOnlyInfo)}/></h2></div>
+                        <div className="form-title"><h2>{t('title.info')} <MdEdit className='icon' onClick={()=> {
+                            setReadOnlyInfo(!readOnlyInfo);
+                            setBtnDisabled(!btndisabled)
+                        }}/></h2></div>
                         <div className="fields flex">
                             <div className="first-name field">
                                 <label>{t('form.first-name')}</label>
