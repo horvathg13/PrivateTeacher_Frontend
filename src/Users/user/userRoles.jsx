@@ -1,21 +1,17 @@
 import { useEffect, useState } from 'react';
-import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
-import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
 import EventHandler from '../../EventHandler/eventhandler';
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
-import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
 import ServiceClient from '../../ServiceClient';
-import AreYouSure from "../../CommonComponents/AreYouSure/areyousure";
-import { FaPlus } from 'react-icons/fa';
-import { FaTrashCan } from 'react-icons/fa6';
-import CreateUserRole from "./createUserRole";
+import {FaMinus, FaPlus, FaPlusCircle} from 'react-icons/fa';
 import {useTranslation} from "react-i18next";
-        
+import Select from 'react-select';
+
 const UserRoles = () => {
     /*Translation*/
     const {t}=useTranslation();
     /*dataLoader */
     const [dataLoader, roleOptions]=useLoaderData();
+
     useEffect(()=>{
         if(dataLoader){
             setHeader(dataLoader.header);
@@ -32,6 +28,8 @@ const UserRoles = () => {
     const [header, setHeader]=useState();
     const [selectedRowId, setSelectedRow]=useState();
     const [createUserRole, setCreateUserRole]=useState(false);
+    const [tableRow, setTableRow]=useState([{roleId:null,role:''}]);
+    const [removeRole,setRemoveRole]=useState([]);
     
     /*Event handle*/
     const [errors, setErrors]=useState([]);
@@ -42,13 +40,14 @@ const UserRoles = () => {
     /*Btn handle*/
     const [btndisabled, setBtnDisabled]=useState(false);
     const [loader, setLoader]=useState(false);
+    const [saveBtn, setSaveBtn] = useState(false)
+    const [readOnly, setReadOnly] = useState()
 
     /*DataSave*/
     const [dataSave, setDataSave]=useState();
     let { userId }=useParams();
 
     /*Popup control */
-   
     const [AreYouSureName, setAreYouSureName]=useState('');
     const [areYouSureTransitionProp, setAreYouSureTransitionProp]=useState(false);
 
@@ -66,7 +65,6 @@ const UserRoles = () => {
     }
     const removeUserRole=()=>{
         setLoader(true);
-        console.log(selectedRowId);
         let url=`/api/removeUserRole/${userId}/${selectedRowId.roleId}`
         
         ServiceClient.removeUserRole(userId,selectedRowId.roleId).then((success)=>{
@@ -88,64 +86,141 @@ const UserRoles = () => {
             setLoader(false);
         });
     }
+    const handleAddTableRow=()=>{
+        if(!btndisabled){
+            let values=[...tableRow, {roleId:null,role:''}];
+            setTableRow(values);
+        }
+    }
+    const handleRemoveTableRow=(e)=>{
+        if(!btndisabled){
+            const values=tableRow.filter(r=>r.roleId !== e.roleId);
 
+            setTableRow(values);
+
+            const filterRemoveRole=removeRole.filter(r=>r.roleId === e.roleId);
+
+            if(!filterRemoveRole.length){
+                const values=[...removeRole,e];
+                setRemoveRole(values)
+            }
+        }
+    }
+    const handleSelection=(selection,i)=>{
+        const values=[...tableRow];
+
+        values[i].role= selection.label
+        values[i].roleId= selection.value
+        setTableRow(values);
+    }
+    const createRole=(e)=> {
+        e.preventDefault();
+        setErrors([]);
+        setServerError([]);
+        const finalData = tableRow.filter(r => r.roleId && r.role)
+        if(finalData.length || removeRole.length){
+            setBtnDisabled(true);
+            setLoader(true);
+            setReadOnly(true);
+
+            let filterFinalData= userRoles.length ? finalData.filter(f=>!userRoles.some(r=>r.roleId === f.roleId)) : finalData;
+
+            ServiceClient.createUserRole(filterFinalData, removeRole, userId).then((success)=>{
+                setSuccess(true);
+                setLoader(false);
+                setBtnDisabled(false);
+                setReadOnly(false);
+                setRemoveRole([]);
+                getUserRoles()
+                setTimeout(()=>{
+                    setSuccess(false);
+                },2000)
+
+            }).catch((error)=>{
+                setServerError(error);
+                setLoader(false);
+                setBtnDisabled(false);
+                setReadOnly(false);
+            });
+
+        }else{
+            setErrors([t('users.user.createUserRole.validation.required')])
+        }
+    }
+    useEffect(() => {
+        if(dataLoader?.userRoles){
+            setTableRow(dataLoader?.userRoles)
+            setUserRoles(dataLoader?.userRoles)
+        }
+    }, [dataLoader.userRoles]);
     return (
-
         <>
         <EventHandler 
-        success={success} 
-        errors={errors} 
-        serverError={serverError} 
-        closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-        <AreYouSure
-        name={AreYouSureName}
-        answer={(name)=>functionControl(name)}
-        transitionProp={areYouSureTransitionProp}/>
-        {createUserRole ?
-        <CreateUserRole
-            transitionProp={createUserRole}
-            closeModal={(data)=>setCreateUserRole(data)}
-            updateUserRoles={(data)=> {
-                if (data === true) {
-                    return getUserRoles()
-                }
-            }}
-            roleOptions={roleOptions}
-        />:null}
+            success={success}
+            errors={errors}
+            serverError={serverError}
+            closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
+        />
+
         <div>
-            <div className='formTitle'><FaPlus className='table-action-icon' onClick={() => setCreateUserRole(!createUserRole)}/></div>
-            <div className="table-main-container">
-                {!loader ? 
-                <table>
-                    <thead>
+            <div className="userRoles-table-container">
+                {!loader ?
+                    <table>
+                        <thead>
                         <tr>
-                           
                             {header ? header.map((e, i) => (
-                                <> 
-                                <th key={i}>{t(`tableHeaders.${e}`)}</th>
+                                <>
+                                    <th key={i}>{t(`tableHeaders.${e}`)}</th>
                                 </>
                             )) : null}
-                             <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
 
-                    </thead>
-                    <tbody>
-                        { userRoles ? userRoles.map((e,i) => (
-                            <tr key={i} onClick={() => {setSelectedRow(e);}}>
-                           
-                                <td>{e.role}</td>
-                                <td><FaTrashCan className='table-action-icon' onClick={()=>{setAreYouSureName("delete");setSelectedRow(e); setAreYouSureTransitionProp(true)}}/></td>
-                            
-                            </tr>
+                        </thead>
+                        <tbody>
 
-                        )):
-                        <tr>
-                             <td colSpan={3} className="no-school" >{t('empty-table')}</td>
-                        </tr>}
-                        
+                        {tableRow.length ? tableRow.map((e, i) => (
+                            <tr className="disableSelection" key={i}>
+                                <td>
+                                    <Select
+                                        placeholder={t('users.user.createUserRole.placeholder')}
+                                        defaultValue={({value:e.roleId, label: t(`enums.${e.role}`)})}
+                                        value={({value:e.roleId, label: e.role ? t(`${e.role}`) : null})}
+                                        options={userRoles.length ? roleOptions.filter((o)=>!userRoles.some(r=>r.roleId === o.value)).map(l=>({value:l.value, label:t(`enums.${l.label}`)})) : roleOptions.map(r=>({value:r.value, label:t(`enums.${r.label}`)}))}
+                                        onChange={(selected)=>handleSelection(selected,i)}
+                                        isSearchable={true}
+                                        isDisabled={userRoles.some(r=>r.roleId === e.roleId)}
+                                    />
+                                </td>
+                                <td className="table-action-container">
+                                    <span className="table-action-button">
+                                        {<FaMinus className='table-action-icon' onClick={() => {
+                                             handleRemoveTableRow(e)
+                                        }}/>}
+                                    </span>
+                                </td>
+                            </tr>
+                            )) :
+                            <>
+                                <tr>
+                                    <td colSpan={2} className="no-school">{t('empty-table')}</td>
+                                </tr>
+                            </>
+                        }
+                    <tr>
+                        {tableRow.length<3&&<td colSpan={3}>
+                            <FaPlusCircle className='table-action-icon' onClick={() => {
+                                handleAddTableRow()
+                            }}/>
+                        </td>}
+                    </tr>
                     </tbody>
                 </table> : 
                 <span className='loader table'></span>}
+                <div className="button-container">
+                    {!saveBtn ? <button type="submit" className="formButton" disabled={btndisabled} onClick={(e)=>createRole(e)}>{t('users.user.createUserRole.create')}</button>:null}
+                </div>
                 
             </div>
            
