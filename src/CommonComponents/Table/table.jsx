@@ -100,7 +100,7 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                         {setPaginator ?
                             <div className="pagination-continer flex">
                                 <div className="show-container flex">
-                                    {t('commonComponents.table.counter')}<input type='number' onKeyDown={(e) => {
+                                    {t('commonComponents.table.counter')}<input type='number' defaultValue={10} onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
                                         return perPage(e.target.value);
                                     }
