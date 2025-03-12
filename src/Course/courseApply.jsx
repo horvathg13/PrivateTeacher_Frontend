@@ -79,7 +79,7 @@ const CourseApply = () => {
 
     useEffect(() => {
         if(children.length === 1){
-            setSelectedChild(children)
+            setSelectedChild({value:children[0].value, label: children[0].label})
         }
         if(courseProfile.languages.length === 1){
             setSelectedLanguage({value:courseProfile.languages[0].value, label:a(`enums.${courseProfile.languages[0].label}`)});
