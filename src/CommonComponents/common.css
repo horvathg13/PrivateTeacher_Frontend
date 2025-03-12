@@ -444,7 +444,7 @@
     width: auto;
 }
 .table-main-container .pagination-continer.flex .show-container {
-    min-width: 130px;
+    min-width: 200px;
     padding: 5px;
 }
 .table-main-container .pagination-continer.flex .show-container input {
