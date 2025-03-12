@@ -1577,3 +1577,29 @@ form .roles-container.flex label {
 .addressee-selector-container .addressee-child{
   margin: 15px 0;
 }
+
+/*UserRoles*/
+
+.userRoles-table-container{
+  width: 100%;
+  min-height: 300px;
+}
+.userRoles-table-container table{
+  width: 100%;
+}
+.userRoles-table-container table thead{
+  height: 50px;
+  color: white;
+  background: var(--DarkBlue);
+}
+.userRoles-table-container table thead tr th{
+  margin: 0;
+  padding: 0;
+}
+.userRoles-table-container .table-action-container{
+  padding: 10px;
+  width: 10%;
+}
+.userRoles-table-container .table-action-container .table-action-button{
+  margin: 5px;
+}
