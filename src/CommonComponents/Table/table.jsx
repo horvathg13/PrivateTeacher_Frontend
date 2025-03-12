@@ -42,11 +42,6 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                 {!loader ?
 
                     <div className="table-main-container">
-                        <div className="table-action-menu flex">
-                            {/*<div className="table-action"><MdDelete className='table-action-icon'/></div>
-                <div className="table-action"><FaCirclePlus className='table-action-icon'/></div>*/}
-
-                        </div>
                         <table>
                             <thead>
 
@@ -62,10 +57,7 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                                     </th>
 
                                 )) : null}
-
                             </tr>
-
-
                             </thead>
                             <tbody>
                             {datas.data?.map((e) => (
@@ -94,7 +86,6 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                                     }
                                 </tr>
                             ))}
-
                             </tbody>
                         </table>
                         {setPaginator ?
@@ -114,14 +105,15 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                                     <MdNavigateNext className='paginate-icon' onClick={() => page('next')}/><MdLastPage
                                     className='paginate-icon' onClick={() => page('last')}/></> : null}
                                 </div>
-                            </div> : null}
-
-
+                            </div> : null
+                        }
                     </div> :
                     <span className='loader table'></span>}
-                {datas === null ?
-                    <h3>{t('empty-table')}</h3>
-                    : null}
+                {!datas.length ?
+                    <h3>
+                        {t('empty-table')}
+                    </h3>:null
+                }
             </>
 
         );
