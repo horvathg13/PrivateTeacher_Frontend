@@ -253,7 +253,6 @@ const CourseInfo = () => {
                                                     lang={e.lang}
                                                     popUpTitle={"Add labels"}
                                                     initial={e.labels}
-                                                    read
                                                 />
                                             </td>
                                             {i > 0 && <td>
