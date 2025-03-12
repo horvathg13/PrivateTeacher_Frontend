@@ -116,8 +116,8 @@ class ServiceClient {
             return response.data
         })
     }
-    static createUserRole(roleId,userId){
-        return this.post("/api/createUserRole", {roleId:roleId, userId:userId}).then((response)=>{
+    static createUserRole(roles,remove,userId){
+        return this.post("/api/createUserRole", {roles:roles, userId:userId, remove:remove}).then((response)=>{
             return response.data
         })
     }
