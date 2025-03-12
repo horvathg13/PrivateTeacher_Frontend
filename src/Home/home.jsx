@@ -54,6 +54,7 @@ const Home = () => {
     useEffect(() => {
         if(!roles.length){
              ServiceClient.post("/api/getUserData").then((response)=>{
+                setRoles(response.data.roles)
                 setHasAccessMessages(response.data.menuButtonsPermission[0].hasAccessMessages);
                 setHasAccessRequests(response.data.menuButtonsPermission[0].hasAccessRequests);
              }).catch(error=>{
