@@ -29,7 +29,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     /*context*/
-    const {setUsername, setRoles, setHasAccessRequests, setHasAccessMessages}=useContext(UserContext);
+    const {setUsername, setRoles, setHasAccessRequests, setHasAccessMessages, setHasChild}=useContext(UserContext);
 
     const nodeRef=useRef(null);
     const [startAnimation, setAnimation]=useState(true)
@@ -50,13 +50,10 @@ const Login = () => {
                 setRoles(success.data.roles);
                 setHasAccessRequests(success.menuButtonsPermission[0].hasAccessRequests);
                 setHasAccessMessages(success.menuButtonsPermission[0].hasAccessMessages);
+                setHasChild(success.hasChild);
                 setLoader(false)
                 setTimeout(()=>{
-                    if(success.hasChild){
-                        navigate('/home');
-                    }else{
-                        navigate('/child/create');
-                    }
+                    navigate('/home');
                 },1000)
             }).catch((error)=>{
                 setServerError(error);
