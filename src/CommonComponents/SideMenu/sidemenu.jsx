@@ -44,8 +44,8 @@ const SideMenu = ({active}) => {
     const [newMenu, setNewMenu] = useState([]);
 
     useEffect(() => {
-
-        setNewMenu(menuButtonPermission.hasAccess(menu, roles, hasAccessMessages, hasAccessRequests));
+        let menuPermission = menuButtonPermission.hasAccess(menu, roles, hasAccessMessages, hasAccessRequests)
+        setNewMenu(menuPermission.menu);
 
     }, [hasAccessMessages, hasAccessRequests, roles]);
     return (
