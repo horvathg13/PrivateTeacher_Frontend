@@ -12,6 +12,8 @@ export const UserContextProvider = ({children})=>{
     const [userId, setUserId]=useState();
     const [hasAccessMessages, setHasAccessMessages]=useState();
     const [hasAccessRequests, setHasAccessRequests]=useState();
+    const [hasChild, setHasChild] = useState()
+
     const value ={
         username,
         setUsername,
@@ -25,6 +27,8 @@ export const UserContextProvider = ({children})=>{
         setHasAccessMessages,
         hasAccessRequests,
         setHasAccessRequests,
+        hasChild,
+        setHasChild
     };
 
     useEffect(()=>{
@@ -36,6 +40,7 @@ export const UserContextProvider = ({children})=>{
                 setUserId(response.data.user.id);
                 setHasAccessMessages(response.data.menuButtonsPermission[0].hasAccessMessages);
                 setHasAccessRequests(response.data.menuButtonsPermission[0].hasAccessRequests);
+                setHasChild(response.data.hasChild)
             }
         }).catch((error)=>{
             if(error?.response?.status===500){
