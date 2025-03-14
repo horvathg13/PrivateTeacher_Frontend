@@ -42,7 +42,6 @@ const UserList = () => {
                 setLoader(false);
                 setUsers(response.data);
                 setLastPage(response.data.pagination.lastPageNumber)
-                console.log(response.data)
             }
         }).catch((error)=>{
             setServerError(error);
