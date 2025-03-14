@@ -594,7 +594,10 @@ form .roles-container.flex label {
 
 .content-main-container .FlexForm .form-items .form-children .form-baby{
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
+}
+.content-main-container .FlexForm .form-items .form-children .form-baby label{
+  min-width: 50px !important;
 }
 
 /*Title*/
