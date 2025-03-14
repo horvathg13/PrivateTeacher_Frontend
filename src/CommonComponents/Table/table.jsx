@@ -109,7 +109,7 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                         }
                     </div> :
                     <span className='loader table'></span>}
-                {!datas.length ?
+                {!datas?.data?.length && !loader?
                     <h3>
                         {t('empty-table')}
                     </h3>:null
