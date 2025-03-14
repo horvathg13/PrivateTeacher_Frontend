@@ -19,7 +19,7 @@ import {parseJSON} from "date-fns";
 import menuButtonPermission from "../menuButtonPermission";
         
 const Home = () => {
-    const {username,roles, setUsername, setRoles,  hasAccessMessages, setHasAccessMessages,hasAccessRequests,setHasAccessRequests} =useContext(UserContext);
+    const {username,roles, setUsername, setRoles,  hasAccessMessages, setHasAccessMessages,hasAccessRequests,setHasAccessRequests, hasChild, setHasChild} =useContext(UserContext);
     const navigate = useNavigate();
     const {t}=useTranslation();
     const getIcon=(iconName)=>{
@@ -43,20 +43,25 @@ const Home = () => {
                 setRoles(response.data.roles)
                 setHasAccessMessages(response.data.menuButtonsPermission[0].hasAccessMessages);
                 setHasAccessRequests(response.data.menuButtonsPermission[0].hasAccessRequests);
+                setHasChild(response.data.hasChild)
              }).catch(error=>{
                  navigate('/');
              });
         }else{
             if(localStorage.getItem("token")){
-                setNewMenu(menuButtonPermission.hasAccess(menu,roles, hasAccessMessages, hasAccessRequests))
+                let menuPermission = menuButtonPermission.hasAccess(menu,roles, hasAccessMessages, hasAccessRequests, hasChild)
+                setNewMenu(menuPermission.menu)
+                navigate(menuPermission.url)
             }
         }
-    }, []);
+    }, [hasAccessMessages, hasAccessRequests, roles, hasChild]);
     useEffect(() => {
         if (roles.length) {
-            setNewMenu(menuButtonPermission.hasAccess(menu,roles, hasAccessMessages, hasAccessRequests))
+            /*let menuPermission=menuButtonPermission.hasAccess(menu,roles, hasAccessMessages, hasAccessRequests, hasChild)
+            setNewMenu(menuPermission.menu)
+            navigate(menuPermission.url)*/
         }
-    }, [hasAccessMessages, hasAccessRequests, roles]);
+    }, [hasAccessMessages, hasAccessRequests, roles, hasChild]);
     return (
         <>
             <div className="home-text">
