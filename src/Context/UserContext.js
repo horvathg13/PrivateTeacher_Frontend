@@ -12,9 +12,9 @@ export const UserContextProvider = ({children})=>{
     const [userId, setUserId]=useState();
     const [hasAccessMessages, setHasAccessMessages]=useState();
     const [hasAccessRequests, setHasAccessRequests]=useState();
-    const [hasChild, setHasChild] = useState()
+    const [hasChild, setHasChild] = useState();
 
-    const value ={
+    const value = {
         username,
         setUsername,
         setRoles,
@@ -28,8 +28,8 @@ export const UserContextProvider = ({children})=>{
         hasAccessRequests,
         setHasAccessRequests,
         hasChild,
-        setHasChild
-    };
+        setHasChild,
+    }
 
     useEffect(()=>{
         ServiceClient.post("/api/getUserData").then((response)=>{
@@ -57,6 +57,16 @@ export const UserContextProvider = ({children})=>{
 
 
 export const userInfoContext=createContext(null);
+
+export const UserInfoContextProvider= ({children})=>{
+    const [userData, setUserData]=useState([])
+
+    const values ={userData,setUserData};
+
+    return(
+        <userInfoContext.Provider value={values}>{children}</userInfoContext.Provider>
+    )
+}
 
 export const schoolInfoContext = createContext(null);
 
@@ -98,7 +108,17 @@ export const ComponentTitleProvider=({children})=>{
 }
 
 export const LocationInfoContext = createContext(null);
-export const ChildInfoContext = createContext(null);
+export const ChildInfoContext = createContext([]);
+
+export const ChildInfoContextProvider =({children})=>{
+    const [childInfo, setChildInfo]=useState([]);
+
+    const values={childInfo, setChildInfo}
+
+    return(
+        <ChildInfoContext.Provider value={values}>{children}</ChildInfoContext.Provider>
+    )
+}
 
 export const SearchResults=createContext(null);
 
