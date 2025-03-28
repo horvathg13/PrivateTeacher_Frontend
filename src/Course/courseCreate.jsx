@@ -188,7 +188,7 @@ const CourseCreate = () => {
                                         <FaMinus onClick={() => handleRemoveRow(e)} className="selector-icon red"/>
                                     </td>    }
                                 </tr>
-                                {Object.keys(courseName).length-1  === i &&
+                                {Object.keys(courseName).length-1  === i && i < languages.length - 1 &&
                                     <tr>
                                         <td colSpan={4}>
                                             <FaPlus onClick={()=> readOnly === false ? handleAddRow() : null} className="selector-icon"/>
