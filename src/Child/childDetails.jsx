@@ -1,6 +1,11 @@
 import React, {useContext, useEffect} from 'react';
 import {useTranslation} from "react-i18next";
-import {ChildInfoContext, ComponentTitleContext, TabMenuContext} from "../Context/UserContext";
+import {
+    ChildInfoContext,
+    ChildInfoContextProvider,
+    ComponentTitleContext,
+    TabMenuContext
+} from "../Context/UserContext";
 import SideMenu from "../CommonComponents/SideMenu/sidemenu";
 import ComponentTitle from "../CommonComponents/ComponentTitle/componentTitle";
 import TabMenu from "../CommonComponents/TabMenu/tabMenu";
@@ -15,6 +20,7 @@ const ChildDetails = () => {
     /*TabMenu*/
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle, setBreadcrumbs}=useContext(ComponentTitleContext);
+    const {setChildInfo}=useContext(ChildInfoContext);
     useEffect(()=>{
         setMenuItems([
             {
@@ -54,9 +60,12 @@ const ChildDetails = () => {
         setTitle(t('componentTitles.child'));
     },[t])
 
+    useEffect(() => {
+        setChildInfo(childInfo)
+    }, [childInfo]);
+
     return (
         <>
-            <ChildInfoContext.Provider value={childInfo}>
                 <SideMenu />
                 <div className="content-main-container">
                     <ComponentTitle/>
@@ -66,7 +75,6 @@ const ChildDetails = () => {
                         <Outlet />
                     </div>
                 </div>
-            </ChildInfoContext.Provider>
         </>
 
     );
