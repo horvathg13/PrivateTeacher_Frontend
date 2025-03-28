@@ -66,15 +66,13 @@ const NewMessage = () => {
         if(message){
             setErrors([]);
             setServerError([]);
-
-            Promise.all([
-                ServiceClient.sendMessage(requestId,message, childId, teacherId),
-                ServiceClient.getMessageInfo(requestId).then((success)=>{
+            ServiceClient.sendMessage(requestId,message, childId, teacherId).then(()=>{
+                ServiceClient.getMessageInfo(requestId,childId).then((success)=>{
                     setMessageData(success)
                 })
-            ]).catch(error=>{
+            }).catch(error=>{
                 setServerError(error)
-            });
+            })
             setMessage('');
         }
     }
