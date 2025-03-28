@@ -52,6 +52,7 @@ const SearchCourse = () => {
 
     /*Loader */
     const [loader, setLoader]=useState(false);
+    const [searchResultLoader, setSearchResultLoader]=useState(false);
     const [formLoader, setFormLoader]=useState(false);
     const [deleteLoader, setDeleteLoader]=useState(true);
 
@@ -72,15 +73,17 @@ const SearchCourse = () => {
         
         e.preventDefault();
         setLoader(true);
+        setSearchResultLoader(true);
         setBtnDisabled(true);
         setErrors([]);
         setServerError([]);
 
         ServiceClient.searchCourse(teacherEmail,courseName, keywords,minTime,maxTime,
             minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
-            schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang?.value).then((success)=>{
+            schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang).then((success)=>{
 
             setLoader(false);
+            setSearchResultLoader(false);
             setBtnDisabled(false);
             setResult(success);
             setTitle(t('search.result'));
@@ -91,6 +94,7 @@ const SearchCourse = () => {
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
+            setSearchResultLoader(false);
             setBtnDisabled(false);
         })
     }
@@ -102,14 +106,17 @@ const SearchCourse = () => {
             case 'first':return setCounter(1);
             default: return counterSet;
         }
+
     }
-    useEffect(() => {
-        if(pageSet || counterSet>0){
+    const courseSearchForUseEffect=()=>{
+        if(pageSet || counterSet>1){
+            setSearchResultLoader(true)
             ServiceClient.searchCourse(teacherEmail,courseName, keywords,minTime,maxTime,
                 minTeachingDay,couresPricePerLesson,schoolCountry,schoolZip,
-                schoolCity, schoolStreet,schoolNumber,sortData, pageSet, counterSet, lang?.value).then((success)=>{
+                schoolCity, schoolStreet,schoolNumber,sortData, pageSet, !pageSet ? 1 : counterSet, lang).then((success)=>{
 
                 setLoader(false);
+                setSearchResultLoader(false);
                 setBtnDisabled(false);
                 setResult(success);
                 setTitle(t('search.result'));
@@ -120,13 +127,18 @@ const SearchCourse = () => {
             }).catch((error)=>{
                 setServerError(error);
                 setLoader(false);
+                setSearchResultLoader(false);
                 setBtnDisabled(false);
             })
         }
+    }
+    useEffect(() => {
+        setTimeout(courseSearchForUseEffect, 0)
     }, [pageSet, counterSet]);
     useEffect(() => {
         setKeywords([])
     }, [lang]);
+
     return (
         <>
         <EventHandler
@@ -142,10 +154,14 @@ const SearchCourse = () => {
         title={title}
         perPage={(data)=>{setPerPage(data)}}
         counter={(data)=>{pageCounter(data)}}
+        findPerPage={pageSet}
+        loader={searchResultLoader}
         />
         <div>
             <div className="title"><h2>{t('search.title')}</h2></div>
-                <form onSubmit={(e)=>searchCourse(e)} className="FlexForm">
+                <form onSubmit={(e)=> {
+                    searchCourse(e)
+                }} className="FlexForm">
                     <div className="form-items longLabel">
                         <div className="form-children">
                             <label>{t('search.teacher_email')}</label>
