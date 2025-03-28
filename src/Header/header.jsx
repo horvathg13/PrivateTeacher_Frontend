@@ -18,7 +18,7 @@ import {RiGraduationCapFill} from "react-icons/ri";
 import {MdLogout} from "react-icons/md";
 const Header = () => {
     /*Translation*/
-    const [language, setLanguage] = useState("HU");
+    const [language, setLanguage] = useState(localStorage.getItem("i18nextLng").slice(3) || "HU");
     const {t}=useTranslation();
     const location=useLocation();
     const nodeRef=useRef(null);
