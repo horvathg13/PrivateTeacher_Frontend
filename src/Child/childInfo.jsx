@@ -5,7 +5,7 @@ import EventHandler from "../EventHandler/eventhandler";
 import {MdEdit} from "react-icons/md";
 import ServiceClient from "../ServiceClient";
 import {RxUpdate} from "react-icons/rx";
-import {ChildInfoContext} from "../Context/UserContext";
+import {ChildInfoContext, ChildInfoContextProvider} from "../Context/UserContext";
 import {getChildInfo} from "../dataLoader";
 import {VscDebugDisconnect} from "react-icons/vsc";
 import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
@@ -15,7 +15,8 @@ const ChildInfo = () => {
     const {t}=useTranslation('translation', { keyPrefix: 'child'});
 
     /*Loader*/
-    const childInfo =useContext(ChildInfoContext);
+    const {childInfo, setChildInfo} =useContext(ChildInfoContext);
+
     /*Form fields*/
     const [fname, setFname]=useState(childInfo.firstname);
     const [lname, setLname]=useState(childInfo.lastname);
@@ -94,6 +95,10 @@ const ChildInfo = () => {
             getChildData();
             setReadOnlyInfo(true)
             setBtnDisabled(true)
+        }).then(()=>{
+            ServiceClient.getChildInfo(childId).then(success=>{
+                setChildInfo(success)
+            })
         }).catch((error)=>{
             setServerError(error);
             setBtnDisabled(false);
