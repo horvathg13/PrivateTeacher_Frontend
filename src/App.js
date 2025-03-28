@@ -13,7 +13,7 @@ import {
   ComponentTitleProvider,
   TabMenuContextProvider,
   UserContextProvider,
-  NotificationsContext, UserContext
+  NotificationsContext, UserContext, ChildInfoContextProvider, UserInfoContextProvider
 } from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails';
 import { createBrowserRouter } from 'react-router-dom';
@@ -410,12 +410,11 @@ const router = createBrowserRouter([
         path:"message/:id",
         element:<Protected><Message/></Protected>,
         errorElement:<RouteBoundary/>,
-        loader:({params})=>{return accessToMessages(params)},
         children:[
           {
             path:"",
             element: <MessageDetails/>,
-            loader:({params})=>{return getMessageInfo(params)}
+            loader:({params})=>{return accessToMessages(params)}
           }
         ]
       }
@@ -427,11 +426,15 @@ const router = createBrowserRouter([
     <>
 
     <UserContextProvider>
-      <ComponentTitleProvider>
-        <TabMenuContextProvider>
-          <RouterProvider router={router}/>
-        </TabMenuContextProvider>
-      </ComponentTitleProvider>
+      <UserInfoContextProvider>
+        <ChildInfoContextProvider>
+          <ComponentTitleProvider>
+            <TabMenuContextProvider>
+              <RouterProvider router={router}/>
+            </TabMenuContextProvider>
+          </ComponentTitleProvider>
+        </ChildInfoContextProvider>
+      </UserInfoContextProvider>
     </UserContextProvider>
     </>
   );
