@@ -36,12 +36,13 @@ input, select, select option{
 
 input:read-only{
   cursor: default;
+  user-select: none;
   border: none;
   background: #f2f2f2;
   color: black;
+  pointer-events: none;
+  outline: none;
 }
-
-
 /*Icons*/
 .icon{
   font-size:2rem;
