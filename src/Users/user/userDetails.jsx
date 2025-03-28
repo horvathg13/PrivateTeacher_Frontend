@@ -86,14 +86,14 @@ const UserDetails = () => {
         
     ]
     /*methods: */
-    const updateUser =(e)=>{
+    const updateUser =(e)=> {
         e.preventDefault()
 
         setBtnDisabled(true);
         setLoader(true);
         setErrors([]);
         setServerError([]);
-        if(password !== cpassword){
+        if (password !== cpassword) {
             setCPasswordError(true);
             setPasswordError(true);
             setErrors([t("validator.samePsw")]);
@@ -102,30 +102,26 @@ const UserDetails = () => {
             return
         }
 
-        let userInfo ={
-            "first_name":fname,
-            "last_name":lname,
-            "email":email,
-            "status":status,
+        let userInfo = {
+            "first_name": fname,
+            "last_name": lname,
+            "email": email,
+            "status": status.value,
         }
-        Promise.all([
-            ServiceClient.updateUser(userId, userInfo,password,cpassword).then((success)=>{
-                setSuccess(true);
-                setLoader(false);
-                setCPassword(null);
-                setPassword(null);
-                setTimeout(()=>{
-                    setSuccess(false);
-                },2000)
-                setBtnDisabled(false);
-            }),
-            ServiceClient.selectedUserData(userId).then((success)=>{
-                setFname(success.firstname);
-                setLname(success.lastname);
-                setEmail(success.email);
-                setStatus(success.status);
+        ServiceClient.updateUser(userId, userInfo, password, cpassword).then((success) => {
+            setSuccess(true);
+            setLoader(false);
+            setCPassword(null);
+            setPassword(null);
+            setTimeout(() => {
+                setSuccess(false);
+            }, 2000)
+            setBtnDisabled(false);
+        }).then(() => {
+            ServiceClient.selectedUserData(userId).then((success) => {
+                setUserData(success)
             })
-        ]).catch((error)=>{
+        }).catch((error) => {
             setServerError(error);
             setBtnDisabled(false);
             setLoader(false);
