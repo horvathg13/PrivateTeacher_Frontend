@@ -16,6 +16,8 @@ const User = () => {
     const {userId}=useParams();
     const userData=useLoaderData();
 
+    const {setUserData}=useContext(userInfoContext)
+
     useEffect(()=>{
 
         setMenuItems([
@@ -50,24 +52,26 @@ const User = () => {
         setTitle(t('componentTitles.user'));
     },[t])
 
-
+    useEffect(() => {
+        setUserData(userData)
+    }, [userData]);
 
 
     return (
 
         <>
             <SideMenu/>
-            <userInfoContext.Provider value={userData}>
-                <div className="content-main-container">
-                    <ComponentTitle />
 
-                    <div className="user-main">
+            <div className="content-main-container">
+                <ComponentTitle />
 
-                        <TabMenu/>
-                        <Outlet/>
-                    </div>
+                <div className="user-main">
+
+                    <TabMenu/>
+                    <Outlet/>
                 </div>
-            </userInfoContext.Provider>
+            </div>
+
         </>
     );
 };
