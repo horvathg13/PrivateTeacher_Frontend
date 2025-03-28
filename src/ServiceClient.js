@@ -257,8 +257,8 @@ class ServiceClient {
             return response.data
         })
     }
-    static getMessageInfo=(Id)=>{
-        return this.get(`/api/getMessageInfo/${Id}/${null}`).then((response)=>{
+    static getMessageInfo=(Id,childId)=>{
+        return this.post(`/api/getMessageInfo/${Id}/${childId}`).then((response)=>{
             return response.data
         })
     }
@@ -345,6 +345,18 @@ class ServiceClient {
         return this.post('/api/cancelCourseRequest', {requestId:requestId}).then((response)=>{
             return response.data
         });
+    }
+
+    static getCourseInfo=(courseId)=>{
+        return this.get(`/api/getCourseInfo/${courseId}`).then(response=>{
+            return response.data
+        })
+    }
+
+    static getChildInfo=(childId)=>{
+        return ServiceClient.get(`/api/getChildInfo/${childId}`).then((response)=>{
+            return response.data
+        })
     }
 }
 
