@@ -1,4 +1,4 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import {useEffect,useState} from "react";
 import EventHandler from "../EventHandler/eventhandler";
 import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus, FaTrashCan } from "react-icons/fa6";
@@ -21,7 +21,7 @@ const CourseInfo = () => {
     const [courseInfo, courseStatuses, schoolLocations, paymentPeriods, currencies,languages] = useLoaderData();
 
     /*Data */
-    const [courseName, setCourseName]=useState(courseInfo.name);
+    const [courseName, setCourseName]=useState();
     const [studentLimit, setStudentLimit]=useState(courseInfo.student_limit);
     const [minutesLesson, setMinutesLesson]=useState(courseInfo.minutes_lesson);
     const [minTeachingDay, setMinTeachingDay]=useState(courseInfo.min_teaching_day);
@@ -152,6 +152,29 @@ const CourseInfo = () => {
             setLabels(init);
         }
     }, [courseInfo]);
+
+    useEffect(()=>{
+        if(readOnly && courseInfo){
+            setCourseName(JSON.parse(JSON.stringify(courseInfo.name)))
+            setStudentLimit(courseInfo.student_limit)
+            setMinutesLesson(courseInfo.minutes_lesson)
+            setMinTeachingDay(courseInfo.min_teaching_day)
+            setcoursePricePerLesson(courseInfo.course_price_per_lesson)
+            setLabels()
+            setLocation({value:courseInfo.location.id, label:courseInfo.location.name})
+            setPaymentPeriod(courseInfo.paymentPeriod)
+            setCurrency(courseInfo.currency)
+            setCourseStatus(courseInfo.status)
+            setRemoveLangs([])
+            setStartDate(courseInfo.start)
+            setEndDate(courseInfo.end)
+        }
+    },[readOnly])
+
+    useEffect(() => {
+        setCourseName(JSON.parse(JSON.stringify(courseInfo.name)))
+    }, [courseInfo]);
+
     return (
         <>
             <EventHandler
@@ -188,8 +211,9 @@ const CourseInfo = () => {
                                 defaultValue={courseStatus}
                                 options={courseStatuses}
                                 onChange={(selected) => {
-                                    handleInputChange(selected)
+                                    setCourseStatus(selected)
                                 }}
+                                value={courseStatus}
                                 isDisabled={readOnly}
                                 isSearchable={true}
                                 className="select-componentFull"
@@ -220,13 +244,13 @@ const CourseInfo = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {courseName.map((e, i) => (
+                                {courseName?.map((e, i) => (
                                     <>
                                         <tr>
                                             <td>
                                                 <Select
                                                     placeholder={t('select-lang')}
-                                                    defaultValue={({value: e.lang, label: a(`enums.${e.lang}`)})}
+                                                    value={({value:e.lang, label: typeof e.lang === "string" ? a(`enums.${e.lang}`) : a(`enums.${e.lang.value}`)})}
                                                     options={languages.map(j=>({value:j.value, label:a(`enums.${j.label}`)})) || null}
                                                     onChange={(selected) => {
                                                         handleInputChange(selected, i)
@@ -260,7 +284,7 @@ const CourseInfo = () => {
                                                          className="selector-icon red"/>
                                             </td>}
                                         </tr>
-                                        {!readOnly && Object.keys(courseName).length - 1 === i &&
+                                        {!readOnly && Object.keys(courseName).length - 1 === i &&  i < languages.length - 1  &&
                                             <tr>
                                                 <td colSpan={4}>
                                                     <FaPlus onClick={handleAddRow} className="selector-icon"/>
@@ -273,7 +297,7 @@ const CourseInfo = () => {
                             </table>
                         </div>
                         <div className="form-children mobile-course-create-table">
-                            {courseName.map((e, i) => (
+                            {courseName?.map((e, i) => (
                                 <div key={i}>
                                     <div className="mobile-children">
                                         <label>{t('form.lang')}</label>
@@ -303,7 +327,7 @@ const CourseInfo = () => {
                                     <div className="mobile-children">
                                         <label>{t('form.labels')}</label>
                                         <LabelSelector
-                                            labelEmit={(data) => console.log(data)}
+                                            labelEmit={(data) => handleLabelSelection(data, i)}
                                             disabled={e.lang === ""}
                                             lang={e.lang}
                                             popUpTitle={"Add labels"}
@@ -324,8 +348,9 @@ const CourseInfo = () => {
                                 defaultValue={location}
                                 options={schoolLocations?.select}
                                 onChange={(selected) => {
-                                    setLocation(selected.value)
+                                    setLocation(selected)
                                 }}
+                                value={location}
                                 isDisabled={readOnly}
                                 isSearchable={true}
                                 className="select-componentFull"
@@ -350,8 +375,9 @@ const CourseInfo = () => {
                                     defaultValue={courseInfo.currency}
                                     options={currencies}
                                     onChange={(selected) => {
-                                        setCurrency(selected.value)
+                                        setCurrency(selected)
                                     }}
+                                    value={currency}
                                     isDisabled={readOnly}
                                     isSearchable={true}
                                     className="select-component90"
@@ -365,8 +391,9 @@ const CourseInfo = () => {
                                     defaultValue={courseInfo.paymentPeriod}
                                     options={paymentPeriods}
                                     onChange={(selected) => {
-                                        setPaymentPeriod(selected.value)
+                                        setPaymentPeriod(selected)
                                     }}
+                                    value={paymentPeriod}
                                     isDisabled={readOnly}
                                     isSearchable={true}
                                     className="select-componentFull"
