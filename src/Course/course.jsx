@@ -2,8 +2,8 @@ import { Outlet, useLoaderData, useParams } from 'react-router-dom';
 import SideMenu from '../CommonComponents/SideMenu/sidemenu';
 import ComponentTitle from '../CommonComponents/ComponentTitle/componentTitle';
 import TabMenu from '../CommonComponents/TabMenu/tabMenu';
-import {TabMenuContext, schoolInfoContext, ComponentTitleContext} from '../Context/UserContext';
-import { useContext, useEffect, useLayoutEffect } from 'react';
+import {TabMenuContext, schoolInfoContext, ComponentTitleContext, OriginalCourseDetails} from '../Context/UserContext';
+import {useContext, useEffect, useLayoutEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
         
 const Course = () => {
@@ -11,6 +11,7 @@ const Course = () => {
     const schoolData = useLoaderData();
     const {setMenuItems}=useContext(TabMenuContext);
     const {setTitle,setBreadcrumbs}=useContext(ComponentTitleContext);
+
     /*Translation*/
     const {t}=useTranslation();
     useEffect(()=>{
@@ -46,21 +47,20 @@ const Course = () => {
         ]);
         setTitle(t('componentTitles.course'));
     },[t])
-    
-    
 
     return (
         <>
-            <SideMenu/>    
+            <SideMenu/>
             <div className="content-main-container">
                 <ComponentTitle/>
-                
+
                 <div className="user-main">
-                   
+
                     <TabMenu />
                     <Outlet/>
                 </div>
             </div>
+
         </>
         
     );
