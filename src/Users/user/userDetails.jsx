@@ -25,13 +25,13 @@ const UserDetails = () => {
     const {t:a}=useTranslation();
 
     /*Context*/
-    const userData = useContext(userInfoContext);
+    const {userData, setUserData} = useContext(userInfoContext);
 
     /*Form fields*/
-    const [fname, setFname]=useState(userData.firstname);
-    const [lname, setLname]=useState(userData.lastname);
-    const [email, setEmail]=useState(userData.email);
-    const [status, setStatus]=useState(userData.status);
+    const [fname, setFname]=useState();
+    const [lname, setLname]=useState();
+    const [email, setEmail]=useState();
+    const [status, setStatus]=useState();
     const [emailError, setEmailError]=useState(false);
 
     const[showPasswordFields, setShowPasswordField]=useState(false);
@@ -140,6 +140,29 @@ const UserDetails = () => {
         });
     },[t]);
 
+    useEffect(()=>{
+        if(readOnlyInfo && userData){
+            setFname(userData.firstname)
+            setLname(userData.lastname)
+            setEmail(userData.email)
+            setStatus({value: userData.status, label:a(`enums.${userData.status}`)})
+        }
+
+        if(readOnlyPsw){
+            setPassword('');
+            setCPassword('');
+        }
+    },[readOnlyInfo, readOnlyPsw])
+
+    useEffect(() => {
+        if(userData){
+            setStatus({value: userData.status, label:a(`enums.${userData.status}`)})
+            setFname(userData.firstname);
+            setLname(userData.lastname);
+            setEmail(userData.email)
+        }
+    }, [userData]);
+
     return (
         <>
             <EventHandler 
@@ -156,12 +179,14 @@ const UserDetails = () => {
                         <div className="fields flex">
                             <div className="first-name field">
                                 <label>{t('info.form.fname')}</label>
-                                <input 
-                                type="text" 
-                                readOnly={readOnlyInfo} 
-                                required 
-                                value={fname} 
-                                onChange={(e)=>{setFname(e.target.value)}}
+                                <input
+                                    type="text"
+                                    readOnly={readOnlyInfo}
+                                    required
+                                    value={fname}
+                                    onChange={(e) => {
+                                        setFname(e.target.value)
+                                    }}
                                 />
                             </div>
                             <div className="last-name field">
@@ -187,9 +212,9 @@ const UserDetails = () => {
                             <div className="status field">
                                 <label>{t('info.form.status')}</label>
                                 <Select
-                                    defaultValue={{value: userData.status, label:a(`enums.${userData.status}`)}}
+                                    value={status}
                                     options={statuses}
-                                    onChange={(selected)=>{setStatus(selected.value)}}
+                                    onChange={(selected)=>{setStatus(selected)}}
                                     isDisabled={readOnlyInfo}
                                     isSearchable={false}
                                     className="select-component"
@@ -204,21 +229,25 @@ const UserDetails = () => {
                             <div className="psw field">
                                 <label>{t('info.form.password')}</label>
                                 <input 
-                                className={passwordError ? 'InputError' : 'passwordInput'} 
-                                type="password" 
-                                readOnly={readOnlyPsw} 
-                                required 
-                                onChange={(e) => { setPassword(e.target.value); } } />
+                                    className={passwordError ? 'InputError' : 'passwordInput'}
+                                    type="password"
+                                    readOnly={readOnlyPsw}
+                                    required
+                                    onChange={(e) => { setPassword(e.target.value); } }
+                                    value={password}
+                                />
 
                             </div>
                             <div className="cpsw field">
                                 <label>{t('info.form.cpassword')}</label>
                                 <input 
-                                className={cpasswordError ? 'InputError' : 'passwordInput'} 
-                                type="password" 
-                                readOnly={readOnlyPsw} 
-                                required 
-                                onChange={(e) => { setCPassword(e.target.value); } } />
+                                    className={cpasswordError ? 'InputError' : 'passwordInput'}
+                                    type="password"
+                                    readOnly={readOnlyPsw}
+                                    required
+                                    onChange={(e) => { setCPassword(e.target.value); } }
+                                    value={cpassword}
+                                />
                             </div>
                         </div>
                     </div>
