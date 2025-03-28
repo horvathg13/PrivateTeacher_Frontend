@@ -56,6 +56,9 @@
 .main-container.flex .lng-select ul{
     overflow: hidden;
 }
+.main-container.flex .lng-select ul li{
+    padding: 4px 6px !important;
+}
 .main-container.flex .user-container h4{
     font-weight: normal;
     letter-spacing: 1px;
