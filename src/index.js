@@ -13,6 +13,8 @@ export const languageTransform=(lng)=>{
     switch (lng){
         case 'GB':return 'en-GB'
         case 'HU':return 'hu-HU'
+        case 'en-GB':return 'en-GB'
+        case 'hu-HU':return 'hu-HU'
         default: return 'hu-HU'
     }
 }
