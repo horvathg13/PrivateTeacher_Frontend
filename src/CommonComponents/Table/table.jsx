@@ -9,7 +9,7 @@ import {useTranslation} from "react-i18next";
 import i18next from "i18next";
 
 
-const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPaginator}) => {
+const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPaginator, pageFind}) => {
 
     /*Translate*/
     const {t}=useTranslation()
@@ -17,6 +17,7 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
     const [sort, setSort]=useState(true);
     const [column, setColumn]=useState();
     const [activeRow, setActiveRow]=useState();
+    const [paginateDisable, setPaginateDisabled]=useState(false)
    
     /* methods:*/
     const handleSort=(e)=>{
@@ -34,6 +35,13 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
         }
 
         return classes.join(' ');
+    }
+
+    const buttonDisabled=(e)=>{
+        setPaginateDisabled(true)
+        setTimeout(()=>{
+            setPaginateDisabled(false)
+        },1000)
     }
 
     if(datas !== null) {
@@ -89,21 +97,64 @@ const Table = ({datas, loader, page, perPage, selectedRow, selectableRow, setPag
                             </tbody>
                         </table>
                         {setPaginator ?
-                            <div className="pagination-continer flex">
+                            <div className="pagination-container flex">
                                 <div className="show-container flex">
-                                    {t('commonComponents.table.counter')}<input type='number' defaultValue={10} onKeyDown={(e) => {
+                                    {t('commonComponents.table.counter')}<input type='number' defaultValue={pageFind} onBlur={(e)=> {
+                                    perPage(e.target.value);
+                                }} onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
-                                        return perPage(e.target.value);
+                                        return [perPage(e.target.value)];
                                     }
                                 }}/>
 
                                 </div>
                                 <div className="pagination flex">
-                                    <MdFirstPage className='paginate-icon' onClick={() => page('first')}/>
-                                    <GrFormPrevious className='paginate-icon' onClick={() => page('prev')}/>
-                                    {datas?.pagination?.currentPageNumber} / {datas?.pagination?.lastPageNumber}{datas?.pagination?.hasMorePages ? <>
-                                    <MdNavigateNext className='paginate-icon' onClick={() => page('next')}/><MdLastPage
-                                    className='paginate-icon' onClick={() => page('last')}/></> : null}
+                                    <button
+                                        className="hidden-button"
+                                        type='button'
+                                        disabled={paginateDisable}
+                                        onDoubleClick={(e)=>buttonDisabled(e)}
+                                    ><MdFirstPage className='paginate-icon' onClick={(e) => {
+                                        buttonDisabled(e); page('first')
+                                    }}/>
+                                    </button>
+
+                                    <button
+                                        className="hidden-button"
+                                        type='button'
+                                        disabled={paginateDisable}
+                                        onDoubleClick={(e)=>buttonDisabled(e)}
+                                    >
+                                        <GrFormPrevious className='paginate-icon' onClick={(e) => {
+                                            buttonDisabled(e);
+                                            page('prev')
+                                        }}/>
+                                    </button>
+
+                                    {datas?.pagination?.currentPageNumber} / {datas?.pagination?.lastPageNumber}{datas?.pagination?.hasMorePages ?
+                                        <>
+                                            <button
+                                                className="hidden-button"
+                                                type='button'
+                                                disabled={paginateDisable}
+                                                onDoubleClick={(e)=>buttonDisabled(e)}
+                                            >
+                                                <MdNavigateNext className='paginate-icon' onClick={(e) => {
+                                                    buttonDisabled(e); page('next')
+                                                }}/>
+                                            </button>
+                                            <button
+                                                className="hidden-button"
+                                                type='button'
+                                                disabled={paginateDisable}
+                                                onDoubleClick={(e)=>buttonDisabled(e)}
+                                            >
+                                                <MdLastPage className='paginate-icon' onClick={(e) => {
+                                                    buttonDisabled(e); page('last')
+                                                }}/>
+                                            </button>
+                                        </> :
+                                    null}
                                 </div>
                             </div> : null
                         }
