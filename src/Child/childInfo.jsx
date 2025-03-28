@@ -134,6 +134,17 @@ const ChildInfo = () => {
             setReadOnlyInfo(false)
         });
     }
+
+    useEffect(()=>{
+        if(readOnlyInfo && childInfo){
+            setFname(childInfo.firstname)
+            setLname(childInfo.lastname)
+            setUsername(childInfo.username)
+            setBirthday(childInfo.birthday)
+            setPassword('')
+            setCPassword('')
+        }
+    },[readOnlyInfo])
     return (
         <>
             <EventHandler
