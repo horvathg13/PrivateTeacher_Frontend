@@ -36,7 +36,7 @@ const UserList = () => {
 
     useLayoutEffect(()=>{
         setLoader(true);
-        let url=`/api/getUsers?perPage=${perPage}&page=${counter}`;
+        let url=`/api/getUsers?perPage=${perPage}&page=${!perPage ? 1 : counter}`;
         ServiceClient.post(url).then((response)=>{
             if(response.status===200){
                 setLoader(false);
@@ -71,7 +71,8 @@ const UserList = () => {
             page={pageCounter}
             perPage={setPerPage}
             selectedRow={(e)=>[setSelectedRow(e), setLoader(true)]}
-            setPaginator={true}/>
+            setPaginator={true}
+            pageFind={perPage}/>
 
             
         </div>
