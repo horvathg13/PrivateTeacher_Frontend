@@ -4,21 +4,23 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Table from "../CommonComponents/Table/table";
         
-const SearchResult = ({data, title,transitionProp, closeModal, perPage, counter}) => {
+const SearchResult = ({data, title,transitionProp, closeModal, perPage, counter, loader, findPerPage}) => {
    
     const nodeRef = useRef(null);
-    const [loader, setLoader]=useState(false);
+    /*const [loader, setLoader]=useState(false);*/
     const [selectedRow, setSelectedRow]=useState();
     const navigate = useNavigate();
 
    /* Methods:*/ 
-   
 
+    const openInNewTab=()=>{
+        if(selectedRow){
+            window.open(`/course/profile/${selectedRow.id}`, '_blank' );
+        }
+    }
 
    useEffect(()=>{
-       if(selectedRow){
-           window.open(`/course/profile/${selectedRow.id}`, '_blank' );
-       }
+       setTimeout(openInNewTab,0)
    },[selectedRow]);
 
     return (
@@ -39,6 +41,7 @@ const SearchResult = ({data, title,transitionProp, closeModal, perPage, counter}
                 perPage={(data)=>perPage(data)}
                 selectedRow={(e)=>[setSelectedRow(e)]}
                 setPaginator={true}
+                pageFind={findPerPage}
                 />
             </div>
 
