@@ -62,7 +62,7 @@ const ChildConnect = () => {
         closeErrorMessage={(data) => { if (data === true) { setErrors([]); } } } />
         <div className="login-container">
             <div className="title">
-                <h1>{t('title.connect')}</h1>
+                <h2>{t('title.connect')}</h2>
             </div>
             <div className="form-container connectChild">
                 <form onSubmit={connect}>
@@ -83,7 +83,7 @@ const ChildConnect = () => {
 
                     </div>
 
-                    {!loader ? <button type='submit' disabled={btndisable} className={!btndisable ? 'btn formButton connectButton' : 'btn formButton connectButton disabled'}>{t('title.connect')} <FaArrowCircleRight className='btn-icon' /></button> :
+                    {!loader ? <button type='submit' disabled={btndisable} className={!btndisable ? 'btn formButton connectButton' : 'btn formButton connectButton disabled'}>{t('button.connect')} <FaArrowCircleRight className='btn-icon' /></button> :
                         <span className='loader connectButtonLoader'></span>}
                 </form>
             </div>
