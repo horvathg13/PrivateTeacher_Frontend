@@ -66,11 +66,14 @@ const Header = () => {
             
         })
     }
-
+    const flagSelectRef=useRef(null);
     const NotificationQuery=(e)=>{
         e.preventDefault();
+        const toggleButton = flagSelectRef.current.querySelector("#rfs-btn");
+        if (toggleButton && toggleButton.getAttribute("aria-expanded") === "true") {
+            toggleButton.click();
+        }
         setNotificationMenu(!notificationMenu)
-
         ServiceClient.getNotifications().then((success)=>{
             setNotifications(success);
         }).catch(error=>{
