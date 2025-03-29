@@ -32,20 +32,14 @@ export const UserContextProvider = ({children})=>{
     }
 
     useEffect(()=>{
-        ServiceClient.post("/api/getUserData").then((response)=>{
-            if(response.status===200){
-                setUsername(response.data.user.first_name);
-                setRoles(response.data.roles);
-                setStatus(response.data.user.user_status);
-                setUserId(response.data.user.id);
-                setHasAccessMessages(response.data.menuButtonsPermission[0].hasAccessMessages);
-                setHasAccessRequests(response.data.menuButtonsPermission[0].hasAccessRequests);
-                setHasChild(response.data.hasChild)
-            }
-        }).catch((error)=>{
-            if(error?.response?.status===500){
-                console.log(error.response.data);
-            }
+        ServiceClient.getUserData().then((success)=>{
+            setUsername(success.user.first_name);
+            setRoles(success.roles);
+            setStatus(success.user.user_status);
+            setUserId(success.user.id);
+            setHasAccessMessages(success.menuButtonsPermission[0].hasAccessMessages);
+            setHasAccessRequests(success.menuButtonsPermission[0].hasAccessRequests);
+            setHasChild(success.hasChild)
         })
     },[])
     
