@@ -12,6 +12,7 @@ import {MdOutlineCancel, MdPersonRemove} from "react-icons/md";
 import {IoExit} from "react-icons/io5";
 import TeachindDaySelect from "../CommonComponents/TeachingDay/teachindDaySelect";
 import {TiCancel} from "react-icons/ti";
+import Date from "../date";
 
 const RequestDetails = () => {
     /*Translation*/
@@ -260,24 +261,24 @@ const RequestDetails = () => {
                             <div className="form-title"><h2>{t('form.titles.answer')}</h2></div>
                             <div className="form-children">
                                 <label>{t('form.start')}</label>
-                                <input type="date" onChange={(e) => setStartDate(e.target.value)}/>
+                                <input type="date" min={Date.specificDate(requestDetails.course_info.start_date)} max={Date.specificDate(requestDetails.course_info.end_date)} onChange={(e) => setStartDate(e.target.value)}/>
                             </div>
                             {!requestDetails.terminationDetails &&
                                 <>
-                                <div className="form-children">
-                                    <label>{t('form.teaching_day')}</label>
-                                    <TeachindDaySelect
-                                        disabled={false}
-                                        teachingDays={teachingDays}
-                                        teachingDaysEmit={(data) => setTeachingDayDetails(data)}
-                                    />
-                                </div>
-                                <div className="form-children">
-                                    <label>{t('form.justification')}</label>
-                                    <textarea required onChange={(e) => {
-                                        setMessage(e.target.value)
-                                    }}/>
-                                </div>
+                                    <div className="form-children">
+                                        <label>{t('form.teaching_day')}</label>
+                                        <TeachindDaySelect
+                                            disabled={false}
+                                            teachingDays={teachingDays}
+                                            teachingDaysEmit={(data) => setTeachingDayDetails(data)}
+                                        />
+                                    </div>
+                                    <div className="form-children">
+                                        <label>{t('form.justification')}</label>
+                                        <textarea required onChange={(e) => {
+                                            setMessage(e.target.value)
+                                        }}/>
+                                    </div>
                                 </>
                             }
                             <div className="form-button-container">
@@ -311,7 +312,7 @@ const RequestDetails = () => {
                         </>
                         :
                         <>
-                        { (userId !== requestDetails.course_info.teacher_id) && requestDetails.status !== "CANCELLED" &&
+                        { (userId !== requestDetails.course_info.teacher_id) && requestDetails.status === "UNDER_REVIEW" &&
                             <div className="form-button-container">
                                 {!cancelLoader ?
                                     <button
