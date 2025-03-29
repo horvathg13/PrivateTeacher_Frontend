@@ -354,8 +354,16 @@ class ServiceClient {
     }
 
     static getChildInfo=(childId)=>{
-        return ServiceClient.get(`/api/getChildInfo/${childId}`).then((response)=>{
+        return this.get(`/api/getChildInfo/${childId}`).then((response)=>{
             return response.data
+        })
+    }
+
+    static getUserData=()=>{
+        return this.post("/api/getUserData").then((response)=>{
+            return response.data
+        }).catch((error)=>{
+            console.log(error.response.data);
         })
     }
 }
