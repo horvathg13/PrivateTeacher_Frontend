@@ -16,6 +16,7 @@ import "../transitions.css";
 import {IoIosNotifications} from "react-icons/io";
 import {RiGraduationCapFill} from "react-icons/ri";
 import {MdLogout} from "react-icons/md";
+import moment from "moment";
 const Header = () => {
     /*Translation*/
     const [language, setLanguage] = useState(localStorage.getItem("i18nextLng").slice(3) || "HU");
@@ -27,7 +28,6 @@ const Header = () => {
             /*document.title=t('document.title');
             console.log(location);*/
         });
-
     }, [language]);
 
     /*General variables */
@@ -120,7 +120,7 @@ const Header = () => {
             </div> : null}
 
             <div className="header-action-container">
-                <div className="lng-select">
+                <div className="lng-select" ref={flagSelectRef}>
                     <ReactFlagsSelect
                         countries={["HU", "GB"]}
                         customLabels={{HU: "magyar", GB: "english"}}
@@ -154,7 +154,7 @@ const Header = () => {
                                         </div>
                                         <div className="notification-messages">
                                             <p>{t(`header.notifications.${e.message}`)}</p>
-                                            <p className="date">{new Date(e.created_at).getUTCFullYear()}-{new Date(e.created_at).getUTCMonth()}-{new Date(e.created_at).getUTCDate()} {new Date(e.created_at).getUTCHours()}:{new Date(e.created_at).getUTCMinutes()}</p>
+                                            <p className="date">{moment(e.created_at).format("LLL")}</p>
                                         </div>
                                     </div>:
                                     <div key={e.id} className="notification-child"
@@ -169,7 +169,7 @@ const Header = () => {
                                         </div>
                                         <div className="notification-messages">
                                             <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{t(`${e.message}`)}</p>
-                                            <p className="date">{new Date(e.created_at).getUTCFullYear()}-{new Date(e.created_at).getUTCMonth()}-{new Date(e.created_at).getUTCDate()} {new Date(e.created_at).getUTCHours()}:{new Date(e.created_at).getUTCMinutes()}</p>
+                                            <p className="date">{moment(e.created_at).format("LLL")}</p>
                                         </div>
                                     </div>
                             ) : <div className="notification-menu-loader-container">
