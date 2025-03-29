@@ -8,6 +8,7 @@ import {GrUpdate} from "react-icons/gr";
 import {FaArrowCircleRight} from "react-icons/fa";
 import ServiceClient from "../ServiceClient";
 import {CourseInfoContext} from "../Context/UserContext";
+import Date from "../date";
 
 const CourseApply = () => {
     /*Translate*/
@@ -42,6 +43,7 @@ const CourseApply = () => {
     const [serverError, setServerError]=useState([]);
 
     /*Methods*/
+
     const sendApply=(e)=>{
         e.preventDefault();
         setReadOnly(true);
@@ -147,6 +149,8 @@ const CourseApply = () => {
                             <label>{t('form.start')}</label>
                             <input
                                 type="date"
+                                min={Date.today()}
+                                max={Date.specificDate(courseProfile.end)}
                                 value={startDate}
                                 required
                                 onChange={(e) => setStartDate(e.target.value)}
