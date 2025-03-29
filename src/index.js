@@ -7,15 +7,17 @@ import I18nextBrowserLanguageDetector from "i18next-browser-languagedetector";
 import {initReactI18next} from "react-i18next";
 import backend from "i18next-http-backend";
 import i18next from "i18next";
+import moment from "moment";
+import 'moment/locale/hu';
 
 const lng =localStorage.getItem('i18nextLng');
 export const languageTransform=(lng)=>{
     switch (lng){
-        case 'GB':return 'en-GB'
-        case 'HU':return 'hu-HU'
-        case 'en-GB':return 'en-GB'
-        case 'hu-HU':return 'hu-HU'
-        default: return 'hu-HU'
+        case 'GB':return ['en-GB', moment.locale('en-GB')]
+        case 'HU':return ['hu-HU', moment.locale('hu-HU')]
+        case 'en-GB':return ['en-GB', moment.locale('en-GB')]
+        case 'hu-HU':return ['hu-HU', moment.locale('hu-HU')]
+        default: return ['hu-HU', moment.locale('hu-HU')]
     }
 }
 const ns = "translation"
