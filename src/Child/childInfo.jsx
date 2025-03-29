@@ -9,6 +9,7 @@ import {ChildInfoContext, ChildInfoContextProvider} from "../Context/UserContext
 import {getChildInfo} from "../dataLoader";
 import {VscDebugDisconnect} from "react-icons/vsc";
 import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
+import Date from "../date";
 
 const ChildInfo = () => {
     /*Translation*/
@@ -200,6 +201,7 @@ const ChildInfo = () => {
                                 <input
                                     type="date"
                                     value={birthday}
+                                    max={Date.yesterday()}
                                     readOnly={readOnlyInfo}
                                     required
                                     onChange={(e)=>{setBirthday(e.target.value)}}/>
