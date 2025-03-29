@@ -14,6 +14,9 @@ import Select from "react-select";
 import ReactFlagsSelect from "react-flags-select";
 import {IoClose} from "react-icons/io5";
 import course from "./course";
+import moment from "moment";
+import Date from "../date";
+
 const CourseCreate = () => {
     /*Translation*/
     const {t}=useTranslation("translation", {keyPrefix:'schools.school.year.courses'});
@@ -132,11 +135,11 @@ const CourseCreate = () => {
                     <div className="form-children form-collapse">
                         <div className="flexColumnItems">
                             <label>{t('form.start')}</label>
-                            <input type="date" required readOnly={readOnly} onChange={(e)=>{setStartDate(e.target.value)}} value={startDate}/>
+                            <input type="date" min={Date.today()} required readOnly={readOnly} onChange={(e)=>{setStartDate(e.target.value)}} value={startDate}/>
                         </div>
                         <div className="flexColumnItems">
                             <label>{t('form.end')}</label>
-                            <input type="date" required readOnly={readOnly} onChange={(e)=>{setEndDate(e.target.value)}} value={endDate}/>
+                            <input type="date" min={Date.today()} required readOnly={readOnly} onChange={(e)=>{setEndDate(e.target.value)}} value={endDate}/>
                         </div>
                     </div>
                     <div className="form-children">
