@@ -228,7 +228,8 @@
             "delete": "Törlés"
           },
           "validate": {
-            "lng-required": "A nyelv megadása kötelező"
+            "lng-required": "A nyelv megadása kötelező",
+            "lng-same": "A kurzus nyelvei nem egyezhetnek meg. Kérlek válassz másik nyelvet."
           }
         }
 
@@ -268,7 +269,7 @@
     "title":{
       "list": "Kapcsolatok",
       "create": "Létrehozás",
-      "connect": "Kapcsolódás",
+      "connect": "Gyermek fiók hozzárendelése",
       "info": "Információ",
       "changePassword": "Új jelszó",
       "parentInfos": "Szülő Információk",
@@ -292,7 +293,8 @@
       "update": "Frissítés",
       "disconnect": "Leválasztás",
       "confirm": "Jóváhagyás",
-      "termination": "Megszüntetés"
+      "termination": "Megszüntetés",
+      "connect": "Kapcsolódás"
     },
     "validator": {
       "samePsw": "A megadott jelszavak nem egyeznek.",
@@ -360,6 +362,7 @@
       "courseName": "Kurzus neve",
       "numberOfLesson": "Heti óraszám igény",
       "notice": "Bemutatkozás",
+      "terminationNotice": "Indoklás",
       "start": "Kurzus kezdete",
       "end": "Kurzus vége",
       "teaching_day": "Tanítási alkalmak",
@@ -466,6 +469,9 @@
     "request":"Válassza ki a tanulói kurzusát",
     "no-child": "Ez a művelet még nem elérhető.",
     "select": "Válasszon..."
+  },
+  "passwords": {
+    "invalidToken": "A token érvénytelen. Kérem, tájékoztassa az admint."
   },
   "tableHeaders": {
     "id":"ID",

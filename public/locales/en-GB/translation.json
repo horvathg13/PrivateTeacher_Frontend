@@ -228,7 +228,8 @@
             "delete": "Delete"
           },
           "validate": {
-            "lng-required": "Language field is required"
+            "lng-required": "Language field is required",
+            "lng-same": "Course languages must be different. Please, select again."
           }
         }
 
@@ -268,7 +269,7 @@
     "title":{
       "list": "My Connections",
       "create": "Create",
-      "connect": "Connect",
+      "connect": "Connect child account",
       "info": "Info",
       "changePassword": "Change Password",
       "parentInfos": "Parent Infos",
@@ -292,7 +293,8 @@
       "update": "Update",
       "disconnect": "Disconnect",
       "confirm": "Confirm",
-      "termination": "Termination"
+      "termination": "Termination",
+      "connect": "Connection"
     },
     "validator": {
       "samePsw": "The given passwords does not match.",
@@ -360,6 +362,7 @@
       "courseName": "Course Name",
       "numberOfLesson": "Number of lesson per week required",
       "notice": "Introduction",
+      "terminationNotice": "Justification ",
       "start": "Course start",
       "end": "Course end",
       "teaching_day": "Teaching occasions",
@@ -466,6 +469,9 @@
     "request":"Choose your student course",
     "no-child": "This operation not available yet.",
     "select": "Select..."
+  },
+  "passwords": {
+    "invalidToken": "The token is invalid. Please, contact the admin."
   },
   "tableHeaders": {
     "id":"ID",
