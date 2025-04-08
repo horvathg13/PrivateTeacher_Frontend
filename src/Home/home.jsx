@@ -68,7 +68,7 @@ const Home = () => {
                 <h1>{t('home.greeting')} {username}</h1>
                 <p>{t('home.subtitle')}</p>
             </div>
-           <div className="homeMenu-main-container flex">
+            <div className="homeMenu-main-container flex">
                {newMenu?.map((e, i) => (
                    <div className="circle-menu-container" key={i}>
                         <div className="icon grid" onClick={() => navigate(`${e.url}`)}>{getIcon(e.icon)}</div>
@@ -76,7 +76,7 @@ const Home = () => {
                    </div>
                     )
                )}
-           </div>
+            </div>
         </>
     );
 };
