@@ -251,7 +251,7 @@ const RequestDetails = () => {
                                 <input type="date" readOnly value={requestDetails.terminationDetails.from}/>
                             </div>
                             <div className="form-children">
-                                <label>{t('form.notice')}</label>
+                                <label>{t('form.terminationNotice')}</label>
                                 <textarea readOnly value={requestDetails.terminationDetails.request.message}/>
                             </div>
                         </>
