@@ -14,23 +14,38 @@
 .homeMenu-main-container.flex {
   width: 90%;
   height: auto;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
+  align-content: flex-start;
   margin: 0 auto;
   flex-wrap: wrap;
+  padding: 60px 0;
 }
 .homeMenu-main-container.flex .circle-menu-container {
   text-align: center;
-  margin: 5% 5px;
+  margin-bottom: 20px;
   height: fit-content;
-  width: 100px;
+  width: 25%;
 }
+@media screen and (max-width:796px ) {
+  .homeMenu-main-container.flex .circle-menu-container{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width:412px ) {
+  .homeMenu-main-container.flex .circle-menu-container{
+    width: 100%;
+  }
+}
+
+
 .homeMenu-main-container.flex .circle-menu-container .icon.grid {
   margin: 0 auto;
   padding: 15px 15px;
   color: var(--PrimaryColor);
   transition: 0.3s ease-in-out;
   border: none;
-  font-size: 3rem;
+  font-size: 4rem;
   cursor: default !important;
   width: fit-content;
   height: fit-content;
