@@ -31,15 +31,29 @@ p, h1, h2, h3, h4, h5{
 
 input, select, select option{
   font-size: 100%;
-  font-family: 'Poppins';
+  font-family: 'Poppins', 'serif', 'sans-serif';
+  height: 25px !important;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid dimgrey;
 }
 
 input:read-only{
   cursor: default;
   user-select: none;
-  border: none;
-  background: #f2f2f2;
-  color: black;
+  border: 1px solid #a1a1a1;
+  background: rgba(221, 221, 221, 0.38);
+  color: rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+  outline: none;
+}
+
+textarea:read-only{
+  cursor: default;
+  user-select: none;
+  border: 2px solid #a1a1a1;
+  background: rgba(221, 221, 221, 0.38);
+  color: rgba(0, 0, 0, 0.75);
   pointer-events: none;
   outline: none;
 }
@@ -291,6 +305,7 @@ form{
 .form-collapse{
    display: flex;
    width: 100%;
+   gap: 10px;
  }
 
 @media screen and (max-width: 700px) {
@@ -549,6 +564,9 @@ form .roles-container.flex label {
   width: 90%;
   height: 20px;
 }
+.content-main-container .FlexForm .form-items .form-children .fullSize{
+  width: 100%;
+}
 .content-main-container .FlexForm .form-items .form-children textarea{
   width: 100%;
   height: 150px;
@@ -579,9 +597,10 @@ form .roles-container.flex label {
 @media screen and (max-width: 700px){
   .content-main-container .FlexForm .form-button-container {
     width: 90% !important;
-    min-height: 300px;
-    margin: 20px 0;
-    padding: 0 !important;
+    height: auto;
+    /*min-height: 200px !important;*/
+    margin: 20px auto;
+    padding: 20px 0;
     flex-direction: column !important;
   }
 }
@@ -593,9 +612,12 @@ form .roles-container.flex label {
   border-top: 4px solid var(--DarkBlue);
 }
 
-.content-main-container .FlexForm .form-items .form-children .form-baby{
+.content-main-container .FlexForm .form-items .form-children .form-collapse .form-baby{
   width: 100%;
   padding: 10px 0;
+}
+.content-main-container .FlexForm .form-items .form-children .form-collapse .form-baby input{
+  width: 97%;
 }
 .content-main-container .FlexForm .form-items .form-children .form-baby label{
   min-width: 50px !important;
@@ -834,6 +856,7 @@ form .roles-container.flex label {
   height: 200px;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding: 30px 0;
 }
 .button-main-container.flex .button-container {
   width: 150px;
@@ -893,10 +916,11 @@ form .roles-container.flex label {
 
 /*Label Component*/
 .selector-input{
-  height: 50px;
+  height: 25px;
   background: white;
   padding: 5px;
   overflow: auto;
+  text-overflow: ellipsis;
   border-radius: 5px;
 }
 .selector-icon{
@@ -1052,6 +1076,8 @@ form .roles-container.flex label {
   height: fit-content;
   width: 100%;
   display: flex;
+  align-items:center;
+
 }
 @media screen and (max-width: 700px) {
   .selector-main{
@@ -1266,7 +1292,7 @@ form .roles-container.flex label {
   height: 50px;
 }
 .courseCreate .form-children table tbody tr input{
-  width: 100% !important
+  /*width: 100% !important*/
 }
 @media screen and (min-width: 721px){
   .courseCreate .form-items .form-children.mobile-course-create-table{
@@ -1606,4 +1632,70 @@ form .roles-container.flex label {
 }
 .userRoles-table-container .table-action-container .table-action-button{
   margin: 5px;
+}
+
+/*Location*/
+
+.location-form-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: 2px dotted var(--GreenColor);
+  border-radius: 10px;
+  padding: 20px 0;
+  box-shadow: 1px 1px 5px #888888;
+  margin: 0 auto;
+}
+.location-form-container .title{
+  text-align: center;
+}
+.location-icon-container{
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+.location-icon-container .location-icon{
+  width: 50%;
+  height: 100%;
+  color: var(--GreenColor);
+}
+.location-icon-container .location-icon.readOnly {
+  color: #ddd !important;
+}
+.location-icon-container .location-icon.blue{
+  color: var(--PrimaryColor) !important;
+}
+@media screen and (min-width: 1800px) {
+  .location-icon-container .location-icon{
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .location-form-container{
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1075px) {
+  .location-icon-container{
+    display: none;
+  }
+  .location-form-container .FlexForm{
+    max-height: fit-content !important;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .location-form-container{
+    width: 90%;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.component-container{
+  min-height: 500px;
 }
