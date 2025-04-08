@@ -37,6 +37,9 @@ const CourseCreate = () => {
     const [currency, setCurrency]=useState();
     const [startDate, setStartDate]=useState();
     const [endDate, setEndDate]=useState();
+    const [copyLocations, setCopyLocations]=useState(JSON.parse(JSON.stringify(schoolLocations?.select)));
+    const [copyPaymentPeriods, setCopyPaymentPeriods]=useState(JSON.parse(JSON.stringify(paymentPeriods)));
+    const [copyCurrencies, setCopyCurrencies]=useState(JSON.parse(JSON.stringify(currencies)));
 
     /*event handle*/
     const [errors, setErrors]=useState([]);
@@ -66,10 +69,26 @@ const CourseCreate = () => {
             if(values[i].labels.length>0){
                 values[i].labels=[]
             }
-            console.log(values[i].labels)
+        }
+        if(filterLanguages().length === 1){
+            let findIndex = courseName.map((e,i)=> {
+                if(e.lang === ''){
+                    return autoSelectLanguage(filterLanguages(), i)
+                }
+            })
         }
         setCourseName(values);
     };
+
+    const autoSelectLanguage=(lang,i)=>{
+        const values = [...courseName];
+        let r = lang.map(e=>e.value)
+        values[i].lang = r[0]
+        if(values[i].labels.length>0){
+            values[i].labels=[]
+        }
+        setCourseName(values);
+    }
     const handleLabelSelection =(data,i)=>{
         const values=[...courseName];
         if(data){
@@ -110,6 +129,30 @@ const CourseCreate = () => {
             setBtnDisabled(false);
         })
     }
+
+    const filterLanguages=(lang)=>{
+        let selectedLanguages=lang ?? courseName.map(e=>e.lang);
+        return languages.filter((e)=>!selectedLanguages.includes(e.value)).map(l=>({value:l.value, label:a(`enums.${l.label}`)}))
+    }
+    const filterLocations=()=>{
+        if(location !== ""){
+            let newLocationOptions = schoolLocations.select.filter(e=>e.value !== location);
+            return setCopyLocations(newLocationOptions);
+        }
+    }
+    const filterPaymentPeriods=()=>{
+        if(paymentPeriod !== ""){
+            let newPaymentPeriod = paymentPeriods.filter(e=>e.value !== paymentPeriod);
+            return setCopyPaymentPeriods(newPaymentPeriod);
+        }
+    }
+    const filterCurrencies=()=>{
+        if(currency !== ""){
+            let newCurrency = currencies.filter(e=>e.value !== currency);
+            return setCopyCurrencies(newCurrency);
+        }
+    }
+
     useEffect(()=>{
         if(!schoolLocations.data.length){
             setReadOnly(true);
@@ -117,7 +160,35 @@ const CourseCreate = () => {
             setErrors([t('not-possible')]);
         }
     },[schoolLocations])
-
+    useEffect(() => {
+        if(location !== ""){
+            filterLocations()
+        }
+        if(paymentPeriod !== ""){
+            filterPaymentPeriods()
+        }
+        if(currency !== ""){
+            filterCurrencies()
+        }
+    }, [location, paymentPeriod, currency]);
+    useEffect(() => {
+        if(filterLanguages().length === 1){
+            let findIndex = courseName.map((e,i)=> {
+                if(e.lang === ''){
+                    return autoSelectLanguage(filterLanguages(), i)
+                }
+            })
+        }
+        if(courseName.length>0){
+            let getLanguages=courseName.map(e=>e.lang);
+            const duplicates = getLanguages.filter((item, index) => getLanguages.indexOf(item) < index);
+            if(duplicates.length){
+                setErrors([t('validate.lng-same')]);
+            }else{
+                setErrors([])
+            }
+        }
+    }, [courseName]);
     return (
         <>
         <EventHandler
@@ -159,12 +230,13 @@ const CourseCreate = () => {
                                     <td>
                                         <Select
                                             placeholder={t('select')}
-                                            options={languages ? languages.map(e=>({value:e.value, label:a(`enums.${e.label}`)})) : null}
+                                            options={filterLanguages(e.lang || null)}
                                             onChange={(selected) => {
                                                 handleInputChange(selected, i)
                                             }}
                                             isDisabled={readOnly}
                                             isSearchable={true}
+                                            value={e.lang !== "" && {value: e.lang, label: a(`enums.${e.lang}`)}}
                                             className="select-componentFull"
                                         />
                                     </td>
@@ -251,7 +323,7 @@ const CourseCreate = () => {
                         <label>{t('form.location')}</label>
                         <Select
                             placeholder={t('select')}
-                            options={schoolLocations?.select}
+                            options={copyLocations}
                             onChange={(selected) => {
                                 setLocation(selected.value)
                             }}
@@ -276,7 +348,7 @@ const CourseCreate = () => {
                             <label>{t('form.currency')}</label>
                             <Select
                                 placeholder={t('select')}
-                                options={currencies}
+                                options={copyCurrencies}
                                 onChange={(selected) => {
                                     setCurrency(selected.value)
                                 }}
@@ -290,7 +362,7 @@ const CourseCreate = () => {
                             <label>{t('form.payment-period')}</label>
                             <Select
                                 placeholder={t('select')}
-                                options={paymentPeriods}
+                                options={copyPaymentPeriods}
                                 onChange={(selected) => {
                                     setPaymentPeriod(selected.value)
                                 }}
