@@ -149,7 +149,7 @@ const CourseApply = () => {
                             <label>{t('form.start')}</label>
                             <input
                                 type="date"
-                                min={Date.today()}
+                                min={courseProfile.start >= Date.today() ? Date.specificDate(courseProfile.start) : Date.today()}
                                 max={Date.specificDate(courseProfile.end)}
                                 value={startDate}
                                 required
