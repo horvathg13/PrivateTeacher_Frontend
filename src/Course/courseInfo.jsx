@@ -1,20 +1,16 @@
 import {useEffect,useState} from "react";
 import EventHandler from "../EventHandler/eventhandler";
-import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
-import { FaPlus, FaTrashCan } from "react-icons/fa6";
+import {useLoaderData, useNavigate, useParams, useRevalidator} from "react-router-dom";
+import { FaPlus } from "react-icons/fa6";
 import { MdDelete, MdEdit } from "react-icons/md";
 import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
-import {FaArrowCircleRight, FaExclamationTriangle, FaMinus, FaPlusCircle, FaTrashAlt} from "react-icons/fa";
-import {TabMenuContext, schoolYearDetailsContext, UserContext} from "../Context/UserContext";
-import TabMenu from "../CommonComponents/TabMenu/tabMenu";
+import {FaMinus, FaPlusCircle} from "react-icons/fa";
 import Select from "react-select";
 import LabelSelector from "../CommonComponents/Label/labelSelect";
 import {useTranslation} from "react-i18next";
-import ReactFlagsSelect from "react-flags-select";
-import course from "./course";
-        
+
 const CourseInfo = () => {
 
     /*Loader */
@@ -35,9 +31,10 @@ const CourseInfo = () => {
     const [readOnly, setReadOnly]=useState(true);
     const [selectedRow, setSelectedRow]=useState();
     let {courseId }=useParams();
-    const [initialValueForLabels, setInitialVeluesForLabels]=useState();
     const [startDate, setStartDate]=useState(courseInfo.start);
     const [endDate, setEndDate]=useState(courseInfo.end);
+
+    const { revalidate } = useRevalidator();
 
     /*Popup control */
     const [AreYouSureName, setAreYouSureName]=useState('');
@@ -104,19 +101,21 @@ const CourseInfo = () => {
 
     const updateCourseInfos=(e)=>{
         e.preventDefault();
+
         setLoader(true);
         setBtnDisabled(true);
         setReadOnly(true);
+
         setErrors([]);
         setServerError([]);
+
         ServiceClient.createCourse(courseName,studentLimit, minutesLesson, minTeachingDay, coursePricePerLesson, location.value || location,paymentPeriod.value || paymentPeriod,courseId,currency.value || currency, courseStatus.value || courseInfo.status.value, removeLangs, startDate, endDate).then((success)=>{
             setLoader(false);
             setSuccess(true);
             setTimeout(()=>{
                 setSuccess(false);
             },2000)
-            setBtnDisabled(false);
-            setReadOnly(false);
+            revalidate()
         }).catch((error)=>{
             setServerError(error);
             setLoader(false);
@@ -152,28 +151,26 @@ const CourseInfo = () => {
             setLabels(init);
         }
     }, [courseInfo]);
-
-    useEffect(()=>{
-        if(readOnly && courseInfo){
-            setCourseName(JSON.parse(JSON.stringify(courseInfo.name)))
-            setStudentLimit(courseInfo.student_limit)
-            setMinutesLesson(courseInfo.minutes_lesson)
-            setMinTeachingDay(courseInfo.min_teaching_day)
-            setcoursePricePerLesson(courseInfo.course_price_per_lesson)
-            setLabels()
-            setLocation({value:courseInfo.location.id, label:courseInfo.location.name})
-            setPaymentPeriod(courseInfo.paymentPeriod)
-            setCurrency(courseInfo.currency)
-            setCourseStatus(courseInfo.status)
-            setRemoveLangs([])
-            setStartDate(courseInfo.start)
-            setEndDate(courseInfo.end)
-        }
-    },[readOnly])
-
-    useEffect(() => {
+    const formDataUpdater=()=>{
         setCourseName(JSON.parse(JSON.stringify(courseInfo.name)))
-    }, [courseInfo]);
+        setStudentLimit(courseInfo.student_limit)
+        setMinutesLesson(courseInfo.minutes_lesson)
+        setMinTeachingDay(courseInfo.min_teaching_day)
+        setcoursePricePerLesson(courseInfo.course_price_per_lesson)
+        setLabels()
+        setLocation({value:courseInfo.location.id, label:courseInfo.location.name})
+        setPaymentPeriod(courseInfo.paymentPeriod)
+        setCurrency(courseInfo.currency)
+        setCourseStatus(courseInfo.status)
+        setRemoveLangs([])
+        setStartDate(courseInfo.start)
+        setEndDate(courseInfo.end)
+    }
+    useEffect(()=>{
+        if(courseInfo){
+            formDataUpdater();
+        }
+    },[courseInfo])
 
     return (
         <>
@@ -198,7 +195,7 @@ const CourseInfo = () => {
                     <h2>{t('info.title')}
                         <MdEdit
                             className='icon formIcon'
-                            onClick={() => [setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}
+                            onClick={() => {setReadOnly(!readOnly); setBtnDisabled(!btndisabled); formDataUpdater()}}
                         />
                     </h2>
                 </div>
@@ -250,7 +247,7 @@ const CourseInfo = () => {
                                             <td>
                                                 <Select
                                                     placeholder={t('select-lang')}
-                                                    value={({value:e.lang, label: typeof e.lang === "string" ? a(`enums.${e.lang}`) : a(`enums.${e.lang.value}`)})}
+                                                    value={{value:e.lang, label: typeof e.lang === "string" ? a(`enums.${e.lang}`) : a(`enums.${e.lang.value}`)}}
                                                     options={languages.map(j=>({value:j.value, label:a(`enums.${j.label}`)})) || null}
                                                     onChange={(selected) => {
                                                         handleInputChange(selected, i)
