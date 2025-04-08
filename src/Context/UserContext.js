@@ -33,13 +33,13 @@ export const UserContextProvider = ({children})=>{
 
     useEffect(()=>{
         ServiceClient.getUserData().then((success)=>{
-            setUsername(success.user.first_name);
-            setRoles(success.roles);
-            setStatus(success.user.user_status);
-            setUserId(success.user.id);
-            setHasAccessMessages(success.menuButtonsPermission[0].hasAccessMessages);
-            setHasAccessRequests(success.menuButtonsPermission[0].hasAccessRequests);
-            setHasChild(success.hasChild)
+            setUsername(success?.user?.first_name);
+            setRoles(success?.roles);
+            setStatus(success?.user?.user_status);
+            setUserId(success?.user?.id);
+            setHasAccessMessages(success?.menuButtonsPermission[0]?.hasAccessMessages);
+            setHasAccessRequests(success?.menuButtonsPermission[0]?.hasAccessRequests);
+            setHasChild(success?.hasChild)
         })
     },[])
     
