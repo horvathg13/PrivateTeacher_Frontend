@@ -132,6 +132,14 @@ const SearchCourse = () => {
             })
         }
     }
+
+    const renderLanguagesOptions=()=>{
+        if(languages && !lang){
+            return languages.map(l=>({value: l.value, label:t(`enums.${l.label}`)}))
+        }else{
+            return languages.filter(e=>!lang.includes(e.value)).map(l=>({value: l.value, label:t(`enums.${l.label}`)}))
+        }
+    }
     useEffect(() => {
         setTimeout(courseSearchForUseEffect, 0)
     }, [pageSet, counterSet]);
@@ -234,52 +242,55 @@ const SearchCourse = () => {
                         </div>
                         <div className="form-children">
                             <label>{t('search.courseLang')} / {t('search.keywords')}</label>
-                            <div className="form-baby">
-                                <Select
-                                    placeholder={t('search.select')}
-                                    options={languages ? languages.map(l=>({value: l.value, label:t(`enums.${l.label}`)})): null}
-                                    onChange={(selected) => {
-                                        setLang(selected.value)
-                                    }}
-                                    isDisabled={readOnly}
-                                    isSearchable={true}
-                                    className="select-componentFull"
-                                />
-                            </div>
-                            <div className="form-baby">
-                                <LabelSelector
-                                    labelEmit={(data) => setKeywords(data)}
-                                    disabled={!lang}
-                                    lang={lang}
-                                    initial={keywords}
-                                />
+                            <div className="form-collapse">
+                                <div className="form-baby">
+                                    <Select
+                                        placeholder={t('search.select')}
+                                        options={renderLanguagesOptions()}
+                                        onChange={(selected) => {
+                                            setLang(selected.value)
+                                        }}
+                                        isDisabled={readOnly}
+                                        isSearchable={true}
+                                        className="select-componentFull"
+                                    />
+                                </div>
+                                <div className="form-baby">
+                                    <LabelSelector
+                                        labelEmit={(data) => setKeywords(data)}
+                                        disabled={!lang}
+                                        lang={lang}
+                                        initial={keywords}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="form-children">
                             <label>{t('search.min/lesson')}</label>
-                            <div className="form-baby">
-                                <label>{t('search.min')}</label>
-                                <input
-                                    type="number"
-                                    onChange={(e) => {
-                                        setMinTime(e.target.value)
-                                    }}
-                                    value={minTime}
-                                    readOnly={readOnly}
-                                />
+                            <div className="form-collapse">
+                                <div className="form-baby">
+                                    <label>{t('search.min')}</label>
+                                    <input
+                                        type="number"
+                                        onChange={(e) => {
+                                            setMinTime(e.target.value)
+                                        }}
+                                        value={minTime}
+                                        readOnly={readOnly}
+                                    />
+                                </div>
+                                <div className="form-baby">
+                                    <label>{t('search.max')}</label>
+                                    <input
+                                        type="number"
+                                        onChange={(e) => {
+                                            setMaxTime(e.target.value)
+                                        }}
+                                        value={maxTime}
+                                        readOnly={readOnly}
+                                    />
+                                </div>
                             </div>
-                            <div className="form-baby">
-                                <label>{t('search.max')}</label>
-                                <input
-                                    type="number"
-                                    onChange={(e) => {
-                                        setMaxTime(e.target.value)
-                                    }}
-                                    value={maxTime}
-                                    readOnly={readOnly}
-                                />
-                            </div>
-
 
                         </div>
 
