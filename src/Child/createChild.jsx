@@ -1,14 +1,20 @@
 import EventHandler from '../EventHandler/eventhandler';
 import Table from '../CommonComponents/Table/table';
-import { useState } from 'react';
+import {useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import ServiceClient from '../ServiceClient';
 import {useTranslation} from "react-i18next";
+import Date from "../date";
+import {UserContext} from "../Context/UserContext";
 
 const CreateChild = () => {
     /*Translation*/
     const {t}=useTranslation('translation', {keyPrefix:"child"})
+
+    /*Context*/
+    const {setHasChild, setHasAccessRequests, setHasAccessMessages}=useContext(UserContext);
+
     /*Form fields*/
     const [fname, setFname]=useState('');
     const [lname, setLname]=useState('');
@@ -52,16 +58,20 @@ const CreateChild = () => {
             setCPasswordError(false);
             setPasswordError(false);
         }
-        Promise.all([
-            ServiceClient.createChild(fname, lname, username, birthday, password),
 
-        ]).then(()=>{
+        ServiceClient.createChild(fname, lname, username, birthday, password).then(()=>{
             formClear();
             setSuccess(true);
             setLoader(false);
-            setTimeout(()=>{
-                navigate('/child');
-            },1000)
+
+        }).then(()=>{
+            ServiceClient.getUserData().then((success)=>{
+                setHasAccessMessages(success.menuButtonsPermission[0].hasAccessMessages);
+                setHasAccessRequests(success.menuButtonsPermission[0].hasAccessRequests);
+                setHasChild(success.hasChild)
+            })
+        }).then(()=>{
+            navigate('/child');
         }).catch(error=>{
             setServerError(error);
             setBtnDisabled(false);
@@ -101,7 +111,7 @@ const CreateChild = () => {
                 <div className="form-collapse">
                     <div className="form-children flexColumnItems">
                             <label>{t('form.birthday')}</label>
-                            <input type="date" required onChange={(e)=>{setBirthday(e.target.value)}} value={birthday}/>
+                            <input type="date" max={Date.yesterday()} required onChange={(e)=>{setBirthday(e.target.value)}} value={birthday}/>
                     </div>
                     <div className="form-children flexColumnItems">
                             <label>{t('form.username')}</label>
