@@ -118,9 +118,9 @@ const Header = () => {
                 </div>
             </Link>
 
-            {name ? <div className="user-container">
+            {false && name && <div className="user-container">
                <h4>{username || null}</h4>
-            </div> : null}
+            </div>}
 
             <div className="header-action-container">
                 <div className="lng-select" ref={flagSelectRef}>
