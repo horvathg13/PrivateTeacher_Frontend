@@ -8,6 +8,7 @@ import {GrUpdate} from "react-icons/gr";
 import {FaTrashAlt} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
 import Select from "react-select";
+import {CiLocationOn} from "react-icons/ci";
 
 const Location = () => {
     /*Translation*/
@@ -132,124 +133,154 @@ const Location = () => {
                 answer={(name)=> functionControl(name)}
                 transitionProp={areYouSureTransitionProp}/>
 
-            <div>
-                <div className="title"><h2>{t('titles.main')}<MdEdit className='icon formIcon' onClick={()=>[setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/> </h2></div>
-                <form onSubmit={(e)=>updateLocationInfo(e)} className="FlexForm">
-
-                    <div className="form-items flex">
-
-                        <div className="form-children">
-                            <label>{t('form.locationName')}</label>
-                            <input type="text"
-                                   required
-                                   onChange={(e) => {
-                                       setName(e.target.value)
-                                   }}
-                                   value={name}
-                                   readOnly={readOnly}/>
+            <div className="component-container">
+                {false && <div className="title"><h2>{t('titles.main')}<MdEdit className='icon formIcon'
+                                                                      onClick={() => [setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/>
+                </h2></div>
+                }
+                <div className="location-form-container">
+                    <div className="location-icon-container"><CiLocationOn className="location-icon blue"/></div>
+                    <form onSubmit={(e) => updateLocationInfo(e)} className="FlexForm">
+                        <div className="title">
+                            <h2>
+                                {t('titles.main')}
+                                <MdEdit className='icon formIcon' onClick={() => [setReadOnly(!readOnly), setBtnDisabled(!btndisabled)]}/>
+                            </h2>
                         </div>
 
-                        <div className="form-children">
-                            <label>{t('form.country')}</label>
-                            <input type="text"
-                                   required
-                                   onChange={(e) => {
-                                       setCountry(e.target.value)
-                                   }}
-                                   value={country}
-                                   readOnly={readOnly}/>
-                        </div>
+                        <div className="form-items flex">
 
+                            <div className="form-children flexColumnItems">
+                                <label>{t('form.locationName')}</label>
+                                <input type="text"
+                                       required
+                                       onChange={(e) => {
+                                           setName(e.target.value)
+                                       }}
+                                       value={name}
+                                       readOnly={readOnly}
+                                       className="fullSize"
+                                />
+                            </div>
+                            <div className="form-children form-collapse">
+                                <div className="form-children flexColumnItems">
+                                    <label>{t('form.country')}</label>
+                                    <input type="text"
+                                           required
+                                           onChange={(e) => {
+                                               setCountry(e.target.value)
+                                           }}
+                                           value={country}
+                                           readOnly={readOnly}
+                                           className="fullSize"
+                                    />
+                                </div>
+                                <div className="form-children flexColumnItems">
+                                    <label>{t('form.zip')}</label>
+                                    <input type="text"
+                                           required
+                                           onChange={(e) => {
+                                               setZip(e.target.value)
+                                           }}
+                                           value={zip}
+                                           readOnly={readOnly}
+                                           className="fullSize"
+                                    />
+                                </div>
 
-                        <div className="form-children">
-                            <label>{t('form.zip')}</label>
-                            <input type="text"
-                                   required
-                                   onChange={(e) => {
-                                       setZip(e.target.value)
-                                   }}
-                                   value={zip}
-                                   readOnly={readOnly}/>
+                                <div className="form-children flexColumnItems">
+                                    <label>{t('form.city')}</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        onChange={(e) => {
+                                            setCity(e.target.value)
+                                        }}
+                                        value={city}
+                                        readOnly={readOnly}
+                                        className="fullSize"
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-children form-collapse">
+                                <div className="form-children flexColumnItems">
+                                    <label>{t('form.street')}</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        onChange={(e) => {
+                                            setStreet(e.target.value)
+                                        }}
+                                        value={street}
+                                        readOnly={readOnly}
+                                        className="fullSize"
+                                    />
+                                </div>
+                                <div className="form-children flexColumnItems">
+                                    <label>{t('form.number')}</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        onChange={(e) => {
+                                            setNumber(e.target.value)
+                                        }}
+                                        value={number}
+                                        readOnly={readOnly}
+                                        className="fullSize"
+                                    />
+                                </div>
+                                <div className="form-children flexColumnItems">
+                                    <label>{t('form.floor')}</label>
+                                    <input
+                                        type="text"
+                                        onChange={(e) => {
+                                            setFloor(e.target.value)
+                                        }}
+                                        value={floor}
+                                        readOnly={readOnly}
+                                        className="fullSize"
+                                    />
+                                </div>
+                                <div className="form-children flexColumnItems">
+                                    <label>{t('form.door')}</label>
+                                    <input
+                                        type="text"
+                                        onChange={(e) => {
+                                            setDoor(e.target.value)
+                                        }}
+                                        value={door}
+                                        readOnly={readOnly}
+                                        className="fullSize"
+                                    />
+                                </div>
+                            </div>
                         </div>
-
-                        <div className="form-children">
-                            <label>{t('form.city')}</label>
-                            <input
-                                type="text"
-                                required
-                                onChange={(e) => {
-                                    setCity(e.target.value)
-                                }}
-                                value={city}
-                                readOnly={readOnly}/>
+                        <div className="form-button-container">
+                            {!loader ?
+                                <button
+                                    type='submit'
+                                    disabled={btndisabled}
+                                    className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
+                                    <GrUpdate className='btn-icon'/> {t('buttons.update')}
+                                </button> :
+                                <span className='loader schoolDetails'></span>
+                            }
+                            {!deleteLoader ?
+                                <button
+                                    type="button"
+                                    disabled={btndisabled}
+                                    className={readOnly ? 'formBtnDisabled' : 'btn formButton'}
+                                    onClick={() => {
+                                        setAreYouSureName("delete");
+                                        setAreYouSureTransitionProp(true)
+                                    }}>
+                                    <FaTrashAlt className='btn-icon'/> {t('buttons.delete')}
+                                </button> :
+                                <span className='loader schoolDetails'></span>
+                            }
                         </div>
-                        <div className="form-children">
-                            <label>{t('form.street')}</label>
-                            <input
-                                type="text"
-                                required
-                                onChange={(e) => {
-                                    setStreet(e.target.value)
-                                }}
-                                value={street}
-                                readOnly={readOnly}/>
-                        </div>
-                        <div className="form-children">
-                            <label>{t('form.number')}</label>
-                            <input
-                                type="text"
-                                required
-                                onChange={(e) => {
-                                    setNumber(e.target.value)
-                                }}
-                                value={number}
-                                readOnly={readOnly}/>
-                        </div>
-                        <div className="form-children">
-                            <label>{t('form.floor')}</label>
-                            <input
-                                type="text"
-                                onChange={(e) => {
-                                    setFloor(e.target.value)
-                                }}
-                                value={floor}
-                                readOnly={readOnly}/>
-                        </div>
-                        <div className="form-children">
-                            <label>{t('form.door')}</label>
-                            <input
-                                type="text"
-                                onChange={(e) => {
-                                    setDoor(e.target.value)
-                                }}
-                                value={door}
-                                readOnly={readOnly}/>
-                        </div>
-
-                    </div>
-                    <div className="form-button-container">
-                        {!loader ?
-                            <button
-                                type='submit'
-                                disabled={btndisabled}
-                                className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
-                                <GrUpdate className='btn-icon'/> {t('buttons.update')}
-                            </button> :
-                            <span className='loader schoolDetails'></span>
-                    }
-                    {!deleteLoader ?
-                        <button
-                            type="button"
-                            disabled={btndisabled}
-                            className={readOnly ? 'formBtnDisabled':'btn formButton' }
-                            onClick={()=>{setAreYouSureName("delete"); setAreYouSureTransitionProp(true)}}>
-                            <FaTrashAlt   className='btn-icon'/> {t('buttons.delete')}
-                        </button>:
-                        <span className='loader schoolDetails'></span>
-                    }
-                    </div>
-                </form>
-
+                    </form>
+                </div>
             </div>
         </>
     );
