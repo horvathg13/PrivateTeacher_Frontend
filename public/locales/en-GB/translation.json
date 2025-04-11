@@ -3,7 +3,8 @@
     "titles": {
       "main": "Login",
       "subtitle": "If you have no account, please",
-      "span": "register."
+      "span": "register.",
+      "mobile-register": "register here."
     },
     "form": {
       "email": "Email",
@@ -66,7 +67,9 @@
     "profile": "Profile",
     "termination-request": "Termination Request",
     "requests": "Requests",
-    "students": "Students"
+    "students": "Students",
+    "history": "History",
+    "children": "Children"
   },
   "componentTitles": {
     "users": "Users",
@@ -395,6 +398,7 @@
     "ACTIVE":"Active",
     "SUSPENDED":"Suspended",
     "DELETED":"Deleted",
+    "FINISHED":"Finished",
     "BANNED":"Banned",
     "PER_LESSON":"Per lesson",
     "MONTHLY":"Monthly",
@@ -422,6 +426,15 @@
     "English": "English",
     "Hungarian": "Hungarian",
     "CANCELLED": "Cancelled"
+  },
+  "statuses": {
+    "active":"Active",
+    "suspended":"Suspended",
+    "delete":"Deleted",
+    "per_lesson":"Per Lesson",
+    "monthly":"Monthly",
+    "half_year":"Half year",
+    "yearly":"Annual"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -518,6 +531,16 @@
       "terminationAccepted":"Termination request accepted.",
       "terminationRejected":"Termination request rejected.",
       "studentCourseTerminated":"Student Course is terminated by the teacher."
+    },
+    "notFound":{
+      "user":"User not found.",
+      "role":"Role not found to this user.",
+      "school":"School not found",
+      "location":"School location not found to this school.",
+      "search":"No matching items found",
+      "child":"No child connected to this user.",
+      "course":"Course not found.",
+      "request":"The request is not found."
     },
     "hack_attempt":"The server detected suspicious activity, so your request was denied, and your account has been suspended. Please contact the system administrator for further information."
   },

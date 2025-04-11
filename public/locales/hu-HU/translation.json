@@ -3,7 +3,8 @@
     "titles": {
       "main": "Bejelentkezés",
       "subtitle": "Ha nincs fiókod, kérlek",
-      "span": "regisztrálj."
+      "span": "regisztrálj.",
+      "mobile-register": "regisztrálj itt."
     },
     "form": {
       "email": "E-mail",
@@ -73,7 +74,9 @@
     "profile": "Profil",
     "termination-request": "Lemondás igénylés",
     "requests": "Igénylések",
-    "students": "Tanulók"
+    "students": "Tanulók",
+    "history": "Előzmények",
+    "children": "Gyermekeim"
   },
   "componentTitles": {
     "users": "Felhasználók",
@@ -395,6 +398,7 @@
     "ACTIVE":"Aktív",
     "SUSPENDED":"Felfüggesztve",
     "DELETED":"Törölve",
+    "FINISHED":"Befejezett",
     "BANNED":"Tiltva",
     "PER_LESSON":"Alkalmanként",
     "MONTHLY":"Havonta",
@@ -422,6 +426,15 @@
     "English": "Angol",
     "Hungarian": "Magyar",
     "CANCELLED": "Visszavonva"
+  },
+  "statuses": {
+    "active":"Aktív",
+    "suspended":"Felfüggesztve",
+    "delete":"Törölve",
+    "per_lesson":"Alkalmanként",
+    "monthly":"Havonta",
+    "half_year":"Félévente",
+    "yearly":"Évente"
   },
   "validator": {
     "type":"The given type is not correct int the following field: {{field}}",
@@ -518,6 +531,16 @@
       "terminationAccepted":"Kurzusmegszüntetési kérelmét elfogadták",
       "terminationRejected":"Kurzusmegszüntetési kérelmét elutasították.",
       "studentCourseTerminated":"A tanulói kurzusuát megszüntették."
+    },
+    "notFound":{
+      "user":"Felhasználó nem található",
+      "role":"Nem található szerepkör a felhasználóhoz",
+      "school":"Az iskola nem található",
+      "location":"Nem található helyszín az iskolához.",
+      "search":"A keresésnek megfelelő elem nem található.",
+      "child":"Nem található gyerek ehhez a felhasználóhoz",
+      "course":"Nem található kurzus.",
+      "request":"A kérelem nem található."
     },
     "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította és fiókja felfüggesztésre került. Keresse meg a rendszer üzemeltetőjét további információkért."
   },
