@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {useLoaderData, useNavigate, useParams} from "react-router-dom";
+import {useLoaderData, useNavigate, useParams, useRevalidator} from "react-router-dom";
 import EventHandler from "../EventHandler/eventhandler";
 import {MdEdit} from "react-icons/md";
 import ServiceClient from "../ServiceClient";
@@ -27,6 +27,8 @@ const ChildInfo = () => {
     const [passwordError, setPasswordError]=useState(false);
     const [cpassword, setCPassword]=useState('');
     const [cpasswordError, setCPasswordError]=useState(false);
+    const [formLoader, setFormLoader]=useState(true);
+    const revalidator = useRevalidator();
 
     /*ReadOnly */
     const[readOnlyInfo, setReadOnlyInfo]=useState(true);
@@ -146,6 +148,17 @@ const ChildInfo = () => {
             setCPassword('')
         }
     },[readOnlyInfo])
+
+    useEffect(() => {
+        if(Object.entries(childInfo).length){
+            setFname(childInfo.firstname)
+            setLname(childInfo.lastname)
+            setUsername(childInfo.username)
+            setBirthday(childInfo.birthday)
+            setFormLoader(false)
+        }
+
+    }, [childInfo]);
     return (
         <>
             <EventHandler
@@ -161,9 +174,9 @@ const ChildInfo = () => {
             />
             <div>
 
-                <form className='FlexForm' onSubmit={updateChild}>
+                {!formLoader ? <form className='FlexForm' onSubmit={updateChild}>
                     <div className="user-container info">
-                        <div className="form-title"><h2>{t('title.info')} <MdEdit className='icon' onClick={()=> {
+                        <div className="form-title"><h2>{t('title.info')} <MdEdit className='icon' onClick={() => {
                             setReadOnlyInfo(!readOnlyInfo);
                             setBtnDisabled(!btndisabled)
                         }}/></h2></div>
@@ -175,7 +188,9 @@ const ChildInfo = () => {
                                     readOnly={readOnlyInfo}
                                     required
                                     value={fname}
-                                    onChange={(e)=>{setFname(e.target.value)}}
+                                    onChange={(e) => {
+                                        setFname(e.target.value)
+                                    }}
                                 />
                             </div>
                             <div className="last-name field">
@@ -185,7 +200,9 @@ const ChildInfo = () => {
                                     readOnly={readOnlyInfo}
                                     required
                                     value={lname}
-                                    onChange={(e)=>{setLname(e.target.value)}}/>
+                                    onChange={(e) => {
+                                        setLname(e.target.value)
+                                    }}/>
                             </div>
                             <div className="email-field field">
                                 <label>{t('form.username')}</label>
@@ -194,7 +211,9 @@ const ChildInfo = () => {
                                     value={username}
                                     readOnly={readOnlyInfo}
                                     required
-                                    onChange={(e)=>{setUsername(e.target.value)}}/>
+                                    onChange={(e) => {
+                                        setUsername(e.target.value)
+                                    }}/>
                             </div>
                             <div className="email-field field">
                                 <label>{t('form.birthday')}</label>
@@ -204,7 +223,9 @@ const ChildInfo = () => {
                                     max={Date.yesterday()}
                                     readOnly={readOnlyInfo}
                                     required
-                                    onChange={(e)=>{setBirthday(e.target.value)}}/>
+                                    onChange={(e) => {
+                                        setBirthday(e.target.value)
+                                    }}/>
                             </div>
                         </div>
                     </div>
@@ -219,7 +240,9 @@ const ChildInfo = () => {
                                     readOnly={readOnlyInfo}
                                     required
                                     value={password}
-                                    onChange={(e) => { setPassword(e.target.value); } } />
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                    }}/>
 
                             </div>
                             <div className="cpsw field">
@@ -230,7 +253,9 @@ const ChildInfo = () => {
                                     readOnly={readOnlyInfo}
                                     required
                                     value={cpassword}
-                                    onChange={(e) => { setCPassword(e.target.value); } } />
+                                    onChange={(e) => {
+                                        setCPassword(e.target.value);
+                                    }}/>
                             </div>
                         </div>
                     </div>
@@ -238,16 +263,24 @@ const ChildInfo = () => {
                     <div className="form-button-container ">
                         {!loader ?
 
-                            <button type='submit' onClick={(e)=>updateChild(e)} disabled={btndisabled} className={btndisabled ? 'btn formBtnDisabled' : 'btn action formButton flex'}><RxUpdate className='user-submit-icon'/>{t('button.update')} </button>
-                            :<span className='loader'></span>
+                            <button type='submit' onClick={(e) => updateChild(e)} disabled={btndisabled}
+                                    className={btndisabled ? 'btn formBtnDisabled' : 'btn action formButton flex'}>
+                                <RxUpdate className='user-submit-icon'/>{t('button.update')} </button>
+                            : <span className='loader'></span>
                         }
                         {!disconnectLoader ?
 
-                            <button type="button" onClick={()=>[setAreYouSureName("detach"), setAreYouSureTransitionProp(true)]} disabled={btndisabled} className={btndisabled ? 'btn formBtnDisabled' : 'btn action formButton flex'}><VscDebugDisconnect  className='user-submit-icon'/>{t('button.disconnect')} </button>
-                            :<span className='loader'></span>
+                            <button type="button"
+                                    onClick={() => [setAreYouSureName("detach"), setAreYouSureTransitionProp(true)]}
+                                    disabled={btndisabled}
+                                    className={btndisabled ? 'btn formBtnDisabled' : 'btn action formButton flex'}>
+                                <VscDebugDisconnect className='user-submit-icon'/>{t('button.disconnect')} </button>
+                            : <span className='loader'></span>
                         }
                     </div>
                 </form>
+                    :<span className='loader blue'></span>
+                }
 
             </div>
 
