@@ -7,7 +7,7 @@ import AreYouSure from "../CommonComponents/AreYouSure/areyousure";
 import ServiceClient from "../ServiceClient";
 import { GrUpdate } from "react-icons/gr";
 import {FaArrowCircleRight, FaExclamationTriangle, FaMinus, FaPlusCircle, FaTrashAlt} from "react-icons/fa";
-import { TabMenuContext, schoolYearDetailsContext } from "../Context/UserContext";
+import {TabMenuContext, schoolYearDetailsContext, StaticDataContext} from "../Context/UserContext";
 import LabelSelector from "../CommonComponents/Label/labelSelect";
 import {useTranslation} from "react-i18next";
 import Select from "react-select";
@@ -16,6 +16,7 @@ import {IoClose} from "react-icons/io5";
 import course from "./course";
 import moment from "moment";
 import Date from "../date";
+import {get} from "axios";
 
 const CourseCreate = () => {
     /*Translation*/
@@ -23,7 +24,8 @@ const CourseCreate = () => {
     const { t:a } = useTranslation("translation");
 
     /*Loader */
-    const [schoolLocations, paymentPeriods, currencies, languages] = useLoaderData();
+    const schoolLocations = useLoaderData();
+    const {paymentPeriods, currencies, languages} = useContext(StaticDataContext);
 
     /*Data*/
     const [courseName, setCourseName]=useState([{lang: '', name: '', labels:[]}]);
@@ -147,8 +149,8 @@ const CourseCreate = () => {
         }
     }
     const filterCurrencies=()=>{
-        if(currency !== ""){
-            let newCurrency = currencies.filter(e=>e.value !== currency);
+        if(currency){
+            let newCurrency = [...currencies].filter(e=>e.value !== currency);
             return setCopyCurrencies(newCurrency);
         }
     }
@@ -181,14 +183,23 @@ const CourseCreate = () => {
         }
         if(courseName.length>0){
             let getLanguages=courseName.map(e=>e.lang);
-            const duplicates = getLanguages.filter((item, index) => getLanguages.indexOf(item) < index);
-            if(duplicates.length){
-                setErrors([t('validate.lng-same')]);
-            }else{
-                setErrors([])
+            if(getLanguages.filter(e=>e === "").length !== 2){
+                const duplicates = getLanguages.filter((item, index) => getLanguages.indexOf(item) < index);
+                if(duplicates.length){
+                    setErrors([t('validate.lng-same')]);
+                }else{
+                    setErrors([])
+                }
             }
         }
     }, [courseName]);
+
+    useEffect(() => {
+        if(copyPaymentPeriods. length){
+            let newPeriods = paymentPeriods.map(e=>({value: e.value, label: a(`${e.label}`)}))
+            setCopyPaymentPeriods(newPeriods);
+        }
+    }, [t]);
     return (
         <>
         <EventHandler

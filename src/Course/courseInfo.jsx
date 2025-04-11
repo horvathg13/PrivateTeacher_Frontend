@@ -1,4 +1,4 @@
-import {useEffect,useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import EventHandler from "../EventHandler/eventhandler";
 import {useLoaderData, useNavigate, useParams, useRevalidator} from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
@@ -10,11 +10,13 @@ import {FaMinus, FaPlusCircle} from "react-icons/fa";
 import Select from "react-select";
 import LabelSelector from "../CommonComponents/Label/labelSelect";
 import {useTranslation} from "react-i18next";
+import {StaticDataContext} from "../Context/UserContext";
 
 const CourseInfo = () => {
 
     /*Loader */
-    const [courseInfo, courseStatuses, schoolLocations, paymentPeriods, currencies,languages] = useLoaderData();
+    const [courseInfo, schoolLocations] = useLoaderData();
+    const {statuses, paymentPeriods, currencies, languages} = useContext(StaticDataContext);
 
     /*Data */
     const [courseName, setCourseName]=useState();
@@ -25,8 +27,10 @@ const CourseInfo = () => {
     const [labels, setLabels]=useState();
     const [location, setLocation]=useState({value:courseInfo.location.id, label:courseInfo.location.name});
     const [paymentPeriod, setPaymentPeriod]=useState(courseInfo.paymentPeriod.value);
+    const [copyPaymentPeriods, setCopyPaymentPeriods]=useState(JSON.parse(JSON.stringify(paymentPeriods)));
     const [currency, setCurrency]=useState(courseInfo.currency)
-    const [courseStatus, setCourseStatus]=useState(courseInfo?.status);
+    const [courseStatus, setCourseStatus]=useState([courseInfo?.status]);
+    const [copyCourseStatuses, setCopyCourseStatuses]=useState(JSON.parse(JSON.stringify(statuses)))
     const [removeLangs, setRemoveLangs]=useState([]);
     const [readOnly, setReadOnly]=useState(true);
     const [selectedRow, setSelectedRow]=useState();
@@ -148,9 +152,17 @@ const CourseInfo = () => {
     useEffect(() => {
         if(courseInfo.labels && courseInfo.labels.length){
             let init = courseInfo.labels.map((l)=>({id: l.id, label: l.label}));
-            setLabels(init);
+            return setLabels(init);
         }
     }, [courseInfo]);
+
+    useEffect(() => {
+        if(copyCourseStatuses.length){
+            let init = statuses.map((l)=>({value: l.value, label: a(`${l.label}`)}));
+            return setCopyCourseStatuses(init);
+        }
+    }, [statuses,t]);
+
     const formDataUpdater=()=>{
         setCourseName(JSON.parse(JSON.stringify(courseInfo.name)))
         setStudentLimit(courseInfo.student_limit)
@@ -168,9 +180,21 @@ const CourseInfo = () => {
     }
     useEffect(()=>{
         if(courseInfo){
-            formDataUpdater();
+            return formDataUpdater();
         }
     },[courseInfo])
+
+    useEffect(() => {
+        if(copyPaymentPeriods.length){
+            let newPeriods = paymentPeriods.map(e=>({value: e.value, label: a(`${e.label}`)}))
+            setCopyPaymentPeriods(newPeriods);
+        }
+    }, [t]);
+
+    const filterLanguages=(lang)=>{
+        let selectedLanguages=lang ?? courseName.map(e=>e.lang);
+        return languages.filter((e)=>!selectedLanguages.includes(e.value)).map(l=>({value:l.value, label:a(`enums.${l.label}`)}))
+    }
 
     return (
         <>
@@ -205,12 +229,11 @@ const CourseInfo = () => {
                             <label>{t('form.status')}</label>
                             <Select
                                 placeholder={t('select')}
-                                defaultValue={courseStatus}
-                                options={courseStatuses}
+                                options={copyCourseStatuses}
                                 onChange={(selected) => {
                                     setCourseStatus(selected)
                                 }}
-                                value={courseStatus}
+                                value={[courseStatus].map(e=>({value:e.value, label:a(`${e.label}`)}))}
                                 isDisabled={readOnly}
                                 isSearchable={true}
                                 className="select-componentFull"
@@ -248,7 +271,7 @@ const CourseInfo = () => {
                                                 <Select
                                                     placeholder={t('select-lang')}
                                                     value={{value:e.lang, label: typeof e.lang === "string" ? a(`enums.${e.lang}`) : a(`enums.${e.lang.value}`)}}
-                                                    options={languages.map(j=>({value:j.value, label:a(`enums.${j.label}`)})) || null}
+                                                    options={filterLanguages(e.lang || null)}
                                                     onChange={(selected) => {
                                                         handleInputChange(selected, i)
                                                     }}
@@ -386,11 +409,11 @@ const CourseInfo = () => {
                                 <Select
                                     placeholder={t('select')}
                                     defaultValue={courseInfo.paymentPeriod}
-                                    options={paymentPeriods}
+                                    options={copyPaymentPeriods}
                                     onChange={(selected) => {
                                         setPaymentPeriod(selected)
                                     }}
-                                    value={paymentPeriod}
+                                    value={[paymentPeriod].map(e=>({value:e.value, label:a(`${e.label}`)}))}
                                     isDisabled={readOnly}
                                     isSearchable={true}
                                     className="select-componentFull"

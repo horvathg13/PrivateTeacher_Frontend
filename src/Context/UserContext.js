@@ -1,7 +1,9 @@
 import ServiceClient from "../ServiceClient";
-import React,{ useState } from "react";
-import { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import { createContext } from "react";
+import {getCourseStatuses, getCurrenciesISO, getLanguages, getPaymentPeriods} from "../dataLoader";
+import {useTranslation} from "react-i18next";
+import i18next from "i18next";
 
 export const UserContext = createContext(null);
 
