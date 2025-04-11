@@ -38,7 +38,7 @@ const Home = () => {
     const [newMenu, setNewMenu]=useState();
 
     useEffect(() => {
-        if(!roles.length){
+        if(!roles?.length){
              ServiceClient.post("/api/getUserData").then((response)=>{
                 setRoles(response.data.roles)
                 setHasAccessMessages(response.data.menuButtonsPermission[0].hasAccessMessages);
@@ -55,13 +55,7 @@ const Home = () => {
             }
         }
     }, [hasAccessMessages, hasAccessRequests, roles, hasChild]);
-    useEffect(() => {
-        if (roles.length) {
-            /*let menuPermission=menuButtonPermission.hasAccess(menu,roles, hasAccessMessages, hasAccessRequests, hasChild)
-            setNewMenu(menuPermission.menu)
-            navigate(menuPermission.url)*/
-        }
-    }, [hasAccessMessages, hasAccessRequests, roles, hasChild]);
+
     return (
         <>
             <div className="home-text">
