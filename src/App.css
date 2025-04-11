@@ -923,6 +923,10 @@ form .roles-container.flex label {
   text-overflow: ellipsis;
   border-radius: 5px;
 }
+.selector-input.readOnly{
+  background: rgba(221, 221, 221, 0.38);
+  color: rgba(0, 0, 0, 0.75);
+}
 .selector-icon{
   padding: 10px;
 }
@@ -1077,7 +1081,6 @@ form .roles-container.flex label {
   width: 100%;
   display: flex;
   align-items:center;
-
 }
 @media screen and (max-width: 700px) {
   .selector-main{
