@@ -227,3 +227,14 @@ export const getStudentProfile=(params)=>{
         return response.data
     })
 }
+
+export const getCourseProfileHistory=(params)=>{
+    return ServiceClient.get(`/api/getCourseProfileHistory/${params.courseId}`).then((response)=>{
+        return response.data
+    })
+}
+export const getChildrenByCourseId=(params)=>{
+    return ServiceClient.get(`/api/getChildrenByCourseId/${params.courseId}`).then((response)=>{
+        return response.data
+    })
+}
