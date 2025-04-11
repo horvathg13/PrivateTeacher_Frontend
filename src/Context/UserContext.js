@@ -119,3 +119,27 @@ export const SearchResults=createContext(null);
 export const NotificationsContext = createContext({});
 
 export const CourseInfoContext=createContext({});
+
+export const StaticDataContext = createContext({});
+
+export const StaticDataContextProvider=({children})=>{
+    const {t, i18n }=useTranslation();
+
+    const [statuses, setStatuses]=useState([]);
+    const [paymentPeriods, setPaymentPeriod]=useState([]);
+    const [currencies, setCurrencies]=useState({});
+    const [languages, setLanguages]=useState([]);
+
+    useEffect(()=>{
+        Promise.all ([getCourseStatuses(),getPaymentPeriods(), getCurrenciesISO(),getLanguages()]).then((response)=>{
+            setStatuses(response[0]);
+            setPaymentPeriod(response[1]);
+            setCurrencies(response[2]);
+            setLanguages(response[3]);
+        })
+    },[])
+
+    const values = {statuses, setStatuses, paymentPeriods, setPaymentPeriod, currencies, setCurrencies, languages, setLanguages}
+
+    return <StaticDataContext.Provider value={values}>{children}</StaticDataContext.Provider>
+}
