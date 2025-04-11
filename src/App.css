@@ -46,6 +46,8 @@ input:read-only{
   color: rgba(0, 0, 0, 0.75);
   pointer-events: none;
   outline: none;
+  overflow: auto;
+  text-overflow:ellipsis;
 }
 
 textarea:read-only{
@@ -530,6 +532,7 @@ form .roles-container.flex label {
 .content-main-container .FlexForm .form-items {
   flex-direction: column;
   width: 100%;
+  padding: 10px 0;
 }
 .content-main-container .FlexForm .form-items .inline-form-items{
   display: inline-flex;
@@ -552,6 +555,9 @@ form .roles-container.flex label {
 .content-main-container .FlexForm .form-items .form-children label{
   margin: 0 5px;
   min-width: 15%;
+}
+.content-main-container .FlexForm .form-items .form-children.shortLabel label{
+  max-width: 150px;
 }
 .content-main-container .FlexForm .form-items.longLabel .form-children label{
   min-width: 25%;
@@ -674,6 +680,11 @@ form .roles-container.flex label {
 .loader.schoolDetails{
   margin: 20px;
   float: right;
+  border-top: 4px solid var(--DarkBlue);
+}
+
+.loader.blue{
+  margin: 20px auto;
   border-top: 4px solid var(--DarkBlue);
 }
 
