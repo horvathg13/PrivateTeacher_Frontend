@@ -62,48 +62,54 @@ const Login = () => {
             })
         }
     }
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            navigate("/home")
+        }
+    }, []);
     return (
         <>
            <div className="login-container flex">
-            <EventHandler 
-            success={success} 
-            errors={errors} 
-            serverError={serverError} 
-            closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
-            <div className="left-container">
-                <div className="title">
-                    <h1>{t('login.titles.main')}</h1>
+                <EventHandler
+                    success={success}
+                    errors={errors}
+                    serverError={serverError}
+                    closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}
+                />
+                <div className="left-container">
+                    <div className="title">
+                        <h1>{t('login.titles.main')}</h1>
+                    </div>
+                    <div className="form-container">
+                        <form onSubmit={login}>
+                            <div className="emailPassword-fields grid">
+                                <label>{t('login.form.email')}</label>
+                                <input type="email" required onChange={(e)=>{setEmail(e.target.value)}}/>
+
+                                <label>{t('login.form.password')}</label>
+                                <input type="password" required onChange={(e)=>{setPassword(e.target.value)}}/>
+
+                            </div>
+
+                            {!loader ? <button type='submit' disabled={btndisable} className={!btndisable ? 'btn' : 'btn disabled'}>{t('login.button.login')}<FaArrowCircleRight className='btn-icon'/></button>:
+                            <span className='loader'></span>}
+                        </form>
+                    </div>
+                    <div className="mobile-nav-to-register flex">
+                        <p>{t('login.titles.subtitle')} <span onClick={() => {
+                            navigate('/register')
+                        }}>{t('login.titles.mobile-register')}</span></p>
+                    </div>
                 </div>
-                <div className="form-container">
-                    <form onSubmit={login}>
-                        <div className="emailPassword-fields grid">
-                            <label>{t('login.form.email')}</label>
-                            <input type="email" required onChange={(e)=>{setEmail(e.target.value)}}/>
-                            
-                            <label>{t('login.form.password')}</label>
-                            <input type="password" required onChange={(e)=>{setPassword(e.target.value)}}/>
-                            
-                        </div>
-                        
-                        {!loader ? <button type='submit' disabled={btndisable} className={!btndisable ? 'btn' : 'btn disabled'}>{t('login.button.login')}<FaArrowCircleRight className='btn-icon'/></button>:
-                        <span className='loader'></span>}
-                    </form>
+                <div className="right-container">
+                   <div className="text-field">
+                        <p>{t('login.titles.subtitle')} <span>{t('login.titles.span')}</span></p>
+                        <button className='outline btn' onClick={() => {
+                            navigate('/register')
+                        }}>{t('login.button.register')}</button>
+                    </div>
                 </div>
-                <div className="mobile-nav-to-register flex">
-                    <p>{t('login.titles.subtitle')} <span onClick={() => {
-                        navigate('/register')
-                    }}>{t('login.titles.span')}</span></p>
-                </div>
-            </div>
-            <div className="right-container">
-               <div className="text-field">
-                    <p>{t('login.titles.subtitle')} <span>{t('login.titles.span')}</span></p>
-                    <button className='outline btn' onClick={() => {
-                        navigate('/register')
-                    }}>{t('login.button.register')}</button>
-                </div>
-            </div>
-        </div>
+           </div>
         </>
     );
 };
