@@ -60,7 +60,7 @@ const LabelSelector = ({transition, labelEmit, getLabels, popUpTitle, disabled, 
             initialValues={initial}
             remove={removeItem}
             title={popUpTitle}
-            courseLanguage={lang}/> : <div className="selector-input">{renderLabels(labels)}</div>
+            courseLanguage={lang}/> : <div className={disabled ? "selector-input readOnly":"selector-input"}>{renderLabels(labels)}</div>
             }
             {!disabled && < FaEdit  className="selector-icon" onClick={()=> {
                 if(disabled === false){setLabelTransition(true)}
