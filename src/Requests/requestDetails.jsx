@@ -66,7 +66,7 @@ const RequestDetails = () => {
         if(name==='remove'){
             removeStudent();
         }
-        if(name==='cancel'){
+        if(name==='cancellation'){
             cancelRequest();
         }
         setAreYouSureTransitionProp(false);
@@ -208,25 +208,25 @@ const RequestDetails = () => {
                     {!requestDetails.terminationDetails ?
                         <>
                             <div className="form-title"><h3>{t('form.titles.requestInfo')}</h3></div>
-                            <div className="form-children">
+                            <div className="form-children shortLabel">
                                 <label>{t('form.courseName')}</label>
                                 <input type="text" readOnly value={requestDetails.course_names_and_langs[0].name}/>
                             </div>
-                            <div className="form-children">
+                            <div className="form-children shortLabel">
                                 <label>{t('form.language')}</label>
                                 <input type="text" readOnly value={a(`enums.${requestDetails.course_names_and_langs[0].lang}`)}/>
                             </div>
 
-                            <div className="form-children">
+                            <div className="form-children shortLabel">
                                 <label>{t('form.numberOfLesson')}</label>
                                 <input type="text" readOnly value={requestDetails.number_of_lessons}/>
                             </div>
-                            <div className="form-children">
+                            <div className="form-children shortLabel">
                                 <label>{t('form.start')}</label>
                                 <input type="date" readOnly value={requestDetails.requested_start_date}/>
                             </div>
 
-                            <div className="form-children">
+                            <div className="form-children shortLabel">
                                 <label>{t('form.notice')}</label>
                                 <textarea readOnly value={requestDetails.notice}/>
                             </div>
@@ -319,7 +319,7 @@ const RequestDetails = () => {
                                         type='button'
                                         disabled={btndisabled}
                                         onClick={(e) => [
-                                            setAreYouSureName('cancel'),
+                                            setAreYouSureName('cancellation'),
                                             setAreYouSureTransitionProp(true)
                                         ]}
                                         className={readOnly ? 'formBtnDisabled' : 'btn formButton'}>
