@@ -276,7 +276,7 @@ const CourseInfo = () => {
                                                     initial={e.labels}
                                                 />
                                             </td>
-                                            {i > 0 && <td>
+                                            {i > 0 && !readOnly && <td>
                                                 <FaMinus onClick={() => handleRemoveRow(e)}
                                                          className="selector-icon red"/>
                                             </td>}
