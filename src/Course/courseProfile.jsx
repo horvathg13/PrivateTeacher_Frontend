@@ -18,22 +18,6 @@ const CourseProfile = () => {
     const {courseId}=useParams();
     const {setMenuItems}=useContext(TabMenuContext);
 
-    useEffect(()=>{
-            setMenuItems([
-                {
-                    "id":"1",
-                    "name":a('TabMenu.info'),
-                    "url":`/course/profile/${courseId}`,
-                    "end":true,
-                },
-                {
-                    "id":"2",
-                    "name":a('TabMenu.apply'),
-                    "url":`/course/profile/${courseId}/course-apply`
-                },
-            ]);
-
-    },[t])
     return (
         <div>
             <div className="course-profile-main">
