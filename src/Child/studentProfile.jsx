@@ -21,7 +21,7 @@ const StudentProfile = () => {
     const {setTitle,setBreadcrumbs}=useContext(ComponentTitleContext);
     const{courseId}=useParams();
     const [studentCourseId, setStudentCourseId]=useState(childProfile?.id);
-    const [terminationDate, setTerminationDate]=useState();
+    const [terminationDate, setTerminationDate]=useState(null);
 
     /*Event handle*/
     const [errors, setErrors]=useState([]);
@@ -34,7 +34,7 @@ const StudentProfile = () => {
     const [btnLoader, setBtnLoader]=useState(false);
 
     /*Btn Control*/
-    const [btndisabled, setBtndisabled] = useState(false);
+    const [btndisabled, setBtndisabled] = useState(true);
 
     /*AreYouSure*/
     const [areYouSureTransitionProp, setAreYouSureTransitionProp]=useState();
@@ -55,7 +55,7 @@ const StudentProfile = () => {
     const terminationByTeacher=()=>{
         setErrors([]);
         setServerError([]);
-        if(terminationDate){
+        if(terminationDate !== null){
             ServiceClient.terminationCourseByTeacher(studentCourseId, terminationDate).then((success)=>{
                 setSuccess(true);
                 setTimeout(()=>{
@@ -225,13 +225,19 @@ const StudentProfile = () => {
                                 <div className="form-items">
                                     <div className="form-children">
                                         <label>{t('form.start-date')}</label>
-                                        <input type="date" required value={terminationDate} onChange={(e) => {
-                                            setTerminationDate(e.target.value)
-                                        }}/>
+                                        <input
+                                            type="date"
+                                            required
+                                            value={terminationDate}
+                                            onChange={(e) => {
+                                                setTerminationDate(e.target.value)
+                                            }}
+                                        />
                                     </div>
                                 </div>
                             </div>
                             <div className="form-button-container">
+
                                 {!btnLoader ?
                                     <button
                                         type='button'
