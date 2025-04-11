@@ -86,7 +86,16 @@ const Header = () => {
             return success
         });
     }
-
+    const momentLanguageTransform=(lng)=>{
+        switch (lng){
+            case 'GB':return 'en-GB'
+            case 'HU':return 'hu-HU'
+        }
+    }
+    const dateLocalization=(date)=>{
+        let defMoment = moment(date).locale(momentLanguageTransform(language))
+        return defMoment.format("LLL");
+    }
     /*useEffects: */
     useEffect(()=>{
         setName(username);
@@ -157,7 +166,7 @@ const Header = () => {
                                         </div>
                                         <div className="notification-messages">
                                             <p>{t(`header.notifications.${e.message}`)}</p>
-                                            <p className="date">{moment(e.created_at).format("LLL")}</p>
+                                            <p className="date">{dateLocalization(e.created_at)}</p>
                                         </div>
                                     </div>:
                                     <div key={e.id} className="notification-child"
@@ -172,7 +181,7 @@ const Header = () => {
                                         </div>
                                         <div className="notification-messages">
                                             <p style={e.read === false ? {fontWeight: "bold"} : {fontWeight: "normal"}}>{t(`${e.message}`)}</p>
-                                            <p className="date">{moment(e.created_at).format("LLL")}</p>
+                                            <p className="date">{dateLocalization(e.created_at)}</p>
                                         </div>
                                     </div>
                             ) : <div className="notification-menu-loader-container">

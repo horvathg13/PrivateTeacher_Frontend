@@ -13,11 +13,11 @@ import 'moment/locale/hu';
 const lng =localStorage.getItem('i18nextLng');
 export const languageTransform=(lng)=>{
     switch (lng){
-        case 'GB':return ['en-GB', moment.locale('en-GB')]
-        case 'HU':return ['hu-HU', moment.locale('hu-HU')]
-        case 'en-GB':return ['en-GB', moment.locale('en-GB')]
-        case 'hu-HU':return ['hu-HU', moment.locale('hu-HU')]
-        default: return ['hu-HU', moment.locale('hu-HU')]
+        case 'GB':return 'en-GB'
+        case 'HU':return 'hu-HU'
+        case 'en-GB':return 'en-GB'
+        case 'hu-HU':return 'hu-HU'
+        default: return 'hu-HU'
     }
 }
 const ns = "translation"
