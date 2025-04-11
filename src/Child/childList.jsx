@@ -5,7 +5,7 @@ import ComponentTitle from '../CommonComponents/ComponentTitle/componentTitle';
 import ServiceClient from '../ServiceClient';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
-import { NavLink, Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import {NavLink, Outlet, useLoaderData, useLocation, useNavigate} from 'react-router-dom';
 import TabMenu from '../CommonComponents/TabMenu/tabMenu';
 import { FaPlus } from 'react-icons/fa';
 import {useTranslation} from "react-i18next";
@@ -27,6 +27,7 @@ const ChildList = () => {
     const [loader, setLoader]=useState(false);
     const [selectedRow, setSelectedRow]=useState();
     const navigate = useNavigate();
+    const location = useLocation();
 
     /*Event handle*/
     const [errors, setErrors]=useState([]);
@@ -46,7 +47,7 @@ const ChildList = () => {
             serverError={serverError} 
             closeErrorMessage={(data)=>{if(data===true){setErrors([])}}}/>
 
-            <div className="title"><h2>{t('child.title.list')}</h2></div>
+            {location.pathname === "/child" && <div className="title"><h2>{t('child.title.list')}</h2></div>}
             <div className="table-main-container">
                 {!loader ? 
                 <table>
