@@ -13,7 +13,12 @@ import {
   ComponentTitleProvider,
   TabMenuContextProvider,
   UserContextProvider,
-  NotificationsContext, UserContext, ChildInfoContextProvider, UserInfoContextProvider
+  NotificationsContext,
+  UserContext,
+  ChildInfoContextProvider,
+  UserInfoContextProvider,
+  StaticDataContext,
+  StaticDataContextProvider
 } from './Context/UserContext';
 import UserDetailsComponent from './Users/user/userDetails';
 import { createBrowserRouter } from 'react-router-dom';
@@ -43,7 +48,13 @@ import {
   getLocationCourses,
   getUserData,
   accessToMessages,
-  getTeachingDays, getStudentCourseProfile, getChildRequests, getRequestByChildId, getStudentList, getStudentProfile
+  getTeachingDays,
+  getStudentCourseProfile,
+  getChildRequests,
+  getRequestByChildId,
+  getStudentList,
+  getStudentProfile,
+  getCourseProfileHistory, getChildrenByCourseId
 } from './dataLoader';
 import UserProfileBase from './Users/user/userProfileBase';
 import Users from './Users/users';
@@ -116,9 +127,7 @@ function App() {
           <Header />
         </NotificationsContext.Provider>
       </div>
-      <div>
         <Outlet />
-      </div>
       </>
     )
   }
@@ -131,7 +140,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Login />,
+        element: <Login/>,
       },
       {
         path:"register",
@@ -211,7 +220,7 @@ const router = createBrowserRouter([
           {
             path:"create",
             element:<CourseCreate/>,
-            loader:({params})=>{return Promise.all([getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO(), getLanguages()])}
+            loader:({params})=>{return getCourseLocations(params)}
           },
           {
             path:"locations",
@@ -251,7 +260,7 @@ const router = createBrowserRouter([
           {
             path:"",
             element:<CourseInfo/>,
-            loader:({params})=>{return  Promise.all ([getCourseInfo(params), getCourseStatuses(),getCourseLocations(params), getPaymentPeriods(), getCurrenciesISO(),getLanguages()])}
+            loader:({params})=>{return  Promise.all ([getCourseInfo(params), getCourseLocations(params)])}
           },
           {
             path:"students",
@@ -287,6 +296,17 @@ const router = createBrowserRouter([
             element:<CourseApply/>,
             loader:()=> {return getChildren()}
           },
+          {
+            path:"history",
+            element: <RequestList/>,
+            loader:({params})=>{return getCourseProfileHistory(params)}
+          },
+          {
+            path:"children",
+            element: <ChildList/>,
+            loader:({params})=>{return getChildrenByCourseId(params)}
+          }
+
         ],
 
       },
