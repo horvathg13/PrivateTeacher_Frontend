@@ -16,6 +16,7 @@ const SearchResult = ({data, title,transitionProp, closeModal, perPage, counter,
     const openInNewTab=()=>{
         if(selectedRow){
             window.open(`/course/profile/${selectedRow.id}`, '_blank' );
+            setSelectedRow('');
         }
     }
 
