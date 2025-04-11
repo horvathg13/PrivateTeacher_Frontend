@@ -426,15 +426,17 @@ const router = createBrowserRouter([
     <>
 
     <UserContextProvider>
-      <UserInfoContextProvider>
-        <ChildInfoContextProvider>
-          <ComponentTitleProvider>
-            <TabMenuContextProvider>
-              <RouterProvider router={router}/>
-            </TabMenuContextProvider>
-          </ComponentTitleProvider>
-        </ChildInfoContextProvider>
-      </UserInfoContextProvider>
+      <StaticDataContextProvider>
+        <UserInfoContextProvider>
+          <ChildInfoContextProvider>
+            <ComponentTitleProvider>
+              <TabMenuContextProvider>
+                <RouterProvider router={router}/>
+              </TabMenuContextProvider>
+            </ComponentTitleProvider>
+          </ChildInfoContextProvider>
+        </UserInfoContextProvider>
+      </StaticDataContextProvider>
     </UserContextProvider>
     </>
   );
