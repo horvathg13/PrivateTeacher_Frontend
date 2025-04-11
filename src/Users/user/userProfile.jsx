@@ -26,8 +26,6 @@ const UserProfile = () => {
     /*Loader*/
     const userProfileData=useLoaderData();
 
-    console.log(userProfileData);
-
     /*Form fields*/
     const [fname, setFname]=useState(userProfileData?.user?.first_name);
     const [lname, setLname]=useState(userProfileData?.user?.last_name);
@@ -66,8 +64,8 @@ const UserProfile = () => {
 
         setBtnDisabled(true);
         setLoader(true);
-        setErrors([]);
-        setServerError([]);
+        setErrors("");
+        setServerError("");
 
         if(password !== cpassword){
             setCPasswordError(true);
@@ -84,7 +82,7 @@ const UserProfile = () => {
             "email":email,
             "status":null
         }
-        ServiceClient.updateUser( userId, userInfo,password,cpassword).then((success)=>{
+        ServiceClient.updateUser(userId, userInfo,password,cpassword).then((success)=>{
             setSuccess(true);
             setLoader(false);
             setCPassword("");
