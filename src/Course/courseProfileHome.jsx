@@ -18,8 +18,11 @@ const CourseProfileHome = () => {
     const {setTitle,setBreadcrumbs}=useContext(ComponentTitleContext);
     const {roles}=useContext(UserContext);
     const courseProfile=useLoaderData();
+    const {hasChild}=useContext(UserContext);
     /*Translation*/
     const {t}=useTranslation();
+
+
     useEffect(()=>{
         setBreadcrumbs([
             {
@@ -29,8 +32,42 @@ const CourseProfileHome = () => {
                 "icon":"IoIosArrowForward",
             },
         ]);
+        setMenuItems([
+            {
+                "id":"1",
+                "name":t('TabMenu.info'),
+                "url":`/course/profile/${courseId}`,
+                "end":true,
+            },
+        ]);
         setTitle(t('componentTitles.course'));
     },[t,roles])
+    useEffect(()=>{
+        hasChild && setMenuItems([
+            {
+                "id":"1",
+                "name":t('TabMenu.info'),
+                "url":`/course/profile/${courseId}`,
+                "end":true,
+            },
+            {
+                "id":"2",
+                "name":t('TabMenu.apply'),
+                "url":`/course/profile/${courseId}/course-apply`
+            },
+            {
+                "id":"3",
+                "name":t('TabMenu.history'),
+                "url":`/course/profile/${courseId}/history`
+            },
+            {
+                "id":"4",
+                "name":t('TabMenu.children'),
+                "url":`/course/profile/${courseId}/children`
+            }
+        ])
+    },[t,roles])
+
 
 
 
