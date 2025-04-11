@@ -72,7 +72,11 @@ const Register = () => {
             setLoader(false);
         })
     }
-
+    useEffect(() => {
+        if(localStorage.getItem('token')){
+            navigate("/home")
+        }
+    }, []);
     return (
         <div className="reg-container flex">
             <EventHandler 
