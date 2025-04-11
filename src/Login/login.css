@@ -21,7 +21,7 @@
   animation: slideInReversLogIn 0.5s ease-in-out;
 }
 .login-container.flex .right-container .text-field {
-  margin: 50px 10px;
+  margin: 50px 20px;
   width: fit-content;
   float: right;
 }
@@ -124,6 +124,7 @@
 }
 .login-container.flex .left-container .mobile-nav-to-register.flex p {
   color: var(--whiteColorDeam);
+  margin: 0;
 }
 @media only screen and (max-width: 905px) {
   .login-container.flex {
@@ -141,11 +142,22 @@
     margin: 50px auto;
     margin-bottom: 0;
   }
+  .login-container.flex .left-container .form-container button{
+    float: unset !important;
+    margin: 30px auto !important;
+  }
+  .login-container.flex .left-container .mobile-nav-to-register.flex span{
+    color: var(--DangerColorSecound) !important;
+    font-weight: bold;
+    letter-spacing: .5px;
+  }
 }
 @media only screen and (min-width: 905px) {
   .login-container.flex .left-container .mobile-nav-to-register.flex {
     display: none;
   }
+
 }
+
 
 /*# sourceMappingURL=login.css.map */

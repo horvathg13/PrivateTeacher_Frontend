@@ -82,9 +82,9 @@
 .reg-container.flex .right-container .form-container form button.registerFormSubmit {
   display: flex;
   align-items: center;
-  padding: 10px 55px;
+  padding: 7px 35px;
   float: right;
-  margin: 15px 20px;
+  margin: 10px 10px;
   border: none;
   transition: 0.5s ease-in-out;
   border-radius: 10px;
@@ -97,7 +97,13 @@
 }
 .reg-container.flex .right-container .form-container form .loader.register {
   float: right;
-  margin: 15px 20px;
+  margin: 15px 10px;
+  width: 30px;
+  height: 30px;
+}
+.reg-container.flex .right-container .form-container form .loader.register:after{
+  width: 30px;
+  height: 30px;
 }
 @media only screen and (max-width: 905px) {
   .reg-container.flex {
