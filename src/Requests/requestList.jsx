@@ -68,9 +68,9 @@ const RequestList = () => {
                             }}>
                                 <td>{e.id}</td>
                                 <td>{`${e.child_info.first_name} ${e.child_info.last_name}`}</td>
-                                <td>{e.course_names_and_langs.filter(e=>e.lang === i18next.language).length>0 ?
+                                <td>{[e.course_names_and_langs].filter(e=>e.lang === i18next.language).length>0 ?
                                     e.course_names_and_langs.filter(e=>e.lang === i18next.language).map(j=> j.name)
-                                :e.course_names_and_langs.map(j=>j.name)}</td>
+                                :[e.course_names_and_langs].map(j=>j.name)}</td>
                                 <td>{e.created_at.substring(0, 10)}</td>
                                 <td>{t(`enums.${e.status}`)}</td>
                                 <td>{t(`enums.${e.type}`)}</td>
