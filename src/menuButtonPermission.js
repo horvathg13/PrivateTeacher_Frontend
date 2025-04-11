@@ -9,7 +9,6 @@ class menuButtonPermission{
 
                 let final = [...accessToMessages, ...accessToRequests];
                 let uniqueFinal = final.map(item => item).filter((value, index, self) => self.indexOf(value) !== index)
-
                 let redirectURL = !hasChild ? "/child/create" : "/home";
                 return {menu:uniqueFinal, url:redirectURL}
 
