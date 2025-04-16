@@ -104,6 +104,7 @@ import TeachingDayPopUp from "./CommonComponents/TeachingDay/teachingDayPopUp";
 import ChildCourseProfile from "./Child/childCourseProfile";
 import StudentList from "./Course/studentList";
 import StudentProfile from "./Child/studentProfile";
+import ParentProtectedRoutes from "./ParentProtected";
 
 function App() {
 
@@ -312,7 +313,7 @@ const router = createBrowserRouter([
       },
       {
         path:"child",
-        element:<Protected><Child/></Protected>,
+        element:<ParentProtectedRoutes><Child/></ParentProtectedRoutes>,
         errorElement:<RouteBoundary/>,
         children:
         [
