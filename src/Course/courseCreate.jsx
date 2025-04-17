@@ -1,4 +1,4 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import {useContext, useEffect, useLayoutEffect, useMemo, useState} from "react";
 import EventHandler from "../EventHandler/eventhandler";
 import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
@@ -156,12 +156,15 @@ const CourseCreate = () => {
     }
 
     useEffect(()=>{
-        if(!schoolLocations.data.length){
-            setReadOnly(true);
-            setBtnDisabled(true);
-            setErrors([t('not-possible')]);
-        }
-    },[schoolLocations])
+        setTimeout(()=>{
+            if(!schoolLocations.data.length){
+                setReadOnly(true);
+                setBtnDisabled(true);
+                setErrors([t('not-possible')]);
+            }
+        },10)
+    },[schoolLocations.data])
+
     useEffect(() => {
         if(location !== ""){
             filterLocations()
