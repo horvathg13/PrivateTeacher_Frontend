@@ -2,12 +2,13 @@ import {useContext, useEffect, useRef, useState,} from 'react';
 import './login.css';
 import { useNavigate } from "react-router-dom";
 import ServiceClient from '../ServiceClient'
-import { UserContext } from '../Context/UserContext';
+import {StaticDataContext, UserContext} from '../Context/UserContext';
 import  EventHandler  from '../EventHandler/eventhandler';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import {useTranslation} from "react-i18next";
 import Register from "../Register/register";
 import {CSSTransition} from "react-transition-group";
+import {getCourseStatuses, getCurrenciesISO, getLanguages, getPaymentPeriods} from "../dataLoader";
 
 const Login = () => {
     /*Translation*/
@@ -30,6 +31,7 @@ const Login = () => {
 
     /*context*/
     const {setUsername, setRoles, setHasAccessRequests, setHasAccessMessages, setHasChild}=useContext(UserContext);
+    const {setStatuses, setPaymentPeriod, setCurrencies, setLanguages}=useContext(StaticDataContext);
 
     const nodeRef=useRef(null);
     const [startAnimation, setAnimation]=useState(true)
@@ -52,9 +54,17 @@ const Login = () => {
                 setHasAccessMessages(success.menuButtonsPermission[0].hasAccessMessages);
                 setHasChild(success.hasChild);
                 setLoader(false)
-                setTimeout(()=>{
-                    navigate('/home');
-                },1000)
+            }).then(()=>{
+                Promise.all ([getCourseStatuses(),getPaymentPeriods(), getCurrenciesISO(),getLanguages()]).then((response)=>{
+                    setStatuses(response[0]);
+                    setPaymentPeriod(response[1]);
+                    setCurrencies(response[2]);
+                    setLanguages(response[3]);
+
+                    setTimeout(()=>{
+                        navigate('/home');
+                    },1000)
+                })
             }).catch((error)=>{
                 setServerError(error);
                 setLoader(false);
