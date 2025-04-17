@@ -187,10 +187,11 @@ const UserRoles = () => {
                                         placeholder={t('users.user.createUserRole.placeholder')}
                                         defaultValue={({value:e.roleId, label: t(`enums.${e.role}`)})}
                                         value={({value:e.roleId, label: e.role ? t(`${e.role}`) : null})}
-                                        options={userRoles.length ? roleOptions.filter((o)=>!userRoles.some(r=>r.roleId === o.value)).map(l=>({value:l.value, label:t(`enums.${l.label}`)})) : roleOptions.map(r=>({value:r.value, label:t(`enums.${r.label}`)}))}
+                                        options={userRoles.length ? roleOptions.filter((o)=>!userRoles.some(r=>r.roleId === o.value) && !tableRow.some(t=>t.roleId === o.value)).map(l=>({value:l.value, label:t(`enums.${l.label}`)})) : roleOptions.map(r=>({value:r.value, label:t(`enums.${r.label}`)}))}
                                         onChange={(selected)=>handleSelection(selected,i)}
                                         isSearchable={true}
                                         isDisabled={userRoles.some(r=>r.roleId === e.roleId)}
+                                        noOptionsMessage={()=>t('no-option')}
                                     />
                                 </td>
                                 <td className="table-action-container">
