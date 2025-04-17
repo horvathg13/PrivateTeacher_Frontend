@@ -34,15 +34,17 @@ export const UserContextProvider = ({children})=>{
     }
 
     useEffect(()=>{
-        ServiceClient.getUserData().then((success)=>{
-            setUsername(success?.user?.first_name);
-            setRoles(success?.roles);
-            setStatus(success?.user?.user_status);
-            setUserId(success?.user?.id);
-            setHasAccessMessages(success?.menuButtonsPermission[0]?.hasAccessMessages);
-            setHasAccessRequests(success?.menuButtonsPermission[0]?.hasAccessRequests);
-            setHasChild(success?.hasChild)
-        })
+        if(localStorage.getItem('token')){
+            ServiceClient.getUserData().then((success)=>{
+                setUsername(success?.user?.first_name);
+                setRoles(success?.roles);
+                setStatus(success?.user?.user_status);
+                setUserId(success?.user?.id);
+                setHasAccessMessages(success?.menuButtonsPermission[0]?.hasAccessMessages);
+                setHasAccessRequests(success?.menuButtonsPermission[0]?.hasAccessRequests);
+                setHasChild(success?.hasChild)
+            })
+        }
     },[])
     
     
@@ -133,12 +135,15 @@ export const StaticDataContextProvider=({children})=>{
     const [languages, setLanguages]=useState([]);
 
     useEffect(()=>{
-        Promise.all ([getCourseStatuses(),getPaymentPeriods(), getCurrenciesISO(),getLanguages()]).then((response)=>{
-            setStatuses(response[0]);
-            setPaymentPeriod(response[1]);
-            setCurrencies(response[2]);
-            setLanguages(response[3]);
-        })
+        if(localStorage.getItem('token')){
+            Promise.all ([getCourseStatuses(),getPaymentPeriods(), getCurrenciesISO(),getLanguages()]).then((response)=>{
+                setStatuses(response[0]);
+                setPaymentPeriod(response[1]);
+                setCurrencies(response[2]);
+                setLanguages(response[3]);
+            })
+        }
+
     },[])
 
     const values = {statuses, setStatuses, paymentPeriods, setPaymentPeriod, currencies, setCurrencies, languages, setLanguages}
