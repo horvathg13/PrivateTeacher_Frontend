@@ -14,7 +14,7 @@ import { useLoaderData } from 'react-router-dom';
 import ComponentTitle from '../../CommonComponents/ComponentTitle/componentTitle';
 import SideMenu from '../../CommonComponents/SideMenu/sidemenu';
 import TabMenu from '../../CommonComponents/TabMenu/tabMenu';
-import { userInfoContext } from '../../Context/UserContext';
+import {UserContext, userInfoContext} from '../../Context/UserContext';
 import Select from "react-select";
 import {useTranslation} from "react-i18next";
 
@@ -26,6 +26,7 @@ const UserDetails = () => {
 
     /*Context*/
     const {userData, setUserData} = useContext(userInfoContext);
+    const {userId:userLoggedIn}=useContext(UserContext);
 
     /*Form fields*/
     const [fname, setFname]=useState();
@@ -205,18 +206,21 @@ const UserDetails = () => {
                                 required 
                                 onChange={(e)=>{setEmail(e.target.value)}}/>
                             </div>
-                            <div className="status field">
-                                <label>{t('info.form.status')}</label>
-                                <Select
-                                    value={status}
-                                    options={statuses}
-                                    onChange={(selected)=>{setStatus(selected)}}
-                                    isDisabled={readOnlyInfo}
-                                    isSearchable={false}
-                                    className="select-component"
-                                />
-                            </div>
-                            
+                            {userLoggedIn !== parseInt(userId) &&
+                                <div className="status field">
+                                    <label>{t('info.form.status')}</label>
+                                    <Select
+                                        value={status}
+                                        options={statuses}
+                                        onChange={(selected) => {
+                                            setStatus(selected)
+                                        }}
+                                        isDisabled={readOnlyInfo}
+                                        isSearchable={false}
+                                        className="select-component"
+                                    />
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className="user-container passwords">
