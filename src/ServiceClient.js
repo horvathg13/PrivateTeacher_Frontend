@@ -363,7 +363,7 @@ class ServiceClient {
         return this.post("/api/getUserData").then((response)=>{
             return response.data
         }).catch((error)=>{
-            console.log(error.response.data);
+            console.log(error?.response?.data);
         })
     }
 }
