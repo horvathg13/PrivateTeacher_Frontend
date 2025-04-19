@@ -30,7 +30,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     /*context*/
-    const {setUsername, setRoles, setHasAccessRequests, setHasAccessMessages, setHasChild}=useContext(UserContext);
+    const {setUsername, setRoles, setHasAccessRequests, setHasAccessMessages, setHasChild, setUserId}=useContext(UserContext);
     const {setStatuses, setPaymentPeriod, setCurrencies, setLanguages}=useContext(StaticDataContext);
 
     const nodeRef=useRef(null);
@@ -53,6 +53,7 @@ const Login = () => {
                 setHasAccessRequests(success.menuButtonsPermission[0].hasAccessRequests);
                 setHasAccessMessages(success.menuButtonsPermission[0].hasAccessMessages);
                 setHasChild(success.hasChild);
+                setUserId(success.data.id);
                 setLoader(false)
             }).then(()=>{
                 Promise.all ([getCourseStatuses(),getPaymentPeriods(), getCurrenciesISO(),getLanguages()]).then((response)=>{
