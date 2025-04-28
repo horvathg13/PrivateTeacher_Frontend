@@ -198,7 +198,7 @@ const CourseCreate = () => {
     }, [courseName]);
 
     useEffect(() => {
-        if(copyPaymentPeriods. length){
+        if(copyPaymentPeriods.length){
             let newPeriods = paymentPeriods.map(e=>({value: e.value, label: a(`${e.label}`)}))
             setCopyPaymentPeriods(newPeriods);
         }
