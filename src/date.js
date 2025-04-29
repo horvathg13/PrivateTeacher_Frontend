@@ -38,6 +38,19 @@ class Date {
 
         return y;
     }
+
+    static tomorrow=()=>{
+        let t= moment().add(1, "days").format("L")
+
+        if(t.includes(".")){
+            t=t.replaceAll(".", "-").slice(0,-1).toString()
+        }
+        if(t.includes("/")){
+            t=t.replaceAll("/", "-").slice(0,-1)
+        }
+
+        return t;
+    }
 }
 
 export default Date;
