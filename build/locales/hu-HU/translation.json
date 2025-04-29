@@ -1,0 +1,617 @@
+{
+  "login": {
+    "titles": {
+      "main": "Bejelentkezés",
+      "subtitle": "Ha nincs fiókod, kérlek",
+      "span": "regisztrálj.",
+      "mobile-register": "regisztrálj itt."
+    },
+    "form": {
+      "email": "E-mail",
+      "password": "Jelszó"
+    },
+    "button": {
+      "login": "Bejelentkezés",
+      "register": "Regisztráció"
+    }
+  },
+  "register": {
+    "titles": {
+      "main": "Regisztráció"
+    },
+    "form": {
+      "fname": "Keresztnév",
+      "lname": "Vezetéknév",
+      "email": "E-mail",
+      "password": "Jelszó",
+      "cpassword": "Jelszó megerősítése"
+    },
+    "button": {
+      "register": "Regisztráció"
+    }
+  },
+  "breadcrumbs":{
+    "home": "Kezdőlap",
+    "users": "Felhasználók",
+    "schools": "Iskolák",
+    "course": "Kurzus",
+    "location": "Helyszín",
+    "child": "Gyerek",
+    "search": "Keresés",
+    "requests": "Kérelmek",
+    "messages": "Üzenetek",
+    "students": "Tanulók"
+  },
+  "empty-table": "Nincs találat.",
+  "header": {
+    "notifications": {
+      "loader": "Az adatok töltődnek...",
+      "empty-notification": "Nincsenek értesítési"
+    }
+  },
+  "TabMenu": {
+    "info": "Adatok",
+    "user-list": "Felhasználók",
+    "school-list": "Iskolák",
+    "create": "Létrehozás",
+    "roles": "Szerepkörök",
+    "logs": "Naplók",
+    "years": "Tanévek",
+    "locations": "Helyszínek",
+    "teachers": "Tanárok",
+    "breaks": "Tanítási Szünetek",
+    "specWorkDays": "Speciális Munkanapok",
+    "teachingDays": "Tanítási napok",
+    "courses": "Kurzusok",
+    "add-location": "Új helyszín",
+    "list": "Lista",
+    "connect": "Kapcssolódás",
+    "search": "Keresés",
+    "apply": "Jelentkezés",
+    "newMessage": "Új üzenet küldése",
+    "accepted": "Elfogadott",
+    "rejected": "Elutasított",
+    "profile": "Profil",
+    "termination-request": "Lemondás igénylés",
+    "requests": "Igénylések",
+    "students": "Tanulók",
+    "history": "Előzmények",
+    "children": "Gyermekeim"
+  },
+  "componentTitles": {
+    "users": "Felhasználók",
+    "user": "Felhasználó",
+    "schools": "Iskolák",
+    "school": "Iskola",
+    "course": "Kurzus",
+    "location": "Helyszín",
+    "child": "Gyerek",
+    "search": "Keresés",
+    "requests": "Kérelmek",
+    "messages": "Üzenetek"
+  },
+  "home":{
+    "greeting": "Üdvözlöm",
+    "subtitle": "Válasszon egy menüt",
+    "setNewPassword": "Kérem, állítsa be az új jelszavát",
+    "menu": {
+      "users": "Felhasználók",
+      "schools": "Iskolák",
+      "messages": "Üzenetek",
+      "search": "Keresés",
+      "children": "Gyerekek",
+      "course": "Kurzus",
+      "requests": "Kérelmek"
+    }
+  },
+  "users": {
+    "home": {
+      "list": "Lista",
+      "create": "Létrehozás"
+    },
+    "user": {
+      "info": {
+        "titles": {
+          "main": "Információ",
+          "changePassword": "Új jelszó",
+          "profile": "Profil adatok",
+          "creation": "Felhasználó létrehozása"
+        },
+        "form": {
+          "fname": "Keresztnév",
+          "lname": "Vezetéknév",
+          "email": "E-mail",
+          "password": "Jelszó",
+          "cpassword": "Jelszó megerősítése",
+          "status": "Státusz",
+          "new-psw": "Új jelszó"
+        },
+        "button": {
+          "update": "Frissítés"
+        }
+      },
+      "createUserRole": {
+        "title": "Jogosultság kezelés",
+        "role": "Szerepkör",
+        "create": "Létrehozás",
+        "validation": {
+          "required": "A szerepkör megadása kötelező"
+        },
+        "placeholder": "Válasszon egy szerepkört..."
+      },
+      "validator": {
+        "samePsw": "A megadott jelszavak nem egyeznek."
+      },
+      "button": {
+        "generate": "Generálás"
+      },
+      "link": "Generált Link"
+
+    }
+  },
+  "schools": {
+    "home": {
+      "list": "Lista",
+      "create": "Létrehozás",
+      "locations": "Helyszínek",
+      "add-location": "Új helyszín"
+    },
+    "school": {
+      "info": {
+        "titles": {
+          "main": "Iskola adatai"
+        },
+        "form": {
+          "schoolName": "Név",
+          "country": "Ország",
+          "zip": "Irányítószám",
+          "city": "Város",
+          "street": "Utca",
+          "number": "Házszám"
+        },
+        "button": {
+          "update": "Frissítés"
+        }
+      },
+      "year": {
+        "info": {
+          "titles": {
+            "main": "Tanév adatai"
+          },
+          "form": {
+            "year": "Tanév",
+            "name": "Név",
+            "start": "Kezdete",
+            "end": "Vége",
+            "status": "Státusz"
+          },
+          "buttons": {
+            "update": "Frissítés",
+            "delete": "Törlés"
+          }
+        },
+        "create": {
+          "titles": {
+            "main": "Létrehozás"
+          },
+          "button": {
+            "create": "Létrehozás"
+          }
+        },
+        "courses": {
+          "title": {
+            "create": "Új kurzus létrehozása"
+          },
+          "info": {
+            "title": "Kurzus Információk"
+          },
+          "not-possible": "Kurzus létrehozása nem lehetséges: nincs helyszíen regisztrálva.",
+          "form": {
+            "name": "Kurzus neve",
+            "student-limit": "Tanulói létszám limit",
+            "minutes-lesson": "Tanóra hossza (percben)",
+            "minTeachingDay": "Minimális tanítási alkalom/hét",
+            "doubleTime": "Duplaóra",
+            "course-price-per-lesson": "Kuzus díja",
+            "labels": "Címkék",
+            "status": "Státusz",
+            "location": "Helyszín",
+            "lang": "Nyelv",
+            "teacher": "Tanár",
+            "payment-period": "Fizetési periódus",
+            "currency": "Pénznem",
+            "start": "Kurzus kezdete",
+            "end": "Kurzus vége"
+          },
+          "select-lang": "Válasszon nyelvet",
+          "select": "Kérjük válasszon...",
+          "button":{
+            "create": "Létrehozás",
+            "update": "Frissítés",
+            "delete": "Törlés"
+          },
+          "validate": {
+            "lng-required": "A nyelv megadása kötelező",
+            "lng-same": "A kurzus nyelvei nem egyezhetnek meg. Kérlek válassz másik nyelvet."
+          }
+        }
+
+      },
+      "location": {
+        "info": {
+          "titles": {
+            "main": "Helyszín adatok"
+          },
+          "form": {
+            "locationName": "Név",
+            "country": "Ország",
+            "zip": "Irányítószám",
+            "city": "Város",
+            "street": "Utca",
+            "number": "Házszám",
+            "floor": "Emelet",
+            "door": "Ajtó",
+            "course": "Kurzus"
+          },
+          "buttons": {
+            "create": "Létrehozás",
+            "update": "Frissítés",
+            "delete": "Törlés"
+          }
+        },
+        "create": {
+          "title": "Új helyszín létrehozása"
+        },
+        "validation": {
+          "selectCourse": "Kérjük, előbb válasszon kurzust!"
+        }
+      }
+    }
+  },
+  "child": {
+    "title":{
+      "list": "Kapcsolatok",
+      "create": "Létrehozás",
+      "connect": "Gyermek fiók hozzárendelése",
+      "info": "Információ",
+      "changePassword": "Új jelszó",
+      "parentInfos": "Szülő Információk",
+      "childInfos": "Gyerek Információk"
+    },
+    "form": {
+      "first-name": "Keresztnév",
+      "last-name": "Vezetéknév",
+      "username": "Felhasználónév",
+      "birthday": "Születési idő",
+      "password": "Jelszó",
+      "c-password": "Jelszó megerősítése",
+      "not-match": "A jelszavak nem egyeznek",
+      "start-date": "Kezdő dátum",
+      "message": "Üzenet",
+      "name": "Név",
+      "email": "Email"
+    },
+    "button": {
+      "create": "Létrehozás",
+      "update": "Frissítés",
+      "disconnect": "Leválasztás",
+      "confirm": "Jóváhagyás",
+      "termination": "Megszüntetés",
+      "connect": "Kapcsolódás"
+    },
+    "validator": {
+      "samePsw": "A megadott jelszavak nem egyeznek.",
+      "date": "A dátum mező megadása kötelező.",
+      "message": "Az üzenet mező megadása kötelező"
+    },
+    "course-profile": {
+      "titles": {
+        "profile": "Kurzus adatok",
+        "timetable": "Órarend",
+        "termination": "Lemondás igénylés",
+        "terminationByTeacher": "Tanulói jogviszony megszüntetése"
+      },
+      "timetable": {
+        "header": {
+          "day": "Nap",
+          "from": "Kezdő időpont",
+          "to": "Záró időpont"
+        }
+      },
+      "form": {
+        "start": "Kurzus kezdete",
+        "end": "Kurzus vége",
+        "language": "Kurzus nyelve"
+      }
+    }
+  },
+  "courseApply": {
+    "title": {
+      "main": "Jelentkezés"
+    },
+    "form": {
+      "child": "Válassza ki a gyerekét",
+      "notice": "Bemutatkozás",
+      "number-of-lesson": "Heti óraszám igény",
+      "start": "Kezdő dátum",
+      "language": "Válassza ki a kurzus nyelvét"
+    },
+    "button": {
+      "apply": "Küldés"
+    },
+    "validator": {
+      "required": "A jelentkezés minden elemét ki kell tölteni."
+    },
+    "placeholder": "Válasszon..."
+  },
+  "requestDetails": {
+    "form": {
+      "titles": {
+        "parentInfo": "Szülő Információk",
+        "childInfo": "Gyerek Információk",
+        "requestInfo": "A jelentkezés részletei",
+        "terminationInfo": "A lemondás részletei",
+        "main": "Kérelem",
+        "status": "Státusz",
+        "answer": "Válasz"
+      },
+      "justification": "Írjon indoklást",
+      "justification-placeholder": "Itt látható lesz a tanár indoklása.",
+      "name": "Név",
+      "fname": "Keresztnév",
+      "lname": "Vezetéknév",
+      "email": "Email",
+      "birthday": "Születési dátum",
+      "courseName": "Kurzus neve",
+      "numberOfLesson": "Heti óraszám igény",
+      "notice": "Bemutatkozás",
+      "terminationNotice": "Indoklás",
+      "start": "Kurzus kezdete",
+      "end": "Kurzus vége",
+      "teaching_day": "Tanítási alkalmak",
+      "from": "Kezdő időpont",
+      "to": "Záró időpont",
+      "termination_start": "Lemondás dátuma",
+      "buttons": {
+        "accept": "Elfogad",
+        "reject": "Elutasít",
+        "remove": "Eltávolítás",
+        "leave": "Kilépés",
+        "cancel": "Visszavonás"
+      },
+      "language": "Kurzus nyelve"
+    }
+  },
+  "courseProfile": {
+    "form": {
+      "lang": "Nyelvek",
+      "minutes-lesson": "Tanóra hossza (percben)",
+      "minTeachingDay": "Minimális tanítási alkalom/hét",
+      "course-price-per-lesson": "Kuzus díja alkalmanként",
+      "payment_period": "Fizetési periódus",
+      "location": "Helyszín",
+      "address": "Cím",
+      "school-year": "Tanév"
+    }
+  },
+  "enums": {
+    "ACTIVE":"Aktív",
+    "SUSPENDED":"Felfüggesztve",
+    "DELETED":"Törölve",
+    "FINISHED":"Befejezett",
+    "BANNED":"Tiltva",
+    "PER_LESSON":"Alkalmanként",
+    "MONTHLY":"Havonta",
+    "YEARLY":"Évente",
+    "HALF_YEAR":"Félévente",
+    "MONDAY":"Hétfő",
+    "TUESDAY":"Kedd",
+    "WEDNESDAY":"Szerda",
+    "THURSDAY":"Csütörtök",
+    "FRIDAY":"Péntek",
+    "SATURDAY":"Szombat",
+    "SUNDAY":"Vasárnap",
+    "Admin":"Admin",
+    "Teacher":"Tanár",
+    "Parent":"Szülő",
+    "ACCEPTED":"Elfogadva",
+    "REJECTED":"Elutasítva",
+    "UNDER_REVIEW":"Feldolgozás alatt",
+    "UNREAD": "Olvasatlan",
+    "READ": "Olvasott",
+    "APPLY": "Jelentkezés",
+    "TERMINATION": "Lemondás",
+    "en-GB": "Angol",
+    "hu-HU": "Magyar",
+    "English": "Angol",
+    "Hungarian": "Magyar",
+    "CANCELLED": "Visszavonva"
+  },
+  "statuses": {
+    "active":"Aktív",
+    "suspended":"Felfüggesztve",
+    "delete":"Törölve",
+    "per_lesson":"Alkalmanként",
+    "monthly":"Havonta",
+    "half_year":"Félévente",
+    "yearly":"Évente"
+  },
+  "validator": {
+    "type":"The given type is not correct int the following field: {{field}}",
+    "numberRange": "The given number range is incorrect: {{field}}",
+    "samePsw": "A megadott jelszavak nem egyeznek."
+  },
+  "labels": {
+    "not-exist": "A keresett címke nem található, de létrehozhatja.",
+    "not-exist-for-parents": "A keresett címke nem található.",
+    "title": "Adjon hozzá címkét",
+    "placeholder": "Kezdjen el gépelni...",
+    "search": "Keresés",
+    "selected": "Kiválasztva",
+    "select": "Jóváhagyás"
+  },
+  "search": {
+    "search": "Keresés",
+    "result": "Keresési találatok",
+    "title": "Keressen kurzust",
+    "teacher_email": "Tanár email",
+    "country": "Ország",
+    "zip": "Irányítószám",
+    "city": "Város",
+    "street": "Utca",
+    "number": "Házszám",
+    "courseName": "Kurzus Neve",
+    "keywords": "Címkék",
+    "min/lesson": "Tanóra hossza (percben)",
+    "min_t_days": "Minimális tanítási alkalom",
+    "course_price": "Kurzus díja",
+    "payment_period": "Fizetési periódus",
+    "courseLang": "Kurzus nyelve",
+    "select": "Válasszon...",
+    "min": "Min",
+    "max": "Max",
+    "currency": "Árfolyam"
+  },
+  "areYouSure": {
+    "yes": "Igen",
+    "no": "Nem",
+    "title": "Biztosan végrehajtja a műveletet?"
+  },
+  "message": {
+    "child": "Válassza ki a gyerekét",
+    "request":"Válassza ki a tanulói kurzusát",
+    "no-child": "Ez a művelet még nem elérhető.",
+    "select": "Válasszon..."
+  },
+  "passwords": {
+    "invalidToken": "A token érvénytelen. Kérem, tájékoztassa az admint."
+  },
+  "tableHeaders": {
+    "id":"ID",
+    "firstname":"Keresztnév",
+    "lastname":"Vezetéknév",
+    "birthdate":"Születési dátum",
+    "email":"Email",
+    "status":"Státusz",
+    "role":"Szerepkör",
+    "name":"Név",
+    "language":"Nyelv",
+    "country":"Ország",
+    "city":"Város",
+    "zip":"Irányítószám",
+    "floor":"Emelet",
+    "door":"Ajtó",
+    "street":"Utca",
+    "number":"Házszám",
+    "request_id":"Kérvény_id",
+    "request_date":"Kérvény dátuma",
+    "child_id":"Gyerek_id",
+    "course_name":"Kurzus",
+    "teacher_name":"Tanár",
+    "course_price":"Ár",
+    "payment_period": "Fizetési Periódus",
+    "type": "Típus"
+  },
+  "messages": {
+    "success": "A művelet sikeres volt.",
+    "error": "A művelet sikertelen volt.",
+    "denied": {
+      "role": "Megtagadva: Ehhez a művelethez nincs szerepköre.",
+      "user": {
+        "active": "Művelet megtagadva: a felahasználó nem aktív"
+      },
+      "teacher": "A megadott tanár nem tartozik az iskolához.",
+      "permission": "Megtagadva: Ehhez a művelethez nincs jogosultsága.",
+      "locationInUse":"Megtagadva: A helyszín használatban van."
+    },
+    "notification":{
+      "rejected":"A kérelme elutasításra került. Kattintson a részletekért.",
+      "accepted":"A kérelmét elfogadták. Kattintson a részletekért.",
+      "terminationOfCourse":"Kurzusmegszüntetési kérelme érkezett.",
+      "terminationAccepted":"Kurzusmegszüntetési kérelmét elfogadták",
+      "terminationRejected":"Kurzusmegszüntetési kérelmét elutasították.",
+      "studentCourseTerminated":"A tanulói kurzusuát megszüntették.",
+      "courseExpire":"A kurzusa hamarosan lejár.",
+      "courseExpired":"A kurzusa befejeződött."
+    },
+    "notFound":{
+      "user":"Felhasználó nem található",
+      "role":"Nem található szerepkör a felhasználóhoz",
+      "school":"Az iskola nem található",
+      "location":"Nem található helyszín az iskolához.",
+      "search":"A keresésnek megfelelő elem nem található.",
+      "child":"Nem található gyerek ehhez a felhasználóhoz",
+      "course":"Nem található kurzus.",
+      "request":"A kérelem nem található."
+    },
+    "hack_attempt":"A szerver gyanús tevékenységet észlelt, ezért kérését elutasította és fiókja felfüggesztésre került. Keresse meg a rendszer üzemeltetőjét további információkért."
+  },
+  "Wrong number of segments": "Kérjük, jelentkezzen be újra",
+  "Token has expired": "Kérjük, jelentkezzen be újra",
+  "teachingDaySelect": {
+    "titles": {
+      "main": "Kérem, adja meg a tanítási napot és időpontot"
+    },
+    "table": {
+      "headers": {
+        "day": "Nap",
+        "from": "Kezdő időpont",
+        "to": "Záró időpont"
+      }
+    },
+    "buttons": {
+      "save": "Mentés"
+    },
+    "select": "Válasszon..."
+  },
+  "validation": {
+    "custom": {
+      "courseId": {
+        "exists": "A megadott kurzus azonosító nem található az adatbázisban.",
+        "required" : "A kurzus azonosító megadása kötelező.",
+        "numeric":"A kurzus azonosítónak számnak kell lennie."
+      },
+      "requestId":{
+        "required" : "A kérelem azonosítójának megadása kötelező.",
+        "exists" : "A kérelem nem található az adatbázisban.",
+        "numeric":"A kérelem azonosítónak számnak kell lennie."
+      },
+      "childId" : {
+        "required" : "A gyermek azonosító megadása kötelező.",
+        "exists" : "A megadott gyermek nem található az adatbázisban.",
+        "numeric":"A gyermek azonosítónak számnam kell lennie."
+      },
+      "student_course":{
+        "id":{
+          "required":"A tanulói kurzus azonosítóját kötelező megadni.",
+          "numeric":"A tanulói kurzus azonosítójának számnak kell lennie.",
+          "exists":"A tanulói kurzus nem található."
+        }
+      },
+      "locationId": {
+        "required": "A helyszín megadása kötelező.",
+        "exists": "A megadott helyszín nem létezik az adatbázisban.",
+        "numeric": "A helyszín azonosítójának számnak kell lennie."
+      },
+      "studentId": {
+        "required": "A tanuló azonosító megadása kötelező.",
+        "numeric": "A tanuló azonosítójának számnak kell lennie.",
+        "exists": "A megadott tanuló azonosító nem létezik az adatbázisban."
+      },
+      "courseRequest": {
+        "language":{
+          "required":"A kurzus nyelvének kiválasztása kötelező.",
+          "string":"A kurzus nyelve szövegtípusú kell legyen.",
+          "exists":"A megadott kurzusnyelv nem létezik az adatbázisban.",
+          "notValid":"A megadott kurzusnyelv nem érvényes ehhez a kurzushoz."
+        }
+      }
+    }
+  },
+  "commonComponents": {
+    "table": {
+      "counter": "Találat/oldal"
+    }
+  },
+  "no-option": "Nincs megjeleníthető opció"
+}

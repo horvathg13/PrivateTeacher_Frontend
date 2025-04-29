@@ -1,0 +1,617 @@
+{
+  "login": {
+    "titles": {
+      "main": "Login",
+      "subtitle": "If you have no account, please",
+      "span": "register.",
+      "mobile-register": "register here."
+    },
+    "form": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "button": {
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "register": {
+    "titles": {
+      "main": "Register"
+    },
+    "form": {
+      "fname": "Firstname",
+      "lname": "Lastname",
+      "email": "Email",
+      "password": "Password",
+      "cpassword": "Confirm Password"
+    },
+    "button": {
+      "register": "Register"
+    }
+  },
+  "breadcrumbs":{
+    "home": "Home",
+    "users": "Users",
+    "schools": "Schools",
+    "course": "Course",
+    "location": "Location",
+    "child": "Child",
+    "search": "Search",
+    "requests": "Requests",
+    "messages": "Messages",
+    "students": "Students"
+  },
+  "TabMenu": {
+    "info": "Info",
+    "user-list": "User List",
+    "school-list": "School List",
+    "create": "Create",
+    "roles": "Roles",
+    "logs": "Logs",
+    "years": "Years",
+    "locations": "Locations",
+    "teachers": "Teachers",
+    "breaks": "Breaks",
+    "specWorkDays": "Special Work Days",
+    "teachingDays": "Teaching Days",
+    "courses": "Courses",
+    "add-location": "Add Location",
+    "list": "List",
+    "connect": "Connect",
+    "search": "Search",
+    "apply": "Apply for course",
+    "newMessage": "Write a new message",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "profile": "Profile",
+    "termination-request": "Termination Request",
+    "requests": "Requests",
+    "students": "Students",
+    "history": "History",
+    "children": "Children"
+  },
+  "componentTitles": {
+    "users": "Users",
+    "user": "User",
+    "schools": "Schools",
+    "school": "School",
+    "course": "Course",
+    "location": "Location",
+    "child": "Child",
+    "search": "Search",
+    "requests": "Requests",
+    "messages": "Messages"
+  },
+  "empty-table": "Not found.",
+  "header": {
+    "notifications": {
+      "loader": "Loading...",
+      "empty-notification": "You have no notifications"
+    }
+  },
+  "home": {
+    "greeting": "Welcome",
+    "subtitle": "Select a menu",
+    "setNewPassword": "Please, set your new password",
+    "menu": {
+      "users": "Users",
+      "schools": "Schools",
+      "messages": "Messages",
+      "search": "Search",
+      "children": "Children",
+      "course": "Course",
+      "requests": "Requests"
+    }
+  },
+  "users": {
+    "home": {
+      "list": "List",
+      "create": "Create"
+    },
+    "user": {
+      "info": {
+        "titles": {
+          "main": "Info",
+          "changePassword": "New Password",
+          "profile": "User Profile",
+          "creation": "User Creation"
+        },
+        "form": {
+          "fname": "Firstname",
+          "lname": "Lastname",
+          "email": "E-mail",
+          "password": "Password",
+          "cpassword": "Confirm Password",
+          "status": "Status",
+          "new-psw": "New password"
+        },
+        "button": {
+          "update": "Update"
+        }
+      },
+      "createUserRole": {
+        "title": "Permission Control",
+        "role": "Role",
+        "create": "Create",
+        "validation": {
+          "required": "The role field is required"
+        },
+        "placeholder": "Select..."
+      },
+      "validator": {
+        "samePsw": "Passwords does not match."
+      },
+      "button": {
+        "generate": "Generate"
+      },
+      "link": "Generated Link"
+    }
+  },
+  "schools": {
+    "home": {
+      "list": "List",
+      "create": "Create",
+      "locations": "Locations",
+      "add-location": "Add Location"
+    },
+    "school": {
+      "info": {
+        "titles": {
+          "main": "School info"
+        },
+        "form": {
+          "schoolName": "Name",
+          "country": "Country",
+          "zip": "Zip Code",
+          "city": "City",
+          "street": "Street",
+          "number": "Number"
+        },
+        "button": {
+          "update": "Update"
+        }
+      },
+      "year": {
+        "info": {
+          "titles": {
+            "main": "School Year Infos"
+          },
+          "form": {
+            "year": "Year",
+            "name": "Name",
+            "start": "Start",
+            "end": "End",
+            "status": "Status"
+          },
+          "buttons": {
+            "update": "Update",
+            "delete": "Delete"
+          }
+        },
+        "create": {
+          "titles": {
+            "main": "Create"
+          },
+          "button": {
+            "create": "Create"
+          }
+        },
+        "courses": {
+          "title": {
+            "create": "Create a new course"
+          },
+          "info": {
+            "title": "Course Infos"
+          },
+          "not-possible": "It is not possible to create a course: you do not have location registered.",
+          "form": {
+            "name": "Name",
+            "subject": "Subject",
+            "student-limit": "Student limit",
+            "minutes-lesson": "Minutes/lesson",
+            "minTeachingDay": "Minimum Teaching Day/week",
+            "doubleTime": "Double Time",
+            "course-price-per-lesson": "Course Price",
+            "labels": "Labels",
+            "status": "Status",
+            "location": "Location",
+            "lang": "Language",
+            "teacher": "Teacher",
+            "payment-period": "Payment Period",
+            "currency": "Currency",
+            "start": "Start date",
+            "end": "End date"
+          },
+          "select-lang": "Please, select a language",
+          "select": "Please, select...",
+          "button":{
+            "create": "Create",
+            "update": "Update",
+            "delete": "Delete"
+          },
+          "validate": {
+            "lng-required": "Language field is required",
+            "lng-same": "Course languages must be different. Please, select again."
+          }
+        }
+
+      },
+      "location": {
+        "info": {
+          "titles": {
+            "main": "Location info"
+          },
+          "form": {
+            "locationName": "Name",
+            "country": "Country",
+            "zip": "Zip Code",
+            "city": "City",
+            "street": "Street",
+            "number": "Number",
+            "floor": "Floor",
+            "door": "Door",
+            "course": "Course"
+          },
+          "buttons": {
+            "create": "Create",
+            "update": "Update",
+            "delete": "Delete"
+          }
+        },
+        "create": {
+          "title": "Add a new location"
+        },
+        "validation": {
+          "selectCourse": "Please, select a course!"
+        }
+      }
+    }
+  },
+  "child": {
+    "title":{
+      "list": "My Connections",
+      "create": "Create",
+      "connect": "Connect child account",
+      "info": "Info",
+      "changePassword": "Change Password",
+      "parentInfos": "Parent Infos",
+      "childInfos": "Child Infos"
+    },
+    "form": {
+      "first-name": "Firstname",
+      "last-name": "Lastname",
+      "username": "Username",
+      "birthday": "Birthday",
+      "password": "Password",
+      "c-password": "Confirm Password",
+      "not-match": "Passwords does not match.",
+      "start-date": "Start date",
+      "message": "Message",
+      "name": "Name",
+      "email": "Email"
+    },
+    "button": {
+      "create": "Create",
+      "update": "Update",
+      "disconnect": "Disconnect",
+      "confirm": "Confirm",
+      "termination": "Termination",
+      "connect": "Connection"
+    },
+    "validator": {
+      "samePsw": "The given passwords does not match.",
+      "date": "The date input is required.",
+      "message": "The message field is required."
+    },
+    "course-profile": {
+      "titles": {
+        "profile": "Course Profile",
+        "timetable": "Timetable",
+        "termination": "Termination request",
+        "terminationByTeacher": "Student course termination"
+      },
+      "timetable": {
+        "header": {
+          "day": "Day",
+          "from": "Start time",
+          "to": "End time"
+        }
+      },
+      "form": {
+        "start": "Course Start",
+        "end": "Course End",
+        "language": "Course Language"
+      }
+    }
+  },
+  "courseApply": {
+    "title": {
+      "main": "Applying"
+    },
+    "form": {
+      "child": "Select your child",
+      "notice": "Introduction",
+      "number-of-lesson": "Number of lesson per week required",
+      "start": "Start date",
+      "language": "Select the course language"
+    },
+    "button": {
+      "apply": "Send"
+    },
+    "validator": {
+      "required": "All elements of the application form must be filled out."
+    },
+    "placeholder": "Select..."
+  },
+  "requestDetails": {
+    "form": {
+      "titles": {
+        "parentInfo": "Parent Info",
+        "childInfo": "Child Info",
+        "requestInfo": "Request Details",
+        "terminationInfo": "A lemondás részletei",
+        "main": "Request",
+        "status": "Status",
+        "answer": "Answer"
+      },
+      "justification": "Write a justification",
+      "justification-placeholder": "Here will be show the teacher justification.",
+      "name": "Name",
+      "fname": "Firstname",
+      "lname": "Lastname",
+      "email": "email",
+      "birthday": "Birthday",
+      "courseName": "Course Name",
+      "numberOfLesson": "Number of lesson per week required",
+      "notice": "Introduction",
+      "terminationNotice": "Justification ",
+      "start": "Course start",
+      "end": "Course end",
+      "teaching_day": "Teaching occasions",
+      "from": "Start time",
+      "to": "End Time",
+      "termination_start": "Termination start date",
+      "buttons": {
+        "accept": "Accept",
+        "reject": "Reject",
+        "remove": "Remove",
+        "leave": "Leave",
+        "cancel": "Cancel"
+      },
+      "language": "Course Language"
+    }
+  },
+  "courseProfile": {
+    "form": {
+      "lang": "Languages",
+      "minutes-lesson": "Minutes/lesson",
+      "minTeachingDay": "Minimum Teaching Day/week",
+      "course-price-per-lesson": "Course price per lesson",
+      "payment_period": "Payment Period",
+      "location": "Location",
+      "address": "Address",
+      "school-year": "School Year"
+    }
+  },
+  "enums": {
+    "ACTIVE":"Active",
+    "SUSPENDED":"Suspended",
+    "DELETED":"Deleted",
+    "FINISHED":"Finished",
+    "BANNED":"Banned",
+    "PER_LESSON":"Per lesson",
+    "MONTHLY":"Monthly",
+    "YEARLY":"Annual",
+    "HALF_YEAR":"Half year",
+    "MONDAY":"Monday",
+    "TUESDAY":"Tuesday",
+    "WEDNESDAY":"Wednesday",
+    "THURSDAY":"Thursday",
+    "FRIDAY":"Friday",
+    "SATURDAY":"Saturday",
+    "SUNDAY":"Sunday",
+    "Admin":"Admin",
+    "Teacher":"Teacher",
+    "Parent":"Parent",
+    "ACCEPTED":"Accepted",
+    "REJECTED":"Rejected",
+    "UNDER_REVIEW":"Under Review",
+    "UNREAD": "Unread",
+    "READ": "Read",
+    "APPLY": "Applicant",
+    "TERMINATION": "Termination",
+    "en-GB": "English",
+    "hu-HU": "Hungarian",
+    "English": "English",
+    "Hungarian": "Hungarian",
+    "CANCELLED": "Cancelled"
+  },
+  "statuses": {
+    "active":"Active",
+    "suspended":"Suspended",
+    "delete":"Deleted",
+    "per_lesson":"Per Lesson",
+    "monthly":"Monthly",
+    "half_year":"Half year",
+    "yearly":"Annual"
+  },
+  "validator": {
+    "type":"The given type is not correct int the following field: {{field}}",
+    "numberRange": "The given number range is incorrect: {{field}}",
+    "samePsw": "Passwords are not match."
+  },
+  "labels": {
+    "not-exist": "Label does not exist, but you can create this one.",
+    "not-exist-for-parents": "Label does not exist.",
+    "title": "Add labels",
+    "placeholder": "Type to search...",
+    "search": "Search",
+    "selected": "Selected",
+    "select": "Select"
+  },
+  "search": {
+    "search": "Search",
+    "result": "Search Result",
+    "title": "Search Course",
+    "teacher_email": "Teacher Email",
+    "country": "Country",
+    "zip": "Zip Code",
+    "city": "City",
+    "street": "Street",
+    "number": "Number",
+    "courseName": "Course name",
+    "keywords": "Keywords",
+    "min/lesson": "Minutes/lesson",
+    "min_t_days": "Minimum Teaching Days",
+    "course_price": "Course Price",
+    "payment_period": "Payment Period",
+    "courseLang": "Course Language",
+    "select": "Select...",
+    "min": "Min",
+    "max": "Max",
+    "currency": "Currency"
+  },
+  "areYouSure": {
+    "yes": "Yes",
+    "no": "No",
+    "title": "Are you sure?"
+  },
+  "message": {
+    "child": "Choose your child",
+    "request":"Choose your student course",
+    "no-child": "This operation not available yet.",
+    "select": "Select..."
+  },
+  "passwords": {
+    "invalidToken": "The token is invalid. Please, contact the admin."
+  },
+  "tableHeaders": {
+    "id":"ID",
+    "firstname":"Firstname",
+    "lastname":"Lastname",
+    "birthdate":"Birthdate",
+    "email":"Email",
+    "status":"Status",
+    "role":"Role",
+    "name":"Name",
+    "language":"Language",
+    "country":"Country",
+    "city":"City",
+    "zip":"Zip",
+    "floor":"Floor",
+    "door":"Door",
+    "street":"Street",
+    "number":"Number",
+    "request_id":"Request_id",
+    "request_date":"Request date",
+    "child_id":"Child_id",
+    "course_name":"Course",
+    "teacher_name":"Teacher",
+    "course_price":"Price",
+    "payment_period": "Payment Period",
+    "type": "Type"
+  },
+  "messages": {
+    "success" : "Operation was Successful.",
+    "error" : "Operation was Unsuccessful.",
+    "denied":{
+      "role":"Denied: You have no role to this operation",
+      "user":{
+        "active":"Operation denied: user is not active."
+      },
+      "teacher":"The requested teacher is not attached to this school.",
+      "permission":"Denied: You have no permission to this operation.",
+      "locationInUse":"Denied: A course use this location."
+    },
+    "notification":{
+      "rejected":"Your request has been rejected. Click here for the details.",
+      "accepted":"Your request has been accepted. Click here for the details.",
+      "terminationOfCourse":"Termination course request received.",
+      "terminationAccepted":"Termination request accepted.",
+      "terminationRejected":"Termination request rejected.",
+      "studentCourseTerminated":"Student Course is terminated by the teacher.",
+      "courseExpire":"Your course will end in days.",
+      "courseExpired":"Your course has finished."
+    },
+    "notFound":{
+      "user":"User not found.",
+      "role":"Role not found to this user.",
+      "school":"School not found",
+      "location":"School location not found to this school.",
+      "search":"No matching items found",
+      "child":"No child connected to this user.",
+      "course":"Course not found.",
+      "request":"The request is not found."
+    },
+    "hack_attempt":"The server detected suspicious activity, so your request was denied, and your account has been suspended. Please contact the system administrator for further information."
+  },
+  "Token has expired": "Please, login again",
+  "Wrong number of segments": "Please, login again",
+  "teachingDaySelect": {
+    "titles": {
+      "main": "Please, add teaching day and time"
+    },
+    "table": {
+      "headers": {
+        "day": "Day",
+        "from": "From",
+        "to": "To"
+      }
+    },
+    "buttons": {
+      "save": "Save"
+    },
+    "select": "Select..."
+  },
+  "validation": {
+    "custom": {
+      "courseId": {
+        "exists": "The given course ID is not exists in database.",
+        "required" : "Course ID is required.",
+        "numeric":"Course ID must be a numeric type."
+      },
+      "requestId":{
+        "required" : "The request ID is required.",
+        "exists" : "The provided request does not exist in the database.",
+        "numeric":"Request ID must be a numeric type."
+      },
+      "childId" : {
+        "required" : "Child ID is required.",
+        "exists" : "The provided child does not exist in the database.",
+        "numeric":"The child ID must be numeric type."
+      },
+      "student_course":{
+        "id":{
+          "required":"The student course Id is required.",
+          "numeric":"The student course Id must be numeric type.",
+          "exists":"The student course Id is not exists in database."
+        }
+      },
+      "locationId": {
+        "required": "The location is required.",
+        "exists": "The provided location does not exist in the database.",
+        "numeric": "The location ID must be a numeric type."
+      },
+      "studentId": {
+        "required": "The student ID is required.",
+        "numeric": "The student ID must be a numeric type.",
+        "exists": "The student ID does not exist in the database."
+      },
+      "courseRequest": {
+        "language":{
+          "required":"The course language selection is required.",
+          "string":"The course language must be string type.",
+          "exists":"The given course language does not exists in database.",
+          "notValid":"The given course language is not valid to this course"
+        }
+      }
+    }
+  },
+  "commonComponents": {
+    "table": {
+      "counter": "Show/page"
+    }
+  },
+  "no-option": "No options"
+}
